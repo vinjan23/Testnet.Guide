@@ -74,6 +74,74 @@ screen -R master
 ```
 
 
+<p align="center">
+  <img height="auto" height="auto" src="https://user-images.githubusercontent.com/38981255/184290965-fd0f6127-d351-4f55-9102-18aa1bbb38c2.PNG">
+</p>
+
+Wait until block sync
+
+CTRL + A + D Untuk jalan di Background. Maybe 2-3 hours
+
+Untuk kembali ke screen 
+```
+screen -Rd master
+```
+<p align="center">
+  <img height="auto" height="auto" src="https://user-images.githubusercontent.com/38981255/184388159-4b0ebd21-8b4e-4f28-a10f-03b1626db075.PNG">
+</p>
+Already Sync
+
+If you got error or exit code 
+```
+screen -ls
+```
+Close old screen
+Ex : 90210.master
+```
+screen -X -S <namascreen> quit
+
+```
+See config.json and Repeat from Step 4
+
+
+BUKA TAB BARU 
+
+```
+cline wallet create -n <your_name_wallet> -f file.txt
+```
+File.txt berisi Password wallet. Open inery.node>>Inery.setup
+
+```
+cline wallet import --private-key <your_private_key> -n <your_name_wallet>
+```
+
+
+Regiter Node
+
+```
+cline system regproducer <your_account_name> <your_public_key> 0.0.0.0:9010
+```
+
+```
+cline system makeprod approve <your_account_name> <your_account_name>
+```
+
+Cek Your Account Name in Explorer 
+
+Delete Wallet
+
+```
+cline wallet stop
+```
+
+```
+rm -rf inery-wallet
+rm -rf file.txt
+rm -rf <your_wallet_name>.txt
+```
+
+
+
 
 
 
