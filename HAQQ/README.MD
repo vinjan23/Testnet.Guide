@@ -23,9 +23,8 @@ wget -O upgrade%20haqqd%20v1.0.3.sh https://raw.githubusercontent.com/fatalbar/T
 source $HOME/.bash_profile
 ```
 
-**State Sync**
-```bash
-@@ -34,6 +40,28 @@ sudo systemctl restart haqqd && journalctl -u haqqd -f -o cat
+
+
 ```bash
 haqqd status 2>&1 | jq .SyncInfo
 ```
