@@ -37,6 +37,23 @@ cline push action inery.token transfer '["AccountName", "DestinationAccountName"
 ```
 
 cline push action inery.token transfer '["AccountName", "inery", "100 XXX", "This for you 100 XXX "]' -p AccountName
+Must send token to inery account. They account is inery
+
+6. Check Your token in Inery Account
 
 
+```bash
+cline get currency balance inery.token inery (TokenName)
+```
 
+7. Check Balance New Token
+
+```bash
+cline get currency balance inery.token (YourAccount) (TokenName)
+```
+
+8. Check Balance All Token
+
+```bash
+cline get currency balance inery.token (YourAccount)
+```
