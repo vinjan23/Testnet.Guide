@@ -104,6 +104,8 @@ screen -X -S <namascreen> quit
 See config.json and Repeat from Step 4
 
 
+Make Wallet
+
 BUKA TAB BARU 
 
 ```
