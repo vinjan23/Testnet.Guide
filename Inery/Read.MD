@@ -28,6 +28,8 @@ ufw allow 22 && ufw allow 8888 && ufw allow 9010 && ufw enable -y
 git clone https://github.com/inery-blockchain/inery-node
 ```
 
+Buka Tab Baru
+
 4. Setup Node
 ```
 cd inery-node
