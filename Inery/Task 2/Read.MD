@@ -36,7 +36,7 @@ cline push action inery.token issue '["AccountName", "10000.0000 XXX", "ThisMyTo
 cline push action inery.token transfer '["AccountName", "DestinationAccountName", "Amount CurrencyCode", "This for you 100 XXX "]' -p AccountName
 ```
 
-cline push action inery.token transfer '["AccountName", "inery", "100 XXX", "This for you 100 XXX "]' -p AccountName
+cline push action inery.token transfer '["AccountName", "inery", "100.0000 XXX", "This for you 100.0000 XXX "]' -p AccountName
 
 Must send token to inery account. They account is inery
 
@@ -44,17 +44,17 @@ Must send token to inery account. They account is inery
 
 
 ```bash
-cline get currency balance inery.token inery (TokenName)
+cline get currency balance inery.token inery [TokenName]
 ```
 
 7. Check Balance New Token
 
 ```bash
-cline get currency balance inery.token (YourAccount) (TokenName)
+cline get currency balance inery.token  [YourAcc]  [TokenName]
 ```
 
 8. Check Balance All Token
 
 ```bash
-cline get currency balance inery.token (YourAccount)
+cline get currency balance inery.token [YourAcc]
 ```
