@@ -13,7 +13,7 @@ https://ping-pub.joinloyal.io/loyal/staking
 ## Auto Instaliation
 
 ```
-wget -O loyal.sh https://raw.githubusercontent.com/vinjan23/Loyal/main/loyal.sh && chmod +x loyal.sh && ./loyal.sh
+wget -O loyal.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Loyal/loyal.sh && chmod +x loyal.sh && ./loyal.sh
 ```
 
 ## UPDATE PEERS
