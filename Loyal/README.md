@@ -1,7 +1,3 @@
-<p align="center">
-  <img height="150" height="auto" src="https://user-images.githubusercontent.com/38981255/200131380-6f87a774-fde7-43ce-b2df-9f1eb3ab3158.JPG">
-</p>
-
 # TESTNET LOYAL
 
 4x CPU
