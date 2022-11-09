@@ -86,7 +86,7 @@ source $HOME/.bash_profile
 ## Claim Faucet
 
 ```
- NA
+ Go to Discord channel to claim faucet
 ```
 
 ## Create Validator
