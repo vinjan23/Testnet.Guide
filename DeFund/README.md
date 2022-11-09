@@ -19,29 +19,33 @@ wget -O defund.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/
 
 ```
 sudo systemctl stop defundd
-SNAP_RPC="http://95.216.2.219:26651"; \
+
+cp $HOME/.defund/data/priv_validator_state.json $HOME/.defund/priv_validator_state.json.backup
+defundd tendermint unsafe-reset-all --home $HOME/.defund --keep-addr-book
+
+SNAP_RPC="https://defund-testnet.nodejumper.io:443"
+
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
 echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+peers="6366ac3af3995ecbc48c13ce9564aef0c7a6d7df@defund-testnet.nodejumper.io:28656"
+sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/.defund/config/config.toml
+
+sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.defund/config/config.toml
 
-peers="3eef2dd3ba22c18cd4021e474f49b3338af96a21@95.216.2.219:26661" \
-&& sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.defund/config/config.toml 
+mv $HOME/.defund/priv_validator_state.json.backup $HOME/.defund/data/priv_validator_state.json
 
-defundd tendermint unsafe-reset-all --home ~/.defund && sudo systemctl restart defundd && \
-journalctl -u defundd -f --output cat
+sudo systemctl restart defundd
+sudo journalctl -u defundd -f --no-hostname -o cat
 ```
 
-## Turn Off Statesync after Sync Block
 
-```
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1false|" $HOME/.defund/config/config.toml
-```
 
 ## POST INSTALLATION
 
