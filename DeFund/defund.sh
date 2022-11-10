@@ -9,18 +9,23 @@ echo "           ** **       **  **     ** **            **    **       **   ** 
 echo "             *         **  **       **     **********   **         **  **       **     ";
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
 
-# install dependencies, if needed
-sudo apt update
-sudo apt install -y curl git jq lz4 build-essential unzip
+read -p "Enter node moniker: " NODE_MONIKER
 
-if [ ! -f "/usr/local/go/bin/go" ]; then
-  bash <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-scripts/master/utils/go_install.sh")
-  source .bash_profile
-fi
+CHAIN_ID="defund-private-3"
+CHAIN_DENOM="ufetf"
+BINARY="defundd"
+CHEAT_SHEET="https://nodejumper.io/defund-testnet/cheat-sheet"
 
-#!/bin/bash
+printLine
+echo -e "Node moniker: ${CYAN}$NODE_MONIKER${NC}"
+echo -e "Chain id:     ${CYAN}$CHAIN_ID${NC}"
+echo -e "Chain demon:  ${CYAN}$CHAIN_DENOM${NC}"
+printLine
+sleep 1
 
-NODE_MONIKER=<YOUR_NODE_MONIKER>
+source <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/utils/dependencies_install.sh)
+
+printCyan "4. Building binaries..." && sleep 1
 
 cd || return
 rm -rf defund
@@ -31,8 +36,8 @@ make install
 defundd version # 0.1.0
 
 defundd config keyring-backend test
-defundd config chain-id defund-private-3
-defundd init $NODE_MONIKER --chain-id defund-private-3
+defundd config chain-id $CHAIN_ID
+defundd init $NODE_MONIKER --chain-id $CHAIN_ID
 
 cd || return
 curl -L https://github.com/defund-labs/testnet/raw/main/defund-private-3/defund-private-3-gensis.tar.gz > defund-private-3-gensis.tar.gz
@@ -52,6 +57,8 @@ sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^persistent_peers *=.*|persisten
 sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/.defund/config/app.toml
 sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/.defund/config/app.toml
 sed -i 's|pruning-interval = "0"|pruning-interval = "10"|g' $HOME/.defund/config/app.toml
+
+printCyan "5. Starting service and synchronization..." && sleep 1
 
 sudo tee /etc/systemd/system/defundd.service > /dev/null << EOF
 [Unit]
@@ -79,4 +86,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable defundd
 sudo systemctl restart defundd
 
-sudo journalctl -u defundd -f --no-hostname -o cat
+printLine
+echo -e "Check logs:            ${CYAN}sudo journalctl -u $BINARY -f --no-hostname -o cat ${NC}"
+echo -e "Check synchronization: ${CYAN}$BINARY status 2>&1 | jq .SyncInfo.catching_up${NC}"
+echo -e "More commands:         ${CYAN}$CHEAT_SHEET${NC}"
