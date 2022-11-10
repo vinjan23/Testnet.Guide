@@ -76,7 +76,7 @@ defundd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(defundd tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $DEFUND_CHAIN_ID
+  --chain-id defund-private-3
 ```
 
 ## Edit Validator
@@ -87,7 +87,7 @@ defundd tx staking edit-validator \
   --identity=<your_keybase_id> \
   --website="<your_website>" \
   --details="<your_validator_description>" \
-  --chain-id=$DEFUND_CHAIN_ID \
+  --chain-id=defund-private-3 \
   --from=$WALLET
 ```
 
@@ -97,7 +97,7 @@ defundd tx staking edit-validator \
 defundd tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$DEFUND_CHAIN_ID \
+  --chain-id=defund-private-3 \
   --gas=auto
 ```
 
