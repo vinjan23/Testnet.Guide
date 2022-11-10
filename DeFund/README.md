@@ -68,27 +68,37 @@ defundd query bank balances $DEFUND_WALLET_ADDRESS
 
 ```
 defundd tx staking create-validator \
-  --amount 2000000ufetf \
-  --from $WALLET \
-  --commission-max-change-rate "0.01" \
-  --commission-max-rate "0.2" \
-  --commission-rate "0.07" \
-  --min-self-delegation "1" \
-  --pubkey  $(defundd tendermint show-validator) \
-  --moniker $NODENAME \
-  --chain-id defund-private-3
+--amount=1000000ufetf \
+--pubkey=$(defundd tendermint show-validator) \
+--moniker="Moniker" \
+--identity=Your ID \
+--details="XXX" \
+--chain-id=defund-private-3 \
+--commission-rate=0.10 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
+--min-self-delegation=1 \
+--from=wallet \
+--gas-prices=0.1ufetf \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y 
 ```
 
 ## Edit Validator
 
 ```
 defundd tx staking edit-validator \
-  --moniker=$NODENAME \
-  --identity=<your_keybase_id> \
-  --website="<your_website>" \
-  --details="<your_validator_description>" \
-  --chain-id=defund-private-3 \
-  --from=$WALLET
+--new-moniker="Moniker" \
+--identity=Your ID \
+--details="XXX" \
+--chain-id=defund-private-3 \
+--commission-rate=0.1 \
+--from=wallet \
+--gas-prices=0.1ufetf \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y 
 ```
 
 ## Unjail
