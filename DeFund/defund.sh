@@ -9,10 +9,6 @@ echo "           ** **       **  **     ** **            **    **       **   ** 
 echo "             *         **  **       **     **********   **         **  **       **     ";
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
 
-sleep 2
-
-echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
-# update
 # install dependencies, if needed
 sudo apt update
 sudo apt install -y curl git jq lz4 build-essential unzip
