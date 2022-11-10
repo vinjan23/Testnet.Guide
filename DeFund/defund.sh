@@ -21,9 +21,9 @@ echo -e "Node moniker: ${CYAN}$NODE_MONIKER${NC}"
 echo -e "Chain id:     ${CYAN}$CHAIN_ID${NC}"
 echo -e "Chain demon:  ${CYAN}$CHAIN_DENOM${NC}"
 
-sleep 1
+sleep 2
 
-source <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/utils/dependencies_install.sh)
+
 
 printCyan "4. Building binaries..." && sleep 1
 
