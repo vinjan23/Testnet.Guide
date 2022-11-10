@@ -16,12 +16,6 @@ wget -O defund.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/
 ```
 
 
-## POST INSTALLATION
-
-```
-source $HOME/.bash_profile
-```
-
 ## CHECK SYNC & LOG
 
 ```
