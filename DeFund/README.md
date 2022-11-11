@@ -104,11 +104,7 @@ defundd tx staking edit-validator \
 ## Unjail
 
 ```
-defundd tx slashing unjail \
-  --broadcast-mode=block \
-  --from=$WALLET \
-  --chain-id=defund-private-3 \
-  --gas=auto
+defundd tx slashing unjail --from wallet --chain-id defund-private-3 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ## Check Log
