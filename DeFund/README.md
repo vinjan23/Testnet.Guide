@@ -162,25 +162,25 @@ defundd tendermint show-node-id
 ### Delegate stake
 
 ```
-defundd tx staking delegate $DEFUND_VALOPER_ADDRESS 10000000ufetf --from=$WALLET --chain-id=$DEFUND_CHAIN_ID --gas=auto
+defundd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ufetf --from wallet --chain-id defund-private-3 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ###  Redelegate stake from validator to another validator
 
 ```
-defundd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ufetf --from=$WALLET --chain-id=$DEFUND_CHAIN_ID --gas=auto
+defundd tx staking redelegate $(defundd keys show wallet --bech val -a) <TO_VALOPER_ADDRESS> 1000000ufetf --from wallet --chain-id defund-private-3 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ## Withdraw all rewards
 
 ```
-defundd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$DEFUND_CHAIN_ID --gas=auto
+defundd tx distribution withdraw-all-rewards --from wallet --chain-id defund-private-3 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ## Withdraw rewards with commision
 
 ```
-defundd tx distribution withdraw-rewards $DEFUND_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$DEFUND_CHAIN_ID
+defundd tx distribution withdraw-rewards $(defundd keys show wallet --bech val -a) --commission --from wallet --chain-id defund-private-3 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ## Delete node
