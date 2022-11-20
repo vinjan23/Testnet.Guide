@@ -39,7 +39,7 @@ neutrond keys add wallet --recover
 ## Check Wallet Balance
 
 ```
-neutrond q bank balances $(neutrond keys show wallet -a)
+neutrond q bank balances $neutron_wallet_address
 ```
 
 ## Create Validator
