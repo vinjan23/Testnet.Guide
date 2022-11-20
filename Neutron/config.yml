@@ -111,7 +111,7 @@ chains:
         # Should we send an alert if this host isn't responding?
         alert_if_down: yes
       # repeat hosts for monitoring redundancy
-      - url: https://neutron-testnet-rpc.jambulmerah.dev/
+      - url: https://neutron-testnet.nodejumper.io:443/
         alert_if_down: no
-      - url: 
+      - url: https://neutron-testnet-rpc.jambulmerah.dev/
         alert_if_down: no
