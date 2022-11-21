@@ -14,9 +14,8 @@ wget -O install.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main
 
 ## Manual
 
-```
 https://github.com/vinjan23/Testnet.Guide/tree/main/Neutron/Manual
-```
+
 
 ## Check Sync & Log
 
