@@ -23,7 +23,7 @@ echo -e "Chain demon:  ${CYAN}$CHAIN_DENOM${NC}"
 printLine
 sleep 1
 
-source <(curl -s https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Neutron/go
+source <(curl -s https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Neutron/go)
 
 printCyan "4. Building binaries..." && sleep 1
 
@@ -95,9 +95,3 @@ sudo systemctl restart neutrond
 printLine
 echo -e "Check logs:            ${CYAN}sudo journalctl -u $BINARY -f --no-hostname -o cat ${NC}"
 echo -e "Check synchronization: ${CYAN}$BINARY status 2>&1 | jq .SyncInfo.catching_up${NC}"
-
-
-
-
-
-
