@@ -23,7 +23,7 @@ echo -e "Chain demon:  ${CYAN}$CHAIN_DENOM${NC}"
 printLine
 sleep 1
 
-source <(curl -s https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Neutron/go)
+source <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/utils/dependencies_install.sh)
 
 printCyan "4. Building binaries..." && sleep 1
 
@@ -60,7 +60,7 @@ sed -i 's|pruning-interval = "0"|pruning-interval = "13"|g' $HOME/.neutrond/conf
 
 printCyan "5. Starting service and synchronization..." && sleep 1
 
-udo tee /etc/systemd/system/neutrond.service > /dev/null << EOF
+sudo tee /etc/systemd/system/neutrond.service > /dev/null << EOF
 [Unit]
 Description=Neutron Node
 After=network-online.target
