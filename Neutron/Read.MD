@@ -12,6 +12,12 @@
 wget -O install.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Neutron/install.sh && chmod +x install.sh && ./install.sh
 ```
 
+## Manual
+
+```
+https://github.com/vinjan23/Testnet.Guide/tree/main/Neutron/Manual
+```
+
 ## Check Sync & Log
 
 ```
