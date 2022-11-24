@@ -9,7 +9,7 @@
 ## Auto Instaliation
 
 ```
-wget -O install.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Neutron/install.sh && chmod +x install.sh && ./install.sh
+wget -O install.sh N/A
 ```
 
 ## Manual
