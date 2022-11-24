@@ -9,7 +9,7 @@
 ## Auto Instaliation
 
 ```
-wget -O install.sh N/A
+ N/A
 ```
 
 ## Manual
