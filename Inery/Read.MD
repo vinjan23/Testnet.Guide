@@ -84,15 +84,6 @@ Wait until block sync
 
 CTRL + A + D Untuk jalan di Background. Maybe 2-3 hours
 
-Untuk kembali ke screen 
-```
-screen -Rd master
-```
-<p align="center">
-  <img height="auto" height="auto" src="https://user-images.githubusercontent.com/38981255/184388159-4b0ebd21-8b4e-4f28-a10f-03b1626db075.PNG">
-</p>
-Already Sync
-
 # Check Log
 
 ```
@@ -103,6 +94,17 @@ cd inery-node/inery.setup/master.node/blockchain
 ```
 tail -f nodine.log
 ```
+
+Untuk kembali ke screen 
+```
+screen -Rd master
+```
+<p align="center">
+  <img height="auto" height="auto" src="https://user-images.githubusercontent.com/38981255/184388159-4b0ebd21-8b4e-4f28-a10f-03b1626db075.PNG">
+</p>
+Already Sync
+
+
 
 If you got error or exit code 
 ```
