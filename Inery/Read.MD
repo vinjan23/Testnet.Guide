@@ -93,6 +93,17 @@ screen -Rd master
 </p>
 Already Sync
 
+# Check Log
+
+```
+cd
+cd inery-node/inery.setup/master.node/blockchain
+```
+
+```
+tail -f nodine.log
+```
+
 If you got error or exit code 
 ```
 screen -ls
