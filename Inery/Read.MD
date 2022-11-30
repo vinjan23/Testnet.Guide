@@ -75,7 +75,7 @@ screen -R master
 ./ine.py --master
 ```
 
-# KALAU KELUAR TULISAN NASTER NODE
+KALAU KELUAR TULISAN MASTER NODE Seperti di bawah berarti sudah jalan. Silahkan cek
 
 <p align="center">
   <img height="auto" height="auto" src="https://user-images.githubusercontent.com/108977419/204706277-846f4277-cd29-44ae-99ff-82a755dc7a5a.PNG">
