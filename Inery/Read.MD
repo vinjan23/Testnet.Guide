@@ -75,6 +75,13 @@ screen -R master
 ./ine.py --master
 ```
 
+# Check Log
+
+```
+cd
+cd inery-node/inery.setup/master.node/blockchain
+tail -f nodine.log
+```
 
 <p align="center">
   <img height="auto" height="auto" src="https://user-images.githubusercontent.com/38981255/184290965-fd0f6127-d351-4f55-9102-18aa1bbb38c2.PNG">
@@ -84,16 +91,7 @@ Wait until block sync
 
 CTRL + A + D Untuk jalan di Background. Maybe 2-3 hours
 
-# Check Log
 
-```
-cd
-cd inery-node/inery.setup/master.node/blockchain
-```
-
-```
-tail -f nodine.log
-```
 
 Untuk kembali ke screen 
 ```
