@@ -77,6 +77,10 @@ screen -R master
 
 # KALAU KELUAR TULISAN NASTER NODE
 
+<p align="center">
+  <img height="auto" height="auto" src="https://user-images.githubusercontent.com/108977419/204706277-846f4277-cd29-44ae-99ff-82a755dc7a5a.PNG">
+</p>
+
 ```
 cd
 cd inery-node/inery.setup/master.node/blockchain
