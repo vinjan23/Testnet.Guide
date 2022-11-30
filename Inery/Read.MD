@@ -75,7 +75,7 @@ screen -R master
 ./ine.py --master
 ```
 
-# Check Log
+# KALAU KELUAR TULISAN NASTER NODE
 
 ```
 cd
