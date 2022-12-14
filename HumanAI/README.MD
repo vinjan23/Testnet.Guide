@@ -175,8 +175,6 @@ humansd tx staking create-validator \
 
 ## Delegate and Staking 
 
-## Node Info
-
 ```
 humansd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uheart --from wallet --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
 ```
