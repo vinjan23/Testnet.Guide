@@ -12,7 +12,7 @@ RAM 8 GB
 
 STORAGE 200GB (SSD atau NVME)
 
-### ✅️ Explorer > [Explorer Human](https://explorer.stavr.tech/humans-testnet)
+### ✅️ Explorer > [Explorer Human](https://explorer.humans.zone/humans-testnet)
 
 
 
