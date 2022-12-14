@@ -48,6 +48,18 @@ git checkout v1
 go build -o humansd cmd/humansd/main.go
 mv humansd /root/go/bin/humansd
 ```
+
+## If See this error
+
+<p align="center">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/108977419/207550389-5c4dd8b3-4c34-4007-952c-719149e3901f.jpg">
+</p>
+
+```
+chmod +x /root/go/bin/humansd
+```
+
+
 ## Snapshoot to 345.885
 
 ```
