@@ -62,6 +62,12 @@ humansd init <MonikerName> --chain-id testnet-1
 humansd keys add <walletname>
 ```
 
+## Recover Wallet
+
+```
+humansd keys add <walletname> --recover
+```
+
 ## Download Genesis
 
 ```
