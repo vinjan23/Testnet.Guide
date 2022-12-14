@@ -44,8 +44,9 @@ go version
 cd $HOME
 git clone https://github.com/humansdotai/humans
 cd humans
-git checkout v1.0.0
-make install
+git checkout v1
+go build -o humansd cmd/humansd/main.go
+mv humansd /root/go/bin/humansd
 ```
 
 ## If See this error
