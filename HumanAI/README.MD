@@ -1,3 +1,9 @@
+<p align="center">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/108977419/207516348-c160303a-57b0-4149-8118-b0d7785dfde8.jpg">
+</p>
+
+
+
 # TESTNET HUMAN AI
 
 4x CPU
