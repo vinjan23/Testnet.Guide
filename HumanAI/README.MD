@@ -91,6 +91,11 @@ humansd keys add <walletname> --recover
 curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > genesis.json
 cp genesis.json $HOME/.humans/config/genesis.json
 ```
+## Download Addressbook
+
+```
+wget -O $HOME/.humans/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/addressbook.json"
+```
 
 ## Setup Peers/Seed/GasPrice
 
@@ -108,11 +113,7 @@ sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 100/g' $HOME/.huma
 
 ```
 
-## Download Addressbook
 
-```
-wget -O $HOME/.humans/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Humans/addrbook.json"
-```
 
 ## Create Service File
 
