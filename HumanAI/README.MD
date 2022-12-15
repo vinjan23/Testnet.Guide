@@ -168,7 +168,7 @@ humansd tx staking create-validator \
   --pubkey  $(humansd tendermint show-validator) \
   --moniker <YourMoniker> \
   --chain-id testnet-1 \
-  --identity="" \
+  --identity="ID Keybase" \
   --details="" \
   --website="" -y
 ```
@@ -189,6 +189,38 @@ sudo journalctl -u humansd -f -o cat
 
 ```
 humansd status 2>&1 | jq .NodeInfo
+```
+## Edit Validator
+
+```
+humansd tx staking edit-validator \
+--new-moniker="UrMoniker" \
+--identity=Your ID \
+--details="XXX" \
+--chain-id=testnet-1 \
+--commission-rate=0.1 \
+--from=walletname \
+--gas-prices=0.1uheart \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y 
+```
+
+## Unjail
+
+```
+humansd tx slashing unjail \
+  --from=walletname \
+  --chain-id=testnet-1 \
+  --gas-prices 0.1uheart \
+  --gas-adjustment 1.5 \
+  --gas auto -y
+```
+
+## Withdraw All Reward
+
+```
+humansd tx distribution withdraw-all-rewards --from walletname --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ## Delete Node
