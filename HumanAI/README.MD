@@ -88,8 +88,8 @@ humansd keys add <walletname> --recover
 ## Download Genesis
 
 ```
-wget https://snapshots.polkachu.com/testnet-genesis/humans/genesis.json -O $HOME/.humans/config/genesis.json
-
+curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > genesis.json
+cp genesis.json $HOME/.humans/config/genesis.json
 ```
 
 ## Setup Peers/Seed/GasPrice
