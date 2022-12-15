@@ -94,7 +94,7 @@ cp genesis.json $HOME/.humans/config/genesis.json
 ## Download Addressbook
 
 ```
-wget -O $HOME/.humans/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/addressbook.json"
+wget -O $HOME/.humans/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/addrbook.json"
 ```
 
 ## Setup Peers/Seed/GasPrice
