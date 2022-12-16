@@ -44,17 +44,11 @@ go version
 cd $HOME
 git clone https://github.com/humansdotai/humans
 cd humans
-git checkout v1
+git checkout v1.0.0
 go build -o humansd cmd/humansd/main.go
 sudo mv humansd /usr/bin/
 ```
 
-
-## Snapshoot to 345.885
-
-```
-wget -O snapshot.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/snapshot.sh && chmod +x snapshot.sh && ./snapshot.sh
-```
 
 ## Set Moniker
 
@@ -76,11 +70,6 @@ humansd keys add <walletname> --recover
 ```
 
 ## Download Genesis
-
-```
-curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > genesis.json
-cp genesis.json $HOME/.humans/config/genesis.json
-```
 
 ```
 curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > $HOME/.humans/config/genesis.json
@@ -138,6 +127,11 @@ sudo systemctl daemon-reload && sudo systemctl enable humansd
 sudo systemctl restart humansd && sudo journalctl -u humansd -f -o cat
 ```
 
+## Snapshoot to 345.885
+
+```
+wget -O snapshot.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/snapshot.sh && chmod +x snapshot.sh && ./snapshot.sh
+```
 ## Sync Info
 
 ```
