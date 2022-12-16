@@ -50,7 +50,7 @@ go build -o humansd cmd/humansd/main.go
 sudo mv humansd /usr/bin/
 ```
 
-### Set NodeName to Your NodeName
+### Set (NodeName) to Your NodeName
  
 ```
 humansd config chain-id testnet-1
