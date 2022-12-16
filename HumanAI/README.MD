@@ -60,6 +60,12 @@ go build -o humansd cmd/humansd/main.go
 sudo mv humansd /usr/bin/
 ```
 
+### Set Config
+
+```
+humansd init <NodeName> --chain-id testnet-1
+```
+
 ## Create Wallet
 
 ```
