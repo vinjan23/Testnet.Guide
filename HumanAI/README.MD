@@ -81,6 +81,12 @@ humansd keys add <walletname> --recover
 curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > genesis.json
 cp genesis.json $HOME/.humans/config/genesis.json
 ```
+
+```
+curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > $HOME/.humans/config/genesis.json
+sha256sum $HOME/.humans/config/genesis.json # f5fef1b574a07965c005b3d7ad013b27db197f57146a12c018338d7e58a4b5cd
+```
+
 ## Download Addressbook
 
 ```
