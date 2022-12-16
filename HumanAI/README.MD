@@ -63,7 +63,8 @@ sudo mv humansd /usr/bin/
 ### Set Config
 
 ```
-humansd init <NodeName> --chain-id testnet-1
+humansd config chain-id $CHAIN_ID
+humansd config keyring-backend test
 ```
 
 ## Create Wallet
