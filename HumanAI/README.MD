@@ -62,7 +62,8 @@ humansd init <NodeName> --chain-id testnet-1
 ```
 humansd keys add <walletname>
 ```
-
+    OR
+    
 ## Recover Wallet
 
 ```
