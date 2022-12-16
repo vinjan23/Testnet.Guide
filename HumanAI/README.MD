@@ -18,6 +18,17 @@ STORAGE 200GB (SSD atau NVME)
 
 ## Manual Instaliation
 
+## Setup NodeName
+```
+Nodename=$Nodename
+```
+
+```
+echo export Nodename=${Nodename} >> $HOME/.bash_profile
+echo export CHAIN_ID="testnet-1" >> $HOME/.bash_profile
+source ~/.bash_profile
+```
+
 # Update Tool
 
 ```
@@ -47,13 +58,6 @@ cd humans
 git checkout v1.0.0
 go build -o humansd cmd/humansd/main.go
 sudo mv humansd /usr/bin/
-```
-
-
-## Set Moniker
-
-```
-humansd init <MonikerName> --chain-id testnet-1
 ```
 
 ## Create Wallet
