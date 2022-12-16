@@ -18,16 +18,6 @@ STORAGE 200GB (SSD atau NVME)
 
 ## Manual Instaliation
 
-## Setup NodeName
-```
-Nodename=$Nodename
-```
-
-```
-echo export Nodename=${Nodename} >> $HOME/.bash_profile
-echo export CHAIN_ID="testnet-1" >> $HOME/.bash_profile
-source ~/.bash_profile
-```
 
 # Update Tool
 
@@ -60,12 +50,13 @@ go build -o humansd cmd/humansd/main.go
 sudo mv humansd /usr/bin/
 ```
 
-### Set Config
+### Set NodeName
 
 ```
-humansd config chain-id $CHAIN_ID
-humansd config keyring-backend test
+humansd config chain-id testnet-1
+humansd init <NodeName> --chain-id testnet-1
 ```
+  
 
 ## Create Wallet
 
