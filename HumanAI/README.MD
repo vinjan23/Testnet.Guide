@@ -53,7 +53,6 @@ sudo mv humansd /usr/bin/
 ## Set Moniker
 
 ```
-humansd config chain-id testnet-1
 humansd init <MonikerName> --chain-id testnet-1
 ```
 
