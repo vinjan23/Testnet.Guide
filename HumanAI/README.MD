@@ -70,6 +70,12 @@ humansd keys add <walletname>
 humansd keys add <walletname> --recover
 ```
 
+### Check Wallet
+
+```
+humansd keys list
+```
+
 ## Download Genesis
 
 ```
@@ -175,6 +181,12 @@ humansd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uheart --from wallet --c
 
 ```
 sudo journalctl -u humansd -f -o cat
+```
+
+## Validator Info
+
+```
+humansd status 2>&1 | jq .ValidatorInfo
 ```
 
 ## Node Info
