@@ -140,6 +140,9 @@ sudo systemctl restart humansd && sudo journalctl -u humansd -f -o cat
 ```
 wget -O snapshot.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/snapshot.sh && chmod +x snapshot.sh && ./snapshot.sh
 ```
+
+### WAIT bLOCK TO `false`
+
 ## Sync Info
 
 ```
