@@ -165,12 +165,17 @@ humansd tx staking create-validator \
   --commission-rate "0.1" \
   --min-self-delegation "1" \
   --pubkey  $(humansd tendermint show-validator) \
-  --moniker <YourMoniker> \
+  --moniker <NodeName> \
   --chain-id testnet-1 \
   --identity="ID Keybase" \
   --details="" \
   --website="" -y
 ```
+
+### Check TxHash in Explorer & Search Your NodeName
+
+### FINISH
+
 
 ## Delegate and Staking 
 
