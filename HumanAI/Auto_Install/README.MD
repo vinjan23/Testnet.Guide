@@ -24,7 +24,10 @@ STORAGE 200GB (SSD atau NVME)
 wget -O Humans.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/Humans.sh && chmod +x Humans.sh && ./Humans.sh
 ```
 
-### WAIT bLOCK TO `false`
+### > [Manual Guide](https://github.com/vinjan23/Testnet.Guide/blob/main/HumanAI/Manual/README.MD/"Manual Guide")
+
+
+### WAIT BLOCK TO `false`
 
 ## Sync Info
 
