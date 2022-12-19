@@ -49,6 +49,11 @@ defundd config chain-id defund-private-3
 rm -rf defund-private-3-gensis.tar.gz
 ```
 
+### Download Addressbook
+```
+wget -O $HOME/.defund/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/DeFund/addrbook.json"
+```
+
 ### Setup Peers/Seed?Gas
 ```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0ufetf\"/;" ~/.defund/config/app.toml
