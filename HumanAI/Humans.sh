@@ -59,7 +59,6 @@ sudo mv humansd /usr/bin/
 #config
 humansd config keyring-backend test
 humansd config chain-id testnet-1
-humansd init $NODENAME --chain-id testnet-1
 humansd config node tcp://localhost:26657
 
 
