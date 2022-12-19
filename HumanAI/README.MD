@@ -68,26 +68,6 @@ humansd init $NODENAME --chain-id testnet-1
 humansd config node tcp://localhost:26657
 ``` 
 
-## Create Wallet
-
-```
-humansd keys add <walletname>
-```
-
-  ##  `OR`
-    
-## Recover Wallet
-
-```
-humansd keys add <walletname> --recover
-```
-
-### Check Wallet
-
-```
-humansd keys list
-```
-
 ## Download Genesis
 
 ```
@@ -116,8 +96,6 @@ sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 100/g' $HOME/.humans
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 100/g' $HOME/.humans/config/config.toml
 
 ```
-
-
 
 ## Create Service File
 
@@ -158,6 +136,26 @@ wget -O snapshot.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/mai
 
 ```
 humansd status 2>&1 | jq .SyncInfo
+```
+
+## Create Wallet
+
+```
+humansd keys add <walletname>
+```
+
+  ##  `OR`
+    
+## Recover Wallet
+
+```
+humansd keys add <walletname> --recover
+```
+
+### Check Wallet
+
+```
+humansd keys list
 ```
 
 ## Faucet to Discord
