@@ -36,7 +36,7 @@ sudo apt-get install make build-essential gcc git jq chrony screen -y
 
 # install go
 if ! [ -x "$(command -v go)" ]; then
-  ver="1.18.2"
+  ver="1.19"
   cd $HOME
   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
   sudo rm -rf /usr/local/go
