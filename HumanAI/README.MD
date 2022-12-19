@@ -47,6 +47,7 @@ go version
 
 ```
 cd $HOME
+rm -rf humans
 git clone https://github.com/humansdotai/humans
 cd humans
 git checkout v1.0.0
@@ -57,8 +58,14 @@ sudo mv humansd /usr/bin/
 ### Set (NodeName) to Your NodeName
  
 ```
+NODENAME=Your_Node_Name
+```
+### Set Vars
+```
+humansd config keyring-backend test
 humansd config chain-id testnet-1
-humansd init <NodeName> --chain-id testnet-1
+humansd init $NODENAME --chain-id testnet-1
+humansd config node tcp://localhost:26657
 ``` 
 
 ## Create Wallet
