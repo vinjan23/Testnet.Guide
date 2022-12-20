@@ -159,7 +159,6 @@ ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
 
 ### Save Address 
 ```
-ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
 CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET -a)
 CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -a)
 ORCHESTRATOR_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_1 -a)
