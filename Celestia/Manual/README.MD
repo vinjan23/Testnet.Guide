@@ -174,7 +174,7 @@ source $HOME/.bash_profile
 celestia-appd keys list
 ```
 
-## Faucet to Discord `Celestia Wallet` & `Orchestrator Wallet`
+## Faucet to Discord `Celestia Wallet` 
 
 
 ### Check Balance
