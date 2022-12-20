@@ -257,14 +257,14 @@ celestia-appd status 2>&1 | jq .NodeInfo
 
 ### Delete Node
 ```
-sudo systemctl stop celestia-appd && \
-sudo systemctl disable celestia-appd && \
-rm /etc/systemd/system/celestia-appd.service && \
-sudo systemctl daemon-reload && \
-cd $HOME && \
-rm -rf .celestia-app 
-rm -rf celestia-app && \
-rm -rf $(which celestia-appd)
+sudo systemctl stop celestia-appd
+sudo systemctl disable celestia-appd
+sudo rm -rf /etc/systemd/system/celestia-appd*
+sudo systemctl daemon-reload
+sudo rm $(which celestia-appd)
+sudo rm -rf $HOME/.celestia-app
+sudo rm -fr $HOME/celestia-app
+sed -i "/CELESTIA_/d" $HOME/.bash_profile
 ```
 
 
