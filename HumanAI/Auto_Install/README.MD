@@ -89,7 +89,7 @@ humansd tx staking create-validator \
 ## Delegate and Staking 
 
 ```
-humansd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uheart --from wallet --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
+humansd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uheart --from <walletname> --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ## Check Log
@@ -113,7 +113,7 @@ humansd status 2>&1 | jq .NodeInfo
 
 ```
 humansd tx staking edit-validator \
---new-moniker="UrMoniker" \
+--new-moniker="NodeName" \
 --identity=Your ID \
 --details="XXX" \
 --chain-id=testnet-1 \
@@ -139,7 +139,7 @@ humansd tx slashing unjail \
 ## Withdraw All Reward
 
 ```
-humansd tx distribution withdraw-all-rewards --from walletname --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
+humansd tx distribution withdraw-all-rewards --from <walletname> --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ## Delete Node
