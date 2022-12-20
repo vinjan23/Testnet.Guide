@@ -75,8 +75,6 @@ celestia-appd config node tcp://localhost:${CELESTIA_PORT}657
 wget -O $HOME/.celestia-app/config/genesis.json "https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/genesis.json"
 ```
 
-### Download Addrrbook
-
 
 ### Set Peers/Seed/Gas
 ```
