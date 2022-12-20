@@ -149,7 +149,7 @@ celestia-appd keys list
 
 ### Check Balance
 ```
-celestia=appd query bank balances <wallet address>
+celestia-appd query bank balances <wallet address>
 ```
 
 ### Create Validator
