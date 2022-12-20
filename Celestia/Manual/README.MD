@@ -54,6 +54,7 @@ celestia-appd version # 0.11.0
 ```
 NODENAME=Your_Node_Name
 ```
+
 ### Set Vars
 ```
 celestia-appd config keyring-backend test
@@ -129,15 +130,38 @@ sudo journalctl -u celestia-appd -f -o cat
 celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-### Create Wallet
+### Create Celestia Wallet
 ```
-celestia-appd keys add <walletname>
+celestia-appd keys add $CELESTIA_WALLET
 ```
 `OR`
 
 ### Recover Wallet
 ```
-celestia-appd keys add <walletname> --recover
+celestia-appd keys add $CELESTIA_WALLET --recover
+```
+
+### Create Celestia Orchestrator Wallet
+```
+celestia-appd keys add ${CELESTIA_WALLET}_1
+```
+
+### Input ERC-20 Wallet Address
+```
+ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
+```
+
+### Save Address 
+```
+ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
+CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET -a)
+CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -a)
+ORCHESTRATOR_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_1 -a)
+echo "export CELESTIA_WALLET_ADDRESS="${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo "export CELESTIA_ORCHESTRATOR_ADDRESS="${ORCHESTRATOR_ADDRESS} >> $HOME/.bash_profile
+echo "export CELESTIA_VALOPER_ADDRESS="${CELESTIA_VALOPER_ADDRESS} >> $HOME/.bash_profile
+echo "export EVM_ADDRESS=""$ERC20_ADDRESS" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ### Check Wallet
@@ -145,7 +169,8 @@ celestia-appd keys add <walletname> --recover
 celestia-appd keys list
 ```
 
-## Faucet to Discord
+## Faucet to Discord `Celestia Wallet` & `Orchestrator Wallet`
+
 
 ### Check Balance
 ```
