@@ -195,8 +195,10 @@ celestia-appd tx staking create-validator \
   --commission-rate "0.05" \
   --min-self-delegation "1" \
   --pubkey  $(celestia-appd tendermint show-validator) \
-  --moniker $CELESTIA_MONIKER \
-  --chain-id $CELESTIA_CHAIN_ID \
+  --moniker <NodeName> \
+  --identity= \
+  --details= \
+  --chain-id mocha \
   --evm-address $EVM_ADDRESS \
   --orchestrator-address $CELESTIA_ORCHESTRATOR_ADDRESS \
   --gas=auto \
@@ -213,7 +215,7 @@ celestia-appd tx staking edit-validator \
 --details= \
 --chain-id=mocha \
 --commission-rate=0.1 \
---from=<yourwallet> \
+--from=$CELESTIA_WALLET \
 --gas-prices=0.1utia \
 --gas-adjustment=1.5 \
 --gas=auto \
