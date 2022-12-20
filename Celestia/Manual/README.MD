@@ -74,7 +74,10 @@ celestia-appd config node tcp://localhost:${CELESTIA_PORT}657
 ```
 wget -O $HOME/.celestia-app/config/genesis.json "https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/genesis.json"
 ```
-
+### Download Addressbook
+```
+wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Celestia/addrbook.json"
+```
 
 ### Set Peers/Seed/Gas
 ```
@@ -82,9 +85,26 @@ sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001utia"|g' $HOME/.c
 seeds=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/seeds.txt | tr -d '\n')
 peers=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/peers.txt | tr -d '\n')
 sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/.celestia-app/config/config.toml
+peers="cc8bc8ace772faf69071b6673bd4293555f1d84b@65.21.128.125:26656,6c87a8be23b8f7cdec4ec66cfcff5c13d6114ed9@135.181.3.38:28656,3dfe469862cb9f46f0e46e6ca135ff823a4a901e@77.241.194.154:26656,be7ceaf63e894e2a248061f5f82d7e348c95e69c@65.21.190.12:20656,78091973241d5638259f518f3b19f6320b7fb451@135.181.119.59:20656,d00ef425145afbfa91e49602f4f760c3e953575c@65.108.202.230:28656,8262231964896250acd4e8171663f59bd53d7a91@5.161.80.30:20656,ed24130ae96e7bc97c58d400f44cd8e2784e17fd@65.21.131.215:11656,4a44fd602e08ed8bcca1c8ed5f4726c8a6759d41@38.242.147.206:26656,3343ca28eca632a7eec639a47182dd0d15df2ee5@95.217.194.249:26656,7d2210c93768bed2e8fbc4bfc574b5a2c4ce5a40@176.57.150.79:26656,ddabf652375c8618c9f4246b09a2a36b575fb1b1@65.21.134.202:11656,e505a80b4b107e1b9502a438038464325ad842ff@185.182.184.194:11656,5ec7477a55b48984ec778bd1bef87d2ac8cf95eb@138.201.60.238:26656,58b668eac33b67c57e5cb64d821aa7529f92eaff@190.2.155.67:26656,a3f21747aaad6acba6661ab64519be5d2df9c8de@38.242.235.201:26656,e7dc98812ba79276f045ed080a6910540ce37e2a@159.69.241.155:20656,27217ca681c2018577ba4a11538152a6ae9a1bb9@65.108.225.158:11656,e074e923e1c69e4ca86c1b002c4886b422ca5dc6@135.181.183.93:23656,314e2b38b0f1a1848f0b9a10b1a7759cf2342224@38.242.133.24:26656,31784a0df387900c1faf31e4e69ffaaa94d399eb@65.109.90.177:26656,59ff849dd45e763a6b4f6ad33d38bb49e3bee735@65.108.233.109:11656,17d95cd92c5409fa7fe33667b937b1478db09c72@161.97.173.28:26656,06d9b51e2545f3d5bff43840a1a16e420fb27602@38.242.204.8:31656,410e86b87573e827b0bd172bc94bd39c1721c30a@207.180.231.123:28656,3ccaca3a32779bcf4c5cc85aae66a46902f0b641@95.216.223.149:26656,51cb0e181b9f056db6a045d8a4522a9ae4ed8671@65.109.132.186:26656,9ef909374bfbb35204871cba64342bef92c8e70c@102.129.138.248:26656,d56748be04b245936ebdfa8e9b5db4e4c2cd9c03@194.180.176.140:26656,eaeddbe2253fc33c66892068d5092a3f834a6c40@51.68.204.169:26666"
+```
 
-peers="e5fa03c0d18d1e51182a7d787fc25c3e57f03d7b@celestia-testnet.nodejumper.io:29656,4e409a7e4e7cd930a9cfb0a97f5b51b50cd70c86@65.21.199.148:26628,59ff849dd45e763a6b4f6ad33d38bb49e3bee735@65.108.233.109:11656,13a8bcd8c0487467518e577fcb9179c1027cd472@65.109.30.12:60556,a316e60e815a62d016b25c2c7b2b8a2b921080ee@167.86.68.58:26656,94b63fddfc78230f51aeb7ac34b9fb86bd042a77@[2a01:4f8:151:4009::2]:30549,0bd6f3332fd4da091c8e0a1ba9e0c43c582f2bfd@194.163.143.122:26656,f812e6ddd88f197bd21dcfdcaf6a28c0d286e695@157.90.208.222:11656,6219ee5687736a86b5730e8377892624131eede9@94.130.132.227:2083,ec238730a2019e25cef3a723b08d2071f96f49db@185.252.235.73:26656,1fc51f988cc618e0f00d6ae9710e90dd6755f418@65.21.132.27:11656,7076b2bc6a54f103283f8cd99aa094b592cbdc61@190.15.217.229:20656,26dddae653f97c70f69a4c751753a56297eabc7f@185.245.182.58:20656,77fe717fc70370c5b1782c136a5bf7ef1e1e7b5d@167.235.233.34:26656,2cdbb3f9f9ac356bc6691322f58703e0a4595f5f@65.109.132.64:26656,13242037063e270f89d2d5fcfda891e417823a91@45.94.58.203:26661,f1c53c3e03fdaa8a727c9b733464cf7e06c117e6@213.239.207.165:29786,6dd7ccf76ee531a102f5f9e24b7cc521c9a01a28@65.109.85.170:37656,d5519e378247dfb61dfe90652d1fe3e2b3005a5b@65.109.68.190:20656,1877a1394db9202040f9bde2b3e5405eaa49828d@38.242.229.210:26656,5ec7477a55b48984ec778bd1bef87d2ac8cf95eb@138.201.60.238:26656,70ad1e4808ad49f192f3536cf180aa22ca804fc6@34.88.189.48:26656,e40253369450ffe4c43cd5397f74945171434e97@194.163.166.68:656,f8cf182396527c7486fe6a11f4e24435a41b45e4@78.141.239.206:26656,d37383963838607944841a004c9b00a232d0f8ca@167.99.194.123:26656,ef49ca014e6a5048050da458038d0d2a9051f3b8@161.97.136.149:26656,6a03b088a9e183e7faa897afcc6b50c6971a4cd5@159.69.5.164:26656,68d3e7fd0ea917fd218ec8d091596dc79b959411@94.130.54.253:26602,dea18507c971ea4e044e6304fe8b6f010cbbfee8@65.108.79.246:26676,0d087d41f65d3aa98ba7adc74835c0cb1ad52323@154.12.226.149:26656,a7c647340ecfce1de2c71cafe108a9767f15083c@194.242.57.98:26661,79b838bc0084555949d813a1a0c51dcd6c9a2df3@65.108.235.238:26656,51cb0e181b9f056db6a045d8a4522a9ae4ed8671@65.109.132.186:26656,8084e73b70dbe7fba3602be586de45a516012e6f@144.76.112.238:26656,de73e3418d48d710a67634b14ef9673ebf94f815@154.26.153.201:26656,eaeddbe2253fc33c66892068d5092a3f834a6c40@51.68.204.169:26666,e286b562eddc6fea1b2635f6623430225666fb2f@147.135.144.58:26656,37dd147ea65b061c5542b326d6c17ef1a8d3e17b@65.109.92.240:20096,78c9e7a206b7063b7f54e5c25f208b2a513b3491@95.216.242.177:20656,1afcd97b0bf289700378e18b45dc1f927917bba0@65.109.92.79:11656,536e50a29c20e83687f64e77ee5d84715eb61aa2@38.242.225.86:26656,8bb8e34ac6eb4ddb927bb1cbbd44357683123af1@176.9.98.24:30542,04618a2c0aac785a4b407d3161eda332fedd807f@38.242.152.80:26656,2308c68a817f84dfbd86d7abf9f1cbe82172751a@181.188.232.25:26656,cc77755c7fed7457c6e33f6e65b0300e8fe9add0@5.161.109.144:26656,3f64b15d737c1d07ac844716535e85c2617625a6@144.76.176.154:26656,5f7eeebf3d90344a6efeea95f8f260fe455b8096@46.4.23.42:36656,897e79c3208ac63ee8a494543d6a2c7e21f5a792@185.216.178.198:26656,8cad7155c4ac688941bdf464cf762753d280f77f@185.137.122.61:26656"
-sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/.celestia-app/config/config.toml
+### Set Custom Port
+```
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${CELESTIA_PORT}317\"%;
+s%^address = \":8080\"%address = \":${CELESTIA_PORT}080\"%;
+s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${CELESTIA_PORT}090\"%; 
+s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${CELESTIA_PORT}091\"%; 
+s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${CELESTIA_PORT}545\"%; 
+s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${CELESTIA_PORT}546\"%" $HOME/.celestia-app/config/app.toml
+```
+```
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${CELESTIA_PORT}658\"%; 
+s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${CELESTIA_PORT}657\"%; 
+s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${CELESTIA_PORT}060\"%;
+s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${CELESTIA_PORT}656\"%;
+s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${CELESTIA_PORT}656\"%;
+s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${CELESTIA_PORT}660\"%" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 ### Prunning
@@ -108,16 +128,18 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app --keep-addr
 
 ### Create Service File
 ```
-sudo tee /etc/systemd/system/celestia-appd.service > /dev/null << EOF
+sudo tee /etc/systemd/system/celestia-appd.service > /dev/null <<EOF
 [Unit]
-Description=Celestia Validator Node
+Description=celestia
 After=network-online.target
+
 [Service]
 User=$USER
-ExecStart=$(which celestia-appd) start
+ExecStart=$(which celestia-appd) start --home $HOME/.celestia-app/
 Restart=on-failure
-RestartSec=10
-LimitNOFILE=10000
+RestartSec=3
+LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
