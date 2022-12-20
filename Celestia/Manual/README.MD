@@ -49,6 +49,13 @@ make install
 celestia-appd version # 0.11.0
 ```
 
+### Setup P2P Network
+```
+cd $HOME
+rm -rf networks
+git clone https://github.com/celestiaorg/networks.git
+```
+
 ### Set (NodeName) to Your NodeName
  
 ```
@@ -60,6 +67,7 @@ NODENAME=Your_Node_Name
 celestia-appd config keyring-backend test
 celestia-appd config chain-id mocha
 celestia-appd init "$NODENAME" --chain-id mocha
+celestia-appd config node tcp://localhost:${CELESTIA_PORT}657
 ```
 
 ### Download Genesis
@@ -180,21 +188,21 @@ celestia-appd query bank balances <wallet address>
 ### Create Validator
 ```
 celestia-appd tx staking create-validator \
---amount=1000000utia \
---pubkey=$(celestia-appd tendermint show-validator) \
---moniker=<NodeName> \
---identity= \
---details= \
---chain-id=mocha \
---commission-rate=0.10 \
---commission-max-rate=0.20 \
---commission-max-change-rate=0.01 \
---min-self-delegation=1 \
---from=<yourwallet> \
---gas-prices=0.1utia \
---gas-adjustment=1.5 \
---gas=auto \
--y
+  --amount 1000000utia \
+  --from $CELESTIA_WALLET \
+  --commission-max-change-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.05" \
+  --min-self-delegation "1" \
+  --pubkey  $(celestia-appd tendermint show-validator) \
+  --moniker $CELESTIA_MONIKER \
+  --chain-id $CELESTIA_CHAIN_ID \
+  --evm-address $EVM_ADDRESS \
+  --orchestrator-address $CELESTIA_ORCHESTRATOR_ADDRESS \
+  --gas=auto \
+  --gas-adjustment=1.5 \
+  --fees=1000utia \
+  -y
 ```
 
 ### edit Validator
