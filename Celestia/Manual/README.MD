@@ -192,7 +192,7 @@ celestia-appd tx staking create-validator \
   --commission-rate "0.05" \
   --min-self-delegation "1" \
   --pubkey  $(celestia-appd tendermint show-validator) \
-  --moniker <NodeName> \
+  --moniker $NODENAME \
   --identity= \
   --details= \
   --chain-id mocha \
@@ -207,7 +207,7 @@ celestia-appd tx staking create-validator \
 ### edit Validator
 ```
 celestia-appd tx staking edit-validator \
---new-moniker=<NodeName> \
+--new-moniker=$NODENAME \
 --identity= \
 --details= \
 --chain-id=mocha \
