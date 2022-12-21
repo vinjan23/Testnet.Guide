@@ -56,10 +56,14 @@ rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
 ```
 
-### Set (NodeName) to Your NodeName
+### Set Moniker (Replace `<YOUR_MONIKER>` to Your Moniker Name
  
 ```
-NODENAME=Your_Node_Name
+CELESTIA_PORT=11
+echo "export CELESTIA_MONIKER="<YOUR_MONIKER>"" >> $HOME/.bash_profile
+echo "export CELESTIA_CHAIN_ID="mocha"" >> $HOME/.bash_profile
+echo "export CELESTIA_PORT="${CELESTIA_PORT}"" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ### Set Vars
