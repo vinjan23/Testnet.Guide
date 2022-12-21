@@ -161,32 +161,32 @@ sudo journalctl -u celestia-appd -f -o cat
 celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-### Create Celestia Wallet `1st Wallet`
+### Create Celestia Wallet `Change to 1st Wallet`
 ```
-celestia-appd keys add ${CELESTIA_WALLET}
+celestia-appd keys add {1_CELESTIA_WALLET}
 ```
 `OR`
 
 ### Recover Wallet
 ```
-celestia-appd keys add ${CELESTIA_WALLET} --recover
+celestia-appd keys add {CELESTIA_WALLET} --recover
 ```
 
-### Create Celestia Orchestrator Wallet `2nd Wallet`
+### Create Celestia Orchestrator Wallet `Change 2nd Wallet`
 ```
-celestia-appd keys add ${CELESTIA_WALLET}_2
+celestia-appd keys add {2_CELESTIA_WALLET}
 ```
 
-### Input ERC-20 Wallet Address
+### Input Your Wallet Address
 ```
 ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
+CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show <1st Wallet> -a)
+CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show <1st Wallet> --bech val -a)
+ORCHESTRATOR_ADDRESS=$(celestia-appd keys show <2nd Wallet> -a)
 ```
 
 ### Save Address 
 ```
-CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_1 -a)
-CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_1 --bech val -a)
-ORCHESTRATOR_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_2 -a)
 echo "export CELESTIA_WALLET_ADDRESS="${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo "export CELESTIA_ORCHESTRATOR_ADDRESS="${ORCHESTRATOR_ADDRESS} >> $HOME/.bash_profile
 echo "export CELESTIA_VALOPER_ADDRESS="${CELESTIA_VALOPER_ADDRESS} >> $HOME/.bash_profile
