@@ -166,7 +166,7 @@ celestia-appd keys add ${CELESTIA_WALLET}_1
 
 ### Recover Wallet
 ```
-celestia-appd keys add $CELESTIA_WALLET --recover
+celestia-appd keys add ${CELESTIA_WALLET}_1 --recover
 ```
 
 ### Create Celestia Orchestrator Wallet
