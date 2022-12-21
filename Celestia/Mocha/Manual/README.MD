@@ -211,7 +211,7 @@ celestia-appd query bank balances <wallet address>
 ```
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
-  --from $CELESTIA_WALLET_ADDRESS \
+  --from ${CELESTIA_WALLET}_1\
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
   --commission-rate "0.05" \
