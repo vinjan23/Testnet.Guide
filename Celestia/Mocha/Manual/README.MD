@@ -181,12 +181,12 @@ ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
 
 ### Save Address 
 ```
-CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET -a)
-CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -a)
-ORCHESTRATOR_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_1 -a)
+CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET_1 -a)
+CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET_1 --bech val -a)
+ORCHESTRATOR_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_2 -a)
 echo "export CELESTIA_WALLET_ADDRESS="${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_profile
-echo "export CELESTIA_ORCHESTRATOR_ADDRESS="${ORCHESTRATOR_ADDRESS} >> $HOME/.bash_profile
-echo "export CELESTIA_VALOPER_ADDRESS="${CELESTIA_VALOPER_ADDRESS} >> $HOME/.bash_profile
+echo "export CELESTIA_ORCHESTRATOR_ADDRESS="${ORCHESTRATOR_ADDRESS}_1 >> $HOME/.bash_profile
+echo "export CELESTIA_VALOPER_ADDRESS="${CELESTIA_VALOPER_ADDRESS}_1 >> $HOME/.bash_profile
 echo "export EVM_ADDRESS=""$ERC20_ADDRESS" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
