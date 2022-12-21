@@ -68,10 +68,9 @@ source $HOME/.bash_profile
 
 ### Set Vars
 ```
-celestia-appd config keyring-backend test
-celestia-appd config chain-id mocha
-celestia-appd init "$NODENAME" --chain-id mocha
 celestia-appd config node tcp://localhost:${CELESTIA_PORT}657
+celestia-appd config chain-id $CELESTIA_CHAIN_ID
+celestia-appd init $CELESTIA_MONIKER --chain-id $CELESTIA_CHAIN_ID
 ```
 
 ### Download Genesis
