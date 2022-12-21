@@ -177,7 +177,7 @@ celestia-appd keys add {WalletName} --recover
 celestia-appd keys add ${CELESTIA_WALLET}_1
 ```
 
-### Input Your Wallet Address `PUT_YOUR_ERC20_ADDRESS> without <>` & `Change WalletName`
+### Input Your Wallet Address `PUT_YOUR_ERC20_ADDRESS> without <>` & `<Change WalletName>`
 ```
 ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
 CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show <WalletName> -a)
@@ -203,7 +203,7 @@ celestia-appd keys list
 celestia-appd query bank balances <wallet address>
 ```
 
-### Create Validator `Change WalletName`
+### Create Validator `Change Only <WalletName?`
 ```
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
