@@ -203,11 +203,11 @@ celestia-appd keys list
 celestia-appd query bank balances <wallet address>
 ```
 
-### Create Validator
+### Create Validator `Change WalletName`
 ```
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
-  --from <1st WalletName> \
+  --from <WalletName> \
   --commission-max-rate 0.20 \
   --commission-rate 0.10 \
   --commission-max-change-rate 0.01 \
