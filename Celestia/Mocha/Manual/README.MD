@@ -160,7 +160,7 @@ celestia-appd status 2>&1 | jq .SyncInfo
 
 ### Create Celestia Wallet
 ```
-celestia-appd keys add $CELESTIA_WALLET
+celestia-appd keys add ${CELESTIA_WALLET}_1
 ```
 `OR`
 
@@ -171,7 +171,7 @@ celestia-appd keys add $CELESTIA_WALLET --recover
 
 ### Create Celestia Orchestrator Wallet
 ```
-celestia-appd keys add ${CELESTIA_WALLET}_1
+celestia-appd keys add ${CELESTIA_WALLET}_2
 ```
 
 ### Input ERC-20 Wallet Address
