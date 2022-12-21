@@ -212,9 +212,9 @@ celestia-appd query bank balances <wallet address>
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
   --from ${CELESTIA_WALLET} \
-  --commission-max-change-rate "0.01" \
-  --commission-max-rate "0.2" \
-  --commission-rate "0.1" \
+  --commission-max-rate 0.2 \
+  --commission-rate 0.1 \
+  --commission-max-change-rate 0.01 \
   --min-self-delegation "1" \
   --pubkey  $(celestia-appd tendermint show-validator) \
   --moniker $CELESTIA_MONIKER \
