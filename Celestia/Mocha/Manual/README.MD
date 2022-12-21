@@ -203,7 +203,7 @@ celestia-appd keys list
 celestia-appd query bank balances <wallet address>
 ```
 
-### Create Validator `Change Only <WalletName?`
+### Create Validator `Change Only <WalletName>`
 ```
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
