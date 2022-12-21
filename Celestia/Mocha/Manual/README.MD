@@ -161,18 +161,18 @@ sudo journalctl -u celestia-appd -f -o cat
 celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-### Create Celestia Wallet
+### Create Celestia Wallet `1st Wallet`
 ```
-celestia-appd keys add ${CELESTIA_WALLET}_1
+celestia-appd keys add ${CELESTIA_WALLET}
 ```
 `OR`
 
 ### Recover Wallet
 ```
-celestia-appd keys add ${CELESTIA_WALLET}_1 --recover
+celestia-appd keys add ${CELESTIA_WALLET} --recover
 ```
 
-### Create Celestia Orchestrator Wallet
+### Create Celestia Orchestrator Wallet `2nd Wallet`
 ```
 celestia-appd keys add ${CELESTIA_WALLET}_2
 ```
