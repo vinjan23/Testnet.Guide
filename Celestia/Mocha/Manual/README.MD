@@ -220,6 +220,7 @@ celestia-appd tx staking create-validator \
   --orchestrator-address $CELESTIA_ORCHESTRATOR_ADDRESS \
   --identity  \
   --details \
+  --keyring-backend test \
   --gas=auto \
   --gas-adjustment=1.5 \
   --fees=1000utia \
@@ -248,7 +249,7 @@ celestia-appd tx slashing unjail --from $CELESTIA_WALLET --chain-id mocha --gas-
 
 ### Delegate & Staking
 ```
-celestia-appd tx staking delegate <YOUR_TO_VALIDATOR_ADDRESS> 1000000utia --from $CELESTIA_WALLET --chain-id mocha --gas-prices 0.1utia --gas-adjustment 1.5 --gas auto -y
+celestia-appd tx staking delegate <YOUR_TO_VALIDATOR_ADDRESS> 1000000utia --from $CELESTIA_WALLET --chain-id mocha --gas-prices 0.1utia --gas-adjustment 1.5 --gas auto -y --keyring-backend test
 ```
 
 ### Withdraw All Reward
