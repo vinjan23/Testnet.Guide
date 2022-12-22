@@ -56,7 +56,7 @@ rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
 ```
 
-### Set Moniker (Replace `<YOUR_MONIKER>` & `<YOUR_WALLET_NAME>` Without `" "`
+### Set Moniker (Replace `<YOUR_MONIKER>` & `<YOUR_WALLET_NAME>`& `<ERC20> Without `" "`
  
 ```
 CELESTIA_PORT=11
