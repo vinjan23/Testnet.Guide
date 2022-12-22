@@ -56,10 +56,11 @@ rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
 ```
 
-### Set Moniker (Replace `<YOUR_MONIKER>` to Your Moniker Name
+### Set Moniker (Replace `<YOUR_MONIKER>` & `<YOUR_WALLET_NAME>` Without `" "`
  
 ```
 CELESTIA_PORT=11
+echo "export CELESTIA_WALLET="<YOUR_WALLET_NAME>"" >> $HOME/.bash_profile
 echo "export CELESTIA_MONIKER="<YOUR_MONIKER>"" >> $HOME/.bash_profile
 echo "export CELESTIA_CHAIN_ID="mocha"" >> $HOME/.bash_profile
 echo "export CELESTIA_PORT="${CELESTIA_PORT}"" >> $HOME/.bash_profile
