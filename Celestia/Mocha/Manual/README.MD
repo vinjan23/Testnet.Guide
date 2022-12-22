@@ -62,6 +62,7 @@ git clone https://github.com/celestiaorg/networks.git
 CELESTIA_PORT=11
 echo "export CELESTIA_WALLET="<YOUR_WALLET_NAME>"" >> $HOME/.bash_profile
 echo "export CELESTIA_MONIKER="<YOUR_MONIKER>"" >> $HOME/.bash_profile
+echo "export EVM_ADDRESS="<$ERC20_ADDRESS>" >> $HOME/.bash_profile
 echo "export CELESTIA_CHAIN_ID="mocha"" >> $HOME/.bash_profile
 echo "export CELESTIA_PORT="${CELESTIA_PORT}"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
