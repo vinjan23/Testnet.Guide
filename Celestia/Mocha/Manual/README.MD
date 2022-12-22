@@ -255,6 +255,10 @@ celestia-appd tx staking delegate <YOUR_TO_VALIDATOR_ADDRESS> 1000000utia --from
 ```
 celestia-appd tx distribution withdraw-all-rewards --from $CELESTIA_WALLET --chain-id mocha --gas-prices 0.1utia --gas-adjustment 1.5 --gas auto -y 
 ```
+### Transfer Fund
+```
+celestia-appd tx bank send $CELESTIA_WALLET <To_Celestia_Address> 1000000utia --from $CELESTIA_WALLET --chain-id $CELESTIA_CHAIN_ID --gas-prices 0.1utia --gas-adjustment 1.5 --gas auto -y 
+```
 
 ### Check Log
 ```
