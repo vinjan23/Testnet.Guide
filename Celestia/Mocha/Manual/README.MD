@@ -296,27 +296,3 @@ sudo rm -rf $HOME/.celestia-app
 sudo rm -fr $HOME/celestia-app
 sed -i "/CELESTIA_/d" $HOME/.bash_profile
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
