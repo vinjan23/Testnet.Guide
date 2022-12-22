@@ -177,7 +177,7 @@ CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -
 
 ### Recover Wallet
 ```
-celestia-appd keys add $CELESTIA_WALLET --recover
+celestia-appd keys add $CELESTIA_WALLET --recover --keyring-backend test
 ```
 
 ### Create Celestia Orchestrator Wallet `OR` `CHANGE 2ndWALLETNAME`
