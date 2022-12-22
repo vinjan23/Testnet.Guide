@@ -162,7 +162,7 @@ sudo journalctl -u celestia-appd -f -o cat
 celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-### Create Celestia Wallet 
+### Create Celestia Wallet `OR` `CHANGE WALLETNAME`
 ```
 celestia-appd keys add $CELESTIA_WALLET
 ```
@@ -180,7 +180,7 @@ CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -
 celestia-appd keys add $CELESTIA_WALLET --recover
 ```
 
-### Create Celestia Orchestrator Wallet 
+### Create Celestia Orchestrator Wallet `OR` `CHANGE 2ndWALLETNAME`
 ```
 celestia-appd keys add ${CELESTIA_WALLET}_1
 ```
