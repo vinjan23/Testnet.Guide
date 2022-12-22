@@ -218,8 +218,8 @@ celestia-appd tx staking create-validator \
   --chain-id $CELESTIA_CHAIN_ID \
   --evm-address $EVM_ADDRESS \
   --orchestrator-address $CELESTIA_ORCHESTRATOR_ADDRESS \
-  --identity <KEYBASE_IDENTITY> \
-  --details <YOUR_VALIDATOR_DETAILS>
+  --identity  \
+  --details \
   --gas=auto \
   --gas-adjustment=1.5 \
   --fees=1000utia \
