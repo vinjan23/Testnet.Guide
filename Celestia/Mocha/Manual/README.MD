@@ -166,12 +166,6 @@ celestia-appd status 2>&1 | jq .SyncInfo
 ```
 celestia-appd keys add $CELESTIA_WALLET
 ```
-```
-CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET -a)
-```
-```
-CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -a)
-```
 
 `OR`
 
@@ -184,13 +178,13 @@ celestia-appd keys add $CELESTIA_WALLET --recover --keyring-backend test
 ```
 celestia-appd keys add ${CELESTIA_WALLET}_1
 ```
-```
-ORCHESTRATOR_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_1 -a)
-```
 
 ### Input Your Wallet Address `PUT_YOUR_ERC20_ADDRESS> without <>` 
 ```
 ERC20_ADDRESS="<PUT_YOUR_ERC20_ADDRESS>"
+CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET -a)
+CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -a)
+ORCHESTRATOR_ADDRESS=$(celestia-appd keys show ${CELESTIA_WALLET}_1 -a)
 echo "export CELESTIA_WALLET_ADDRESS="${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo "export CELESTIA_ORCHESTRATOR_ADDRESS="${ORCHESTRATOR_ADDRESS} >> $HOME/.bash_profile
 echo "export CELESTIA_VALOPER_ADDRESS="${CELESTIA_VALOPER_ADDRESS} >> $HOME/.bash_profile
