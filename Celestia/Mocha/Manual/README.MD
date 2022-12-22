@@ -201,25 +201,25 @@ celestia-appd keys list
 
 ### Check Balance
 ```
-celestia-appd query bank balances <wallet address>
+celestia-appd query bank balances $CELESTIA_WALLET_ADDRESS
 ```
 
-### Create Validator `Change Only <WalletName>`
+### Create Validator 
 ```
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
-  --from $CELESTIA_WALLET_ADDRESS \
-  --commission-max-rate 0.20 \
-  --commission-rate 0.10 \
-  --commission-max-change-rate 0.01 \
+  --from $CELESTIA_WALLET \
+  --commission-max-change-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.1" \
   --min-self-delegation "1" \
   --pubkey  $(celestia-appd tendermint show-validator) \
   --moniker $CELESTIA_MONIKER \
-  --identity= \
-  --details= \
   --chain-id $CELESTIA_CHAIN_ID \
   --evm-address $EVM_ADDRESS \
   --orchestrator-address $CELESTIA_ORCHESTRATOR_ADDRESS \
+  --identity <KEYBASE_IDENTITY> \
+  --details <YOUR_VALIDATOR_DETAILS>
   --gas=auto \
   --gas-adjustment=1.5 \
   --fees=1000utia \
@@ -234,7 +234,7 @@ celestia-appd tx staking edit-validator \
 --details= \
 --chain-id=$CELESTIA_CHAIN_ID \
 --commission-rate=0.1 \
---from=$CELESTIA_WALLET_ADDRESS \
+--from=$CELESTIA_WALLET \
 --gas-prices=0.1utia \
 --gas-adjustment=1.5 \
 --gas=auto \
