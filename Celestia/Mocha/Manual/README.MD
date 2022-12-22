@@ -162,7 +162,7 @@ sudo journalctl -u celestia-appd -f -o cat
 celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-### Create Celestia Wallet `Change to WalletName`
+### Create Celestia Wallet 
 ```
 celestia-appd keys add $CELESTIA_WALLET
 ```
