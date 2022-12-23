@@ -60,7 +60,7 @@ curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/
 
 ### Download Addrbook
 ```
-
+wget -O $HOME/.nibid/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/addrbook.json"
 ```
 
 ### Setup Peers/Seed/GasPrice
