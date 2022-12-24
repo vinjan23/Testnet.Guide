@@ -81,11 +81,6 @@ sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/.nibid/
 sed -i 's|pruning-interval = "0"|pruning-interval = "17"|g' $HOME/.nibid/config/app.toml
 ```
 
-### Setup state-sync parameters for catching up faster with the network (optional)
-```
-
-```
-
 ### Create Service File
 ```
 sudo tee /etc/systemd/system/nibid.service > /dev/null << EOF
@@ -110,7 +105,7 @@ sudo systemctl enable nibid
 sudo systemctl restart nibid && sudo journalctl -u nibid -f -o cat
 ```
 
-### Setup state-sync parameters for catching up faster with the network (optional)
+### Setup state-sync parameters for catching up faster with the network 
 ```
 wget -O statesync.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/statesync.sh && chmod +x statesync.sh && ./statesync.sh
 ```
