@@ -143,12 +143,12 @@ nibid keys list
 nibid query bank balances <wallet_address>
 ```
   
-### Create Validator
+### Create Validator `Change Your Moniker Name`
 ```
 nibid tx staking create-validator \
 --amount=1000000unibi \
 --pubkey=$(nibid tendermint show-validator) \
---moniker=$NODENAME \
+--moniker=$NODE_MONIKER \
 --identity= \
 --details= \
 --chain-id=nibiru-testnet-2 \
