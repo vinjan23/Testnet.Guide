@@ -9,7 +9,7 @@
   
 ### TESTNET NIBIRU Testnet-2
   
-### Suto Install
+### Auto Install
 ```
 wget -O Auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/Auto.sh && chmod +x Auto.sh && ./Auto.sh
 ```
