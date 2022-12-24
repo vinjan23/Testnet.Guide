@@ -14,7 +14,7 @@
 wget -O Auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/Auto.sh && chmod +x Auto.sh && ./Auto.sh
 ```
 
-### Manual
+### Manual Install
   
 ### Update Tool
   ```
