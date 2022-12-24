@@ -45,7 +45,7 @@ make install
 nibid version # v0.16.2
 ```
 
-### Setup Your NodeName
+### Setup Your NodeName `Edit Your_NODENAME`
 
 ```
 NODE_MONIKER=Your_NODENAME 
