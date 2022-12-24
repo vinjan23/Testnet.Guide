@@ -171,7 +171,7 @@ celestia-appd keys add $CELESTIA_WALLET
 
 ### Recover Wallet
 ```
-celestia-appd keys add $CELESTIA_WALLET --recover --keyring-backend test
+celestia-appd keys add $CELESTIA_WALLET --recover --keyring-backend file
 ```
 
 ### Create Celestia Orchestrator Wallet `OR` `CHANGE 2ndWALLETNAME`
