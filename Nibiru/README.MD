@@ -55,6 +55,7 @@ nibid config keyring-backend test
 ### Download Genesis
 ```
 curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
+sha256sum $HOME/.nibid/config/genesis.json # 5cedb9237c6d807a89468268071647649e90b40ac8cd6d1ded8a72323144880d
 
 ```
 
@@ -82,11 +83,7 @@ sed -i 's|pruning-interval = "0"|pruning-interval = "17"|g' $HOME/.nibid/config/
 
 ### Setup state-sync parameters for catching up faster with the network (optional)
 ```
-sed -i 's|enable =.*|enable = true|g' $HOME/.nibid/config/config.toml
-sed -i 's|rpc_servers =.*|rpc_servers = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/rpc_servers)'"|g' $HOME/.nibid/config/config.toml
-sed -i 's|trust_height =.*|trust_height = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/trust_height)'"|g' $HOME/.nibid/config/config.toml
-sed -i 's|trust_hash =.*|trust_hash = "'$(curl -s https://networks.testnet.nibiru.fi/$NETWORK/trust_hash)'"|g' $HOME/.nibid/config/config.toml
-nibid tendermint unsafe-reset-all --home $HOME/.nibid --keep-addr-book
+
 ```
 
 ### Create Service File
