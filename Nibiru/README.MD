@@ -138,7 +138,7 @@ nibid keys add Wallet --recover
 nibid keys list
 ```
   
-### Check Balance
+### Check Balance `Change Wallet_Address`
 ```
 nibid query bank balances <wallet_address>
 ```
@@ -183,7 +183,7 @@ nibid tx staking edit-validator \
 nibid tx slashing unjail --from #Wallet --chain-id nibiru-testnet-2 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
 ```
 
-### Delegate & Staking
+### Delegate & Staking `Change To Validator Address`
 ```
 nibid tx staking delegate <YOUR_TO_Validator_ADDRESS> 1000000unibi --from $Wallet --chain-id nibiru-testnet-2 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
 ```
