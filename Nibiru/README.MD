@@ -44,7 +44,9 @@ nibid version # v0.16.2
 ### Setup Your NodeName
 
 ```
-NODENAME=Your_Node_Name
+nibid init $NODE_MONIKER --chain-id nibiru-testnet-2
+nibid config chain-id nibiru-testnet-2
+nibid config keyring-backend test  
 ```
 
 ### Set Vars
