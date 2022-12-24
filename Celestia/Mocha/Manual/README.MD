@@ -201,7 +201,7 @@ celestia-appd keys list
 celestia-appd query bank balances $CELESTIA_WALLET_ADDRESS
 ```
 
-### Create Validator `Change <YourWALLETName? & <CELESTIA_MONIKER>` 
+### Create Validator `Change <YourWALLETName> & <CELESTIA_MONIKER>` 
 ```
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
