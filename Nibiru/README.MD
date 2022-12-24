@@ -143,7 +143,7 @@ nibid keys list
 nibid query bank balances <wallet_address>
 ```
   
-### Create Validator
+### Create Validator `Change Node_Moniker with Ur MonikerName`
 ```
 nibid tx staking create-validator \
 --amount=1000000unibi \
