@@ -123,14 +123,14 @@ nibid status 2>&1 | jq .SyncInfo
 
 ### Create Wallet
 ```
-nibid keys add $Wallet
+nibid keys add Wallet
 ```
 
 `OR`
   
 ### Recover Wallet
 ```
-nibid keys add $Wallet --recover
+nibid keys add Wallet --recover
 ```
 
 ### Check All Wallet
@@ -156,7 +156,7 @@ nibid tx staking create-validator \
 --commission-max-rate=0.20 \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
---from=$Wallet \
+--from=Wallet \
 --gas-prices=0.1unibi \
 --gas-adjustment=1.5 \
 --gas=auto \
