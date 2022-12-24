@@ -110,6 +110,11 @@ sudo systemctl enable nibid
 sudo systemctl restart nibid && sudo journalctl -u nibid -f -o cat
 ```
 
+### Setup state-sync parameters for catching up faster with the network (optional)
+```
+wget -O statesync.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/statesync.sh && chmod +x statesync.sh && ./statesync.sh
+```
+  
 ### Sync Info
 ```
 nibid status 2>&1 | jq .SyncInfo
