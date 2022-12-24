@@ -32,11 +32,13 @@ go version
  ### Build Binary
  
 ```
-cd $HOME
+cd || return
+rm -rf nibiru
 git clone https://github.com/NibiruChain/nibiru
-cd nibiru
+cd nibiru || return
 git checkout v0.16.2
 make install
+nibid version # v0.16.2
 ```
 
 ### Setup Your NodeName
