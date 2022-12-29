@@ -1,12 +1,12 @@
 ### Update Tool
 ```
-sudo apt update && sudo apt upgrade -y
-sudo apt-get install make build-essential gcc git jq chrony screen -y
+sudo apt update
+sudo apt install curl git jq lz4 build-essential -y
 ```
 
 ### Install GO
 ```
-ver="1.19" && \
+ver="1.19.4" && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
 sudo rm -rf /usr/local/go && \
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
