@@ -161,6 +161,18 @@ celestia-appd status 2>&1 | jq .SyncInfo
 celestia-appd keys add $CELESTIA_WALLET
 ```
 
+### Save Address
+```
+CELESTIA_WALLET_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET -a)
+echo "export CELESTIA_WALLET_ADDRESS="${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+```
+CELESTIA_VALOPER_ADDRESS=$(celestia-appd keys show $CELESTIA_WALLET --bech val -a)
+echo "export CELESTIA_VALOPER_ADDRESS="${CELESTIA_VALOPER_ADDRESS} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
 `OR`
 
 ### Recover Wallet
