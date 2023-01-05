@@ -43,7 +43,7 @@ source ~/.bash_profile
 ```
 lavad config chain-id lava-testnet-1
 lavad config keyring-backend file
-lavad config node tcp://localhost:&LAVA_PORT657
+lavad config node tcp://localhost:$LAVA_PORT]657
 ```
 
 ### Download Genesis
