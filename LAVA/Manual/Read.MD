@@ -37,8 +37,8 @@ NODE_MONIKER=Your_NODENAME
 ```
 ### Set Vars
 ```
-lavad config chain-id planq_7070-2
-lavad init $NODE_MONIKER --chain-id planq_7070-2
+lavad config chain-id lava-testnet-1
+lavad init $NODE_MONIKER --chain-id lava-testnet-1
 lavad config keyring-backend file
 lavad config node tcp://localhost:26657
 ```
