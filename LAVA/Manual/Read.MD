@@ -26,11 +26,6 @@ chmod +x lavad
 sudo mv lavad $HOME/go/bin/
 ```
 
-### Install Cosmovisor
-```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
-```
-
 ### Setup Node Name
 ```
 NODE_MONIKER=Your_NODENAME 
@@ -47,7 +42,14 @@ lavad config node tcp://localhost:14657
 ```
 cp $HOME/GHFkqmTzpdNLDd6T/testnet-1/genesis_json/genesis.json $HOME/.lava/config
 ```
-###
+
+### Download Addrbook
+```
+wget -O $HOME/.lava/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/LAVA/addrbook.json"
+```
+
+
+### Seed & Peer
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ulava\"/" $HOME/.lava/config/app.toml
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.lava/config/config.toml
@@ -77,23 +79,17 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ### Creste Service File
 ```
-sudo tee /etc/systemd/system/lavad.service > /dev/null << EOF
+sudo tee /etc/systemd/system/lavad.service > /dev/null <<EOF
 [Unit]
 Description=lava
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
+ExecStart=$(which lavad) start
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.lavad"
-Environment="DAEMON_NAME=lavad"
-Environment=" DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=true"
-Environment="DAEMON_LOG_BUFFER_SIZE=512"
-Environment="UNSAFE_SKIP_BACKUP=true"
 
 [Install]
 WantedBy=multi-user.target
@@ -102,8 +98,8 @@ EOF
 
 ### Start
 ```
-sudo systemctl enable planqd && sudo systemctl daemon-reload
-sudo systemctl restart planqd && sudo journalctl -u planqd -f -o cat
+sudo systemctl enable lavad
+sudo systemctl restart lavad && sudo journalctl -u lavad -f -o cat
 ```
 
 
