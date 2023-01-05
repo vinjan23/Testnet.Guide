@@ -20,14 +20,10 @@ go version
 ### Build Binary
 ```
 cd $HOME
-rm -rf lava
 git clone https://github.com/K433QLtr6RA9ExEq/GHFkqmTzpdNLDd6T.git
-cd GHFkqmTzpdNLDd6T/testnet-1
-git checkout v0.4.0
-make install
-mkdir -p $HOME/.lavad/cosmovisor/genesis/bin
-mkdir -p ~/.lavad/cosmovisor/upgrades
-cp ~/go/bin/lavad ~/.lavad/cosmovisor/genesis/bin
+wget https://lava-binary-upgrades.s3.amazonaws.com/testnet/v0.4.0/lavad
+chmod +x lavad
+sudo mv lavad $HOME/go/bin/
 ```
 
 ### Install Cosmovisor
