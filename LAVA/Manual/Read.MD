@@ -95,7 +95,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" ~
 ```
 sudo tee /etc/systemd/system/lavad.service > /dev/null <<EOF
 [Unit]
-Description=lava
+Description=Lava Network Node
 After=network-online.target
 
 [Service]
