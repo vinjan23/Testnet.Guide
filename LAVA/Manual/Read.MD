@@ -40,7 +40,7 @@ NODE_MONIKER=Your_NODENAME
 lavad config chain-id lava-testnet-1
 lavad init $NODE_MONIKER --chain-id lava-testnet-1
 lavad config keyring-backend file
-lavad config node tcp://localhost:26657
+lavad config node tcp://localhost:14657
 ```
 
 ### Download Genesis
