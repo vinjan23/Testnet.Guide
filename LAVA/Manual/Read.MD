@@ -30,12 +30,20 @@ sudo mv lavad $HOME/go/bin/
 ```
 NODE_MONIKER=Your_NODENAME 
 ```
-### Set Vars
+### Set Var
+```
+LAVA_PORT=14
+echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
+echo export LAVA-PORT=${LAVA-PORT} >> $HOME/.bash_profile
+source ~/.bash_profile
+```
+
+
+### Init Config
 ```
 lavad config chain-id lava-testnet-1
-lavad init $NODE_MONIKER --chain-id lava-testnet-1
 lavad config keyring-backend file
-lavad config node tcp://localhost:14657
+lavad config node tcp://localhost:&LAVA_PORT657
 ```
 
 ### Download Genesis
@@ -63,6 +71,12 @@ sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.lava/co
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.lava/config/config.toml
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.lava/config/config.toml
+```
+
+### Set Custom Port
+```
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${LAVA-PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${LAVA-PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${LAVA-PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${LAVA-PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${LAVA-PORT}660\"%" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${LAVA-PORT}317\"%; s%^address = \":8080\"%address = \":${LAVA-PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${LAVA-PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${LAVA-PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${LAVA-PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${LAVA-PORT}546\"%" $HOME/.celestia-app/config/app.toml
 ```
 
 ### Prunning
