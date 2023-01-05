@@ -34,7 +34,7 @@ NODE_MONIKER=Your_NODENAME
 ```
 LAVA_PORT=14
 echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
-echo export LAVA_PORT=${LAVA-PORT} >> $HOME/.bash_profile
+echo export LAVA_PORT=${LAVA_PORT} >> $HOME/.bash_profile
 source ~/.bash_profile
 ```
 
