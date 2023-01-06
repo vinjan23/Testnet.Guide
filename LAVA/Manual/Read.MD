@@ -26,31 +26,7 @@ chmod +x lavad
 sudo mv lavad /usr/local/bin/lavad
 ```
 
-### Setup Cosmosvisor
-```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
-mkdir -p $HOME/.lavad/cosmovisor
-wget https://lava-binary-upgrades.s3.amazonaws.com/testnet/cosmovisor-upgrades/cosmovisor-upgrades.zip
-unzip cosmovisor-upgrades.zip
-cp -r cosmovisor-upgrades/* .lavad/cosmovisor
-```
-
-###  Set the environment variables
-
-```
-echo "# Setup Cosmovisor" >> ~/.profile
-echo "export DAEMON_NAME=lavad" >> ~/.profile
-echo "export CHAIN_ID=lava-testnet-1" >> ~/.profile
-echo "export DAEMON_HOME=$HOME/.lava" >> ~/.profile
-echo "export DAEMON_ALLOW_DOWNLOAD_BINARIES=true" >> ~/.profile
-echo "export DAEMON_LOG_BUFFER_SIZE=512" >> ~/.profile
-echo "export DAEMON_RESTART_AFTER_UPGRADE=true" >> ~/.profile
-echo "export UNSAFE_SKIP_BACKUP=true" >> ~/.profile
-source ~/.profile
-### Setup Node Name
-```
-
-NODE_MONIKER=Your_NODENAME 
+### Setup Node Moniker
 
 ```
 NODE_MONIKER=Your_NODENAME 
@@ -121,54 +97,20 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" ~
 ```
 sudo tee /etc/systemd/system/lavad.service > /dev/null <<EOF
 [Unit]
-Description=Lava Network Node
+Description=lava
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
+ExecStart=$(which lavad) start
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.lavad"
-Environment="DAEMON_NAME=lavad"
-Environment="UNSAFE_SKIP_BACKUP=true"
+
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
-
-```
-echo "[Unit]
-Description=Cosmovisor daemon
-After=network-online.target
-
-[Service]
-Environment="DAEMON_NAME=lavad"
-Environment="DAEMON_HOME=${HOME}/.lava"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=true"
-Environment="DAEMON_LOG_BUFFER_SIZE=512"
-Environment="UNSAFE_SKIP_BACKUP=true"
-
-User=$USER
-ExecStart=${HOME}/go/bin/cosmovisor start --home=$lavad_home_folder --p2p.seeds $seed_node
-Restart=always
-RestartSec=3
-LimitNOFILE=infinity
-LimitNPROC=infinity
-[Install]
-WantedBy=multi-user.target
-" >cosmovisor.service
-sudo mv cosmovisor.service /lib/systemd/system/cosmovisor.service
-```
-```
-sudo systemctl daemon-reload
-sudo systemctl enable cosmovisor.service
-sudo systemctl restart systemd-journald
-sudo systemctl start cosmovisor
-```
-
 
 ### Start
 ```
