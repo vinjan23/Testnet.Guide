@@ -26,6 +26,16 @@ chmod +x lavad
 sudo mv lavad /usr/local/bin/lavad
 ```
 
+### Setup Cosmosvisor
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
+mkdir -p ~/.lavad/cosmovisor
+wget https://lava-binary-upgrades.s3.amazonaws.com/testnet/cosmovisor-upgrades/cosmovisor-upgrades.zip
+unzip cosmovisor-upgrades.zip
+sudo mv build/lavad $HOME/.lavad/cosmovisor/upgrades/bin
+rm -rf build
+```
+
 ### Setup Node Name
 ```
 NODE_MONIKER=Your_NODENAME 
@@ -115,6 +125,20 @@ EOF
 sudo systemctl enable lavad
 sudo systemctl restart lavad && sudo journalctl -u lavad -f -o cat
 ```
+
+### Delete Node
+```
+sudo systemctl stop lavad && \
+sudo systemctl disable lavad && \
+rm /etc/systemd/system/lavad.service && \
+sudo systemctl daemon-reload && \
+cd $HOME && \
+rm -rf GHFkqmTzpdNLDd6T && \
+rm -rf .lava && \
+rm -rf $(which lavad)
+```
+
+
 
 
 
