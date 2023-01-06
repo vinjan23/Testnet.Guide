@@ -1,3 +1,13 @@
+<p align="right">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/108977419/207516348-c160303a-57b0-4149-8118-b0d7785dfde8.jpg">
+</p>
+
+<p align="centre">
+  <img height="400" height="auto" src="https://user-images.githubusercontent.com/108977419/210974211-54997e98-c6c4-4f48-91e7-766efaba273e.jpg">
+</p>
+
+# LAVA TESTNET
+
 ### Update Tool
 ```
 sudo apt update && sudo apt upgrade -y
@@ -97,7 +107,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" ~
 ```
 sudo tee /etc/systemd/system/lavad.service > /dev/null <<EOF
 [Unit]
-Description=lava
+Description=Lava Network Node
 After=network-online.target
 
 [Service]
@@ -117,6 +127,134 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable lavad
 sudo systemctl restart lavad && sudo journalctl -u lavad -f -o cat
+```
+
+### Upgrades
+```
+cd $HOME
+git clone https://github.com/K433QLtr6RA9ExEq/GHFkqmTzpdNLDd6T.git
+wget https://lava-binary-upgrades.s3.amazonaws.com/testnet/v0.3.0/lavad
+chmod +x lavad
+sudo mv lavad /usr/local/bin/lavad
+```
+
+### Statesync
+```
+SNAP_RPC=https://t-lava.rpc.utsa.tech:443
+peers="433be6210ad6350bebebad68ec50d3e0d90cb305@217.13.223.167:60856"
+sed -i.bak -e  "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.lava/config/config.toml
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 500)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
+
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
+s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.lava/config/config.toml
+lavad tendermint unsafe-reset-all --home /root/.lava --keep-addr-book
+sed -i -e "s/^snapshot-interval *=.*/snapshot-interval = \"1500\"/" $HOME/.lava/config/app.toml
+systemctl restart lavad && journalctl -u lavad -f -o cat
+```
+
+### Create Wallet
+```
+lavad keys add <walletname>
+```
+### Recover Wallet
+```
+lavad keys add <walletname> --recover
+```
+### List All Wallet
+```
+lavad keys list
+```
+
+### Check Balances
+```
+lavad query bank balances <Address>
+```
+### Create Validator
+```
+lavad tx staking create-validator \
+--amount=1000000ulava \
+--pubkey=$(lavad tendermint show-validator) \
+--moniker=${MONIKER} \
+--identity= \
+--details= \
+--chain-id=lava-testnet-1 \
+--commission-rate=0.10 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
+--min-self-delegation=1 \
+--from=walletname \
+--gas-prices=0.1ulava \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y 
+```
+
+### Edit Validator
+```
+lavad tx staking edit-validator \
+--new-moniker=${MONIKER} \
+--identity= \
+--details= \
+--chain-id=lava-testnet-1 \
+--commission-rate=0.1 \
+--from=walletname \
+--gas-prices=0.1ulava \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y 
+```
+
+### Unjail
+```
+lavad tx slashing unjail --from walletname --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+
+### Withdraw All Reward
+```
+lavad tx distribution withdraw-all-rewards --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+### Withdraw with Commission
+```
+lavad tx distribution withdraw-rewards $(lavad keys show wallet --bech val -a) --commission --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+### Delegate
+```
+lavad tx staking delegate YOUR_TO_VALOPER_ADDRESS 1000000ulava --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+### Transfer
+```
+lavad tx bank send wallet YOUR_TO_WALLET_ADDRESS 1000000ulava --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+### Sync Info
+```
+lavad status 2>&1 | jq .SyncInfo
+```
+### Check Log
+```
+sudo journalctl -u lavad -f -o cat
+```
+### Node Info
+```
+lavad status 2>&1 | jq .NodeInfo
+```
+### Validator Info
+```
+lavad status 2>&1 | jq .ValidatorInfo
+```
+### Stop Service
+```
+sudo systemctl stop lavad
+```
+### Restart Service
+```
+sudo systemctl restart lavad
 ```
 
 ### Delete Node
