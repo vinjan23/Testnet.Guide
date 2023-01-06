@@ -109,11 +109,13 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which lavad) start
+ExecStart=$(which cosmovisor) run start
 Restart=on-failure
-RestartSec=3
+RestartSec=10
 LimitNOFILE=65535
-
+Environment="DAEMON_HOME=$HOME/.canine"
+Environment="DAEMON_NAME=canined"
+Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
 EOF
