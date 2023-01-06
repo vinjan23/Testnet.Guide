@@ -33,7 +33,7 @@ mkdir -p ~/.lavad/cosmovisor
 wget https://lava-binary-upgrades.s3.amazonaws.com/testnet/cosmovisor-upgrades/cosmovisor-upgrades.zip
 unzip cosmovisor-upgrades.zip
 sudo mv build/lavad $HOME/.lavad/cosmovisor/upgrades/bin
-rm -rf build
+cp -r cosmovisor-upgrades/* .lavad/cosmovisor
 ```
 
 ### Setup Node Name
