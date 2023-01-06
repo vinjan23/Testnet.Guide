@@ -113,8 +113,8 @@ ExecStart=$(which cosmovisor) run start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.canine"
-Environment="DAEMON_NAME=canined"
+Environment="DAEMON_HOME=$HOME/.lava"
+Environment="DAEMON_NAME=lavad"
 Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
@@ -123,6 +123,7 @@ EOF
 
 ### Start
 ```
+sudo systemctl daemon-reload
 sudo systemctl enable lavad
 sudo systemctl restart lavad && sudo journalctl -u lavad -f -o cat
 ```
