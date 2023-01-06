@@ -8,6 +8,9 @@
 
 # LAVA TESTNET
 
+### ✅️ [Explorer](https://lava.explorers.guru/validators)
+
+
 ### Update Tool
 ```
 sudo apt update && sudo apt upgrade -y
