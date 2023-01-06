@@ -21,7 +21,7 @@ go version
 ```
 cd $HOME
 git clone https://github.com/K433QLtr6RA9ExEq/GHFkqmTzpdNLDd6T.git
-wget https://lava-binary-upgrades.s3.amazonaws.com/testnet/v0.4.0/lavad
+wget https://lava-binary-upgrades.s3.amazonaws.com/testnet/v0.3.0/lavad
 chmod +x lavad
 sudo mv lavad /usr/local/bin/lavad
 ```
