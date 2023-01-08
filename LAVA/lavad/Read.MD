@@ -94,6 +94,7 @@ source ~/.bash_profile
 ```
 lavad config chain-id lava-testnet-1
 lavad config keyring-backend file
+lavad config node tcp://localhost:26657
 ```
 
 ### Create Wallet
