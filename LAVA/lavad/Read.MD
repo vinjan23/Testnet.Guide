@@ -89,6 +89,13 @@ NODE_MONIKER=Your_NODENAME
 echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
 source ~/.bash_profile
 ```
+
+### Init Config
+```
+lavad config chain-id lava-testnet-1
+lavad config keyring-backend file
+```
+
 ### Create Wallet
 ```
 lavad keys add <walletname>
