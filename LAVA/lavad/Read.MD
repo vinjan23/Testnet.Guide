@@ -73,3 +73,65 @@ rm $HOME/${snap}
 sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
+
+### Setup Moniker
+```
+NODE_MONIKER=Your_NODENAME 
+```
+
+### Set Var
+```
+echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
+source ~/.bash_profile
+```
+### Create Wallet
+```
+lavad keys add <walletname>
+```
+
+### Cek Balance
+```
+lavad query bank balances <Address>
+```
+
+### Create Validator
+```
+lavad tx staking create-validator \
+  --amount 50000ulava \
+  --from <walletName> \
+  --commission-max-change-rate "0.1" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.1" \
+  --min-self-delegation "1" \
+  --pubkey  $(lavad tendermint show-validator) \
+  --moniker ${MONIKER} \
+  --chain-id lava-testnet-1 \
+  --identity="" \
+  --details="" \
+  --website="" -y
+  ```
+  
+  ### Check Sync
+  ```
+  lavad status 2>&1 | jq .SyncInfo
+  ```
+  ### Check Log
+  ```
+  sudo journalctl -u lavad -f -o cat
+  ```
+  ### Node Info
+  ```
+  lavad status 2>&1 | jq .NodeInfo
+  ```
+ ### Validator Info
+ ```
+ lavad status 2>&1 | jq .ValidatorInfo
+ ```
+ 
+
+
+
+
+
+
+
