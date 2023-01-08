@@ -74,6 +74,11 @@ sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
 
+### Check Sync
+```
+lavad status 2>&1 | jq .SyncInfo
+```
+
 ### Setup Moniker
 ```
 NODE_MONIKER=Your_NODENAME 
@@ -111,10 +116,7 @@ lavad tx staking create-validator \
   --website="" -y
   ```
   
-  ### Check Sync
-  ```
-  lavad status 2>&1 | jq .SyncInfo
-  ```
+ 
   ### Check Log
   ```
   sudo journalctl -u lavad -f -o cat
