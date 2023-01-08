@@ -130,6 +130,17 @@ lavad tx staking create-validator \
  lavad status 2>&1 | jq .ValidatorInfo
  ```
  
+### Delete Node
+```
+sudo systemctl stop lavad && \
+sudo systemctl disable lavad && \
+rm /etc/systemd/system/lavad.service && \
+sudo systemctl daemon-reload && \
+cd $HOME && \
+rm -rf GHFkqmTzpdNLDd6T && \
+rm -rf .lava && \
+rm -rf $(which lavad)
+```
 
 
 
