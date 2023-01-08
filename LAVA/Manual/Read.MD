@@ -272,7 +272,27 @@ rm -rf .lava && \
 rm -rf $(which lavad)
 ```
 
+```
+sudo tee /etc/systemd/system/lavad.service > /dev/null <<EOF
+[Unit]
+Description="lavad node"
+After=network-online.target
 
+[Service]
+User=$USER
+ExecStart=/home/USER/go/bin/cosmovisor start
+Restart=always
+RestartSec=3
+LimitNOFILE=4096
+Environment="DAEMON_NAME=lavad"
+Environment="DAEMON_HOME=/home/USER/.lava"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+
+[Install]
+WantedBy=multi-user.target
+```
 
 
 
