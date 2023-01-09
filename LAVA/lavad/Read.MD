@@ -13,6 +13,7 @@
 ### Auto Installation
 ```
 wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/LAVA/lavad/auto.sh && chmod +x auto.sh && ./auto.sh
+```
 
 ### MANUAL GUIDE
 
