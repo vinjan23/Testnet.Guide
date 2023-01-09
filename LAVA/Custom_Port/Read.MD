@@ -147,11 +147,7 @@ lavad tx staking edit-validator \
 --identity= \
 --details= \
 --chain-id=lava-testnet-1 \
---commission-rate=0.1 \
 --from=walletname \
---gas-prices=0.1ulava \
---gas-adjustment=1.5 \
---gas=auto \
 -y 
 ```
 
