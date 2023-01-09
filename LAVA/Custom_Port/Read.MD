@@ -41,8 +41,6 @@ cp GHFkqmTzpdNLDd6T/testnet-1/default_lavad_config_files/* $HOME/.lava/config
 wget -qO $HOME/.lava/config/addrbook.json http://94.250.203.6:90/lava-addrbook.json
 ```
 
-```
-
 ### Creste Service File
 ```
 sudo tee /etc/systemd/system/lavad.service << EOF
@@ -94,7 +92,6 @@ echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
 echo export LAVA_PORT=${LAVA_PORT} >> $HOME/.bash_profile
 source ~/.bash_profile
 ```
-
 
 ### Init Config
 ```
