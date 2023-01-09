@@ -41,43 +41,6 @@ cp GHFkqmTzpdNLDd6T/testnet-1/default_lavad_config_files/* $HOME/.lava/config
 wget -qO $HOME/.lava/config/addrbook.json http://94.250.203.6:90/lava-addrbook.json
 ```
 
-### Setup Node Moniker
-
-```
-NODE_MONIKER=Your_NODENAME 
-```
-
-### Set Var
-```
-LAVA_PORT=14
-echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
-echo export LAVA_PORT=${LAVA_PORT} >> $HOME/.bash_profile
-source ~/.bash_profile
-```
-
-
-### Init Config
-```
-lavad config chain-id lava-testnet-1
-lavad config keyring-backend file
-lavad config node tcp://localhost:$LAVA_PORT]657
-```
-
-
-### Seed & Peer
-```
-
-```
-
-### Set Custom Port
-```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${LAVA_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${LAVA_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${LAVA_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${LAVA_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${LAVA_PORT}660\"%" $HOME/.lava/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${LAVA_PORT}317\"%; s%^address = \":8080\"%address = \":${LAVA_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${LAVA_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${LAVA_PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${LAVA_PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${LAVA_PORT}546\"%" $HOME/.lava/config/app.toml
-```
-
-### Prunning
-```
-
 ```
 
 ### Creste Service File
@@ -113,15 +76,38 @@ sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
 
-### Upgrades
+### Sync Info
+```
+lavad status 2>&1 | jq .SyncInfo
 ```
 
-```
-
-### Statesync
-```
+### Setup Node Moniker
 
 ```
+NODE_MONIKER=Your_NODENAME 
+```
+
+### Set Var
+```
+LAVA_PORT=14
+echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
+echo export LAVA_PORT=${LAVA_PORT} >> $HOME/.bash_profile
+source ~/.bash_profile
+```
+
+
+### Init Config
+```
+lavad config chain-id lava-testnet-1
+lavad config keyring-backend file
+lavad config node tcp://localhost:$LAVA_PORT]657
+```
+### Set Custom Port
+```
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${LAVA_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${LAVA_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${LAVA_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${LAVA_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${LAVA_PORT}660\"%" $HOME/.lava/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${LAVA_PORT}317\"%; s%^address = \":8080\"%address = \":${LAVA_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${LAVA_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${LAVA_PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${LAVA_PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${LAVA_PORT}546\"%" $HOME/.lava/config/app.toml
+```
+
 
 ### Create Wallet
 ```
@@ -229,30 +215,5 @@ rm -rf GHFkqmTzpdNLDd6T && \
 rm -rf .lava && \
 rm -rf $(which lavad)
 ```
-
-```
-sudo tee /etc/systemd/system/lavad.service > /dev/null <<EOF
-[Unit]
-Description="lavad node"
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=/home/USER/go/bin/cosmovisor start
-Restart=always
-RestartSec=3
-LimitNOFILE=4096
-Environment="DAEMON_NAME=lavad"
-Environment="DAEMON_HOME=/home/USER/.lava"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-
 
 
