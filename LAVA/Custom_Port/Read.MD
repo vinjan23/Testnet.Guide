@@ -152,6 +152,11 @@ lavad tx staking edit-validator \
 -y 
 ```
 
+### Check Your Validator Active
+```
+lavad query staking validator $(lavad keys show $(lavad keys list --output json| jq -r ".[] .address" | tail -n1) --bech val -a) --chain-id lava-testnet-1
+```
+
 ### Unjail
 ```
 lavad tx slashing unjail --from walletname --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
