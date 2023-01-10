@@ -57,8 +57,8 @@ source ~/.bash_profile
 
 ### Init Config
 ```
-lavad init $NODE_MONIKER --chain-id lava-testnet-1
-lavad config chain-id lava-testnet-1
+lavad init $NODE_MONIKER --chain-id $LAVA_CHAIN_ID
+lavad config chain-id $LAVA_CHAIN_ID
 lavad config keyring-backend file
 lavad config node tcp://localhost:$LAVA_PORT]657
 ```
