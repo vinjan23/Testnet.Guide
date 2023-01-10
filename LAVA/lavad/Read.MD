@@ -47,6 +47,26 @@ cp GHFkqmTzpdNLDd6T/testnet-1/default_lavad_config_files/* $HOME/.lava/config
 wget -qO $HOME/.lava/config/addrbook.json http://94.250.203.6:90/lava-addrbook.json
 ```
 
+### Setup Moniker
+```
+NODE_MONIKER=Your_NODENAME 
+```
+
+### Set Var
+```
+echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
+echo "export LAVA_CHAIN_ID=lava-testnet-1" >> $HOME/.bash_profile
+source ~/.bash_profile
+```
+
+### Init Config
+```
+lavad init $NODE_MONIKER --chain-id lava-testnet-1
+lavad config chain-id lava-testnet-1
+lavad config keyring-backend file
+lavad config node tcp://localhost:26657
+```
+
 ### Creste Service File
 ```
 sudo tee /etc/systemd/system/lavad.service << EOF
@@ -85,27 +105,18 @@ sudo journalctl -u lavad -f -o cat
 lavad status 2>&1 | jq .SyncInfo
 ```
 
-### Setup Moniker
-```
-NODE_MONIKER=Your_NODENAME 
-```
-
-### Set Var
-```
-echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
-source ~/.bash_profile
-```
-
-### Init Config
-```
-lavad config chain-id lava-testnet-1
-lavad config keyring-backend file
-lavad config node tcp://localhost:26657
-```
 
 ### Create Wallet
 ```
 lavad keys add <walletname>
+```
+### Recover Wallet
+```
+lavad keys add <walletname> --recover
+```
+### List All Wallet
+```
+lavad keys list
 ```
 
 ### Cek Balance
@@ -130,7 +141,39 @@ lavad tx staking create-validator \
   --website="" -y
   ```
   
- 
+ ### Edit Validator
+ ```
+ lavad tx staking edit-validator \
+--new-moniker=${MONIKER} \
+--identity= \
+--details= \
+--chain-id=lava-testnet-1 \
+--from=walletname \
+-y 
+```
+
+### Check Your Validator Active
+```
+lavad query staking validator $(lavad keys show $(lavad keys list --output json| jq -r ".[] .address" | tail -n1) --bech val -a) --chain-id lava-testnet-1
+```
+
+### Unjail
+```
+lavad tx slashing unjail --from walletname --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+### Withdraw All Reward
+```
+lavad tx distribution withdraw-all-rewards --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+### Withdraw with Commission
+```
+lavad tx distribution withdraw-rewards $(lavad keys show wallet --bech val -a) --commission --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+### Staking & Delegate
+```
+lavad tx staking delegate YOUR_TO_VALOPER_ADDRESS 1000000ulava --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+```
+
   ### Check Log
   ```
   sudo journalctl -u lavad -f -o cat
