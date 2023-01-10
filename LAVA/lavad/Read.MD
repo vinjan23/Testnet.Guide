@@ -10,11 +10,15 @@
 
 ### ✅️ [Explorer](https://lava.explorers.guru/validators)
 
-### Auto Installation
+
+### ✅️ [Manual_Guide](https://github.com/vinjan23/Testnet.Guide/blob/main/LAVA/Manual/Read.MD)
+
+### ✅️ [Custom_Port](https://github.com/vinjan23/Testnet.Guide/blob/main/LAVA/Custom_Port/Read.MD)
+
+### ✅️ Auto Installation
 ```
 wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/LAVA/lavad/auto.sh && chmod +x auto.sh && ./auto.sh
 ```
-
 
 ### Check Sync
 ```
