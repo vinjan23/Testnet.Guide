@@ -51,6 +51,7 @@ NODE_MONIKER=Your_NODENAME
 LAVA_PORT=14
 echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
 echo export LAVA_PORT=${LAVA_PORT} >> $HOME/.bash_profile
+echo "export LAVA_CHAIN_ID=lava-testnet-1" >> $HOME/.bash_profile
 source ~/.bash_profile
 ```
 
@@ -60,7 +61,6 @@ lavad init $NODE_MONIKER --chain-id lava-testnet-1
 lavad config chain-id lava-testnet-1
 lavad config keyring-backend file
 lavad config node tcp://localhost:$LAVA_PORT]657
-### Creste Service File
 ```
 
 ### Set Custom Port
