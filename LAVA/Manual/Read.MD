@@ -109,9 +109,9 @@ sudo systemctl restart lavad
 
 ### Set Time Out `./lava/config/config.tomi`
 
-`create_empty_blocks_interval = "60s"
-timeout_commit = "60s"
-timeout_propose = "60s"`
+`create_empty_blocks_interval = "60s"      
+ timeout_commit = "60s"
+ timeout_propose = "60s"`
 
 ### Create Wallet
 ```
