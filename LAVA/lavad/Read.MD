@@ -25,6 +25,15 @@ wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/LA
 lavad status 2>&1 | jq .SyncInfo
 ```
 
+###Update `Block 22300`
+```
+sudo systemctl stop lavad
+cd $HOME
+wget https://github.com/lavanet/lava/releases/download/v0.4.3/lavad-v0.4.3-linux-amd64
+chmod +x lavad-v0.4.3-linux-amd64
+mv lavad-v0.4.3-linux-amd64 $(which lavad)
+sudo systemctl restart lavad
+```
 
 ### Create Wallet
 ```
