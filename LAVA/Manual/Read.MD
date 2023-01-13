@@ -203,6 +203,7 @@ sudo systemctl daemon-reload && \
 cd $HOME && \
 rm -rf GHFkqmTzpdNLDd6T && \
 rm -rf .lava && \
+rm -rf lava
 rm -rf $(which lavad)
 ```
 
