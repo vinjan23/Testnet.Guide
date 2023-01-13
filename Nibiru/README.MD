@@ -58,7 +58,7 @@ make install
 nibid version # v0.16.3
 
 sudo systemctl start nibid
-sudo journalctl -u nibid -f --no-hostname -o cat
+sudo journalctl -u nibid -f -o cat
 ```
 
 ### Setup Your NodeName `Edit Your_NODENAME`
