@@ -101,6 +101,17 @@ rm $HOME/${snap}
 sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
+`If u see error exit-code dont worry just upgrade`
+
+### Upgrade 
+```
+sudo systemctl stop lavad
+cd $HOME
+wget https://github.com/lavanet/lava/releases/download/v0.4.3/lavad-v0.4.3-linux-amd64
+chmod +x lavad-v0.4.3-linux-amd64
+mv lavad-v0.4.3-linux-amd64 $(which lavad)
+sudo systemctl restart lavad
+```
 
 ### Sync Info
 ```
