@@ -20,10 +20,7 @@
 wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/LAVA/lavad/auto.sh && chmod +x auto.sh && ./auto.sh
 ```
 
-### Check Sync
-```
-lavad status 2>&1 | jq .SyncInfo
-```
+`If u see error exit-code dont worry just upgrade`
 
 ###Update `Block 22300`
 ```
@@ -33,6 +30,11 @@ wget https://github.com/lavanet/lava/releases/download/v0.4.3/lavad-v0.4.3-linux
 chmod +x lavad-v0.4.3-linux-amd64
 mv lavad-v0.4.3-linux-amd64 $(which lavad)
 sudo systemctl restart lavad
+```
+
+### Check Sync
+```
+lavad status 2>&1 | jq .SyncInfo
 ```
 
 ### Create Wallet
