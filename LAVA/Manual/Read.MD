@@ -93,7 +93,7 @@ sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
 
-`If u see error exit-coe dont worry just upgrade`
+`If u see error exit-code dont worry just upgrade`
 
 ### Upgrade at block `22300`
 ```
