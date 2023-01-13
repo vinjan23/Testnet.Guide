@@ -93,10 +93,8 @@ sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
 
-### Check Sync
-```
-lavad status 2>&1 | jq .SyncInfo
-```
+`If u see error exit-coe dont worry just upgrade`
+
 ### Upgrade at block `22300`
 ```
 sudo systemctl stop lavad
@@ -105,6 +103,11 @@ wget https://github.com/lavanet/lava/releases/download/v0.4.3/lavad-v0.4.3-linux
 chmod +x lavad-v0.4.3-linux-amd64
 mv lavad-v0.4.3-linux-amd64 $(which lavad)
 sudo systemctl restart lavad
+```
+
+### Check Sync
+```
+lavad status 2>&1 | jq .SyncInfo
 ```
 
 ### Set Time Out `./lava/config/config.tomi`
