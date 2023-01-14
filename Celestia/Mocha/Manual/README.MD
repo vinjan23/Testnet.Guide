@@ -16,6 +16,8 @@ STORAGE 200GB (SSD atau NVME)
 
 ### ✅️ Explorer > [Explorer Mocha](https://celestia.explorers.guru/)
 
+### ✅️ [Auto Install](https://github.com/vinjan23/Testnet.Guide/blob/main/Celestia/Auto_Install/README.MD)
+
 ## Manual Instaliation
 
 
