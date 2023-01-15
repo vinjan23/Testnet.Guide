@@ -7,19 +7,27 @@ sudo apt -qy upgrade
 
 ### 2. Install GO
 ```
-ver="1.19.5" && \
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
-sudo rm -rf /usr/local/go && \
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
-rm "go$ver.linux-amd64.tar.gz" && \
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile && \
-source $HOME/.bash_profile && \
+ver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ### 3. Build Binary
 ```
 cd $HOME
-rm -rf defund
+rm -rf defundver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 git clone https://github.com/defund-labs/defund.git
 cd defund
 git checkout v0.2.2
@@ -42,12 +50,12 @@ go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 
 ### Setup Moniker
 ```
-NODE_MONIKER=Your_NODENAME 
+MONIKER=Your_NODENAME 
 ```
 
 ### Set Var
 ```
-echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
+echo export MONIKER=${MONIKER} >> $HOME/.bash_profile
 echo "export DEFUND_CHAIN_ID=defund-private-4" >> $HOME/.bash_profile
 source ~/.bash_profile
 ```
