@@ -62,7 +62,7 @@ source ~/.bash_profile
 
 ### Init Config
 ```
-defundd init $NODE_MONIKER --chain-id $DEFUND_CHAIN_ID
+defundd init $MONIKER --chain-id $DEFUND_CHAIN_ID
 defundd config chain-id $DEFUND_CHAIN_ID
 defundd config keyring-backend test
 defundd config node tcp://localhost:40657
