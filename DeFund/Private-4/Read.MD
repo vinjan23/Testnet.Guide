@@ -75,7 +75,7 @@ curl -s https://raw.githubusercontent.com/defund-labs/testnet/main/defund-privat
 
 ### Download Addrbook
 ```
-curl -s https://snapshots3-testnet.nodejumper.io/defund-testnet/addrbook.json > $HOME/.defund/config/addrbook.json
+wget -O $HOME/.defund/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/DeFund/Private-4/addrbook.json"
 ```
 
 ### Set Seed & Gas Price
