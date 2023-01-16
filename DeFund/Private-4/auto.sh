@@ -62,6 +62,25 @@ mkdir -p ~/.defund/cosmovisor/genesis/bin
 mkdir -p ~/.defund/cosmovisor/upgrades
 cp ~/go/bin/defundd ~/.defund/cosmovisor/genesis/bin
 
+echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
+# create service
+sudo tee /etc/systemd/system/defundd.service > /dev/null << EOF
+[Unit]
+Description=terp-testnet node service
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.defund"
+Environment="DAEMON_NAME=defundd"
+Environment="UNSAFE_SKIP_BACKUP=true"
+[Install]
+WantedBy=multi-user.target
+EOF
+
 # config
 defundd init $MONIKER --chain-id $CHAIN_ID
 defundd config chain-id $CHAIN_ID
@@ -90,25 +109,7 @@ sed -i \
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:27658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:27657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:27060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:27656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":27660\"%" $HOME/.defund/config/config.toml
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:27317\"%; s%^address = \":8080\"%address = \":27080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:27090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:27091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:27545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:27546\"%" $HOME/.defund/config/app.toml
 
-echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
-# create service
-sudo tee /etc/systemd/system/planqd.service > /dev/null << EOF
-[Unit]
-Description="defundd node"
-After=network-online.target
 
-[Service]
-User=USER
-ExecStart=/home/USER/go/bin/cosmovisor start
-Restart=always
-RestartSec=3
-LimitNOFILE=4096
-Environment="DAEMON_NAME=defundd"
-Environment="DAEMON_HOME=/home/USER/.defund"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-[Install]
-WantedBy=multi-user.target
 
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
