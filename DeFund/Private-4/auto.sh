@@ -108,14 +108,14 @@ LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.defund"
 Environment="DAEMON_NAME=defundd"
 Environment="UNSAFE_SKIP_BACKUP=true"
-
+     
 [Install]
 WantedBy=multi-user.target
 EOF
-
-# start service
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
+
+# start service
 sudo systemctl start defundd && sudo journalctl -u defundd -f -o cat
 
 echo '=============== SETUP FINISHED ==================='
