@@ -56,6 +56,7 @@ rm -rf build
 echo "Install and building Cosmovisor..."
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 
+echo "Configuring Node..."
 defundd init $MONIKER --chain-id defund-private-4
 defundd config chain-id defund-private-4
 defundd config keyring-backend test
@@ -109,7 +110,6 @@ WantedBy=multi-user.target
 # start service
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
-
-wget -O statesync.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/DeFund/Private-4/statesync.sh && chmod +x statesync.sh && ./statesync.sh
+sudo systemctl start defundd && sudo journalctl -u defundd -f -o cat
 
 echo '=============== SETUP FINISHED ==================='
