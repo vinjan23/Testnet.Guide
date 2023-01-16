@@ -94,7 +94,7 @@ echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
 sudo tee /etc/systemd/system/planqd.service > /dev/null << EOF
 [Unit]
-Description=planq-defund-testnet node service
+Description=defund-testnet node service
 After=network-online.target
 [Service]
 User=$USER
@@ -102,8 +102,8 @@ ExecStart=$(which cosmovisor) run start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.planqd"
-Environment="DAEMON_NAME=planqd"
+Environment="DAEMON_HOME=$HOME/.defund"
+Environment="DAEMON_NAME=defundd"
 Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
