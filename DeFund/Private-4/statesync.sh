@@ -24,4 +24,4 @@ mv $HOME/.defund/priv_validator_state.json.backup $HOME/.defund/data/priv_valida
 curl -s https://snapshots3-testnet.nodejumper.io/defund-testnet/wasm.lz4 | lz4 -dc - | tar -xf - -C $HOME/.defund
 
 sudo systemctl restart defundd
-sudo journalctl -u defundd -f --no-hostname -o cat
+sudo journalctl -u defundd -f -o cat
