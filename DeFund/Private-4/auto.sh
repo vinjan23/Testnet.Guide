@@ -26,10 +26,9 @@ sleep 2
 
 echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
 # update
-sudo apt -q update
-sudo apt -qy install curl git jq lz4 build-essential
-sudo apt -qy upgrade
-
+sudo apt update
+sudo apt install curl git jq lz4 build-essential snapd -y
+    
 # install go
 if ! [ -x "$(command -v go)" ]; then
      ver="1.19.4"
@@ -44,15 +43,15 @@ if ! [ -x "$(command -v go)" ]; then
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download and build binaries
-ccd $HOME
+cd $HOME
 rm -rf defund
 git clone https://github.com/defund-labs/defund.git
 cd defund
 git checkout v0.2.2
 make build
-mkdir -p ~/.defund/cosmovisor/genesis/bin
-mkdir -p ~/.defund/cosmovisor/upgrades
-cp ~/go/bin/defundd ~/.defund/cosmovisor/genesis/bin
+mkdir -p $HOME/.defund/cosmovisor/genesis/bin
+mv build/defundd $HOME/.defund/cosmovisor/genesis/bin/
+rm -rf build
 
 echo "Install and building Cosmovisor..."
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
