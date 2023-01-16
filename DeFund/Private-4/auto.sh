@@ -54,15 +54,13 @@ cd defund
 git checkout v0.2.2
 make build
 
-# setup cosmovisor
-mkdir -p $HOME/.defund/cosmovisor/genesis/bin
-mv build/defundd $HOME/.defund/cosmovisor/genesis/bin/
-rm -rf build
-ln -s $HOME/.defund/cosmovisor/genesis $HOME/.defund/cosmovisor/current
-sudo ln -s $HOME/.defund/cosmovisor/current/bin/defundd /usr/local/bin/defundd
-
 # install cosmovisor
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
+
+# setup cosmovisor
+mkdir -p ~/.defund/cosmovisor/genesis/bin
+mkdir -p ~/.defund/cosmovisor/upgrades
+cp ~/go/bin/defundd ~/.defund/cosmovisor/genesis/bin
 
 # config
 defundd init $MONIKER --chain-id $CHAIN_ID
@@ -96,22 +94,24 @@ echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
 sudo tee /etc/systemd/system/defundd.service > /dev/null << EOF
 [Unit]
-Description=defund-testnet node service
+Description="defundd node"
 After=network-online.target
 
 [Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=10
+User=USER
+ExecStart=/home/USER/go/bin/cosmovisor start
+Restart=always
+RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.defund"
 Environment="DAEMON_NAME=defundd"
+Environment="DAEMON_HOME=/home/USER/.defund"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
-     
+
 [Install]
 WantedBy=multi-user.target
-EOF
+
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
 
