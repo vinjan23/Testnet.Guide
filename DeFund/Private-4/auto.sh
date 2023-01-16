@@ -112,7 +112,6 @@ LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.defund"
 Environment="DAEMON_NAME=defundd"
 Environment="UNSAFE_SKIP_BACKUP=true"
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -124,4 +123,4 @@ sudo systemctl enable defundd
 wget -O statesync.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/DeFund/Private-4/statesync.sh && chmod +x statesync.sh && ./statesync.sh
 
 echo '=============== SETUP FINISHED ==================='
-  
+ 
