@@ -52,9 +52,9 @@ go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 
 ### Setup Cosmovisor
 ```
-mkdir -p ~/.defund/cosmovisor/genesis/bin
-mkdir -p ~/.defund/cosmovisor/upgrades
-cp ~/go/bin/defundd ~/.defund/cosmovisor/genesis/bin
+mkdir -p $HOME/.defund/cosmovisor/genesis/bin
+mv build/defundd $HOME/.defund/cosmovisor/genesis/bin/
+rm -rf build
 ```
 
 ### Setup Moniker
