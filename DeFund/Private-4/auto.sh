@@ -120,7 +120,6 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
 
-wget -O statesync.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/DeFund/Private-4/statesync.sh && chmod +x statesync.sh && ./statesync.sh
 
 echo '=============== SETUP FINISHED ==================='
  
