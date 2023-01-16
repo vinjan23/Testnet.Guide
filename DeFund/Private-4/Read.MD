@@ -123,7 +123,7 @@ User=USER
 ExecStart=/home/USER/go/bin/cosmovisor start
 Restart=always
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=65535
 Environment="DAEMON_NAME=defundd"
 Environment="DAEMON_HOME=/home/USER/.defund"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
