@@ -56,9 +56,8 @@ rm -rf build
 echo "Install and building Cosmovisor..."
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 
-
-defundd init $MONIKER --chain-id $DEFUND_CHAIN_ID
-defundd config chain-id $DEFUND_CHAIN_ID
+defundd init $MONIKER --chain-id defund-private-4
+defundd config chain-id defund-private-4
 defundd config keyring-backend test
 defundd config node tcp://localhost:27657
 
