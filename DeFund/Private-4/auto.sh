@@ -107,7 +107,6 @@ Environment="DAEMON_NAME=defundd"
 Environment="DAEMON_HOME=/home/USER/.defund"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-
 [Install]
 WantedBy=multi-user.target
 
