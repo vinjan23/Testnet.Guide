@@ -59,6 +59,10 @@ lavad config chain-id $LAVA_CHAIN_ID
 lavad config keyring-backend file
 lavad config node tcp://localhost:26657
 ```
+### Disable Indexing
+```
+sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.defund/config/config.toml
+```
 
 ### Creste Service File
 ```
