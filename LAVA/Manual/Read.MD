@@ -61,7 +61,7 @@ lavad config node tcp://localhost:26657
 ```
 ### Disable Indexing
 ```
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.defund/config/config.toml
+sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.lava/config/config.toml
 ```
 
 ### Creste Service File
