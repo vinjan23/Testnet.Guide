@@ -43,18 +43,18 @@ wget -qO $HOME/.lava/config/addrbook.json http://94.250.203.6:90/lava-addrbook.j
 
 ### Setup Moniker
 ```
-NODE_MONIKER=Your_NODENAME 
+MONIKER=Your_NODENAME 
 ```
 ### Set Var
 ```
-echo export NODE_MONIKER=${MONIKER} >> $HOME/.bash_profile
+echo export MONIKER=${MONIKER} >> $HOME/.bash_profile
 echo "export LAVA_CHAIN_ID=lava-testnet-1" >> $HOME/.bash_profile
 source ~/.bash_profile
 ```
 
 ### Init Config
 ```
-lavad init $NODE_MONIKER --chain-id $LAVA_CHAIN_ID
+lavad init $MONIKER --chain-id $LAVA_CHAIN_ID
 lavad config chain-id $LAVA_CHAIN_ID
 lavad config keyring-backend file
 lavad config node tcp://localhost:26657
