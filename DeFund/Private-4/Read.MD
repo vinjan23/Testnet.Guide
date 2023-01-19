@@ -18,9 +18,7 @@
 
 ### 1. Update Tool
 ```
-sudo apt -q update
-sudo apt -qy install curl git jq lz4 build-essential
-sudo apt -qy upgrade
+sudo apt-get update -y && sudo apt upgrade -y && sudo apt-get install make build-essential gcc git jq chrony -y
 ```
 
 ### 2. Install GO
