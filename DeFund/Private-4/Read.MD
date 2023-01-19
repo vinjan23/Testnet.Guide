@@ -57,6 +57,12 @@ mv build/defundd $HOME/.defund/cosmovisor/genesis/bin/
 rm -rf build
 ```
 
+### Create System
+```
+ln -s $HOME/.defund/cosmovisor/genesis $HOME/.defund/cosmovisor/current
+sudo ln -s $HOME/.defund/cosmovisor/current/bin/defundd /usr/local/bin/defundd
+```
+
 ### Setup Moniker
 ```
 MONIKER=Your_NODENAME 
@@ -71,8 +77,8 @@ source ~/.bash_profile
 
 ### Init Config
 ```
-defundd init $MONIKER --chain-id $DEFUND_CHAIN_ID
-defundd config chain-id $DEFUND_CHAIN_ID
+defundd init $MONIKER --chain-id defund-private-4
+defundd config chain-id defund-private-4
 defundd config keyring-backend test
 defundd config node tcp://localhost:27657
 ```
