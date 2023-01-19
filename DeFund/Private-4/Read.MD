@@ -125,19 +125,17 @@ sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.defund/config/config.toml
 ```
 sudo tee /etc/systemd/system/defundd.service > /dev/null << EOF
 [Unit]
-Description="defundd node"
+Description=defund-testnet node service
 After=network-online.target
 
 [Service]
-User=USER
-ExecStart=/home/USER/go/bin/cosmovisor start
-Restart=always
-RestartSec=3
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
 LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.defund"
 Environment="DAEMON_NAME=defundd"
-Environment="DAEMON_HOME=/home/USER/.defund"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
 
 [Install]
