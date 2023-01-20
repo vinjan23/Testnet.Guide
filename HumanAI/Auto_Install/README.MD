@@ -102,6 +102,16 @@ humansd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uheart --from <walletnam
 sudo journalctl -u humansd -f -o cat
 ```
 
+@@ Stop Service
+```
+sudo systemctl stop humansd
+```
+
+## Restart 
+```
+sudo systemctl restart humansd
+```
+
 ## Validator Info
 
 ```
@@ -146,6 +156,10 @@ humansd tx slashing unjail \
 humansd tx distribution withdraw-all-rewards --from <walletname> --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
 ```
 
+##
+```
+[[ $(humansd q staking validator $(humansd keys show <walletname> --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(humansd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
 ## Delete Node
 
 ```
