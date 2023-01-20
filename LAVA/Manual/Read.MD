@@ -93,7 +93,7 @@ sudo journalctl -u lavad -f -o cat
 
 `If u see error exit-code dont worry just upgrade`
 
-### Upgrade at block `v0.4.3`
+### Upgrade Version `v0.4.3`
 ```
 sudo systemctl stop lavad
 cd $HOME
