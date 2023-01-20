@@ -156,7 +156,7 @@ humansd tx slashing unjail \
 humansd tx distribution withdraw-all-rewards --from <walletname> --chain-id testnet-1 --gas-prices 0.1uheart --gas-adjustment 1.5 --gas auto -y 
 ```
 
-##
+## # check if your valoper address matches your key
 ```
 [[ $(humansd q staking validator $(humansd keys show <walletname> --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(humansd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
