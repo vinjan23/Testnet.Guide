@@ -59,6 +59,7 @@ humansd version
 humansd config keyring-backend test
 humansd config chain-id $CHAIN_ID
 humansd init "$NODE_MONIKER" --chain-id $CHAIN_ID
+humansd config node tcp://localhost:20657
 
 # download genesis and addrbook
 curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > $HOME/.humans/config/genesis.json
