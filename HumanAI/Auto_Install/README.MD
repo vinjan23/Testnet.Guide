@@ -26,6 +26,10 @@ wget -O Humans.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/
 
 ### ✅️ Manual Guide > [Manual Guide](https://github.com/vinjan23/Testnet.Guide/blob/main/HumanAI/Manual/README.MD)
 
+### Snapshot
+```
+wget -O snapshot.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/snapshot.sh && chmod +x snapshot.sh && ./snapshot.sh
+```
 
 ### WAIT BLOCK TO `false`
 
