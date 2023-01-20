@@ -45,19 +45,13 @@ wget -qO $HOME/.lava/config/addrbook.json http://94.250.203.6:90/lava-addrbook.j
 ```
 MONIKER=Your_NODENAME 
 ```
-### Set Var
-```
-echo export MONIKER=${MONIKER} >> $HOME/.bash_profile
-echo "export LAVA_CHAIN_ID=lava-testnet-1" >> $HOME/.bash_profile
-source ~/.bash_profile
-```
 
 ### Init Config
 ```
-lavad init $MONIKER --chain-id $LAVA_CHAIN_ID
-lavad config chain-id $LAVA_CHAIN_ID
-lavad config keyring-backend file
-lavad config node tcp://localhost:26657
+lavad init $MONIKER --chain-id lava-testnet-1
+lavad config chain-id lava-testnet-1
+lavad config keyring-backend test
+lavad config node tcp://localhost:44657
 ```
 ### Disable Indexing
 ```
