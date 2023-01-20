@@ -51,7 +51,7 @@ MONIKER=Your_NODENAME
 lavad init $MONIKER --chain-id lava-testnet-1
 lavad config chain-id lava-testnet-1
 lavad config keyring-backend test
-lavad config node tcp://localhost:44657
+lavad config node tcp://localhost:25657
 ```
 ### Disable Indexing
 ```
