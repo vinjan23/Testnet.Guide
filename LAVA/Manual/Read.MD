@@ -109,6 +109,10 @@ sudo journalctl -u lavad -f -o cat
 lavad status 2>&1 | jq .SyncInfo
 ```
 
+### Check Log
+```
+sudo journalctl -u lavad -f -o cat
+```
 ### Set Time Out `./lava/config/config.tomi`
 
 `create_empty_blocks_interval = "60s"      
@@ -161,6 +165,11 @@ lavad tx staking create-validator \
 -y 
 ```
 
+### Staking & Delegate
+```
+lavad tx staking delegate <lava@valoper1...-address> 1000000ulava --chain-id lava-testnet-1 --from <wallet-name> --gas=auto
+```
+
 ### Check Your Validator Active
 ```
 lavad query staking validator $(lavad keys show $(lavad keys list --output json| jq -r ".[] .address" | tail -n1) --bech val -a) --chain-id lava-testnet-1
@@ -168,25 +177,17 @@ lavad query staking validator $(lavad keys show $(lavad keys list --output json|
 
 ### Unjail
 ```
-lavad tx slashing unjail --from walletname --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+lavad tx slashing unjail --from <wallet_name> --chain-id lava-testnet-1 --gas=auto 
 ```
 ### Withdraw All Reward
 ```
-lavad tx distribution withdraw-all-rewards --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+lavad tx distribution withdraw-all-rewards --from walletname --chain-id lava-testnet-1 --gas=auto  
 ```
 ### Withdraw with Commission
 ```
-lavad tx distribution withdraw-rewards $(lavad keys show wallet --bech val -a) --commission --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
-```
-### Staking & Delegate
-```
-lavad tx staking delegate YOUR_TO_VALOPER_ADDRESS 1000000ulava --from wallet --chain-id lava-testnet-1 --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y 
+lavad tx distribution withdraw-rewards <validator-address> --from <wallet-name>  --chain-id lava-testnet-1 --commission --yes --gas=auto
 ```
 
-  ### Check Log
-  ```
-  sudo journalctl -u lavad -f -o cat
-  ```
   ### Node Info
   ```
   lavad status 2>&1 | jq .NodeInfo
@@ -194,6 +195,10 @@ lavad tx staking delegate YOUR_TO_VALOPER_ADDRESS 1000000ulava --from wallet --c
  ### Validator Info
  ```
  lavad status 2>&1 | jq .ValidatorInfo
+ ```
+ ### Find Validator Address
+ ```
+ lavad keys show <wallet-key> --bech val -a
  ```
  
  ### Delete Node
