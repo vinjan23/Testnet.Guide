@@ -104,6 +104,15 @@ sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
 
+### Upgrade Version `v0.4.4`
+```
+sudo systemctl stop lavad.service
+wget -qO $HOME/lavad https://github.com/lavanet/lava/releases/download/v0.4.4/lavad-v0.4.4-linux-amd64
+chmod +x $HOME/lavad
+sudo mv $HOME/lavad $(which lavad)
+sudo systemctl restart lavad.service
+```
+
 ### Check Sync
 ```
 lavad status 2>&1 | jq .SyncInfo
