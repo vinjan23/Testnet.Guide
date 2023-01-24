@@ -111,6 +111,7 @@ wget -qO $HOME/lavad https://github.com/lavanet/lava/releases/download/v0.4.4/la
 chmod +x $HOME/lavad
 sudo mv $HOME/lavad $(which lavad)
 sudo systemctl restart lavad.service
+sudo journalctl -u lavad -f -o cat
 ```
 
 ### Check Sync
