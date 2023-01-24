@@ -104,7 +104,7 @@ sudo systemctl restart lavad
 sudo journalctl -u lavad -f -o cat
 ```
 
-### Upgrade Version `v0.4.4`
+### Upgrade Version `v0.4.4` `Block 41735`
 ```
 sudo systemctl stop lavad.service
 wget -qO $HOME/lavad https://github.com/lavanet/lava/releases/download/v0.4.4/lavad-v0.4.4-linux-amd64
