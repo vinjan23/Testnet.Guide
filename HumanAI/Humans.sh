@@ -63,7 +63,7 @@ humansd config node tcp://localhost:20657
 
 # download genesis and addrbook
 curl -s https://rpc-testnet.humans.zone/genesis | jq -r .result.genesis > $HOME/.humans/config/genesis.json
-wget -O $HOME/.humans/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/HumanAI/addrbook.json"
+wget -O $HOME/.humans/config/addrbook.json "https://github.com/vinjan23/Testnet.Guide/blob/main/HumanAI/addrbook.json"
 
 # set peers and seeds
 SEEDS=""
