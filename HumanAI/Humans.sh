@@ -122,7 +122,7 @@ sed -i 's|^trust_hash *=.*|trust_hash = "'$TRUST_HASH'"|' $HOME/.humans/config/c
 
 # start service
 sudo systemctl daemon-reload && sudo systemctl enable humansd
-sudo systemctl restart humansd && sudo journalctl -u humansd -f -o cat
+sudo systemctl start humansd && sudo journalctl -u humansd -f -o cat
 
 echo '=============== SETUP FINISHED ==================='
 echo -e 'To check logs: \e[1m\e[32mjournalctl -u humansd -f -o cat\e[0m'
