@@ -87,8 +87,6 @@ sed -i 's|^timeout_commit *=.*|timeout_commit = "1s"|' $HOME/.humans/config/conf
 sed -i 's|^skip_timeout_commit *=.*|skip_timeout_commit = false|' $HOME/.humans/config/config.toml
 
 
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.humans/config/config.toml
-
 sudo tee /etc/systemd/system/humansd.service > /dev/null << EOF
 [Unit]
 Description=Humans AI Node
