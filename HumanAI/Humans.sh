@@ -89,8 +89,6 @@ sed -i 's|^skip_timeout_commit *=.*|skip_timeout_commit = false|' $HOME/.humans/
 
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.humans/config/config.toml
 
-echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
-# create service
 sudo tee /etc/systemd/system/humansd.service > /dev/null << EOF
 [Unit]
 Description=Humans AI Node
@@ -100,7 +98,7 @@ User=$USER
 ExecStart=$(which humansd) start
 Restart=on-failure
 RestartSec=10
-LimitNOFILE=65535
+LimitNOFILE=10000
 [Install]
 WantedBy=multi-user.target
 EOF
