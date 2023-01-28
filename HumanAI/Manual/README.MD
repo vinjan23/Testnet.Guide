@@ -187,18 +187,21 @@ humansd query bank balances <wallet address>
 
 ```
 humansd tx staking create-validator \
-  --amount 1000000uheart \
-  --from <walletname> \
-  --commission-max-change-rate "0.1" \
-  --commission-max-rate "0.2" \
-  --commission-rate "0.1" \
-  --min-self-delegation "1" \
-  --pubkey  $(humansd tendermint show-validator) \
-  --moniker <NodeName> \
-  --chain-id testnet-1 \
-  --identity="ID Keybase" \
-  --details="" \
-  --website="" -y
+--amount=1000000uheart \
+--pubkey=$(humansd tendermint show-validator) \
+--moniker="Moniker" \
+--identity= \
+--details= \
+--chain-id=testnet-1 \
+--commission-rate=0.10 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
+--min-self-delegation=1 \
+--from=wallet \
+--gas-prices=0.1uheart \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y 
 ```
 
 ### Check TxHash in Explorer & Search Your NodeName
