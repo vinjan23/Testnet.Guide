@@ -47,7 +47,7 @@ cd $HOME
 rm -rf defund
 git clone https://github.com/defund-labs/defund.git
 cd defund
-git checkout v0.2.4
+git checkout v0.2.3
 make build
 mkdir -p $HOME/.defund/cosmovisor/genesis/bin
 mv build/defundd $HOME/.defund/cosmovisor/genesis/bin/
@@ -57,8 +57,8 @@ echo "Install and building Cosmovisor..."
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 
 echo "Configuring Node..."
-defundd init $MONIKER --chain-id defund-private-4
-defundd config chain-id defund-private-4
+defundd init $MONIKER --chain-id $CHAIN_ID
+defundd config chain-id $CHAIN_ID
 defundd config keyring-backend test
 defundd config node tcp://localhost:27657
 
