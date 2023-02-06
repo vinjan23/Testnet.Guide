@@ -66,13 +66,6 @@ sudo ln -s $HOME/.defund/cosmovisor/current/bin/defundd /usr/local/bin/defundd
 MONIKER=Your_NODENAME 
 ```
 
-### Set Var
-```
-echo export MONIKER=${MONIKER} >> $HOME/.bash_profile
-echo "export DEFUND_CHAIN_ID=defund-private-4" >> $HOME/.bash_profile
-source ~/.bash_profile
-```
-
 ### Init Config
 ```
 defundd init $MONIKER --chain-id defund-private-4
@@ -148,11 +141,6 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
 sudo systemctl start defundd && sudo journalctl -u defundd -f -o cat
-```
-
-### State Sync
-```
-wget -O statesync.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/DeFund/Private-4/statesync.sh && chmod +x statesync.sh && ./statesync.sh
 ```
 
 ### Check Sync
