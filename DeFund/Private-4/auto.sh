@@ -56,6 +56,13 @@ rm -rf build
 echo "Install and building Cosmovisor..."
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 
+mkdir -p $HOME/.defund/cosmovisor/genesis/bin
+mv build/defundd $HOME/.defund/cosmovisor/genesis/bin/
+rm -rf build
+
+ln -s $HOME/.defund/cosmovisor/genesis $HOME/.defund/cosmovisor/current
+sudo ln -s $HOME/.defund/cosmovisor/current/bin/defundd /usr/local/bin/defundd
+
 echo "Configuring Node..."
 defundd init $MONIKER --chain-id $CHAIN_ID
 defundd config chain-id $CHAIN_ID
