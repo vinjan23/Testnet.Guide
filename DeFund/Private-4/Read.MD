@@ -284,6 +284,10 @@ defundd tx distribution withdraw-rewards $(defundd keys show wallet --bech val -
 ```
 [[ $(defundd q staking validator $(defundd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(defundd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
+## Vote
+```
+defundd tx gov vote 3 yes --from wallet --chain-id defund-private-4 --gas-prices 0.1ufetf --gas-adjustment 1.5  -y
+```
 
 ## Delete node
 
