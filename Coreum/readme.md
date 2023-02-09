@@ -15,17 +15,17 @@ sudo journalctl -u cored -f -o cat
 
 ## Create Wallet
 ```
-cored keys add $MONIKER --keyring-backend os
+cored keys add $WALLET --keyring-backend os
 ```
 
 ## Recover Wallet
 ```
-cored keys add $MONIKER --keyring-backend os --recover
+cored keys add $WALLET --keyring-backend os --recover
 ```
 
 ## Check Balances
 ```
-cored q bank balances  $(cored keys show $MONIKER --address --keyring-backend os) --denom $CORE_DENOM
+cored q bank balances  $(cored keys show $WALLET --address --keyring-backend os) --denom $CORE_DENOM
 ```
 
 ## Setup Validator Config `<Change Your Validator Name>`
@@ -54,7 +54,7 @@ cored tx staking create-validator \
 --min-self-delegation=$CORE_MIN_DELEGATION_AMOUNT \
 --gas auto \
 --chain-id="$CHAINID" \
---from=$MONIKER \
+--from=$WALLET \
 --keyring-backend os -y -b block $CORE_CHAIN_ID_ARGS
 ```
 
