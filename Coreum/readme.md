@@ -57,6 +57,23 @@ cored tx staking create-validator \
 --from=$WALLET \
 --keyring-backend os -y -b block $CORE_CHAIN_ID_ARGS
 ```
+`Exampe Me`
+```
+cored tx staking create-validator \
+--amount=50000000000utestcore \
+--pubkey="$(cored tendermint show-validator)" \
+--moniker="$CORE_VALIDATOR_NAME" \
+--website="$CORE_VALIDATOR_WEB_SITE" \
+--identity="$CORE_VALIDATOR_IDENTITY" \
+--commission-rate="$CORE_VALIDATOR_COMMISSION_RATE" \
+--commission-max-rate="$CORE_VALIDATOR_COMMISSION_MAX_RATE" \
+--commission-max-change-rate="$CORE_VALIDATOR_COMMISSION_MAX_CHANGE_RATE" \
+--min-self-delegation=$CORE_MIN_DELEGATION_AMOUNT \
+--gas auto \
+--chain-id="coreum-testnet-1" \
+--from=wallet \
+--keyring-backend test -y -b block $CORE_CHAIN_ID_ARGS
+```
 
 ## Check Validator Status
 ```
