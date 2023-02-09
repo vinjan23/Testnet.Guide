@@ -15,12 +15,12 @@ sudo journalctl -u cored -f -o cat
 
 ## Create Wallet
 ```
-cored keys add $WALLET --keyring-backend os
+cored keys add $WALLET --keyring-backend test
 ```
 
 ## Recover Wallet
 ```
-cored keys add $WALLET --keyring-backend os --recover
+cored keys add $WALLET --keyring-backend test --recover
 ```
 
 ## Check Balances
