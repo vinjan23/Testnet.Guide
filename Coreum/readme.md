@@ -3,12 +3,15 @@
 wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Coreum/auto.sh && chmod +x auto.sh && ./auto.sh
 ```
 
-## Check Log
+## Check Sync
 ```
-echo "catching_up: $(echo  $(cored status) | jq -r '.SyncInfo.catching_up')"
+cored status 2>&1 | jq .SyncInfo
 ```
-If the output is `catching_up: false`, then the node is fully synced.
 
+## Check Logs
+```
+sudo journalctl -u cored -f -o cat
+```
 
 ## Create Wallet
 ```
@@ -54,6 +57,17 @@ cored tx staking create-validator \
 --from=$MONIKER \
 --keyring-backend os -y -b block $CORE_CHAIN_ID_ARGS
 ```
+
+## Check Validator Status
+```
+cored q staking validator "$(cored keys show $MONIKER --bech val --address $CORE_CHAIN_ID_ARGS)"
+```
+If you see `status: BOND_STATUS_BONDED` in the output, then the validator is validating.
+
+
+
+
+
 
 
 
