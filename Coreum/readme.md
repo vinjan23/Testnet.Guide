@@ -53,7 +53,7 @@ cored tx staking create-validator \
 --commission-max-change-rate="$CORE_VALIDATOR_COMMISSION_MAX_CHANGE_RATE" \
 --min-self-delegation=$CORE_MIN_DELEGATION_AMOUNT \
 --gas auto \
---chain-id="$CHAINID" \
+--chain-id="CORE_CHAIN_ID" \
 --from=$WALLET \
 --keyring-backend os -y -b block $CORE_CHAIN_ID_ARGS
 ```
