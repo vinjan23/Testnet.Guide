@@ -77,7 +77,7 @@ cored tx staking create-validator \
 
 ## Check Validator Status
 ```
-cored q staking validator "$(cored keys show $MONIKER --bech val --address $CORE_CHAIN_ID_ARGS)"
+cored q staking validator "$(cored keys show $WALLET --bech val --address $CORE_CHAIN_ID_ARGS)"
 ```
 If you see `status: BOND_STATUS_BONDED` in the output, then the validator is validating.
 
