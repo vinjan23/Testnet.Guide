@@ -25,7 +25,7 @@ cored keys add $WALLET --keyring-backend test --recover
 
 ## Check Balances
 ```
-cored q bank balances  $(cored keys show $WALLET --address --keyring-backend os) --denom $CORE_DENOM
+cored q bank balances <Wallet_Address>
 ```
 
 ## Setup Validator Config `<Change Your Validator Name>`
