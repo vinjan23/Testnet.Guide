@@ -28,10 +28,10 @@ cored keys add $MONIKER --keyring-backend os --recover
 cored q bank balances  $(cored keys show $MONIKER --address --keyring-backend os) --denom $CORE_DENOM
 ```
 
-## Setup Validator Config
+## Setup Validator Config `<Change Your Validator Name>`
 ```
-export CORE_VALIDATOR_DELEGATION_AMOUNT=20000000000
 export CORE_VALIDATOR_NAME="YOUR_VALIDATOR_NAME"
+export CORE_VALIDATOR_DELEGATION_AMOUNT=20000000000
 export CORE_VALIDATOR_WEB_SITE="nodes.vinjan.xyz"
 export CORE_VALIDATOR_IDENTITY="7C66E36EA2B71F68"
 export CORE_VALIDATOR_COMMISSION_RATE="0.10"
