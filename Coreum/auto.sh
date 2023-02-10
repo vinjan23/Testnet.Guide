@@ -10,7 +10,7 @@ echo "         #        #  #        #   # # # #   #          #  #        #    ";
 echo -e "\e[0m"
 sleep 2
 
-read -p "Enter node moniker: " MONIKER
+read -p "Enter node moniker:"MONIKER
 
 export MONIKER
 export CORE_CHAIN_ID="coreum-testnet-1"
@@ -52,8 +52,6 @@ curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$CORE_VERS
 mv $CORE_BINARY_NAME $CORE_HOME/bin/cored
 chmod +x $CORE_HOME/bin/*
 
-cored init $MONIKER --chain-id coreum-testnet-1
-
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
 sudo tee /etc/systemd/system/cored.service > /dev/null <<EOF
@@ -72,10 +70,9 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 
-sudo systemctl daemon-reload && \
-sudo systemctl enable cored && \
-sudo systemctl restart cored && \
-sudo journalctl -u cored -f -o cat
+cored start --chain-id=coreum-testnet-1
+
+
 
 
 
