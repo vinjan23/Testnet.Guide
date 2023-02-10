@@ -33,10 +33,11 @@ export CORE_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64
 
 ### Build
 ```
-mkdir -p $CORE_HOME/bin
-curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$CORE_VERSION/$CORE_BINARY_NAME
-mv $CORE_BINARY_NAME $CORE_HOME/bin/cored
-chmod +x $CORE_HOME/bin/*
+cd $HOME
+curl -LOf https://github.com/CoreumFoundation/coreum/releases/download/v0.1.1/cored-linux-amd64
+chmod +x cored-linux-amd64
+mv cored-linux-amd64 cored
+mv cored $HOME/go/bin/
 ```
 
 ## Check Version
