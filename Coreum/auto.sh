@@ -56,25 +56,25 @@ cored config node tcp://localhost:${PORT}657
 cored init $MONIKER --chain-id $CHAIN_ID
 
 # Set peers and seeds
-SEEDS=
-sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/$FOLDER/$CHAIN/config/config.toml
+SEEDS=64391878009b8804d90fda13805e45041f492155@35.232.157.206:26656,53f2367d8f8291af8e3b6ca60efded0675ff6314@34.29.15.170:26656
+sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.core/coreum-testnet-1/config/config.toml
+peers="051a07f1018cfdd6c24bebb3094179a6ceda2482@138.201.123.234:26656,1a3a573c53a4b90ab04eb47d160f4d3d6aa58000@35.233.117.165:26656,cc6d4220633104885b89e2e0545e04b8162d69b5@75.119.134.20:26656,5add70ec357311d07d10a730b4ec25107399e83c@5.196.7.58:26656,7c0d4ce5ad561c3453e2e837d85c9745b76f7972@35.238.77.191:26656,27450dc5adcebc84ccd831b42fcd73cb69970881@35.239.146.40:26656,69d7028b7b3c40f64ea43208ecdd43e88c797fd6@34.69.126.231:26656,b2978432c0126f28a6be7d62892f8ded1e48d227@34.70.241.13:26656,4b8d541efbb343effa1b5079de0b17d2566ac0fd@34.172.70.24:26656,39a34cd4f1e908a88a726b2444c6a407f67e4229@158.160.59.199:26656"
+sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.core/coreum-testnet-1/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utestcore\"/" $HOME/.core/coreum-testnet-1/config/app.toml
 
 # Download genesis and addrbook
-#curl -Ls $GENESIS > $HOME/$FOLDER/$CHAIN/config/genesis.json
-#curl -Ls $ADDRBOOK > $HOME/$FOLDER/$CHAIN/config/addrbook.json
+wget -O $HOME/.core/coreum-testnet-1/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Coreum/addrbook.json"
+wget -O $HOME/.core/coreum-testnet-1/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Coreum/genesis.json"
 
 # Set Config Pruning
-pruning="custom"
-pruning_keep_recent="100"
-pruning_keep_every="0"
-pruning_interval="10"
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/$FOLDER/$CHAIN/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/$FOLDER/$CHAIN/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/$FOLDER/$CHAIN/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/$FOLDER/$CHAIN/config/app.toml
+sed -i \
+  -e 's|^pruning *=.*|pruning = "custom"|' \
+  -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+  -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+  -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+  $HOME/.core/coreum-testnet-1/config/app.toml
 
-# Set minimum gas price
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0$DENOM\"/" $HOME/$FOLDER/$CHAIN/config/app.toml
+sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.core/coreum-testnet-1/config/config.toml
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
@@ -94,7 +94,10 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 
-cored start --chain-id=coreum-testnet-1
+sudo systemctl daemon-reload && \
+sudo systemctl enable cored && \
+sudo systemctl restart cored && \
+sudo journalctl -u cored -f -o cat
 
 
 
