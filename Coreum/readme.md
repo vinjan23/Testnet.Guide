@@ -18,19 +18,6 @@ source ~/.bash_profile
 go version
 ```
 
-## Set Env Var
-```
-export CORE_CHAIN_ID="coreum-testnet-1"
-export CORE_DENOM="utestcore"
-export CORE_NODE="https://full-node-pluto.testnet-1.coreum.dev"
-export CORE_FAUCET_URL="https://api.testnet-1.coreum.dev"
-export CORE_VERSION="v0.1.1"
-export CORE_CHAIN_ID_ARGS="--chain-id=$CORE_CHAIN_ID"
-export CORE_NODE_ARGS="--node=$CORE_NODE $CORE_CHAIN_ID_ARGS"
-export CORE_HOME=$HOME/.core/"$CORE_CHAIN_ID"
-export CORE_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
-```
-
 ### Build
 ```
 cd $HOME
@@ -89,12 +76,12 @@ sudo journalctl -u cored -f -o cat
 
 ## Create Wallet
 ```
-cored keys add $WALLET --keyring-backend test
+cored keys add <WALLET> --keyring-backend test
 ```
 
 ## Recover Wallet
 ```
-cored keys add $WALLET --keyring-backend test --recover
+cored keys add <WALLET> --keyring-backend test --recover
 ```
 
 ## Check Balances
