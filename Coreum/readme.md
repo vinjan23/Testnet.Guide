@@ -18,13 +18,18 @@ source ~/.bash_profile
 go version
 ```
 
+## Set Var
+```
+CORE_VERSION="v0.1.1"
+CORE_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+```
 ### Build
 ```
-cd $HOME
-curl -LOf https://github.com/CoreumFoundation/coreum/releases/download/v0.1.1/cored-linux-amd64
-chmod +x cored-linux-amd64
-mv cored-linux-amd64 cored
-mv cored $HOME/go/bin/
+mkdir $HOME/bin
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$CORE_VERSION/$CORE_BINARY_NAME
+mv $CORE_BINARY_NAME $HOME/bin/cored
+chmod +x $HOME/bin/*
+sudo mv $HOME/bin/cored /usr/local/bin/
 ```
 
 ## Check Version
