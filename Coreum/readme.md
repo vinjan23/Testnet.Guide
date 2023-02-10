@@ -142,9 +142,9 @@ cored q staking validator "$(cored keys show $WALLET --bech val --address $CORE_
 ```
 If you see `status: BOND_STATUS_BONDED` in the output, then the validator is validating.
 
-
-
-
+```
+https://snapshot.vinjan.xyz/coreum/coreum-snapshot-20230210.tar.lz4
+```
 
 
 
