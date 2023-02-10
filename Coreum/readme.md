@@ -1,7 +1,64 @@
 ## Auto Installer
 ```
-wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Coreum/auto.sh && chmod +x auto.sh && ./auto.sh
+N/A
 ```
+## Set Env Var
+```
+export CORE_CHAIN_ID="coreum-testnet-1"
+export CORE_DENOM="utestcore"
+export CORE_NODE="https://full-node-pluto.testnet-1.coreum.dev"
+export CORE_FAUCET_URL="https://api.testnet-1.coreum.dev"
+export CORE_VERSION="v0.1.1"
+export CORE_CHAIN_ID_ARGS="--chain-id=$CORE_CHAIN_ID"
+export CORE_NODE_ARGS="--node=$CORE_NODE $CORE_CHAIN_ID_ARGS"
+export CORE_HOME=$HOME/.core/"$CORE_CHAIN_ID"
+export CORE_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
+```
+
+### Build
+```
+mkdir -p $CORE_HOME/bin
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$CORE_VERSION/$CORE_BINARY_NAME
+mv $CORE_BINARY_NAME $CORE_HOME/bin/cored
+chmod +x $CORE_HOME/bin/*
+```
+
+## Check Version
+```
+cored version
+```
+
+## Init
+```
+export MONIKER=<Your_Name>
+cored init $MONIKER --chain-id coreum-testnet-1
+```
+
+## Create System
+```
+sudo tee /etc/systemd/system/cored.service > /dev/null <<EOF
+[Unit]
+Description=Cored node
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cored) start --home $HOME/.core/
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+## Start
+```
+sudo systemctl daemon-reload && \
+sudo systemctl enable cored && \
+sudo systemctl restart cored && \
+sudo journalctl -u cored -f -o cat
+```
+
 
 ## Check Sync
 ```
