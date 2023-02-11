@@ -120,6 +120,15 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.core/core
 sudo systemctl restart cored && \
 sudo journalctl -u cored -f -o cat
 ```
+## Snapshot
+```
+sudo apt install lz4 -y
+sudo systemctl stop cored
+cored tendermint unsafe-reset-all --home $HOME/.core/coreum-testnet-1 --keep-addr-book
+curl -L https://snapshot.vinjan.xyz/coreum/coreum-snapshot-20230211.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.core/coreum-testnet-1
+sudo systemctl restart cored
+journalctl -fu cored -o cat
+```
 
 ## Check Sync
 ```
