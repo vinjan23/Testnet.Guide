@@ -26,8 +26,8 @@ CORE_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-
 ### Build
 ```
 mkdir $HOME/bin
-curl -LO https://github.com/CoreumFoundation/coreum/releases/download/$CORE_VERSION/$CORE_BINARY_NAME
-mv $CORE_BINARY_NAME $HOME/bin/cored
+curl -LO https://github.com/CoreumFoundation/coreum/releases/download/v0.1.1/cored-linux-amd64
+mv cored-linux-amd64 $HOME/bin/cored
 chmod +x $HOME/bin/*
 sudo mv $HOME/bin/cored /usr/local/bin/
 ```
@@ -37,12 +37,49 @@ sudo mv $HOME/bin/cored /usr/local/bin/
 cored version
 ```
 
-## Init
+## Set Moniker
 ```
 export MONIKER=<Your_Name>
+```
+## Init
+```
+PORT=21
 cored init $MONIKER --chain-id coreum-testnet-1
+cored config node tcp://localhost:${PORT}657
 ```
 
+## Seed & Peer & Gas
+```
+# Set peers and seeds
+SEEDS=64391878009b8804d90fda13805e45041f492155@35.232.157.206:26656,53f2367d8f8291af8e3b6ca60efded0675ff6314@34.29.15.170:26656
+sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.core/coreum-testnet-1/config/config.toml
+peers="051a07f1018cfdd6c24bebb3094179a6ceda2482@138.201.123.234:26656,1a3a573c53a4b90ab04eb47d160f4d3d6aa58000@35.233.117.165:26656,cc6d4220633104885b89e2e0545e04b8162d69b5@75.119.134.20:26656,5add70ec357311d07d10a730b4ec25107399e83c@5.196.7.58:26656,7c0d4ce5ad561c3453e2e837d85c9745b76f7972@35.238.77.191:26656,27450dc5adcebc84ccd831b42fcd73cb69970881@35.239.146.40:26656,69d7028b7b3c40f64ea43208ecdd43e88c797fd6@34.69.126.231:26656,b2978432c0126f28a6be7d62892f8ded1e48d227@34.70.241.13:26656,4b8d541efbb343effa1b5079de0b17d2566ac0fd@34.172.70.24:26656,39a34cd4f1e908a88a726b2444c6a407f67e4229@158.160.59.199:26656"
+sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.core/coreum-testnet-1/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utestcore\"/" $HOME/.core/coreum-testnet-1/config/app.toml
+```
+
+## Prunning
+```
+sed -i \
+  -e 's|^pruning *=.*|pruning = "custom"|' \
+  -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+  -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+  -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+  $HOME/.core/coreum-testnet-1/config/app.toml
+  ```
+
+## Custom Port
+```
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.< >/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.< >/config/app.toml
+```
+
+## Disable Indexer
+```
+sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.core/coreum-testnet-1/config/config.toml
+```
+
+  
 ## Create System
 ```
 sudo tee /etc/systemd/system/cored.service > /dev/null <<EOF
@@ -59,12 +96,21 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+## State Sync
+```
+cored tendermint unsafe-reset-all
+SNAP_RPC="https://rpc-coreum.sxlzptprjkt.xyz:443"
+
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+```
 
 ## Start
 ```
 sudo systemctl daemon-reload && \
 sudo systemctl enable cored && \
-sudo systemctl restart cored && \
+sudo systemctl start cored && \
 sudo journalctl -u cored -f -o cat
 ```
 
