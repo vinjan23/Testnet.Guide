@@ -18,11 +18,6 @@ source ~/.bash_profile
 go version
 ```
 
-## Set Var
-```
-CORE_VERSION="v0.1.1"
-CORE_BINARY_NAME=$(arch | sed s/aarch64/cored-linux-arm64/ | sed s/x86_64/cored-linux-amd64/)
-```
 ### Build
 ```
 mkdir $HOME/bin
