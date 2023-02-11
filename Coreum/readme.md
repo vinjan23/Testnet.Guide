@@ -188,6 +188,18 @@ cored q staking validator "$(cored keys show $WALLET --bech val --address $CORE_
 ```
 If you see `status: BOND_STATUS_BONDED` in the output, then the validator is validating.
 
+## Delete Node
+```
+sudo systemctl stop cored && \
+sudo systemctl disable cored && \
+rm /etc/systemd/system/cored.service && \
+sudo systemctl daemon-reload && \
+cd $HOME && \
+rm -rf core && \
+rm -rf .core && \
+rm -rf $(which cored)
+```
+
 ```
 https://snapshot.vinjan.xyz/coreum/coreum-snapshot-20230210.tar.lz4
 ```
