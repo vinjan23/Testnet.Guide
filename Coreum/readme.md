@@ -91,8 +91,18 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+
+## Start
+```
+sudo systemctl daemon-reload && \
+sudo systemctl enable cored && \
+sudo systemctl start cored && \
+sudo journalctl -u cored -f -o cat
+```
+
 ## State Sync
 ```
+sudo systemctl stop cored
 cored tendermint unsafe-reset-all
 SNAP_RPC="https://rpc-coreum.sxlzptprjkt.xyz:443"
 
@@ -107,16 +117,9 @@ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.core/coreum-testnet-1/config/config.toml
-```
-
-## Start
-```
-sudo systemctl daemon-reload && \
-sudo systemctl enable cored && \
-sudo systemctl start cored && \
+sudo systemctl restart cored && \
 sudo journalctl -u cored -f -o cat
 ```
-
 
 ## Check Sync
 ```
