@@ -155,51 +155,39 @@ cored keys add <WALLET> --keyring-backend test --recover
 cored q bank balances <Wallet_Address>
 ```
 
-## Setup Validator Config `<Change Your Validator Name>`
-```
-export CORE_VALIDATOR_NAME="YOUR_VALIDATOR_NAME"
-export CORE_VALIDATOR_DELEGATION_AMOUNT=20000000000
-export CORE_VALIDATOR_WEB_SITE="nodes.vinjan.xyz"
-export CORE_VALIDATOR_IDENTITY=""
-export CORE_VALIDATOR_COMMISSION_RATE="0.10"
-export CORE_VALIDATOR_COMMISSION_MAX_RATE="0.20"
-export CORE_VALIDATOR_COMMISSION_MAX_CHANGE_RATE="0.01"
-export CORE_MIN_DELEGATION_AMOUNT=20000000000
-```
-
 ## Create Validator
 ```
 cored tx staking create-validator \
---amount=$CORE_VALIDATOR_DELEGATION_AMOUNT$CORE_DENOM \
+--amount=20000000000utestcore \
 --pubkey="$(cored tendermint show-validator)" \
---moniker="$CORE_VALIDATOR_NAME" \
---website="$CORE_VALIDATOR_WEB_SITE" \
---identity="$CORE_VALIDATOR_IDENTITY" \
---commission-rate="$CORE_VALIDATOR_COMMISSION_RATE" \
---commission-max-rate="$CORE_VALIDATOR_COMMISSION_MAX_RATE" \
---commission-max-change-rate="$CORE_VALIDATOR_COMMISSION_MAX_CHANGE_RATE" \
---min-self-delegation=$CORE_MIN_DELEGATION_AMOUNT \
+--moniker="$VALIDATOR_NAME" \
+--website="" \
+--identity="" \
+--commission-rate="0.1" \
+--commission-max-rate="0.2" \
+--commission-max-change-rate="0.01" \
+--min-self-delegation=20000000000 \
 --gas auto \
---chain-id="$CORE_CHAIN_ID" \
---from=$WALLET \
---keyring-backend os -y -b block $CORE_CHAIN_ID_ARGS
+--chain-id="coreum-testnet-1" \
+--from=<WALLET> \
+--keyring-backend os -y -b block --chain-id coreum-testnet-1
 ```
 `Exampe Me`
 ```
 cored tx staking create-validator \
 --amount=50000000000utestcore \
 --pubkey="$(cored tendermint show-validator)" \
---moniker="$CORE_VALIDATOR_NAME" \
---website="$CORE_VALIDATOR_WEB_SITE" \
---identity="$CORE_VALIDATOR_IDENTITY" \
---commission-rate="$CORE_VALIDATOR_COMMISSION_RATE" \
---commission-max-rate="$CORE_VALIDATOR_COMMISSION_MAX_RATE" \
---commission-max-change-rate="$CORE_VALIDATOR_COMMISSION_MAX_CHANGE_RATE" \
---min-self-delegation=$CORE_MIN_DELEGATION_AMOUNT \
+--moniker="$VALIDATOR_NAME" \
+--website="nodes.vinjan.xyz" \
+--identity="" \
+--commission-rate="0.1" \
+--commission-max-rate="0.2" \
+--commission-max-change-rate="0.01" \
+--min-self-delegation=20000000000 \
 --gas auto \
 --chain-id="coreum-testnet-1" \
 --from=wallet \
---keyring-backend test -y -b block $CORE_CHAIN_ID_ARGS
+--keyring-backend test -y -b block --chain-id coreum-testnet-1
 ```
 
 ## Check Validator Status
