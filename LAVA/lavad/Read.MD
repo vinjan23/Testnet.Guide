@@ -13,7 +13,6 @@
 
 ### ✅️ [Manual_Guide](https://github.com/vinjan23/Testnet.Guide/blob/main/LAVA/Manual/Read.MD)
 
-### ✅️ [Custom_Port](https://github.com/vinjan23/Testnet.Guide/blob/main/LAVA/Custom_Port/Read.MD)
 
 ### ✅️ Auto Installation
 ```
