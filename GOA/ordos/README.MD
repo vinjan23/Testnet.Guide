@@ -37,9 +37,20 @@ ordosd config keyring-backend test
 ordosd init $MONIKER --chain-id ordos-1
 ordosd config node tcp://localhost:${PORT}657
 ```
+### Genesis
+```
+wget -O $HOME/.ordos/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/GOA/ordos/genesis.json"
+```
+
+### Addrbook
+```
+wget -O $HOME/.ordos/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/GOA/ordos/addrbook.json"
+```
+
 ### Seed & Peer
 ```
-PEERS="3f636d4bc99a309797bbaef5934fc9c3b8f3070c@146.190.81.135:01656"
+PEERS="49d39420c03ec57240793bca9c8bcc4d339e976b@65.21.135.86:2000,c4c71cf90ebe51a215c71f5cc769cf7b188ff155@131.153.158.173:26656,97b1ca0d0746126b2e2df45509c0e567af2facca@65.109.117.208:4000,2945a38f7a2cfc42f0b44697127a8c06c1023f0e@89.116.28.2:26656,b9abf3fa1823a8b0324d07077f6159c73dc9fd40@54.36.109.62:18056,1677dabde46280cf7101472ac96777d855c0fbf0@65.109.32.226:26656,6deac387b71a1a83ce6ca3a7b3422ca472d19788@217.76.59.213:26656,6d26ed3f5ba59dde6bf45d56c1b2c5b00a214c09@185.219.142.32:01656,3f486d41a9be9808ae60573712dbe7f6343eed31@164.92.91.248:10656,4ae10e9c2aac86c12da8ad585dd8ab7cab416ac6@89.163.130.46:26656
+"
 SEEDS="1772a7a48530cc8adc447fdb7b720c064411667b@goa-seeds.lavenderfive.com:11656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.ordos/config/config.toml
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.ordos/config/config.toml
