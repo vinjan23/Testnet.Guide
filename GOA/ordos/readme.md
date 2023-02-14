@@ -86,7 +86,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable ordosd
 sudo systemctl start ordosd
 sudo journalctl -u ordosd -f -o cat
-
+```
 
 
 
