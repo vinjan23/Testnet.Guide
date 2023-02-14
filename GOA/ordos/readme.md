@@ -22,7 +22,6 @@ rm -rf alliance
 git clone https://github.com/terra-money/alliance
 cd alliance
 git checkout v0.0.1-goa
-make build-alliance ordos
 sudo mv build/ordosd /usr/bin
 ```
 ### Set Node Name
