@@ -197,8 +197,9 @@ sudo systemctl disable ordosd
 sudo rm -f /etc/systemd/system/ordosd.service
 sudo systemctl daemon-reload
 rm -f $(which ordosd)
-rm -rf $HOME/.ordos
-sed -i '/ORDOS_/d' ~/.bash_profile
+rm -rf .ordos
+rm -rf alliance
 ```
+
 
 
