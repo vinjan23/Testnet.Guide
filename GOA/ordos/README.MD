@@ -189,5 +189,16 @@ ordosd status 2>&1 | jq .ValidatorInfo
 [[ $(ordosd q staking validator $(ordosd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(ordosd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
 
+### Delete Node
+```
+cd $HOME
+sudo systemctl stop ordosd
+sudo systemctl disable ordosd
+sudo rm -f /etc/systemd/system/ordosd.service
+sudo systemctl daemon-reload
+rm -f $(which ordosd)
+rm -rf $HOME/.ordos
+sed -i '/ORDOS_/d' ~/.bash_profile
+```
 
 
