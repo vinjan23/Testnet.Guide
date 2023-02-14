@@ -64,7 +64,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 ### Create Service
 ```
 # Create Service
-sudo tee /etc/systemd/system/$ORDOS.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/ordosd.service > /dev/null <<EOF
 [Unit]
 Description=ordosd test
 After=network-online.target
