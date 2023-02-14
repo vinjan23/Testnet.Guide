@@ -20,9 +20,10 @@ source ~/.bash_profile
 cd $HOME
 rm -rf alliance
 git clone https://github.com/terra-money/alliance
-cd alliance
+cd alliance || return
 git checkout v0.0.1-goa
-make install
+make build-alliance ACC_PREFIX=ordos
+sudo mv build/ordosd /usr/bin/
 ```
 ### Set Node Name
 ```
