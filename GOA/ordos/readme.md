@@ -88,5 +88,95 @@ sudo systemctl start ordosd
 sudo journalctl -u ordosd -f -o cat
 ```
 
+### Sync Info
+```
+ordosd status 2>&1 | jq .SyncInfo
+```
+### Log Info
+```
+sudo journalctl -u ordosd -f -o cat
+```
+
+
+### Create Wallet
+```
+ordosd keys add wallet
+```
+### Recover Wallet
+```
+ordosd keys add wallet --recover
+```
+### List Wallet
+```
+ordosd keys list
+```
+
+### Check Balance
+```
+ordosd q bank balances <address>
+```
+
+### Create Validator
+```
+ordosd tx staking create-validator \
+--amount=5000000uord \
+--pubkey=$(ordosd tendermint show-validator) \
+--moniker="YOUR_MONIKER_NAME" \
+--identity="YOUR_KEYBASE_ID" \
+--details="YOUR_DETAILS" \
+--website="YOUR_WEBSITE_URL" \
+--chain-id=ordos-1 \
+--commission-rate=0.01 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
+--min-self-delegation=1000000 \
+--from=wallet \
+--fees="1000uord" \
+--gas="1000000" \
+--gas-adjustment="1.15"
+```
+
+### Edit
+```
+ordosd tx staking edit-validator \
+--new-moniker="YOUR_MONIKER_NAME" \
+--identity="YOUR_KEYBASE_ID" \
+--details="YOUR_DETAILS" \
+--website="YOUR_WEBSITE_URL"
+--chain-id=ordos-1 \
+--commission-rate=0.05 \
+--from=wallet \
+--fees="1000uord" \
+--gas="1000000" \
+--gas-adjustment="1.15"
+```
+### Unjail
+```
+ordosd tx slashing unjail --broadcast-mode=block --from wallet --chain-id ordos-1 --fees="1000uord" --gas="1000000" --gas-adjustment="1.15"
+```
+
+### Delegate
+```
+ordosd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uord --from wallet --chain-id ordos-1 --fees="1000uord" --gas="1000000" --gas-adjustment="1.15"
+```
+
+### Withdraw 
+```
+ordosd tx distribution withdraw-all-rewards --from wallet --chain-id ordos-1 --fees="1000uord" --gas="1000000" --gas-adjustment="1.15"
+```
+### Withdraw with commision
+```
+ordosd tx distribution withdraw-rewards $(ordosd keys show wallet --bech val -a) --commission --from wallet --chain-id ordos-1 --fees="1000uord" --gas="1000000" --gas-adjustment="1.15"
+```
+
+### Validator Info
+```
+ordosd status 2>&1 | jq .ValidatorInfo
+```
+### Check Validator Match
+```
+[[ $(ordosd q staking validator $(ordosd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(ordosd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+
 
 
