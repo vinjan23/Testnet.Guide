@@ -39,18 +39,18 @@ corrinod config node tcp://localhost:${PORT}657
 ```
 ### Genesis
 ```
-wget -O $HOME/.atreides/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/GOA/atreides/genesis.json"
+wget -O $HOME/.corrino/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/GOA/corrino/genesis.json"
 ```
 
 ### Addrbook
 ```
-wget -O $HOME/.atreides/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/GOA/atreides/addrbook.json"
+wget -O $HOME/.corrino/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/GOA/corrino/addrbook.json"
 ```
 
 ### Seed & Peer
 ```
-PEERS="58c31664ab2888515ead08fac36f92d36ee843c9@146.190.83.6:04656,0c3af9f1ccd5d8df4f876f547973e4a0c4ee29a3@89.116.28.2:28656,cd19f4418b3cd10951060aad1c4b4baf82177292@35.168.16.221:41456"
-SEEDS="d634d42f4f84caa0db7c718353090fd7973e702e@goa-seeds.lavenderfive.com:13656"
+PEERS="aa27dbadcaa1ff2c473b8380e28a9e17be7156e6@65.21.131.215:27656,489ac19377a00b0da57a44bfb85366870c900285@52.91.39.40:41256,b59f1343587f64047ad331fd8ca8382887d34233@35.168.16.221:41256,5260976afec974fc0dea05be875841b126a6e322@54.196.186.174:41256,6a8cbaa3578f96ae3bf5d3ba1ad0f629fec3774d@89.116.28.2:27656,abd7c8d502f7f27ed2bf11d0ca34c7e9e1186e79@146.190.83.6:03656"
+SEEDS="2a78b8849872d641d61d97b95f7349540e9d8df0@goa-seeds.lavenderfive.com:12656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.corrino/config/config.toml
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.corrino/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001ucor\"/" $HOME/.corrino/config/app.toml
