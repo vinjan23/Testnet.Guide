@@ -10,7 +10,7 @@ echo "         #        #  #        #   # # # #   #          #  #        #    ";
 echo -e "\e[0m"
 sleep 2
 
-read -p "Enter node moniker:" MONIKER
+read -p "Enter node moniker:" NODE_MONIKER
 
 CHAIN_ID="atreides-1"
 CHAIN_DENOM="uatr"
