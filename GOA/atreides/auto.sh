@@ -51,9 +51,9 @@ sudo mv build/atreidesd /usr/bin/
 
 # init
 PORT=42
-atreidesd init $MONIKER --chain-id $CHAIN_ID
-atreidesd config chain-id $CHAIN_ID
-atreidesd config keyring-backend test
+atreidesd init $MONIKER --chain-id atreides-1
+atreidesd config chain-id atreides-1
+atreidesd config keyring-backend file
 atreidesd config node tcp://localhost:${PORT}657
 
 # download genesis
