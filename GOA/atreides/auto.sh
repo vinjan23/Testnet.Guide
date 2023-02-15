@@ -30,9 +30,8 @@ echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 sudo apt install make build-essential gcc git jq chrony lz4 -y
 
 # install go
-ver="1.19.3"
+ver="1.19.4"
 cd $HOME
-rm -rf go
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
@@ -52,9 +51,9 @@ sudo mv build/atreidesd /usr/bin/
 
 # init
 PORT=42
-atreidesd config chain-id atreides-1
+atreidesd init $MONIKER --chain-id $CHAIN_ID
+atreidesd config chain-id $CHAIN_ID
 atreidesd config keyring-backend test
-atreidesd init $MONIKER --chain-id atreides-1
 atreidesd config node tcp://localhost:${PORT}657
 
 # download genesis
