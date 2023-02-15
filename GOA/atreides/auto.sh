@@ -44,7 +44,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 rm -rf alliance
 git clone https://github.com/terra-money/alliance
-cd alliance || return
+cd alliance
 git checkout v0.0.1-goa
 make build-alliance ACC_PREFIX=atreides
 sudo mv build/atreidesd /usr/bin/
