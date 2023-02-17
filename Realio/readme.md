@@ -89,8 +89,131 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+### Start
+```
+sudo systemctl daemon-reload && sudo systemctl enable realio-networkd
+sudo systemctl restart realio-networkd && sudo journalctl -u realio-networkd -f -o cat
+```
+
+### Statesync
+```
+sudo systemctl stop realio-networkd
+cp $HOME/.realio-network/data/priv_validator_state.json $HOME/.realio-network/priv_validator_state.json.backup
+realio-networkd tendermint unsafe-reset-all --home $HOME/.realio-network
+STATE_SYNC_RPC=http://rpc.realio.ppnv.space:16657
+STATE_SYNC_PEER=d0de51b7de393935cdc29dda114431964be93090@rpc.realio.ppnv.space:16656
+LATEST_HEIGHT=$(curl -s $STATE_SYNC_RPC/block | jq -r .result.block.header.height)
+SYNC_BLOCK_HEIGHT=$(($LATEST_HEIGHT - 1000))
+SYNC_BLOCK_HASH=$(curl -s "$STATE_SYNC_RPC/block?height=$SYNC_BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -e "s|^enable *=.*|enable = true|" $HOME/.realio-network/config/config.toml
+sed -i.bak -e "s|^rpc_servers *=.*|rpc_servers = \"$STATE_SYNC_RPC,$STATE_SYNC_RPC\"|" \
+  $HOME/.realio-network/config/config.toml
+sed -i.bak -e "s|^trust_height *=.*|trust_height = $SYNC_BLOCK_HEIGHT|" \
+  $HOME/.realio-network/config/config.toml
+sed -i.bak -e "s|^trust_hash *=.*|trust_hash = \"$SYNC_BLOCK_HASH\"|" \
+  $HOME/.realio-network/config/config.toml
+sed -i.bak -e "s|^persistent_peers *=.*|persistent_peers = \"$STATE_SYNC_PEER\"|" \
+  $HOME/.realio-network/config/config.toml
+mv $HOME/.realio-network/priv_validator_state.json.backup $HOME/.realio-network/data/priv_validator_state.json
+sudo systemctl restart realio-networkd && journalctl -u realio-networkd -f --no-hostname -o cat
+```
+### Check Sync
+```
+realio-networkd status 2>&1 | jq .SyncInfo
+```
+### Check Log
+```
+sudo journalctl -u realio-networkd -f -o cat
+```
+
+### Create Wallet
+```
+realio-networkd keys add <WALLET>
+```
+### Recover
+```
+realio-networkd keys add <WALLET> --recover
+```
+### List All
+```
+realio-networkd keys list
+```
+### Check Balance
+```
+realio-networkd q bank balance <address>
+```
+
+### Create Validator
+```
+realio-networkd tx staking create-validator \
+  --amount=1000000000000000000ario \
+  --pubkey=$(realio-networkd tendermint show-validator) \
+  --moniker="<YOUR_MONIKER>" \
+  --identity="YOUR_KEYBASE_ID" \
+  --details="YOUR_DETAILS" \
+  --website="YOUR_WEBSITE_URL"
+  --chain-id=realionetwork_1110-2 \
+  --commission-rate="0.10" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.1" \
+  --min-self-delegation="1" \
+  --fees 5000000000000000ario \
+  --gas 800000
+  --from=<WALLET>
+  ```
+  ### Edit
+  ```
+  realio-networkd tx staking edit-validator \
+--moniker="YOUR_MONIKER_NAME" \
+--identity="YOUR_KEYBASE_ID" \
+--details="YOUR_DETAILS" \
+--website="YOUR_WEBSITE_URL"
+--chain-id=realionetwork_1110-2 \
+--commission-rate="0.10" \
+--from=<WALLET> \
+--fees 100ario \
+-y
+```
+### Unjail
+```
+realio-networkd tx slashing unjail --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+```
+
+### Delegate
+```
+realio-networkd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ario --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+```
+### Withdraw all
+```
+realio-networkd tx distribution withdraw-all-rewards --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+```
+### Withdraw with commission
+```
+realio-networkd tx distribution withdraw-rewards $(realio-networkd keys show <WALLET> --bech val -a) --commission --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+```
+### Stop Service
+```
+sudo systemctl stop realio-networkd
+```
+### Restart
+```
+sudo systemctl restart realio-networkd
+```
+
+### Delete Node
+```
+sudo systemctl stop realio-networkd && \
+sudo systemctl disable realio-networkd && \
+rm /etc/systemd/system/realio-networkd.service && \
+sudo systemctl daemon-reload && \
+cd $HOME && \
+rm -rf realio-network && \
+rm -rf .realio-network && \
+rm -rf $(which realio-networkd)
+```
 
 
+  
 
 
 
