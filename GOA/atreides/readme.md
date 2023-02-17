@@ -104,7 +104,7 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable atreidesd
-sudo systemctl start atreidesd
+sudo systemctl restart atreidesd
 sudo journalctl -u atreidesd -f -o cat
 ```
 
