@@ -98,8 +98,8 @@ After=network-online.target
 User=$USER
 ExecStart=$(which humansd) start
 Restart=on-failure
-RestartSec=10
-LimitNOFILE=10000
+RestartSec=3
+LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
