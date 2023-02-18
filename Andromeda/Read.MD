@@ -31,7 +31,7 @@ andromedad q bank balances <address>
 ### Create Validator
 ```
 andromedad tx staking create-validator \
-  --amount=1000000000000000000andr \
+  --amount=1000000000000000000uandr \
   --pubkey=$(andromedad tendermint show-validator) \
   --moniker="<YOUR_MONIKER>" \
   --identity="YOUR_KEYBASE_ID" \
@@ -63,7 +63,7 @@ andromedad tx slashing unjail --from <WALLET> --chain-id galileo-3 -y
 ```
 ### Delegate
 ```
-andromedad tx staking delegate <TO_VALOPER_ADDRESS> 1000000andr --from <WALLET> --chain-id galileo-3 -y
+andromedad tx staking delegate <TO_VALOPER_ADDRESS> 1000000uandr --from <WALLET> --chain-id galileo-3 -y
 ```
 ### Withdraw All
 ```
