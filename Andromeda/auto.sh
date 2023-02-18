@@ -47,7 +47,7 @@ make install
 andromedad config keyring-backend test
 andromedad config chain-id $CHAIN_ID
 andromedad init "$NODE_MONIKER" --chain-id $CHAIN_ID
-andromedadconfig node tcp://localhost:${PORT}657
+andromedad config node tcp://localhost:${PORT}657
 
 # download genesis
 curl -o $HOME/.andromedad/config/genesis.json https://raw.githubusercontent.com/andromedaprotocol/testnets/galileo-3/genesis.json
