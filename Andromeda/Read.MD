@@ -43,7 +43,6 @@ andromedad tx staking create-validator \
   --commission-max-change-rate="0.1" \
   --min-self-delegation="1" \
   --from=<WALLET>
-  -y
   ```
   ### Edit 
   ```
@@ -55,7 +54,6 @@ andromedad tx staking edit-validator \
 --chain-id=galileo-3 \
 --commission-rate="0.10" \
 --from=<WALLET> \
--y
 ```
 ### Unjail
 ```
