@@ -11,7 +11,7 @@ sleep 2
 
 read -p "Enter node moniker:" NODE_MONIKER
 
-CHAIN_ID="galileo-3 -y"
+CHAIN_ID="galileo-3"
 CHAIN_DENOM="andr"
 BINARY="andromedad"
 PORT="23"
