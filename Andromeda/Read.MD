@@ -52,7 +52,6 @@ andromedad tx staking edit-validator \
 --details="YOUR_DETAILS" \
 --website="YOUR_WEBSITE_URL"
 --chain-id=galileo-3 \
---commission-rate="0.10" \
 --from=<WALLET> \
 ```
 ### Unjail
