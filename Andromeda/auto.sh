@@ -12,7 +12,7 @@ sleep 2
 read -p "Enter node moniker:" NODE_MONIKER
 
 CHAIN_ID="galileo-3"
-CHAIN_DENOM="andr"
+CHAIN_DENOM="uandr"
 BINARY="andromedad"
 PORT="23"
 
@@ -54,7 +54,7 @@ curl -o $HOME/.andromedad/config/genesis.json https://raw.githubusercontent.com/
 wget -O $HOME/.andromedad/config/addrbook.json "https://raw.githubusercontent.com/nodersteam/cosmos-adrbook/main/andromeda/addrbook.json"
 
 # Set peers and seeds
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0andr\"/;" ~/.andromedad/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0uandr\"/;" ~/.andromedad/config/app.toml
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.andromedad/config/config.toml
 external_address=$(wget -qO- eth0.me)
 sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.andromedad/config/config.toml
