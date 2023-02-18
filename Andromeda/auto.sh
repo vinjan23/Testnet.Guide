@@ -19,7 +19,7 @@ PORT="23"
 echo -e "Node moniker: ${CYAN}$NODE_MONIKER${NC}"
 echo -e "Chain id:     ${CYAN}$CHAIN_ID${NC}"
 echo -e "Chain demon:  ${CYAN}$CHAIN_DENOM${NC}"
-echo -e "PORT:         ${CYAN}$PORT{NC}"       
+echo -e "PORT:         ${CYAN}$PORT${NC}"     
 sleep 2
 
 echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
