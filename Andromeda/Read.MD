@@ -25,7 +25,7 @@ andromedad keys list
 ```
 ### Cek Balance
 ```
-andromedad q bank balance <address>
+andromedad q bank balances <address>
 ```
 
 ### Create Validator
