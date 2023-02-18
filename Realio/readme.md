@@ -140,7 +140,7 @@ realio-networkd keys list
 ```
 ### Check Balance
 ```
-realio-networkd q bank balance <address>
+realio-networkd q bank balances <address>
 ```
 
 ### Create Validator
