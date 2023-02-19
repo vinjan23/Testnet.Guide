@@ -60,7 +60,7 @@ andromedad tx slashing unjail --from <WALLET> --chain-id galileo-3 -y
 ```
 ### Delegate
 ```
-andromedad tx staking delegate <TO_VALOPER_ADDRESS> 1000000uandr --from <WALLET> --chain-id galileo-3 -y
+andromedad tx staking delegate YOUR_TO_VALOPER_ADDRESS 1000000uandr --from wallet --chain-id galileo-3 --gas-prices 0.1uandr --gas-adjustment 1.5 --gas auto -y 
 ```
 ### Withdraw All
 ```
