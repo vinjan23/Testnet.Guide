@@ -16,12 +16,13 @@ read -p "Enter node moniker: " NODE_MONIKER
 
 CHAIN_ID="testnet-1"
 CHAIN_DENOM="uheart"
-BINARY="humansd"
+BINARY_NAME="humansd"
+BINARY_VERSION_TAG="v1.0.0"
 
-
-echo -e "Node moniker: ${CYAN}$NODE_MONIKER${NC}"
-echo -e "Chain id:     ${CYAN}$CHAIN_ID${NC}"
-echo -e "Chain demon:  ${CYAN}$CHAIN_DENOM${NC}"
+echo -e "Node moniker:       ${CYAN}$NODE_MONIKER${NC}"
+echo -e "Chain id:           ${CYAN}$CHAIN_ID${NC}"
+echo -e "Chain demon:        ${CYAN}$CHAIN_DENOM${NC}"
+echo -e "Binary version tag: ${CYAN}$BINARY_VERSION_TAG${NC}"
 sleep 2
 
 echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
@@ -105,6 +106,19 @@ WantedBy=multi-user.target
 EOF
 
 humansd tendermint unsafe-reset-all --home $HOME/.humans --keep-addr-book
+
+SNAP_RPC="https://humans-testnet.nodejumper.io:443"
+
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height);
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000));
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
+
+sed -i 's|^enable *=.*|enable = true|' $HOME/.humans/config/config.toml
+sed -i 's|^rpc_servers *=.*|rpc_servers = "'$SNAP_RPC,$SNAP_RPC'"|' $HOME/.humans/config/config.toml
+sed -i 's|^trust_height *=.*|trust_height = '$BLOCK_HEIGHT'|' $HOME/.humans/config/config.toml
+sed -i 's|^trust_hash *=.*|trust_hash = "'$TRUST_HASH'"|' $HOME/.humans/config/config.toml
 
 # start service
 sudo systemctl daemon-reload && sudo systemctl enable humansd
