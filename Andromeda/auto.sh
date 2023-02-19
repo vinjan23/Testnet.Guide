@@ -95,8 +95,6 @@ sed -i 's|^trust_hash *=.*|trust_hash = "'$TRUST_HASH'"|' $HOME/.andromedad/conf
 
 mv $HOME/.andromedad/priv_validator_state.json.backup $HOME/.andromedad/data/priv_validator_state.json
 
-curl -s https://snapshots-testnet.nodejumper.io/andromeda-testnet/wasm.lz4 | lz4 -dc - | tar -xf - -C $HOME/.andromedad
-
 
 # create service
 sudo tee /etc/systemd/system/andromedad.service > /dev/null <<EOF
