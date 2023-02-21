@@ -176,20 +176,20 @@ realio-networkd tx staking create-validator \
 ```
 ### Unjail
 ```
-realio-networkd tx slashing unjail --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+realio-networkd tx slashing unjail --from <WALLET> --chain-id=realionetwork_1110-2 --gas 800000 --fees 5000000000000000ario
 ```
 
 ### Delegate
 ```
-realio-networkd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ario --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+realio-networkd tx staking delegate realiovaloper1g5y74mr6amnrpzj544m5sj693ahxtdxgmq6suv 7000000000000000000000ario --from=wallet --chain-id=realionetwork_1110-2 --gas 800000 --fees 5000000000000000ario
 ```
 ### Withdraw all
 ```
-realio-networkd tx distribution withdraw-all-rewards --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+realio-networkd tx distribution withdraw-all-rewards --from <WALLET> --chain-id=realionetwork_1110-2 --gas 800000 --fees 5000000000000000ario
 ```
 ### Withdraw with commission
 ```
-realio-networkd tx distribution withdraw-rewards $(realio-networkd keys show <WALLET> --bech val -a) --commission --from <WALLET> --chain-id=realionetwork_1110-2 --fees 100ario -y
+realio-networkd tx distribution withdraw-rewards $Valoper--from=wallet --commission --chain-id=realionetwork_1110-2 --gas 800000 --fees 5000000000000000ario
 ```
 ### Stop Service
 ```
