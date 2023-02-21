@@ -148,19 +148,19 @@ realio-networkd q bank balances <address>
 realio-networkd tx staking create-validator \
   --amount=1000000000000000000ario \
   --pubkey=$(realio-networkd tendermint show-validator) \
-  --moniker="<YOUR_MONIKER>" \
-  --identity="YOUR_KEYBASE_ID" \
-  --details="YOUR_DETAILS" \
-  --website="YOUR_WEBSITE_URL"
+  --moniker=vinjan \
   --chain-id=realionetwork_1110-2 \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
   --commission-max-change-rate="0.1" \
   --min-self-delegation="1" \
   --fees 5000000000000000ario \
-  --gas 800000
-  --from=<WALLET>
-  ```
+  --website="https://nodes.vinjan.xyz" \
+  --identity="7C66E36EA2B71F68" \
+  --details "" \
+  --gas 800000 \
+  --from=wallet
+```
   ### Edit
   ```
   realio-networkd tx staking edit-validator \
