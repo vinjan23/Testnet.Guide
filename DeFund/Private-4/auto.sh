@@ -12,7 +12,7 @@ echo -e "\e[0m"
 
 sleep 2
 
-read -p "Enter node moniker: " NODE_MONIKER
+read -p "Enter Node moniker: " NODE_MONIKER
 
 
 CHAIN_ID="defund-private-4"
@@ -74,7 +74,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
 
-defundd init $MONIKER --chain-id defund-private-4
+defundd init $NODE_MONIKER --chain-id defund-private-4
 defundd config chain-id defund-private-4
 defundd config keyring-backend test
 defundd config node tcp://localhost:40657
