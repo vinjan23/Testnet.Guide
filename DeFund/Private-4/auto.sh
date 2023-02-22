@@ -12,7 +12,7 @@ echo -e "\e[0m"
 
 sleep 2
 
-read -p "Enter Node moniker: " NODE_MONIKER
+read -r -p "Enter node moniker: " NODE_MONIKER
 
 
 CHAIN_ID="defund-private-4"
@@ -80,7 +80,7 @@ defundd config keyring-backend test
 defundd config node tcp://localhost:40657
 
 echo "Configuring Node..."
-defundd init $MONIKER --chain-id $CHAIN_ID
+defundd init "$NODE_MONIKER" --chain-id $CHAIN_ID
 defundd config chain-id $CHAIN_ID
 defundd config keyring-backend test
 defundd config node tcp://localhost:27657
