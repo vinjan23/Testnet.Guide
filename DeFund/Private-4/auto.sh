@@ -79,11 +79,6 @@ defundd config chain-id defund-private-4
 defundd config keyring-backend test
 defundd config node tcp://localhost:40657
 
-echo "Configuring Node..."
-defundd init "$NODE_MONIKER" --chain-id $CHAIN_ID
-defundd config chain-id $CHAIN_ID
-defundd config keyring-backend test
-defundd config node tcp://localhost:27657
 
 # download genesis and addrbook
 curl -Ls https://snapshots.kjnodes.com/defund-testnet/genesis.json > $HOME/.defund/config/genesis.json
