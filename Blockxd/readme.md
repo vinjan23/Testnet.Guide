@@ -68,11 +68,11 @@ Description=Blockxd node
 After=network-online.target
 
 [Service]
-User=root
+User=$USER
 ExecStart=$(which blockxd) start --home $HOME/.blockxd
 Restart=always
-RestartSec=1
-LimitNOFILE=4096
+RestartSec=3
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
