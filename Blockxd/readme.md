@@ -25,8 +25,9 @@ go version
 
 ### Binary
 ```
-curl -#L https://github.com/defi-ventures/blockx-node-public-compiled/raw/main/blockxd -o /usr/local/bin/blockxd
-chmod +x /usr/local/bin/blockxd
+curl -LO https://github.com/defi-ventures/blockx-node-public-compiled/releases/download/v9.0.0/blockxd
+chmod +x blockxd
+cp blockxd /root/go/bin
 ```
 
 ### Setup
@@ -36,8 +37,8 @@ MONIKER=Your_NODENAME
 
 ### Config
 ```
-blockxd init $MONIKER --chain-id blockx_12345-1
-blockxd config chain-id blockx_12345-1
+blockxd init $MONIKER --chain-id blockx_12345-2
+blockxd config chain-id blockx_12345-2
 blockxd config node tcp://localhost:19657
 blockxd config keyring-backend test
 ```
