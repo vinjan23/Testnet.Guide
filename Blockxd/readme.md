@@ -51,12 +51,11 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:193
 
 ### Genesis
 ```
-curl -L# https://raw.githubusercontent.com/defi-ventures/blockx-node-public-compiled/main/genesis.json -o $HOME/.blockxd/genesis.json
+wget -O $HOME/.blockxd/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/genesis.json"
 ```
 
 ### Peer
 ```
-peers=$(curl -sS https://rpc.blockx.nodexcapital.com:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | paste -sd,)
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.blockxd/config/config.toml
 ```
 
