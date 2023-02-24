@@ -56,6 +56,7 @@ wget -O $HOME/.blockxd/config/genesis.json "https://raw.githubusercontent.com/vi
 
 ### Peer
 ```
+peers="78dd8371dae4f081e76a32f9b5e90037737a341a@162.19.239.112:26656,85270df0f25f8a3c56884a5f7bfe0a02b49d13d7@193.34.213.6:26656,d10fdd5873b1ae2d1ea3bc4de9753c7b2edf46b0@38.242.199.160:2936,dccf886659c4afcb0cd4895ccd9f2804c7e7e1cd@143.198.101.61:26656,4a7401f7d6daa39d331196d8cc179a4dcb11b5f9@143.198.110.221:26656,49a5a62543f5fec60db42b00d9ebe192c3185e15@143.198.97.96:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.blockxd/config/config.toml
 ```
 
