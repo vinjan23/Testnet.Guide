@@ -55,7 +55,6 @@ cd humans || return
 git checkout v1.0.0
 go build -o humansd cmd/humansd/main.go
 sudo cp humansd /usr/local/bin/humansd
-humansd version
 ```
 
 ### Set (NodeName) to Your NodeName
