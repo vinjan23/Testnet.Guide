@@ -171,4 +171,14 @@ blockxd tx staking edit-validator \
  -y
  ```
  
+### Delete
+```
+sudo systemctl stop blockxd
+sudo systemctl disable blockxd
+sudo rm /etc/systemd/system/blockxd.service
+sudo systemctl daemon-reload
+rm -f $(which blockxd)
+rm -rf $HOME/.blockxd
+rm -rf $HOME/blockxd
+```
 
