@@ -89,7 +89,6 @@ LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.nolus"
 Environment="DAEMON_NAME=nolusd"
 Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.nolus/cosmovisor/current/bin"
 
 [Install]
 WantedBy=multi-user.target
