@@ -110,6 +110,125 @@ curl -L https://snapshots.kjnodes.com/nolus-testnet/snapshot_latest.tar.lz4 | ta
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable nolusd
-sudo systemctl start nolusd
+sudo systemctl restart nolusd
 sudo journalctl -u nolusd -fu nolusd -o cat
 ```
+### Sync
+```
+nolusd status 2>&1 | jq .SyncInfo
+```
+
+### Log
+```
+sudo journalctl -u nolusd -fu nolusd -o cat
+```
+
+### Create Wallet
+```
+nolusd keys add wallet
+```
+
+### Recover
+```
+nolusd keys add wallet --recover
+```
+### List Wallet
+```
+nolusd keys list
+```
+### Balances
+```
+nolusd q bank balances <address>
+```
+
+### Create Validator
+```
+nolusd tx staking create-validator \
+--amount 1000000unls \
+--pubkey $(nolusd tendermint show-validator) \
+--moniker "YOUR_MONIKER_NAME" \
+--identity "YOUR_KEYBASE_ID" \
+--details "YOUR_DETAILS" \
+--website "YOUR_WEBSITE_URL" \
+--chain-id nolus-rila \
+--commission-rate 0.05 \
+--commission-max-rate 0.20 \
+--commission-max-change-rate 0.01 \
+--min-self-delegation 1 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--fees 500unls \
+-y
+```
+
+### Edit
+```
+nolusd tx staking edit-validator \
+--moniker "YOUR_MONIKER_NAME" \
+--identity "YOUR_KEYBASE_ID" \
+--details "YOUR_DETAILS" \
+--website "YOUR_WEBSITE_URL"
+--chain-id nolus-rila \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--fees 500unls \
+-y
+```
+### Unjail
+```
+nolusd tx slashing unjail --from wallet --chain-id nolus-rila --gas-adjustment 1.4 --gas auto --fees 500unls -y
+```
+
+### Delegate
+```
+nolusd tx staking delegate <TO_VALOPER_ADDRESS> 1000000unls --from wallet --chain-id nolus-rila --gas-adjustment 1.4 --gas auto --fees 500unls -y
+```
+
+### Withdraw ll
+```
+nolusd tx distribution withdraw-all-rewards --from wallet --chain-id nolus-rila --gas-adjustment 1.4 --gas auto --fees 500unls -y
+```
+### Withdraw with Commission
+```
+nolusd tx distribution withdraw-rewards $(nolusd keys show wallet --bech val -a) --commission --from wallet --chain-id nolus-rila --gas-adjustment 1.4 --gas auto --fees 500unls -y
+```
+
+### Transfer
+```
+nolusd tx bank send wallet <TO_WALLET_ADDRESS> 1000000unls --from wallet --chain-id nolus-rila
+```
+
+### Val Info
+```
+nolusd status 2>&1 | jq .ValidatorInfo
+```
+
+### Check Validator Match with Wallet
+```
+[[ $(nolusd q staking validator $(nolusd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(nolusd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+
+### Stop
+```
+sudo systemctl stop nolusd
+```
+### Restart
+```
+sudo systemctl restart nolusd
+```
+
+### Delete
+```
+cd $HOME
+sudo systemctl stop nolusd
+sudo systemctl disable nolusd
+sudo rm /etc/systemd/system/nolusd.service
+sudo systemctl daemon-reload
+rm -f $(which nolusd)
+rm -rf $HOME/.nolus
+rm -rf $HOME/nolus-core
+```
+
+
