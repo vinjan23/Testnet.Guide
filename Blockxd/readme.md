@@ -1,6 +1,6 @@
 ### Auto Install
 ```
-wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Mainnet/main/Blockxd/auto.sh && chmod +x auto.sh && ./auto.sh
+wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/auto.sh && chmod +x auto.sh && ./auto.sh
 ```
 
 ### Update Package
