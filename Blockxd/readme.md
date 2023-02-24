@@ -62,7 +62,7 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.b
 
 ### Create Servive
 ```
-sudo cat <<EOF > /etc/systemd/system/blockxd.service
+sudo tee /etc/systemd/system/blockxdY.service > /dev/null << EOF
 [Unit]
 Description=Blockxd node
 After=network-online.target
