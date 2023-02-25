@@ -1,3 +1,8 @@
+### Auto
+```
+wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nolus/auto.sh && chmod +x auto.sh && ./auto.sh
+```
+
 ### Update
 ```
 sudo apt update && sudo apt upgrade -y
@@ -90,9 +95,8 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Statesync
+### Snapshot
 ```
-cd $HOME
 apt install lz4
 sudo systemctl stop nolusd
 cp $HOME/.nolus/data/priv_validator_state.json $HOME/.nolus/priv_validator_state.json.backup
