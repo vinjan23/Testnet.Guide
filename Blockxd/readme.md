@@ -53,6 +53,10 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:193
 ```
 wget -O $HOME/.blockxd/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/genesis.json"
 ```
+### Addrbook
+```
+wget -O $HOME/.blockxd/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/addrbook.json"
+```
 
 ### Peer
 ```
