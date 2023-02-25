@@ -26,7 +26,7 @@ go version
 ```
 curl -LO https://github.com/defi-ventures/blockx-node-public-compiled/releases/download/v9.0.0/blockxd
 chmod +x blockxd
-cp blockxd /root/go/bin
+sudo mv ./blockxd /usr/local/bin
 ```
 
 ### Setup
