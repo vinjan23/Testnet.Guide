@@ -10,15 +10,15 @@ sudo apt install make build-essential gcc git jq chrony lz4 -y
 ```
 ### GO
 ```
-ver="1.19.3"
+ver="1.19.5"
 cd $HOME
-rm -rf go
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
+go version
 ```
 ### Build
 ```
