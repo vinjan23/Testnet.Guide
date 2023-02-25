@@ -24,7 +24,7 @@ cd $HOME
 rm -rf nolus-core
 git clone https://github.com/Nolus-Protocol/nolus-core.git
 cd nolus-core
-git checkout v0.1.36
+git checkout v0.1.43
 make build
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 mkdir -p $HOME/.nolus/cosmovisor/genesis/bin
