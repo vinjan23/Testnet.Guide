@@ -43,7 +43,7 @@ nolusd config node tcp://localhost:${PORT}657
 ### Download genesis and addrbook
 ```
 wget -O $HOME/.nolus/config/genesis.json "https://raw.githubusercontent.com/Nolus-Protocol/nolus-networks/main/testnet/nolus-rila/genesis.json"
-wget -O $HOME/.nolus/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Nolus/addrbook.json"
+wget -O $HOME/.nolus/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nolus/addrbook.json"
 ```
 
 ### Add seeds
