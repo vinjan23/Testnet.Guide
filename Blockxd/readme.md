@@ -173,6 +173,10 @@ blockxd tx staking edit-validator \
  --gas=auto \
  -y
  ```
+ ### Unjail
+ ```
+ blockxd tx slashing unjail --from vj --chain-id blockx_12345-2 --gas auto -y
+ ```
  
 ### Delete
 ```
