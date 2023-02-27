@@ -118,14 +118,21 @@ sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.nibid/config/config.toml
 ```
 sudo tee /etc/systemd/system/nibid.service > /dev/null << EOF
 [Unit]
-Description=Nibiru Node
+Description="nibiru node"
 After=network-online.target
+
 [Service]
-User=$USER
-ExecStart=$(which nibid) start
-Restart=on-failure
+User=USER
+ExecStart=/home/USER/go/bin/cosmovisor start
+Restart=always
 RestartSec=3
-LimitNOFILE=65535
+LimitNOFILE=4096
+Environment="DAEMON_NAME=nibid"
+Environment="DAEMON_HOME=/home/USER/.nibid"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+
 [Install]
 WantedBy=multi-user.target
 EOF
