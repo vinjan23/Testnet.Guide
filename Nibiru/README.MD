@@ -164,11 +164,11 @@ nibid query bank balances <wallet_address>
 ### Create Validator `Change Node_Moniker with Ur MonikerName`
 ```
 nibid tx staking create-validator \
---amount=1000000unibi \
+--amount=10800000unibi \
 --pubkey=$(nibid tendermint show-validator) \
---moniker=$NODE_MONIKER \
---identity= \
---details= \
+--moniker=vinjan \
+--identity=7C66E36EA2B71F68 \
+--details=https://nodes.vinjan.xyz \
 --chain-id=nibiru-itn-1 \
 --commission-rate=0.10 \
 --commission-max-rate=0.20 \
