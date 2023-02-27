@@ -7,11 +7,11 @@
  
   
   
-### TESTNET NIBIRU Testnet-2
+### TESTNET NIBIRU nibiru-itn-1
   
 ### Auto Install
 ```
-wget -O Auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/Auto.sh && chmod +x Auto.sh && ./Auto.sh
+
 ```
 
 ### Manual Install
@@ -169,7 +169,7 @@ nibid tx staking create-validator \
 --moniker=$NODE_MONIKER \
 --identity= \
 --details= \
---chain-id=nibiru-testnet-2 \
+--chain-id=nibiru-itn-1 \
 --commission-rate=0.10 \
 --commission-max-rate=0.20 \
 --commission-max-change-rate=0.01 \
@@ -187,7 +187,7 @@ nibid tx staking edit-validator \
 --new-moniker=$NODE_MONIKER \
 --identity= \
 --details= \
---chain-id=nibiru-testnet-2 \
+--chain-id=nibiru-itn-1 \
 --commission-rate=0.1 \
 --from=$Wallet \
 --gas-prices=0.1unibi \
