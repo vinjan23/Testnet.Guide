@@ -123,7 +123,7 @@ After=network-online.target
 
 [Service]
 User=USER
-ExecStart=/home/USER/go/bin/cosmovisor start
+ExecStart=$(which cosmovisor) run start
 Restart=always
 RestartSec=3
 LimitNOFILE=4096
