@@ -198,12 +198,15 @@ nibid tx staking edit-validator \
 
 ### Unjail Validator
 ```
-nibid tx slashing unjail --from #Wallet --chain-id nibiru-testnet-2 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
+nibid tx slashing unjail --from #Wallet --chain-id nibiru-itn-1 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ### Delegate & Staking `Change To Validator Address`
 ```
-nibid tx staking delegate <YOUR_TO_Validator_ADDRESS> 1000000unibi --from $Wallet --chain-id nibiru-testnet-2 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
+nibid tx staking delegate <YOUR_TO_Validator_ADDRESS> 1000000unibi --from $Wallet --chain-id nibiru-itn-1 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
+```
+```
+nibid tx bank send yawiraya nibi1pxcr9an2sww5wv75umddvcvxn3f5ygqcfurewu 10500000unibi --from yawiraya --chain-id nibiru-itn-1 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ### Check Log
@@ -223,7 +226,7 @@ nibid status 2>&1 | jq .NodeInfo
 
 ### Withdraw All Reward
 ```
-nibid tx distribution withdraw-all-rewards --from wallet --chain-id nibiru-testnet-2 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
+nibid tx distribution withdraw-all-rewards --from wallet --chain-id nibiru-itn-1 --gas-prices 0.1unibi --gas-adjustment 1.5 --gas auto -y 
 ```
 
 ### delete Node
