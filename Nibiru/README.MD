@@ -11,7 +11,7 @@
   
 ### Auto Install
 ```
-
+wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/Auto.sh && chmod +x auto.sh && ./auto.sh
 ```
 
 ### Manual Install
