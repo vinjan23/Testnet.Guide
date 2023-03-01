@@ -179,7 +179,7 @@ nolusd tx staking edit-validator \
 ```
 ```
 nolusd tx staking edit-validator \
---moniker "YOUR_MONIKER_NAME" \
+--new-moniker "vinjan" \
 --commission-rate 0.08 \
 --from wallet \
 --gas-adjustment 1.4 \
