@@ -177,6 +177,16 @@ nolusd tx staking edit-validator \
 --fees 500unls \
 -y
 ```
+```
+nolusd tx staking edit-validator \
+--moniker "YOUR_MONIKER_NAME" \
+--commission-rate 0.08 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--fees 500unls \
+-y
+```
 ### Unjail
 ```
 nolusd tx slashing unjail --from wallet --chain-id nolus-rila --gas-adjustment 1.4 --gas auto --fees 500unls -y
