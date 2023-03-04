@@ -119,7 +119,7 @@ saod q bank balances sao1t7rsd474kja40mh8wr8upq7c0rfkgmu0rfzj27
 ### Validator
 ```
 saod tx staking create-validator \
---amount 1000000sao \
+--amount 1000000sao \ 
 --pubkey $(saod tendermint show-validator) \
 --moniker "vinjan" \
 --identity "7C66E36EA2B71F68" \
