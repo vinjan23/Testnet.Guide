@@ -119,22 +119,20 @@ saod q bank balances sao1t7rsd474kja40mh8wr8upq7c0rfkgmu0rfzj27
 ### Validator
 ```
 saod tx staking create-validator \
---amount 1000000sao \ 
---pubkey $(saod tendermint show-validator) \
---moniker "vinjan" \
---identity "7C66E36EA2B71F68" \
---details "https://explorer.vinjan.xyz" \
---website "httpsL//nodes.vinjan.xyz" \
---chain-id sao-testnet0 \
---commission-rate 0.05 \
---commission-max-rate 0.20 \
---commission-max-change-rate 0.01 \
---min-self-delegation 1000000 \
---from wallet \
---gas-adjustment 1.4 \
---gas="2000000" \
---gas-prices="0.0025sao" \
+  --amount=3900000sao \
+  --pubkey=$(saod tendermint show-validator) \
+  --moniker="vinjan" \
+  --identity "7C66E36EA2B71F68" \
+  --chain-id=sao-testnet0 \
+  --commission-rate="0.10" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.01" \
+  --min-self-delegation="1000000" \
+  --gas="2000000" \
+  --gas-prices="0.0025sao" \
+  --from=wallet
 ```
+  
 ### Edit
 ```
 saod tx staking edit-validator
