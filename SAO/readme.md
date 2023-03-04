@@ -147,19 +147,19 @@ saod tx staking edit-validator
 ```
 ### Unjail
 ```
-saod tx slashing unjail --broadcast-mode=block --from wallet --chain-id sao-testnet0 --fees=5000sao
+saod tx slashing unjail --broadcast-mode=block --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Delegate
 ```
-saod tx staking delegate address_val 888000000sao --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025
+saod tx staking delegate address_val 888000000sao --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Withdraw Reward
 ```
-saod tx distribution withdraw-all-rewards --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025
+saod tx distribution withdraw-all-rewards --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Withdraw with commission
 ```
-saod tx distribution withdraw-rewards $(saod keys show wallet --bech val -a) --commission --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025
+saod tx distribution withdraw-rewards $(saod keys show wallet --bech val -a) --commission --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Check Match
 ```
