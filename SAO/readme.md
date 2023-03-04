@@ -37,13 +37,14 @@ saod config chain-id sao-testnet0
 saod config keyring-backend test
 saod config node tcp://localhost:${PORT}657
 ```
-### Download Genesis
+### Download Genesis & ddrbook
 ```
-wget https://raw.githubusercontent.com/SAONetwork/sao-consensus/testnet0/network/testnet0/config/genesis.json
+wget -O $HOME/.sao/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/SAO/genesis.json"
+wget -O $HOME/.sao/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/SAO/addrbook.json"
 ```
 ### Seed & Peer
 ```
-PEERS="0b777727937be8664a65ea0f8abc082e725879be@185.188.249.18:10656"
+PEERS="d99276e75a528b1e5a40bee3fe41ffe80a3a5b1b@195.3.221.58:47656,af7259853f202391e624c612ff9d3de1142b4ca4@52.77.248.130:26656,0b777727937be8664a65ea0f8abc082e725879be@185.188.249.18:10656,47971c889b727897dfc753ca93a15d8e1ce9cd5a@3.140.188.3:26656,a5298771c624a376fdb83c48cc6c630e58092c62@192.18.136.151:26656,c196d06c9c37dee529ca167701e25f560a054d6d@3.35.136.39:26656,59cef823c1a426f15eb9e688287cd1bc2b6ea42d@152.70.126.187:26656"
 SEEDS="59cef823c1a426f15eb9e688287cd1bc2b6ea42d@152.70.126.187:26656,a5298771c624a376fdb83c48cc6c630e58092c62@192.18.136.151:26656,af7259853f202391e624c612ff9d3de1142b4ca4@52.77.248.130:26656,c196d06c9c37dee529ca167701e25f560a054d6d@3.35.136.39:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.sao/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0001sao\"/" $HOME/.sao/config/app.toml
@@ -178,5 +179,12 @@ rm -rf .sao
 rm -rf sao-consensus
 ```
   
-  
-  
+
+
+
+
+
+
+
+
+
