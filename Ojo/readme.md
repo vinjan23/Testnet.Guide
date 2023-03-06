@@ -36,7 +36,7 @@ ojod config node tcp://localhost:${PORT}657
 ```
 
 ```
-wget -O $HOME/.ojo/config/genesis.json "https://rpc.devnet-n0.ojo-devnet.node.ojo.network/genesis"
+curl -s https://rpc.devnet-n0.ojo-devnet.node.ojo.network/genesis | jq -r .result.genesis > $HOME/.ojo/config/genesis.json
 ```
 
 ```
