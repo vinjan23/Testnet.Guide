@@ -28,7 +28,7 @@ MONIKER=
 ```
 
 ```
-PORT=48
+PORT=12
 ojod init $MONIKER --chain-id ojo-devnet-1
 ojod config chain-id ojo-devnet-1
 ojod config keyring-backend test
