@@ -29,8 +29,8 @@ MONIKER=
 
 ```
 PORT=12
-ojod init $MONIKER --chain-id ojo-devnet-1
-ojod config chain-id ojo-devnet-1
+ojod init $MONIKER --chain-id ojo-devnet
+ojod config chain-id ojo-devnet
 ojod config keyring-backend test
 ojod config node tcp://localhost:${PORT}657
 ```
@@ -45,6 +45,17 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${P
 ```
 
 ```
+peer="239caa37cb0f131b01be8151631b649dc700cd97@95.217.200.36:46656
+0465032114df76df206c9983968f2d229b3a50d6@88.198.32.17:39656
+2c40b0aedc41b7c1b20c7c243dd5edd698428c41@138.201.85.176:26696
+ac5089a8789736e2bc3eee0bf79ca04e22202bef@162.55.80.116:29656
+8671c2dbbfd918374292e2c760704414d853f5b7@35.215.121.109:26656
+7416a65de3cc548a537dbb8bdf93dbd83fe401d2@78.107.234.44:26656
+62fa77951a7c8f323c0499fff716cd86932d8996@65.108.199.36:24214
+5af3d50dcc231884f3d3da3e3caecb0deef1dc5b@142.132.134.112:25356
+1145755896d6a3e9df2f130cc2cbd223cdb206f0@209.145.53.163:29656
+408ee86160af26ee7204d220498e80638f7874f4@161.97.109.47:38656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.ojo/config/config.toml
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.ojo/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0001uojo\"/" $HOME/.ojo/config/app.toml
 ```
