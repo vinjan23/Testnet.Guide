@@ -88,6 +88,36 @@ sudo journalctl -u ojod -f -o cat
 ```
 
 ```
+ojod keys add wallet
+```
+```
+ojod keys add wallet --recover
+```
+
+```
+ojod  q bank balances <address>
+```
+
+```
+ojod tx staking create-validator \
+--amount 1000000uojo \
+--pubkey $(ojod tendermint show-validator) \
+--moniker "YOUR_MONIKER_NAME" \
+--identity "YOUR_KEYBASE_ID" \
+--details "YOUR_DETAILS" \
+--website "YOUR_WEBSITE_URL" \
+--chain-id ojo-devnet-1 \
+--commission-rate 0.05 \
+--commission-max-rate 0.20 \
+--commission-max-change-rate 0.01 \
+--min-self-delegation 1 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+-y
+```
+
+```
 sudo systemctl stop ojod
 sudo systemctl disable ojod
 sudo rm /etc/systemd/system/ojod.service
