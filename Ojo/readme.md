@@ -138,16 +138,16 @@ ojod tx staking edit-validator
 ```
 
 ```
-ojod tx slashing unjail --broadcast-mode=block --from wallet --chain-id ojo-devnet --gas auto --gas-adjustment 1.5 -y
+ojod tx slashing unjail --broadcast-mode=block --from wallet --chain-id ojo-devnet --gas auto --gas-adjustment 1.5 --fees 100uojo
 ```
 ```
-ojod tx staking delegate <TO_VALOPER_ADDRESS> 1000000uojo --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto -y
+ojod tx staking delegate <TO_VALOPER_ADDRESS> 1000000uojo --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
 ```
 ```
-ojod tx distribution withdraw-all-rewards --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto -y
+ojod tx distribution withdraw-all-rewards --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
 ```
 ```
-ojod tx distribution withdraw-rewards $(ojod keys show wallet --bech val -a) --commission --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto -y
+ojod tx distribution withdraw-rewards $(ojod keys show wallet --bech val -a) --commission --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
 ```
 ```
 [[ $(ojod q staking validator $(ojod keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(ojod status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
