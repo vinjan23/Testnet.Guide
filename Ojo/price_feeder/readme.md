@@ -92,13 +92,4 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable ojo-price-feeder
 sudo systemctl restart ojo-price-feeder
-
-
-
-
-
-
-
-
-
-
+```
