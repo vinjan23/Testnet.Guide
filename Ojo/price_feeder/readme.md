@@ -1,59 +1,52 @@
 ```
 cd $HOME
-git clone https://github.com/ojo-network/price-feeder && cd price-feeder
-git checkout v0.1.1
-make install
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
+go version
 ```
-`
-price-feeder version
-# version: HEAD-5d46ed438d33d7904c0d947ebc6a3dd48ce0de59
-# commit: 5d46ed438d33d7904c0d947ebc6a3dd48ce0de59
-# sdk: v0.46.7
-# go: go1.19.4 linux/amd64
-`
 
 ```
-mkdir -p $HOME/price-feeder_config
-wget -O $HOME/price-feeder_config/price-feeder.toml "https://raw.githubusercontent.com/ojo-network/price-feeder/main/price-feeder.example.toml"
+cd $HOME
+git clone https://github.com/ojo-network/price-feeder
+cd price-feeder
+git checkout v0.1.1
+make build
+sudo mv ./build/price-feeder /usr/local/bin
+rm $HOME/.ojo-price-feeder -rf
+mkdir $HOME/.ojo-price-feeder
+mv price-feeder.example.toml $HOME/.ojo-price-feeder/config.toml
 ```
+
+`price-feeder version`
+`version: HEAD-5d46ed438d33d7904c0d947ebc6a3dd48ce0de59`
+`commit: 5d46ed438d33d7904c0d947ebc6a3dd48ce0de59`
+`sdk: v0.46.7`
+`go: go1.19.5 linux/amd64`
+
 ```
 ojod keys add pricefeeder-wallet --keyring-backend os
 ```
 
 ```
-PASS=<your_password>
-OJO_ADDR=<ojo13y...>
-OJO_FEEDER_ADDR=<ojo1jkg...>
-OJO_VALOPER=<ojovaloper13y7...>
-OJO_CHAIN=ojo-devnet
-```
-
-```
- export KEYRING_PASSWORD="your-password"
- ```
- 
- ```
-export KEYRING="os"
-export LISTEN_PORT=7172
-export RPC_PORT=12657
-export GRPC_PORT=12090
-export VALIDATOR_ADDRESS=$(ojod keys show wallet --bech val -a)
-export MAIN_WALLET_ADDRESS=$(ojod keys show wallet -a)
-export PRICEFEEDER_ADDRESS=$(echo -e $KEYRING_PASSWORD | ojod keys show pricefeeder-wallet --keyring-backend os -a)
-```
-
-```
 ojod tx bank send wallet $PRICEFEEDER_ADDRESS 1000000uojo --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
-```
-```
-ojod tx oracle delegate-feed-consent $MAIN_WALLET_ADDRESS $PRICEFEEDER_ADDRESS --from wallet --gas-adjustment 1.4 --gas auto --gas-prices 0uojo -y
 ```
 
 ```
 ojod tx oracle delegate-feed-consent <ojo_wallet> <ojo_feeder> --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
 ```
+
 ```
-ojod q oracle feeder-delegation $VALIDATOR_ADDRESS
+export KEYRING="os"
+export LISTEN_PORT=28172
+export RPC_PORT=xx657
+export GRPC_PORT=xx090
+export VALIDATOR_ADDRESS=$(ojod keys show wallet --bech val -a)
+export MAIN_WALLET_ADDRESS=$(ojod keys show wallet -a)
+export PRICEFEEDER_ADDRESS=$(echo -e $KEYRING_PASSWORD | ojod keys show pricefeeder-wallet --keyring-backend os -a)
 ```
 
 ```
@@ -77,9 +70,9 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which price-feeder) $HOME/price-feeder/config.toml
+ExecStart=$(which ojo-price-feeder) $HOME/.ojo-price-feeder/config.toml
 Restart=on-failure
-RestartSec=10
+RestartSec=30
 LimitNOFILE=65535
 Environment="PRICE_FEEDER_PASS=$KEYRING_PASSWORD"
 
@@ -92,4 +85,5 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable ojo-price-feeder
 sudo systemctl restart ojo-price-feeder
+journalctl -fu ojo-price-feeder -o cat
 ```
