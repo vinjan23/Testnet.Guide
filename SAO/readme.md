@@ -5,14 +5,14 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ```
 ### GO
 ```
-ver="1.19.1"
+ver="1.19.5"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
 go version
 ```
 ### Build
@@ -122,7 +122,7 @@ saod tx staking create-validator \
   --pubkey=$(saod tendermint show-validator) \
   --moniker="vinjan" \
   --identity "7C66E36EA2B71F68" \
-  --chain-id=sao-testnet0 \
+  --chain-id=sao-testnet1 \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
   --commission-max-change-rate="0.01" \
@@ -139,26 +139,26 @@ saod tx staking edit-validator
 --website="https://nodes.vinjan.xyz" \
 --identity=7C66E36EA2B71F68 \
 --details="Good luck!" \
---chain-id=sao-testnet0 \
+--chain-id=sao-testnet1 \
 --gas="2000000" \
 --gas-prices="0.0025sao" \
 --from=wallet \
 ```
 ### Unjail
 ```
-saod tx slashing unjail --broadcast-mode=block --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
+saod tx slashing unjail --broadcast-mode=block --from wallet --chain-id sao-testnet1 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Delegate
 ```
-saod tx staking delegate address_val 888000000sao --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
+saod tx staking delegate address_val 888000000sao --from wallet --chain-id sao-testnet1 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Withdraw Reward
 ```
-saod tx distribution withdraw-all-rewards --from wallet --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
+saod tx distribution withdraw-all-rewards --from wallet --chain-id sao-testnet1 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Withdraw with commission
 ```
-saod tx distribution withdraw-rewards $(saod keys show wallet --bech val -a) --commission --chain-id sao-testnet0 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
+saod tx distribution withdraw-rewards $(saod keys show wallet --bech val -a) --commission --chain-id sao-testnet1 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025sao
 ```
 ### Check Match
 ```
