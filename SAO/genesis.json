@@ -1,6 +1,6 @@
 {
-  "genesis_time": "2023-03-04T11:49:56.594659457Z",
-  "chain_id": "sao-testnet0",
+  "genesis_time": "2023-03-15T07:30:58.555648868Z",
+  "chain_id": "sao-testnet1",
   "initial_height": "1",
   "consensus_params": {
     "block": {
@@ -30,7 +30,43 @@
         "sig_verify_cost_ed25519": "590",
         "sig_verify_cost_secp256k1": "1000"
       },
-      "accounts": []
+      "accounts": [
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "sao1x8uvar7y35meuxvamanl2pd88y83qp92292mzu",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "sao1j8j5m6xn28krhpxeq9ell7gc0p8wn2jznrxcn4",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "sao18eaej397vdrlrr0ldt7q27exx57g0ant4rctef",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "sao1csu849zjfyv0zpjunswycn85zud7j8lgf8qwk5",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "sao12aunl6kh6769x6udw0mvdav5kyyjuhqdjvndvt",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        }
+      ]
     },
     "authz": {
       "authorization": []
@@ -40,7 +76,53 @@
         "send_enabled": [],
         "default_send_enabled": true
       },
-      "balances": [],
+      "balances": [
+        {
+          "address": "sao1x8uvar7y35meuxvamanl2pd88y83qp92292mzu",
+          "coins": [
+            {
+              "denom": "sao",
+              "amount": "999999900000000"
+            }
+          ]
+        },
+        {
+          "address": "sao18eaej397vdrlrr0ldt7q27exx57g0ant4rctef",
+          "coins": [
+            {
+              "denom": "sao",
+              "amount": "999999900000000"
+            }
+          ]
+        },
+        {
+          "address": "sao12aunl6kh6769x6udw0mvdav5kyyjuhqdjvndvt",
+          "coins": [
+            {
+              "denom": "sao",
+              "amount": "9999999900000000"
+            }
+          ]
+        },
+        {
+          "address": "sao1j8j5m6xn28krhpxeq9ell7gc0p8wn2jznrxcn4",
+          "coins": [
+            {
+              "denom": "sao",
+              "amount": "999999900000000"
+            }
+          ]
+        },
+        {
+          "address": "sao1csu849zjfyv0zpjunswycn85zud7j8lgf8qwk5",
+          "coins": [
+            {
+              "denom": "sao",
+              "amount": "999999900000000"
+            }
+          ]
+        }
+      ],
       "supply": [],
       "denom_metadata": []
     },
@@ -50,7 +132,7 @@
     },
     "crisis": {
       "constant_fee": {
-        "denom": "stake",
+        "denom": "sao",
         "amount": "1000"
       }
     },
@@ -91,7 +173,70 @@
       "allowances": []
     },
     "genutil": {
-      "gen_txs": []
+      "gen_txs": [
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "SAO-SEED-NGINX",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "sao1x8uvar7y35meuxvamanl2pd88y83qp92292mzu",
+                "validator_address": "saovaloper1x8uvar7y35meuxvamanl2pd88y83qp92a8hmxe",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "n7VdVtfcrOAYLCpRI8a1uJKpCsUCn86hSNqqzNkUh6U="
+                },
+                "value": {
+                  "denom": "sao",
+                  "amount": "100000000000000"
+                }
+              }
+            ],
+            "memo": "099fae8829071292f6b1cfaa2b5d637da4aac1b9@203.23.128.181:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Az79GM8+/RuvMDqGqBDeyVHfejPA0gIYMK2ZHhR1s3lA"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            },
+            "tip": null
+          },
+          "signatures": [
+            "5mEfSeXe3YdXzVCjGmBhWXRvqfaZRq3zrpCWNK0P/RVxFJVCM8KRwXXogSOZkmFPAkeDSikjzMxEyTnarYWPLQ=="
+          ]
+        }
+      ]
     },
     "gov": {
       "starting_proposal_id": "1",
@@ -101,7 +246,7 @@
       "deposit_params": {
         "min_deposit": [
           {
-            "denom": "stake",
+            "denom": "sao",
             "amount": "10000000"
           }
         ],
@@ -184,14 +329,14 @@
     },
     "mint": {
       "minter": {
-        "inflation": "0.130000000000000000",
+        "inflation": "0.010000000000000000",
         "annual_provisions": "0.000000000000000000"
       },
       "params": {
-        "mint_denom": "stake",
-        "inflation_rate_change": "0.130000000000000000",
-        "inflation_max": "0.200000000000000000",
-        "inflation_min": "0.070000000000000000",
+        "mint_denom": "sao",
+        "inflation_rate_change": "0.001000000000000000",
+        "inflation_max": "0.020000000000000000",
+        "inflation_min": "0.000000000000000000",
         "goal_bonded": "0.670000000000000000",
         "blocks_per_year": "6311520"
       }
@@ -205,8 +350,8 @@
     "node": {
       "params": {
         "block_reward": {
-          "denom": "",
-          "amount": "0"
+          "denom": "sao",
+          "amount": "10000000"
         }
       },
       "pool": {
@@ -219,7 +364,7 @@
           "amount": "0"
         },
         "acc_pledge_per_byte": {
-          "denom": "",
+          "denom": "sao",
           "amount": "0"
         },
         "acc_reward_per_byte": {
@@ -227,7 +372,7 @@
           "amount": "0.000000000000000000"
         },
         "reward_per_block": {
-          "denom": "",
+          "denom": "sao",
           "amount": "0"
         },
         "total_storage": "0",
@@ -260,10 +405,10 @@
     "staking": {
       "params": {
         "unbonding_time": "1814400s",
-        "max_validators": 100,
+        "max_validators": 20,
         "max_entries": 7,
         "historical_entries": 10000,
-        "bond_denom": "stake",
+        "bond_denom": "sao",
         "min_commission_rate": "0.000000000000000000"
       },
       "last_total_power": "0",
