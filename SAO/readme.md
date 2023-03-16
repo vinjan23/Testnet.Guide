@@ -21,9 +21,8 @@ cd $HOME
 rm -rf saod
 git clone https://github.com/SAONetwork/sao-consensus.git
 cd sao-consensus
-git checkout testnet0
+git checkout v0.1.3
 make install
-sudo cp ~/go/bin/saod /usr/local/bin/saod 
 ```
 ### Set Moniker
 ```
@@ -32,8 +31,8 @@ MONIKER=vinjan
 ### Init
 ```
 PORT=47
-saod init $MONIKER --chain-id sao-testnet0
-saod config chain-id sao-testnet0
+saod init $MONIKER --chain-id sao-testnet1
+saod config chain-id sao-testnet1
 saod config keyring-backend test
 saod config node tcp://localhost:${PORT}657
 ```
