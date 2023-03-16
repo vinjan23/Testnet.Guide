@@ -171,7 +171,9 @@ ojod tx distribution withdraw-rewards $(ojod keys show wallet --bech val -a) --c
 ```
 [[ $(ojod q staking validator $(ojod keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(ojod status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
-
+```
+ojod tx bank send wallet <address? 1000000uojo --from wallet --chain-id ojo-devnet  --gas-adjustment 1.4 --gas auto --fees 100uojo
+```
 
 ```
 sudo systemctl stop ojod
