@@ -125,6 +125,7 @@ ojod keys add wallet --recover
 ojod  q bank balances <address>
 ```
 
+
 ```
 ojod tx staking create-validator \
 --amount 1000000uojo \
@@ -173,6 +174,10 @@ ojod tx distribution withdraw-rewards $(ojod keys show wallet --bech val -a) --c
 ```
 ```
 ojod tx bank send wallet <address? 1000000uojo --from wallet --chain-id ojo-devnet  --gas-adjustment 1.4 --gas auto --fees 100uojo
+```
+
+```
+ojod query slashing signing-info $(ojod tendermint show-validator)
 ```
 
 ```
