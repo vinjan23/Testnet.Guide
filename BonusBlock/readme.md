@@ -23,7 +23,7 @@ go version
 cd $HOME
 git clone https://github.com/BBlockLabs/BonusBlock-chain.git
 cd BonusBlock-chain
-make install
+go build -o ~/go/bin/bonus-blockd ./cmd/bonus-blockd
 ```
 
 ```
