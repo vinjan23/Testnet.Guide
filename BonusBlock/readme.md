@@ -109,7 +109,7 @@ bonus-blockd q bank balances <address>
 ```
 
 ```
-nolusd tx staking create-validator \
+bonus-blockd tx staking create-validator \
 --amount 1000000ubonus \
 --pubkey $(bonus-blockd tendermint show-validator) \
 --moniker "YOUR_MONIKER_NAME" \
@@ -124,7 +124,16 @@ nolusd tx staking create-validator \
 --from wallet \
 --gas-adjustment 1.4 \
 --gas auto \
+--fees 50ubonus \
 -y
+```
+
+```
+bonus-blockd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubonus --from wallet --chain-id blocktopia-01 --gas-adjustment 1.4 --gas auto --fees 50ubonus
+```
+
+```
+bonus-blockd tx distribution withdraw-rewards $(bonus-blockd keys show wallet --bech val -a) --commission --from wallet --chain-id blocktopia-01 --gas-adjustment 1.4 --gas auto --fees 50ubonus
 ```
 
 ```
