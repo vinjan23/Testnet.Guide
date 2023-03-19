@@ -21,7 +21,8 @@ go version
 
 ```
 cd $HOME
-git clone https://github.com/BBlockLabs/BonusBlock-chain.git
+rm -rf BonusBlock-chain
+git clone https://github.com/BBlockLabs/BonusBlock-chain
 cd BonusBlock-chain
 go build -o ~/go/bin/bonus-blockd ./cmd/bonus-blockd
 ```
