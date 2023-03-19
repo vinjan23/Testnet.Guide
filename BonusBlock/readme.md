@@ -54,7 +54,6 @@ sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.bonusblock/config/app.toml
 sed -i 's|^pruning-keep-recent  *=.*|pruning-keep-recent = "100"|g' $HOME/.bonusblock/config/app.toml
 sed -i 's|^pruning-interval *=.*|pruning-interval = "10"|g' $HOME/.bonusblock/config/app.toml
 sed -i 's|^snapshot-interval *=.*|snapshot-interval = 2000|g' $HOME/.bonusblock/config/app.toml
-sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001ubonus"|g' $HOME/.bonusblock/config/app.toml
 sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.bonusblock/config/config.toml
 ```
 
