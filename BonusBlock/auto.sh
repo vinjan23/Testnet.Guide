@@ -48,7 +48,7 @@ fi
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download and build binaries
 cd $HOME
-git clone https://github.com/BBlockLabs/BonusBlock-chain
+git clone https://github.com/BBlockLabs/BonusBlock-chain.git
 cd BonusBlock-chain
 make install
 
