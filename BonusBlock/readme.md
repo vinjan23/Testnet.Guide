@@ -21,7 +21,7 @@ go version
 
 ```
 cd $HOME
-git clone https://github.com/BBlockLabs/BonusBlock-chain
+git clone https://github.com/BBlockLabs/BonusBlock-chain.git
 cd BonusBlock-chain
 make install
 ```
