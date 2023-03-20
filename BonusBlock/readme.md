@@ -114,7 +114,7 @@ bonus-blockd keys add wallet --recover
 ```
 
 ```
-bonus-blockd q bank balances <address>
+bonus-blockd q bank balances bonus12maezlndx2zh4turertywjgm47xx7erh4gvq93
 ```
 
 ```
@@ -138,7 +138,7 @@ bonus-blockd tx staking create-validator \
 ```
 
 ```
-bonus-blockd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubonus --from wallet --chain-id blocktopia-01 --gas-adjustment 1.4 --gas auto --fees 50ubonus
+bonus-blockd tx staking delegate bonusvaloper12maezlndx2zh4turertywjgm47xx7erhm2nmtm 1000000ubonus --from wallet --chain-id blocktopia-01 --gas-adjustment 1.4 --gas auto --fees 50ubonus
 ```
 
 ```
