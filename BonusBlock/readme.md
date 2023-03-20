@@ -146,6 +146,10 @@ bonus-blockd tx distribution withdraw-rewards $(bonus-blockd keys show wallet --
 ```
 
 ```
+bonus-blockd tx slashing unjail --from wallet --chain-id blocktopia-01 --gas-adjustment=1.15 --gas auto --fees 50ubonus
+```
+
+```
 sudo systemctl stop bonus-blockd
 sudo systemctl disable bonus-blockd
 sudo rm /etc/systemd/system/bonus-blockd.service
