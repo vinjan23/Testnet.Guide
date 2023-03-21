@@ -91,7 +91,7 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable defundd
-sudo systemctl start defundd
+sudo systemctl restart defundd
 sudo journalctl -u defundd -f -o cat
 ```
 
