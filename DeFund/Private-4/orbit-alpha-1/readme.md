@@ -95,7 +95,43 @@ sudo systemctl start defundd
 sudo journalctl -u defundd -f -o cat
 ```
 
+```
+defundd status 2>&1 | jq .SyncInfo
+```
 
+```
+sudo journalctl -u defundd -f -o cat
+```
+
+```
+defundd keys add $WALLET --recover
+``` 
+ 
+```
+defundd query bank balances $DEFUND_WALLET_ADDRESS
+```
+
+```
+defundd tx staking create-validator \
+--amount=1000000ufetf \
+--pubkey=$(defundd tendermint show-validator) \
+--moniker=$MONIKER \
+--identity=Your ID \
+--details="XXX" \
+--chain-id=orbit-alpha-1 \
+--commission-rate=0.05 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
+--min-self-delegation=1 \
+--from=wallet \
+--gas-prices=0.1ufetf \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y
+```
+
+
+  
 
 
 
