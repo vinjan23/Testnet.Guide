@@ -130,6 +130,41 @@ defundd tx staking create-validator \
 -y
 ```
 
+```
+defundd tx slashing unjail --from wallet --chain-id orbit-alpha-1 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
+```
+
+```
+defundd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ufetf --from wallet --chain-id orbit-alpha-1 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
+```
+
+```
+defundd tx distribution withdraw-rewards $(defundd keys show wallet --bech val -a) --commission --from wallet --chain-id orbit-alpha-1 --gas-prices 0.1ufetf --gas-adjustment 1.5 --gas auto -y 
+```
+
+```
+[[ $(defundd q staking validator $(defundd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(defundd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+
+```
+sudo systemctl stop defundd
+```
+
+```
+sudo systemctl restart defundd
+```
+
+```
+sudo systemctl stop defundd
+sudo systemctl disable defundd
+sudo rm /etc/systemd/system/defund* -rf
+sudo rm $(which defundd) -rf
+sudo rm $HOME/.defund* -rf
+sudo rm $HOME/defund -rf
+sed -i '/DEFUND_/d' ~/.bash_profile
+```
+
+
 
   
 
