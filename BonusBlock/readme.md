@@ -146,6 +146,10 @@ bonus-blockd tx distribution withdraw-rewards $(bonus-blockd keys show wallet --
 ```
 
 ```
+bonus-blockd tx distribution withdraw-all-rewards --from wallet --chain-id blocktopia-01 --gas-adjustment 1.4 --gas auto --fees 50ubonus
+```
+
+```
 bonus-blockd tx slashing unjail --from wallet --chain-id blocktopia-01 --gas-adjustment=1.15 --gas auto --fees 50ubonus
 ```
 
