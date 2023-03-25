@@ -157,6 +157,9 @@ sudo systemctl stop defundd
 ```
 sudo systemctl restart defundd
 ```
+```
+defundd tx gov vote 1 yes --from wallet --chain-id orbit-alpha-1 --gas-prices 0.1ufetf --gas-adjustment 1.5  --gas auto -y
+```
 
 ```
 sudo systemctl stop defundd
