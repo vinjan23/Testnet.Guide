@@ -203,6 +203,13 @@ sudo systemctl stop realio-networkd
 sudo systemctl restart realio-networkd
 ```
 
+```
+echo $(realio-networkd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.realio-network/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+```
+curl -sS http://localhost:22657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+
 ### Delete Node
 ```
 sudo systemctl stop realio-networkd && \
