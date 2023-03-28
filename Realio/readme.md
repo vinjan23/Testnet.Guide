@@ -5,9 +5,8 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ```
 ### GO
 ```
-ver="1.19.3"
+ver="1.19.5"
 cd $HOME
-rm -rf go
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
@@ -16,27 +15,31 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 ```
+
 ### Build
 ```
 cd $HOME
 git clone https://github.com/realiotech/realio-network.git && cd realio-network
-git checkout v0.7.2
+git checkout v0.8.0-rc2
 make install
 ```
 ### Init
 ```
-realio-networkd init <MONIKER> --chain-id realionetwork_1110-2
-realio-networkd config chain-id realionetwork_1110-2
+realio-networkd init <MONIKER> --chain-id realionetwork_3300-1
+realio-networkd config chain-id realionetwork_3300-1
+realio-networkd config keyring-backend test
+```
+```
 PORT=22
 realio-networkd config node tcp://localhost:${PORT}657
 ```
 ### Genesis
 ```
-curl -Ls https://service.ppnv.space/realio/genesis.json > $HOME/.realio-network/config/genesis.json
+wget -O $HOME/.realio-network/config/genesis.json https://raw.githubusercontent.com/realiotech/testnets/main/realionetwork_3300-1/genesis.json
 ```
 ### Addrbook
 ```
-curl -Ls https://service.ppnv.space/realio/addrbook.json > $HOME/.realio-network/config/addrbook.json
+
 ```
 ### Seed & Peer & Gas
 ```
@@ -44,7 +47,7 @@ sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0ario\"/" $HO
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.realio-network/config/config.toml
 external_address=$(wget -qO- eth0.me) 
 sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.realio-network/config/config.toml
-peers="aa194e9f9add331ee8ba15d2c3d8860c5a50713f@143.110.230.177:26656"
+peers="ec2dbd6e5d25501c50fb8585b5678a7460ef11da@144.126.196.99:26656,5bd91f6e7e3bcaaddead32fd37d67458723fec73@159.223.132.183:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.realio-network/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.realio-network/config/config.toml
