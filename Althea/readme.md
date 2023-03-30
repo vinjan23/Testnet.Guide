@@ -123,7 +123,7 @@ althea query bank balances
 ```
 althea tx staking create-validator \
 --moniker=vinjan \
---commission-rate=0.03 \
+--commission-rate=0.04 \
 --commission-max-rate=0.2 \
 --commission-max-change-rate=0.01 \
 --min-self-delegation="1" \
