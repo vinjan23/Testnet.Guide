@@ -5,7 +5,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ```
 ### GO
 ```
-ver="1.19.5"
+ver="1.20.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -23,6 +23,19 @@ git clone https://github.com/realiotech/realio-network.git && cd realio-network
 git checkout v0.8.0-rc2
 make install
 ```
+```
+cd $HOME/realio-network
+git fetch --all
+git checkout v0.8.0-rc3
+make install
+```
+```
+realio-networkd version --long
+```
+```
+sudo systemctl restart realio-networkd && sudo journalctl -u realio-networkd -f -o cat
+```
+
 ### Init
 ```
 realio-networkd init <MONIKER> --chain-id realionetwork_3300-1
