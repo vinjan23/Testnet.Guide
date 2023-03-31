@@ -38,8 +38,12 @@ MONIKER=Your_NODENAME
 ```
 blockxd init $MONIKER --chain-id blockx_12345-2
 blockxd config chain-id blockx_12345-2
-blockxd config node tcp://localhost:19657
 blockxd config keyring-backend test
+```
+
+```
+PORT=19
+blockxd config node tcp://localhost:${PORT}657
 ```
 
 ### Custom Port
