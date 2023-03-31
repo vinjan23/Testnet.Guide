@@ -35,7 +35,7 @@ sged config keyring-backend test
 ```
 
 ```
-PORT=
+PORT=17
 sged config node tcp://localhost:${PORT}657
 ```
 
