@@ -134,10 +134,47 @@ sged tx staking create-validator \
 --chain-id=sge-network-2 \
 --identity="7C66E36EA2B71F68" \
 --website="https://nodes.vinjan.xyz"
---gas-adjustment=1.4 \
 --gas=auto \
 -y
 ```
+
+```
+sged tx slashing unjail --broadcast-mode=block --from wallet --chain-id sge-network-2 --gas auto --gas-adjustment 1.4 --gas auto -y
+```
+
+```
+sged tx staking delegate <TO_VALOPER_ADDRESS> 1000000usge --from wallet --chain-id sge-network-2 --gas-adjustment 1.4 --gas auto -y
+```
+
+```
+sged tx distribution withdraw-all-rewards --from wallet --chain-id sge-network-2 --gas-adjustment 1.4 --gas auto -y
+```
+
+```
+sged tx distribution withdraw-rewards $(sged keys show wallet --bech val -a) --commission --from wallet --chain-id sge-network-2 --gas-adjustment 1.4 --gas auto -y
+```
+
+```
+[[ $(sged q staking validator $(sged keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(sged status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+
+```
+sudo systemctl stop sged
+sudo systemctl disable sged
+sudo rm /etc/systemd/system/sged.service
+sudo systemctl daemon-reload
+rm -f $(which sged)
+rm -rf .sge
+rm -rf sge
+```
+
+
+
+
+
+
+
+
 
 
   
