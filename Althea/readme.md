@@ -1,8 +1,9 @@
+### Package
 ```
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
 ```
-
+### GO
 ```
 ver="1.20.2"
 cd $HOME
@@ -14,7 +15,7 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 ```
-
+### Binary
 ```
 cd $HOME
 git clone https://github.com/althea-net/althea-chain.git
@@ -23,16 +24,16 @@ git checkout v0.3.2
 make install
 ```
 
+### Init
 ```
 MONIKER=
 ```
-
 ```
 althea init $MONIKER --chain-id althea_7357-1
 althea config chain-id althea_7357-1
 althea config keyring-backend test
 ```
-
+### Custom Port
 ```
 PORT=31
 althea config node tcp://localhost:${PORT}657
@@ -41,11 +42,15 @@ althea config node tcp://localhost:${PORT}657
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.althea/config/config.toml
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.althea/config/app.toml
 ```
-
+### Genesis
 ```
 wget -O $HOME/.althea/config/genesis.json https://raw.githubusercontent.com/althea-net/althea-chain-docs/main/testnet-3-genesis.json
 ```
-
+### Addrbook
+```
+wget -O $HOME/.althea/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Althea/addrbook.json
+```
+### Seed & Peer
 ```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0ualthea\"/;" ~/.althea/config/app.toml
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.althea/config/config.toml
@@ -58,7 +63,7 @@ sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.althea/config/config.tom
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.althea/config/config.toml
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.althea/config/config.toml
 ```
-
+### Prunning
 ```
 pruning="custom"
 pruning_keep_recent="100"
@@ -69,12 +74,12 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_rec
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.althea/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.althea/config/app.toml
 ```
-
+### Indexer
 ```
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.althea/config/config.toml
 ```
-
+### Service
 ```
 sudo tee /etc/systemd/system/althea.service > /dev/null <<EOF
 [Unit]
@@ -92,33 +97,33 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-
+### Start
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable althea
 sudo systemctl restart althea && sudo journalctl -u althea -f -o cat
 ```
-
+### Sync
 ```
 althea status 2>&1 | jq .SyncInfo
 ```
-
+### Log
 ```
 sudo journalctl -u althea -f -o cat
 ```
-
+### Wallet
 ```
 althea keys add wallet
 ```
-
+### Recover
 ```
 althea keys add wallet --recover
 ```
-
+### Balances
 ```
 althea query bank balances 
 ```
-
+### Validator
 ```
 althea tx staking create-validator \
 --moniker=vinjan \
