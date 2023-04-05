@@ -11,15 +11,15 @@
   
 ### Auto Install
 ```
-wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Nibiru/Auto.sh && chmod +x auto.sh && ./auto.sh
+
 ```
 
 ### Manual Install
   
 ### Update Tool
-  ```
+```
 sudo apt update && sudo apt upgrade -y
-sudo apt-get install make build-essential gcc git jq chrony screen -y
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
 ```
 ### Install GO
 ```
