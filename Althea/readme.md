@@ -143,6 +143,48 @@ althea tx staking create-validator \
 -y
 ```
 
+### Unjail
+```
+althea tx slashing unjail --from wallet --chain-id althea_7357-1 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y 
+```
+
+### Staking
+```
+althea tx staking delegate <TO_VALOPER_ADDRESS> 1000000ualthea --from wallet --chain-id althea_7357-1 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y 
+```
+
+### Withdraw
+```
+althea tx distribution withdraw-all-rewards --from wallet --chain-id althea_7357-1 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y 
+```
+
+### Withdraw with comission
+```
+althea tx distribution withdraw-rewards $(althea keys show wallet --bech val -a) --commission --from wallet --chain-id althea_7357-1 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y 
+```
+
+### Stop
+```
+sudo systemctl stop althea
+```
+
+### Restart
+```
+sudo systemctl restart althea
+```
+
+### Delete
+``
+sudo systemctl stop althea
+sudo systemctl disable althea
+sudo rm /etc/systemd/system/althea.service
+sudo systemctl daemon-reload
+rm -f $(which althea)
+rm -rf .althea
+rm -rf althea
+```
+
+
 
 
 
