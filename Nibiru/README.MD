@@ -23,7 +23,7 @@ sudo apt-get install make build-essential gcc git jq chrony screen -y
 ```
 ### Install GO
 ```
-ver="1.19.5"
+ver="1.20.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
