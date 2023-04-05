@@ -20,26 +20,18 @@ go version
 ```
 cd $HOME
 git clone https://github.com/realiotech/realio-network.git && cd realio-network
-git checkout v0.8.0-rc2
+git checkout v0.8.0-rc4
 make install
 ```
-```
-cd $HOME/realio-network
-git fetch --all
-git checkout v0.8.0-rc3
-make install
-```
+
 ```
 realio-networkd version --long
-```
-```
-sudo systemctl restart realio-networkd && sudo journalctl -u realio-networkd -f -o cat
 ```
 
 ### Init
 ```
-realio-networkd init <MONIKER> --chain-id realionetwork_3300-1
-realio-networkd config chain-id realionetwork_3300-1
+realio-networkd init <MONIKER> --chain-id realionetwork_3300-2
+realio-networkd config chain-id realionetwork_3300-2
 realio-networkd config keyring-backend test
 ```
 ```
@@ -53,7 +45,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 
 ### Genesis
 ```
-wget -O $HOME/.realio-network/config/genesis.json https://raw.githubusercontent.com/realiotech/testnets/main/realionetwork_3300-1/genesis.json
+wget -O $HOME/.realio-network/config/genesis.json https://raw.githubusercontent.com/realiotech/testnets/main/realionetwork_3300-2/genesis.json
 ```
 ### Addrbook
 ```
@@ -65,7 +57,7 @@ sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0ario\"/" $HO
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.realio-network/config/config.toml
 external_address=$(wget -qO- eth0.me) 
 sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.realio-network/config/config.toml
-peers="ec2dbd6e5d25501c50fb8585b5678a7460ef11da@144.126.196.99:26656,5bd91f6e7e3bcaaddead32fd37d67458723fec73@159.223.132.183:26656"
+peers="2cce84bbb81a47429ba694cf988a1042bbda81a5@testnet-realio.konsortech.xyz:13656,26124ac249d9137bf436f270f58a71b0a146c8ee@rpc.realio-t.indonode.net:44656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.realio-network/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.realio-network/config/config.toml
@@ -148,8 +140,8 @@ realio-networkd tx staking create-validator \
   --amount=1000000000000000000ario \
   --pubkey=$(realio-networkd tendermint show-validator) \
   --moniker=vinjan \
-  --chain-id=realionetwork_1110-2 \
-  --commission-rate="0.10" \
+  --chain-id=realionetwork_3300-2 \
+  --commission-rate="0.05" \
   --commission-max-rate="0.20" \
   --commission-max-change-rate="0.1" \
   --min-self-delegation="1" \
@@ -167,7 +159,7 @@ realio-networkd tx staking create-validator \
 --identity="YOUR_KEYBASE_ID" \
 --details="YOUR_DETAILS" \
 --website="YOUR_WEBSITE_URL"
---chain-id=realionetwork_1110-2 \
+--chain-id=realionetwork_3300-2 \
 --commission-rate="0.10" \
 --from=<WALLET> \
 --fees 100ario \
@@ -175,20 +167,20 @@ realio-networkd tx staking create-validator \
 ```
 ### Unjail
 ```
-realio-networkd tx slashing unjail --from wallet --chain-id realionetwork_3300-1 --gas 800000 --fees 5000000000000000ario
+realio-networkd tx slashing unjail --from wallet --chain-id realionetwork_3300-2 --gas 800000 --fees 5000000000000000ario
 ```
 
 ### Delegate
 ```
-realio-networkd tx staking delegate realiovaloper1g5y74mr6amnrpzj544m5sj693ahxtdxgmq6suv 7000000000000000000000ario --from wallet --chain-id realionetwork_3300-1 --gas 800000 --fees 5000000000000000ario
+realio-networkd tx staking delegate realiovaloper1g5y74mr6amnrpzj544m5sj693ahxtdxgmq6suv 7000000000000000000000ario --from wallet --chain-id realionetwork_3300-2 --gas 800000 --fees 5000000000000000ario
 ```
 ### Withdraw all
 ```
-realio-networkd tx distribution withdraw-all-rewards --from wallet --chain-id realionetwork_3300-1 --gas 800000 --fees 5000000000000000ario
+realio-networkd tx distribution withdraw-all-rewards --from wallet --chain-id realionetwork_3300-2 --gas 800000 --fees 5000000000000000ario
 ```
 ### Withdraw with commission
 ```
-realio-networkd tx distribution withdraw-rewards $(realio-networkd keys show wallet --bech val -a) --from wallet --commission --chain-id realionetwork_3300-1 --gas 800000 --fees 5000000000000000ario
+realio-networkd tx distribution withdraw-rewards $(realio-networkd keys show wallet --bech val -a) --from wallet --commission --chain-id realionetwork_3300-2 --gas 800000 --fees 5000000000000000ario
 ```
 ### Stop Service
 ```
