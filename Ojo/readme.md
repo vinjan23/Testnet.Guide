@@ -69,7 +69,7 @@ $HOME/.ojo/config/app.toml
 ```
 ### Indexer
 ```
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.ojo/config/config.toml
+sed -i 's|^indexer *=.*|indexer = "kv"|' $HOME/.ojo/config/config.toml
 ```
 ### Service
 ```
