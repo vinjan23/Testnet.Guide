@@ -78,7 +78,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 ```
 ### Indexeer
 ```
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.realio-network/config/config.toml
+sed -i 's|^indexer *=.*|indexer = "kv"|' $HOME/.realio-network/config/config.toml
 ```
 ### Create Service File
 ```
