@@ -20,7 +20,6 @@ go version
 ### Binary
 ```
 cd $HOME
-rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
 git checkout v0.2.3
