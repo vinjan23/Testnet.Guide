@@ -103,6 +103,16 @@ elysd status 2>&1 | jq .SyncInfo
 sudo journalctl -u elysd -f -o cat
 ```
 
+### Add Wallet
+```
+elysd keys add wallet
+```
+
+### Recover
+```
+elysd keys add wallet --recover
+```
+
 ### Balances
 ```
 elysd query bank balances 
