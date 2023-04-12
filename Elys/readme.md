@@ -20,10 +20,11 @@ go version
 ### Binary
 ```
 cd $HOME
-git clone https://github.com/elys-network/elys.git
+git clone https://github.com/elys-network/elys
 cd elys
 git checkout v0.2.3
 make install
+cp $HOME/elys/build/* $HOME/go/bin/
 ```
 
 ### Moniker
