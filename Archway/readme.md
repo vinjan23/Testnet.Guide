@@ -22,7 +22,6 @@ go version
 cd $HOME
 git clone https://github.com/archway-network/archway.git
 cd archway
-git fetch
 git checkout v0.3.1
 make install
 ```
@@ -61,9 +60,9 @@ wget -qO $HOME/.archway/config/addrbook.json http://94.250.203.6:90/constantine-
 ```
 SEEDS="9aa8a73ea9364aa3cf7806d4dd25b6aed88d8152@archway-constantine.seed.mzonder.com:11756"
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.archway/config/config.toml
+peers="a05590886e3d3b0baa7a605ef2ee00db689308b8@35.238.216.151:26656,d5519e378247dfb61dfe90652d1fe3e2b3005a5b@65.109.68.190:56656,da7d8ff27d6aa891f54f0a6647dc0bd5ae1e7b49@116.203.35.46:46656,c8171d5b90ea72992408f8cfcd3893256d22aabc@65.109.94.221:40656,1413664d3cfa37c2d661f740b2b47105433f3872@65.21.139.155:34656,ed7125298aa07ab9741dfe228dce937c3e53f396@185.52.52.26:26656,8df8a64ecf0aaba1e1faee06d005aa912d578549@65.109.89.5:41656,e40e240706e5c551de40fefab1ad9fbf4a4bec23@141.94.73.39:42656,85c669e01f5fca4d1ef7636a9526296a0083bb1d@15.235.193.57:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.archway/config/config.toml
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0001uconst\"/" $HOME/.archway/config/app.tom
-archwayd tendermint unsafe-reset-all --home /root/.archway --keep-addr-book
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uconst\"/" $HOME/.archway/config/app.tom
 ```
 
 ### Prunning
@@ -76,22 +75,17 @@ sed -i \
 $HOME/.archway/config/app.toml
 ```
 
-### Indexer
-```
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.archway/config/config.toml
-```
-
 ### Service
 ```
 sudo tee /etc/systemd/system/archwayd.service << EOF
 [Unit]
-Description=Constantine-2
+Description=archway-testnet
 After=network-online.target
 #
 [Service]
 User=$USER
 ExecStart=$(which archwayd) start
-RestartSec=10
+RestartSec=3
 Restart=on-failure
 LimitNOFILE=65535
 #
