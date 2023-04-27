@@ -20,7 +20,7 @@ go version
 ### Binary
 ```
 cd $HOME
-git clone https://github.com/CascadiaFoundation/cascadia
+git clone https://github.com/CascadiaFoundation/cascadia.git
 cd cascadia
 git checkout v0.1.1
 make install
