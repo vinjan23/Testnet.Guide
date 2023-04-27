@@ -19,7 +19,7 @@ go version
 ### Binary
 ```
 cd $HOME
-git clone https://github.com/CascadiaFoundation/cascadia.git
+git clone https://github.com/CascadiaFoundation/cascadia
 cd cascadia
 git checkout v0.1.1
 make install
@@ -37,7 +37,7 @@ cascadiad config keyring-backend test
 
 ### Custom Port
 ```
-PORT=15
+PORT=20
 cascadiad config node tcp://localhost:${PORT}657
 ```
 ```
