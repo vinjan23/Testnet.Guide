@@ -85,15 +85,15 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 ```
 sudo tee /etc/systemd/system/cascadiad.service > /dev/null <<EOF
 [Unit]
-Description=Cascadia Foundation
+Description=cascadia
 After=network-online.target
 
 [Service]
 User=$USER
 ExecStart=$(which cascadiad) start
-Restart=always
+Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
