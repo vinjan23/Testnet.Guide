@@ -34,6 +34,16 @@ git checkout v0.3.1
 make build
 cp $HOME/elys/build/* $HOME/go/bin/
 ```
+### Update
+```
+cd $HOME
+cd elys
+git tag -d v0.4.0
+git fetch
+git checkout v0.4.0
+make instal
+```
+
 ### Moniker
 ```
 MONIKER=
