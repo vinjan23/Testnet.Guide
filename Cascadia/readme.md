@@ -111,7 +111,7 @@ sudo journalctl -u cascadiad -f -o cat
 
 ### Sync
 ```
-cascadiad status 2>&1 | jq .SyncInfo
+cascadiad status 2>&1
 ```
 
 ### Log
@@ -126,6 +126,11 @@ cascadiad keys add wallet
 ### Recover
 ```
 cascadiad keys add wallet --recover
+```
+
+### Concert
+```
+cascadiad address-converter $(cascadiad keys show wallet -a)
 ```
 
 ### Check Balances
