@@ -45,6 +45,193 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.cascadiad/config/app.toml
 ```
 
+### Genesis
+```
+wget -O $HOME/.cascadiad/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Cascadia/genesis.json"
+```
+
+### Addrbook
+```
+wget -O $HOME/.cascadiad/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Cascadia/addrbook.json"
+```
+
+### Seed & Peer & Gas
+```
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.01aCC\"/;" ~/.cascadiad/config/app.toml
+sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.cascadiad/config/config.toml
+external_address=$(wget -qO- eth0.me) 
+sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.cascadiad/config/config.toml
+peers="1d61222b7b8e180aacebfd57fbd2d8ab95ebdc4c@65.109.93.152:35656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.cascadiad/config/config.toml
+seeds=""
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.cascadiad/config/config.toml
+sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.cascadiad/config/config.toml
+sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.cascadiad/config/config.toml
+```
+
+### Prunning
+```
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="0"
+pruning_interval="10"
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.cascadiad/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.cascadiad/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.cascadiad/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.cascadiad/config/app.toml
+```
+
+### Service
+```
+sudo tee /etc/systemd/system/cascadiad.service > /dev/null <<EOF
+[Unit]
+Description=Cascadia Foundation
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cascadiad) start
+Restart=always
+RestartSec=3
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+### Start
+```
+sudo systemctl daemon-reload
+sudo systemctl enable cascadiad
+sudo systemctl restart cascadiad
+sudo journalctl -u cascadiad -f -o cat
+```
+
+### Sync
+```
+cascadiad status 2>&1 | jq .SyncInfo
+```
+
+### Log
+```
+sudo journalctl -u cascadiad -f -o cat
+```
+
+### Wallet
+```
+cascadiad keys add wallet
+```
+### Recover
+```
+cascadiad keys add wallet --recover
+```
+
+### Check Balances
+```
+cascadiad query bank balances 
+```
+
+### Validator
+```
+cascadiad tx staking create-validator \
+--amount "10000000000000000000"aCC \
+--from wallet \
+--commission-max-change-rate "0.01" \
+--commission-max-rate "0.2" \
+--commission-rate "0.05" \
+--min-self-delegation "1" \
+--pubkey  $(cascadiad tendermint show-validator) \
+--moniker "vinjan" \
+--chain-id cascadia_6102-1 \
+--details="satsetsit" \
+--identity="7C66E36EA2B71F68" \
+--website="https://nodes.vinjan.xyz" \
+--gas-adjustment 1.4 \
+--gas-prices 7aCC \
+--gas auto \
+-y
+```
+
+### Edit
+```
+cascadiad tx staking edit-validator \
+--new-moniker "YOUR_MONIKER_NAME" \
+--chain-id cascadia_6102-1 \
+--commission-rate 0.05 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 7aCC \
+-y
+```
+
+### Unjail
+```
+cascadiad tx slashing unjail --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+```
+
+### Jail Reason
+```
+cascadiad query slashing signing-info $(cascadiad tendermint show-validator)
+```
+
+### Delegate
+```
+cascadiad tx staking delegate <TO_VALOPER_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+```
+
+### Withdraw All
+```
+cascadiad tx distribution withdraw-all-rewards --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+```
+
+### Withdraw commision
+```
+cascadiad tx distribution withdraw-rewards $(cascadiad keys show wallet --bech val -a) --commission --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+```
+
+### Transfer
+```
+cascadiad tx bank send wallet <TO_WALLET_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+```
+
+### Val Info
+```
+cascadiad status 2>&1 | jq .ValidatorInfo
+```
+
+### Check Match Validator
+```
+[[ $(cascadiad q staking validator $(cascadiad keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(cascadiad status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+
+### Stop
+```
+sudo systemctl stop cascadiad
+```
+
+### Restart
+```
+sudo systemctl restart cascadiad
+```
+
+### Delete Node
+```
+sudo systemctl stop cascadiad
+sudo systemctl disable cascadiad
+sudo rm /etc/systemd/system/cascadiad.service
+sudo systemctl daemon-reload
+rm -f $(which cascadiad)
+rm -rf $HOME/.cascadiad
+rm -rf $HOME/cascadia
+```
+
+
+
+
+
+
 
 
 
