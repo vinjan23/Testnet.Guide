@@ -128,21 +128,22 @@ archwayd  q bank balances <address>
 
 ### Validator
 ```
-archwayd tx staking create-validator \  
---moniker=vinjan \
---from=wallet \  
---amount=1000000000uconst \  
---min-self-delegation=1000000000uconst \  
---commission-rate=0.01 \  
---commission-max-rate=0.1 \  
---commission-max-change-rate=0.1 \  
---pubkey="$(archwayd tendermint show-validator)" \  
---chain-id=constantine-2
---identity="7C66E36EA2B71F68" \
---website="https://nodes.vinjan.xyz" \
---gas-adjustment=1.4 \
---gas-prices=0.1uconst \
---gas=auto \ 
+archwayd tx staking create-validator \
+--amount 999500uconst \
+--pubkey $(archwayd tendermint show-validator) \
+--moniker "vinjan" \
+--identity "7C66E36EA2B71F68" \
+--details "satsetsatset" \
+--website "https://nodes.vinjan.xyz" \
+--chain-id constantine-2 \
+--commission-rate 0.05 \
+--commission-max-rate 0.20 \
+--commission-max-change-rate 0.01 \
+--min-self-delegation 1 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--fees 500uconst \
 -y
 ```
 
