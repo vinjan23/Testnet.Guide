@@ -186,7 +186,7 @@ ojod tx distribution withdraw-rewards $(ojod keys show wallet --bech val -a) --c
 ```
 ### Transfer
 ```
-ojod tx bank send wallet <address? 1000000uojo --from wallet --chain-id ojo-devnet  --gas-adjustment 1.4 --gas auto --fees 100uojo
+ojod tx bank send wallet address 5000000000uojo --from wallet --chain-id ojo-devnet  --gas-adjustment 1.4 --gas auto --fees 100uojo
 ```
 ### Unjail
 ```
