@@ -172,6 +172,12 @@ banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubanksy --from wallet --
 [[ $(banksyd q staking validator $(banksyd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(banksyd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
 
+### Check Peer
+```
+echo $(banksyd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.banksy/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+`d7fb40dfe1f46004b6bbdb670e44008aecd17173@65.108.206.74:26656`
+
 ### Stop
 ```
 sudo systemctl stop banksyd
