@@ -35,8 +35,11 @@ archwayd init $MONIKER --chain-id constantine-2
 archwayd config chain-id constantine-2
 archwayd config keyring-backend test
 ```
+```
+archwayd config node tcp://localhost:26657
+```
 
-### Custom Port
+### Custom Port ( Optional)
 ```
 PORT=34
 archwayd config node tcp://localhost:${PORT}657
