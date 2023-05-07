@@ -38,7 +38,7 @@ banksyd config keyring-backend test
 
 ### Custom Port
 ```
-PORT=15
+PORT=36
 banksyd config node tcp://localhost:${PORT}657
 ```
 ```
