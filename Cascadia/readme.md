@@ -139,7 +139,7 @@ sudo systemctl start cascadiad && sudo journalctl -u cascadiad -fn 100 -o cat
 
 ### Sync
 ```
-cascadiad status 2>&1
+cascadiad status 2>&1 | jq .SyncInfo
 ```
 
 ### Log
