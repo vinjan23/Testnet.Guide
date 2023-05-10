@@ -39,7 +39,7 @@ gitopiad add-genesis-account wallet 1000000000ulore
 ```
 gitopiad gentx wallet 1000000000ulore \
 --chain-id gitopia
---commission-rate 0.05 \
+--commission-rate 0.1 \
 --commission-max-rate 0.2 \
 --commission-max-change-rate 0.01 \
 --min-self-delegation 1
