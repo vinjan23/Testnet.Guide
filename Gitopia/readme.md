@@ -23,7 +23,7 @@ cd gitopia
 make install
 ```
 ```
-gitopiad init [node_name]
+gitopiad init [node_name] --chain-id gitopia
 ```
 
 ```
@@ -35,12 +35,13 @@ gitopiad add-genesis-account wallet 1000000000ulore
 ```
 ```
 gitopiad gentx wallet 1000000000ulore \
-  --commission-rate 0.05 \
-  --commission-max-rate 0.2 \
-  --commission-max-change-rate 0.01 \
-  --moniker <moniker> \
-  --website <website> \
-  --identity=   \
-  --pubkey <consensus_pubkey>
+--chain-id gitopia
+--commission-rate 0.05 \
+--commission-max-rate 0.2 \
+--commission-max-change-rate 0.01 \
+--moniker <moniker> \
+--website <website> \
+--identity=   \
+--pubkey <consensus_pubkey>
 ```
   
