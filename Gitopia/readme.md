@@ -25,7 +25,7 @@ make install
 git clone https://github.com/gitopia/mainnet.git
 ```
 ```
-gitopiad init [node_name] --chain-id gitopia
+gitopiad init [moniker] --chain-id gitopia
 gitopiad config chain-id gitopia
 ```
 
@@ -45,7 +45,7 @@ gitopiad gentx wallet 1000000000ulore \
 --min-self-delegation 1
 --moniker <moniker> \
 --website <website> \
---identity=   \
+--identity <keybase> \
 --pubkey $(gitopiad tendermint show-validator)
 ```
   
