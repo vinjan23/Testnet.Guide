@@ -16,14 +16,12 @@ go version
 ```
 ```
 git clone https://github.com/gitopia/mainnet.git
-```
-
-```
 cd gitopia
 make install
 ```
 ```
 gitopiad init [node_name] --chain-id gitopia
+gitopiad config chain-id gitopia
 ```
 
 ```
