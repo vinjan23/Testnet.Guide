@@ -15,9 +15,14 @@ source ~/.bash_profile
 go version
 ```
 ```
-git clone https://github.com/gitopia/mainnet.git
+cd $HOME
+git clone https://github.com/gitopia/gitopia.git
 cd gitopia
 make install
+```
+
+```
+git clone https://github.com/gitopia/mainnet.git
 ```
 ```
 gitopiad init [node_name] --chain-id gitopia
