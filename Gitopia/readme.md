@@ -31,10 +31,10 @@ gitopiad keys add wallet
 ```
 
 ```
-gitopiad add-genesis-account wallet 1000000000tlore
+gitopiad add-genesis-account wallet 1000000000ulore
 ```
 ```
-gitopiad gentx wallet [amount] \
+gitopiad gentx wallet 1000000000ulore \
   --commission-rate 0.05 \
   --commission-max-rate 0.2 \
   --commission-max-change-rate 0.01 \
