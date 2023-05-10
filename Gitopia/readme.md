@@ -42,6 +42,7 @@ gitopiad gentx wallet 1000000000ulore \
 --commission-rate 0.05 \
 --commission-max-rate 0.2 \
 --commission-max-change-rate 0.01 \
+--min-self-delegation 1
 --moniker <moniker> \
 --website <website> \
 --identity=   \
