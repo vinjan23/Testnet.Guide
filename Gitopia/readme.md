@@ -42,6 +42,6 @@ gitopiad gentx wallet 1000000000ulore \
 --moniker <moniker> \
 --website <website> \
 --identity=   \
---pubkey <consensus_pubkey>
+--pubkey $(gitopiad tendermint show-validator)
 ```
   
