@@ -6,14 +6,13 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 
 ### GO
 ```
-ver="1.20.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
-source ~/.bash_profile
+ver="1.19" && \
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
+sudo rm -rf /usr/local/go && \
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
+rm "go$ver.linux-amd64.tar.gz" && \
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile && \
+source $HOME/.bash_profile && \
 go version
 ```
 
@@ -44,7 +43,13 @@ git checkout v0.4.0
 make build
 cp $HOME/elys/build/* $HOME/go/bin/
 ```
-
+### Update v0.5.2
+```
+cd $HOME/elys
+git fetch --all
+git checkout v0.5.2
+make install
+```
 ### Moniker
 ```
 MONIKER=
