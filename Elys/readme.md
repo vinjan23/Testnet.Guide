@@ -48,7 +48,7 @@ cp $HOME/elys/build/* $HOME/go/bin/
 cd $HOME/elys
 git tag -d v0.5.2
 git fetch
-get checkout v0.5.2
+git checkout v0.5.2
 make install
 ```
 ### Moniker
