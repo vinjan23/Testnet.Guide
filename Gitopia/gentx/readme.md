@@ -18,6 +18,7 @@ go version
 cd $HOME
 git clone https://github.com/gitopia/gitopia.git
 cd gitopia
+git checkout v2.0.0-rc.1
 make install
 ```
 
