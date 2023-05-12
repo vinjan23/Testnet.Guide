@@ -51,6 +51,14 @@ git fetch
 git checkout v0.5.2
 make install
 ```
+### Update v0.5.4
+```
+cd $HOME/elys
+git fetch --all
+git checkout v0.5.4
+make install
+```
+
 ### Moniker
 ```
 MONIKER=
