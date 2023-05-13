@@ -22,7 +22,7 @@ go version
 cd $HOME
 git clone https://github.com/archway-network/archway.git
 cd archway
-git checkout v0.4.0
+git checkout v0.5.1
 make install
 ```
 
@@ -31,8 +31,8 @@ make install
 MONIKER=
 ```
 ```
-archwayd init $MONIKER --chain-id constantine-2
-archwayd config chain-id constantine-2
+archwayd init $MONIKER --chain-id constantine-3
+archwayd config chain-id constantine-3
 archwayd config keyring-backend test
 ```
 ```
@@ -51,19 +51,19 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 
 ### Genesis
 ```
-curl -s https://rpc.constantine-2.archway.tech/genesis |jq -r .result.genesis > ${HOME}/.archway/config/genesis.json
+wget -O $HOME/.archway/config/genesis.json https://raw.githubusercontent.com/archway-network/networks/main/constantine-3/genesis.json
 ```
 
 ### Addrbook
 ```
-wget -qO $HOME/.archway/config/addrbook.json http://94.250.203.6:90/constantine-2.addr.json
+
 ```
 
 ### Seed & Peer
 ```
-SEEDS="c736f251fd419ff228302bd28f1861b27585cafd@34.28.113.201:26656"
+SEEDS="3c5bc400c786d8e57ae2b85639273d1aec79829a@34.31.130.235:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.archway/config/config.toml
-peers="a05590886e3d3b0baa7a605ef2ee00db689308b8@35.238.216.151:26656, aaa634d10eb2d0ca973441a17fa329dc33ebd5cf@34.134.104.171:26656, 67cbe1ad9d1fe96466837543cdc39e549a3ee6d7@34.122.137.98:26656"
+peers="b2d39b9b7991c0a9a7678994f5afe04a1b3df923@34.122.164.239:26656,930bf53d3858340d52bb7e541617740d91477ff0@335.239.130.141:26656,434015482b70fff4e6bc96299dee7b84aca01343@35.223.36.227:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.archway/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0uconst\"|" $HOME/.archway/config/app.toml
 ```
@@ -136,28 +136,27 @@ archwayd tx staking create-validator \
 --pubkey $(archwayd tendermint show-validator) \
 --moniker "vinjan" \
 --identity "7C66E36EA2B71F68" \
---details "satsetsatset" \
+--details "🎉Proffesional Stake & Node Validator🎉" \
 --website "https://nodes.vinjan.xyz" \
---chain-id constantine-2 \
---commission-rate 0.05 \
+--chain-id constantine-3 \
+--commission-rate 0.1 \
 --commission-max-rate 0.20 \
 --commission-max-change-rate 0.01 \
 --min-self-delegation 1 \
 --from wallet \
 --gas-adjustment 1.4 \
 --gas auto \
---fees 500uconst \
 -y
 ```
 
 ### Unjail
 ```
-archwayd tx slashing unjail --from wallet --chain-id constantine-2 --gas-adjustment=1.4 --gas auto -y
+archwayd tx slashing unjail --from wallet --chain-id constantine-3 --gas-adjustment=1.4 --gas auto -y
 ```
 
 ### Staking
 ```
-archwayd tx staking delegate <TO_VALOPER_ADDRESS> 1000000000uconst --from wallet --chain-id constantine-2 --gas-prices 0.1uconst --gas-adjustment 1.4 --gas auto -y 
+archwayd tx staking delegate <TO_VALOPER_ADDRESS> 1000000000uconst --from wallet --chain-id constantine-3 --gas-prices 0.1uconst --gas-adjustment 1.4 --gas auto -y 
 ```
 
 ### Stop
