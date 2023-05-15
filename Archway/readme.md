@@ -77,7 +77,10 @@ sed -i \
 -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.archway/config/app.toml
 ```
-
+### Indexer Off (optional)
+```
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.archway/config/config.toml
+```
 ### Service
 ```
 sudo tee /etc/systemd/system/archwayd.service << EOF
