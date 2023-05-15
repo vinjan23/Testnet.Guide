@@ -99,7 +99,11 @@ sed -i \
 -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.elys/config/app.toml
 ```
-  
+### Indexer Null
+```
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.elys/config/config.toml
+```
+
 ### Service
 ```
 sudo tee /etc/systemd/system/elysd.service > /dev/null <<EOF
