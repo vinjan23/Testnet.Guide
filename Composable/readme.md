@@ -29,7 +29,7 @@ make install
 ```
 cd $HOME/composable-testnet
 git fetch --all
-git checkout v2.3.0
+git checkout v2.3.1
 make install
 ```
 
@@ -38,8 +38,8 @@ make install
 MONIKER=
 ```
 ```
-banksyd init $MONIKER --chain-id banksy-testnet-1
-banksyd config chain-id banksy-testnet-1
+banksyd init $MONIKER --chain-id banksy-testnet-2
+banksyd config chain-id banksy-testnet-2
 banksyd config keyring-backend test
 ```
 
