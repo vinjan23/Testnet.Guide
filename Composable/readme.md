@@ -25,6 +25,13 @@ cd composable-testnet
 git checkout v2.2.0
 make install
 ```
+### Update
+```
+cd $HOME/composable-testnet
+git fetch --all
+git checkout v2.3.0
+make install
+```
 
 ### Init
 ```
