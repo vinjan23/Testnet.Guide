@@ -68,11 +68,11 @@ wget -O $HOME/.archway/config/genesis.json https://raw.githubusercontent.com/arc
 
 ### Seed & Peer
 ```
-SEEDS="3c5bc400c786d8e57ae2b85639273d1aec79829a@34.31.130.235:26656"
+SEEDS=""
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.archway/config/config.toml
-peers="b2d39b9b7991c0a9a7678994f5afe04a1b3df923@34.122.164.239:26656,930bf53d3858340d52bb7e541617740d91477ff0@335.239.130.141:26656,434015482b70fff4e6bc96299dee7b84aca01343@35.223.36.227:26656"
+peers="05413d5814b6efbb1cddec9ae240b2c638a127f5@222.106.187.14:53100,c56bad24170d2a7fa4b6316cc08b2432cc0b0db1@5.78.80.25:26656,2854e7247155c5c0c418de40ed168850b4c73c60@85.232.252.19:26156"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.archway/config/config.toml
-sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0uconst\"|" $HOME/.archway/config/app.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0aconst\"|" $HOME/.archway/config/app.toml
 ```
 
 ### Prunning
