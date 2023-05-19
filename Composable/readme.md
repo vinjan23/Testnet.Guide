@@ -22,13 +22,6 @@ go version
 cd $HOME
 git clone https://github.com/notional-labs/composable-testnet.git
 cd composable-testnet
-git checkout v2.2.0
-make install
-```
-### Update
-```
-cd $HOME/composable-testnet
-git fetch --all
 git checkout v2.3.1
 make install
 ```
@@ -55,7 +48,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 
 ### Genesis
 ```
-wget -O $HOME/.banksy/config/genesis.json https://raw.githubusercontent.com/notional-labs/composable-testnet/main/networks/testnet-1/genesis.json
+wget -O $HOME/.banksy/config/genesis.json https://raw.githubusercontent.com/notional-labs/composable-network/tree/main/testnet-2/genesis.json
 ```
 
 ### Seed, Peer & Gas
@@ -141,8 +134,8 @@ banksyd tx staking create-validator \
 --identity "YOUR_KEYBASE_ID" \
 --details "YOUR_DETAILS" \
 --website "YOUR_WEBSITE_URL" \
---chain-id banksy-testnet-1 \
---commission-rate 0.05 \
+--chain-id banksy-testnet-2 \
+--commission-rate 0.1 \
 --commission-max-rate 0.20 \
 --commission-max-change-rate 0.01 \
 --min-self-delegation 1 \
@@ -155,7 +148,7 @@ banksyd tx staking create-validator \
 
 ### unjail
 ```
-banksyd tx slashing unjail --from wallet --chain-id banksy-testnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0ubanksy -y
+banksyd tx slashing unjail --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0ubanksy -y
 ```
 
 ### reason jail
@@ -165,17 +158,17 @@ banksyd query slashing signing-info $(banksyd tendermint show-validator)
 
 ### WD
 ```
-banksyd tx distribution withdraw-all-rewards --from wallet --chain-id banksy-testnet-1 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
+banksyd tx distribution withdraw-all-rewards --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
 ```
 
 ### WD comission
 ```
-banksyd tx distribution withdraw-rewards $(banksyd keys show wallet --bech val -a) --commission --from wallet --chain-id banksy-testnet-1 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
+banksyd tx distribution withdraw-rewards $(banksyd keys show wallet --bech val -a) --commission --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
 ```
 
 ### Delegate
 ```
-banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubanksy --from wallet --chain-id banksy-testnet-1 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
+banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubanksy --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
 ```
 
 ### Check Match
@@ -187,7 +180,6 @@ banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubanksy --from wallet --
 ```
 echo $(banksyd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.banksy/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
-`d7fb40dfe1f46004b6bbdb670e44008aecd17173@65.108.206.74:26656`
 
 ### Stop
 ```
