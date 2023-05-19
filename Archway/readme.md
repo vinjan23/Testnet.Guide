@@ -136,13 +136,13 @@ archwayd keys add wallet --recover
 
 ### Balances
 ```
-archwayd  q bank balances <address>
+archwayd  q bank balances archway1lg68f0x669kd4ga50mtc320lkp53ddkzz9ufpe
 ```
 
 ### Validator
 ```
 archwayd tx staking create-validator \
---amount 999500uconst \
+--amount 4500000000000000000aconst \
 --pubkey $(archwayd tendermint show-validator) \
 --moniker "vinjan" \
 --identity "7C66E36EA2B71F68" \
@@ -155,7 +155,7 @@ archwayd tx staking create-validator \
 --min-self-delegation 1 \
 --from wallet \
 --gas-adjustment 1.4 \
---gas auto \
+
 -y
 ```
 
