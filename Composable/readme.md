@@ -123,7 +123,7 @@ banksyd keys add wallet --recover
 
 ### Balance
 ```
-banksyd q bank balances 
+banksyd q bank balances banksy1tmadkudsslqq720wy38hd7k2jxndz3tspj9a29
 ```
 
 ### Validator
