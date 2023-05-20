@@ -49,7 +49,6 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ### Genesis
 ```
 wget -O ~/.banksy/config/genesis.json https://raw.githubusercontent.com/notional-labs/composable-networks/main/testnet-2/genesis.json
-banksyd start --minimum-gas-prices=0upica
 ```
 
 ### Seed, Peer & Gas
