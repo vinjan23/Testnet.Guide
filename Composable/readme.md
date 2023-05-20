@@ -25,7 +25,13 @@ cd composable-testnet
 git checkout v2.3.2
 make install
 ```
-
+```
+cd $HOME/composable-testnet
+git fetch --all
+git checkout
+v2.3.3-testnet2fork
+make install
+```
 ### Init
 ```
 MONIKER=
