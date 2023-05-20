@@ -123,18 +123,18 @@ banksyd keys add wallet --recover
 
 ### Balance
 ```
-banksyd q bank balances banksy1tmadkudsslqq720wy38hd7k2jxndz3tspj9a29
+banksyd q bank balances banksy172gvyhdgy3wuh2rrkcm9g0u0qvrl8t5fs3kkqr
 ```
 
 ### Validator
 ```
 banksyd tx staking create-validator \
---amount 1000000ubanksy \
+--amount 1000000upica \
 --pubkey $(banksyd tendermint show-validator) \
---moniker "YOUR_MONIKER_NAME" \
---identity "YOUR_KEYBASE_ID" \
---details "YOUR_DETAILS" \
---website "YOUR_WEBSITE_URL" \
+--moniker "vinjan" \
+--identity "7C66E36EA2B71F68" \
+--details "🎉Proffesional Stake & Node Validator🎉" \
+--website "https://nodes.vinjan.xyz" \
 --chain-id banksy-testnet-2 \
 --commission-rate 0.1 \
 --commission-max-rate 0.20 \
@@ -143,13 +143,13 @@ banksyd tx staking create-validator \
 --from wallet \
 --gas-adjustment 1.4 \
 --gas auto \
---gas-prices 0ubanksy \
+--gas-prices 0upica \
 -y
 ```
 
 ### unjail
 ```
-banksyd tx slashing unjail --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0ubanksy -y
+banksyd tx slashing unjail --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0upica -y
 ```
 
 ### reason jail
@@ -159,17 +159,17 @@ banksyd query slashing signing-info $(banksyd tendermint show-validator)
 
 ### WD
 ```
-banksyd tx distribution withdraw-all-rewards --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
+banksyd tx distribution withdraw-all-rewards --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0upica -y
 ```
 
 ### WD comission
 ```
-banksyd tx distribution withdraw-rewards $(banksyd keys show wallet --bech val -a) --commission --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
+banksyd tx distribution withdraw-rewards $(banksyd keys show wallet --bech val -a) --commission --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0upica -y
 ```
 
 ### Delegate
 ```
-banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubanksy --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0ubanksy -y
+banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubanksy --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas 55000 --gas-prices 0upica -y
 ```
 
 ### Check Match
