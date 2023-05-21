@@ -37,7 +37,7 @@ c4ed config keyring-backend test
 ```
 ### PORT
 ```
-PORT=37
+PORT=11
 c4ed config node tcp://localhost:${PORT}657
 ```
 ```
