@@ -128,13 +128,13 @@ c4ed keys add wallet --recover
 ```
 ### Balance
 ```
-c4ed query bank balances 
+c4ed query bank balances c4e1jmtl9nytandsn65mjqgvgpat5l58026vxe38y2
 ```
 
 ### Validator
 ```
 c4ed tx staking create-validator \
---amount 1000000uc4e \
+--amount 100000000uc4e \
 --from wallet \
 --commission-max-change-rate "0.1" \
 --commission-max-rate "0.2" \
