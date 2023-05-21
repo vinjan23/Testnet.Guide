@@ -47,7 +47,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 
 ### Genesis
 ```
-wget https://raw.githubusercontent.com/chain4energy/c4e-chains/main/babajaga-1/genesis.json -O $HOME/.c4e-chain/config/genesis.json
+wget -O ~/.c4e-chain/config/genesis.json https://raw.githubusercontent.com/chain4energy/c4e-chains/main/babajaga-1/genesis.json
 ```
 
 ### Peer
