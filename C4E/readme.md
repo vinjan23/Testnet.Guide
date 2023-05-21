@@ -145,7 +145,7 @@ c4ed tx staking create-validator \
 --chain-id babajaga-1 \
 --identity="7C66E36EA2B71F68" \
 --details="🎉Proffesional Stake & Node Validator🎉" \
---website="https://nodes.vinjan.xyz" 
+--website="https://nodes.vinjan.xyz" \
 --gas-adjustment 1.4 \
 --gas auto \
 -y
