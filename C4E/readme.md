@@ -47,19 +47,20 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 
 ### Genesis
 ```
-wget -O $HOME/.cascadiad/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/C4E/genesis.json"
+wget https://raw.githubusercontent.com/chain4energy/c4e-chains/main/babajaga-1/genesis.json -O $HOME/.c4e-chain/config/genesis.json
 ```
 
 ### Peer
 ```
-peers=""
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.c4e-chain/config/config.toml
-sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.c4e-chain/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uc4e\"/" $HOME/.c4e-chain/config/app.toml
 external_address=$(wget -qO- eth0.me) 
 sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.c4e-chain/config/config.toml
+peers="de18fc6b4a5a76bd30f65ebb28f880095b5dd58b@66.70.177.76:36656,33f90a0ac7e8f48305ea7e64610b789bbbb33224@151.80.19.186:36656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.c4e-chain/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.c4e-chain/config/config.toml
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uc4e\"/" $HOME/.c4e-chain/config/app.toml
+sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.c4e-chain/config/config.toml
+sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.c4e-chain/config/config.toml
 ```
 
 ### Prunning
@@ -130,3 +131,23 @@ c4ed keys add wallet --recover
 c4ed query bank balances 
 ```
 
+### Validator
+```
+c4ed tx staking create-validator \
+--amount 1000000uc4e \
+--from wallet \
+--commission-max-change-rate "0.1" \
+--commission-max-rate "0.2" \
+--commission-rate "0.1" \
+--min-self-delegation "1" \
+--pubkey  $(c4ed tendermint show-validator) \
+--moniker vinjan \
+--chain-id babajaga-1 \
+--identity="7C66E36EA2B71F68" \
+--details="🎉Proffesional Stake & Node Validator🎉" \
+--website="https://nodes.vinjan.xyz" 
+--gas-adjustment 1.4 \
+--gas auto \
+-y
+```
+  
