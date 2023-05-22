@@ -177,9 +177,13 @@ c4ed tx staking delegate <TO_VALOPER_ADDRESS> 100000000uc4e --from wallet --chai
 ```
 [[ $(c4ed q staking validator $(c4ed keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(c4ed status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
-### cHECK pEER
+### own peer
 ```
 echo $(c4ed tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.c4e-chain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+### check connect peer
+```
+curl -sS http://localhost:<$PORT>657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
 ### Stop
