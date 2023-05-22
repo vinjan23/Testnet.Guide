@@ -22,7 +22,7 @@ go version
 cd $HOME
 git clone https://github.com/notional-labs/composable-testnet.git
 cd composable-testnet
-git checkout v2.3.2
+git checkout v2.3.3-testnet2fork
 make install
 ```
 ```
