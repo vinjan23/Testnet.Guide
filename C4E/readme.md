@@ -151,3 +151,61 @@ c4ed tx staking create-validator \
 -y
 ```
   
+### Unjail
+```
+c4ed tx slashing unjail --from wallet --chain-id babajaga-1 --gas-adjustment 1.4 --gas auto -y
+```
+### Reason
+```
+c4ed query slashing signing-info $(c4ed tendermint show-validator)
+```
+### WD
+```
+c4ed tx distribution withdraw-all-rewards --from wallet --chain-id babajaga-1 --gas-adjustment 1.4 --gas auto -y
+```
+### WD with commission
+```
+c4ed tx distribution withdraw-rewards $(c4ed keys show wallet --bech val -a) --commission --from wallet --chain-id babajaga-1 --gas-adjustment 1.4 --gas auto -y
+```
+
+### Delegate
+```
+c4ed tx staking delegate <TO_VALOPER_ADDRESS> 100000000uc4e --from wallet --chain-id babajaga-1 --gas-adjustment 1.4 --gas auto -y
+```
+
+### Check Match
+```
+[[ $(c4ed q staking validator $(c4ed keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(c4ed status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+### cHECK pEER
+```
+echo $(c4ed tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.c4e-chain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+
+### Stop
+```
+sudo systemctl stop c4ed
+```
+### Restart
+```
+sudo systemctl restart c4ed
+```
+
+### Delete
+```
+sudo systemctl stop c4ed
+sudo systemctl disable c4ed
+sudo rm /etc/systemd/system/c4ed.service
+sudo systemctl daemon-reload
+rm -f $(which c4ed)
+rm -rf $HOME/.c4e-chain
+rm -rf $HOME/c4e-chain
+```
+
+
+
+
+
+
+
+
