@@ -174,7 +174,7 @@ banksyd tx distribution withdraw-rewards $(banksyd keys show wallet --bech val -
 
 ### Delegate
 ```
-banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000ubanksy --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0upica -y
+banksyd tx staking delegate <TO_VALOPER_ADDRESS> 1000000upica --from wallet --chain-id banksy-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0upica -y
 ```
 
 ### Check Match
