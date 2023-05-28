@@ -208,3 +208,6 @@ rm -rf $HOME/.blockxd
 rm -rf $HOME/blockxd
 ```
 
+
+    
+    
