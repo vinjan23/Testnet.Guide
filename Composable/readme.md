@@ -55,6 +55,10 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 wget -O ~/.banksy/config/genesis.json https://raw.githubusercontent.com/notional-labs/composable-networks/main/testnet-2/genesis.json
 ```
+### Addrbook
+```
+wget -O ~/.banksy/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Composable/addrbook.json
+```
 
 ### Seed, Peer & Gas
 ```
