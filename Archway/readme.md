@@ -63,7 +63,7 @@ wget -O $HOME/.archway/config/genesis.json https://raw.githubusercontent.com/arc
 
 ### Addrbook
 ```
-
+wget -O $HOME/.archway/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Archway/addrbook.json
 ```
 
 ### Seed & Peer
