@@ -174,7 +174,7 @@ sudo systemctl restart althea
 ```
 
 ### Delete
-``
+```
 sudo systemctl stop althea
 sudo systemctl disable althea
 sudo rm /etc/systemd/system/althea.service
