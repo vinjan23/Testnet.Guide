@@ -35,7 +35,7 @@ banksyd keys add wallet --recover
 ```
 
 ```
-banksyd add-genesis-account KEYNAME 50000000000000ppica
+banksyd add-genesis-account vinjan 50000000000000ppica
 banksyd gentx wallet 50000000000000ppica \
 --moniker="vinjan" \
 --identity="7C66E36EA2B71F68" \
