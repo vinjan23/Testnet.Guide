@@ -17,3 +17,13 @@ banksyd tx staking create-validator \
 --gas-prices 0ppica \
 -y
 ```
+
+```
+cd $HOME
+git clone https://github.com/notional-labs/composable-centauri.git
+cd composable-centauri
+git checkout v2.3.5
+make install
+```
+
+
