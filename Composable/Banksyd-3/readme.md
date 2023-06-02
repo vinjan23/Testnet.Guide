@@ -25,5 +25,25 @@ cd composable-centauri
 git checkout v2.3.5
 make install
 ```
+```
+banksyd init vinjan --chain-id centauri-1
+wget -O ~/.banksy/config/genesis.json https://raw.githubusercontent.com/notional-labs/composable-networks/main/mainnet/pregenesis.json
+banksyd config chain-id centauri-1
+```
+```
+banksyd keys add wallet --recover
+```
+
+```
+banksyd add-genesis-account KEYNAME 50000000000000ppica
+banksyd gentx wallet 50000000000000ppica \
+--moniker="vinjan" \
+--identity="7C66E36EA2B71F68" \
+--details="🎉Proffesional Stake & Node Validator🎉" \
+--website="https://service.vinjan.xyz" \
+--security-contact="" \
+--chain-id centauri-1
+```
+
 
 
