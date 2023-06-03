@@ -27,8 +27,6 @@ make install
 ```
 ```
 banksyd init vinjan --chain-id centauri-1
-wget -O ~/.banksy/config/genesis.json https://raw.githubusercontent.com/notional-labs/composable-networks/main/mainnet/pregenesis.json
-banksyd config chain-id centauri-1
 ```
 ```
 PORT=36
@@ -49,6 +47,7 @@ banksyd gentx wallet 50000000000000ppica \
 --details="🎉Proffesional Stake & Node Validator🎉" \
 --website="https://service.vinjan.xyz" \
 --security-contact="" \
+--pubkey $(banksyd tendermint show-validator) \
 --chain-id centauri-1
 ```
 
