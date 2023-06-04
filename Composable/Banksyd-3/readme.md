@@ -27,6 +27,8 @@ make install
 ```
 ```
 banksyd init vinjan --chain-id centauri-1
+banksyd config chain-id centauri-1
+wget -O ~/.banksy/config/genesis.json https://raw.githubusercontent.com/notional-labs/composable-networks/main/mainnet/pregenesis.json
 ```
 ```
 PORT=36
