@@ -61,5 +61,21 @@ SEEDS="c7f52f81ee1b1f7107fc78ca2de476c730e00be9@65.109.80.150:2635"
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.banksy/config/config.toml
 ```
 
+```
+sudo tee /etc/systemd/system/banksyd.service > /dev/null << EOF
+[Unit]
+Description=composable
+After=network-online.target
 
+[Service]
+User=$USER
+ExecStart=$(which banksyd) start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
 
