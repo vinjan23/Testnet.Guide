@@ -161,7 +161,7 @@ archwayd tx staking create-validator \
 
 ### Unjail
 ```
-archwayd tx slashing unjail --from wallet --chain-id constantine-3 --gas-adjustment=1.4 --gas auto -y
+archwayd tx slashing unjail --from wallet --chain-id constantine-3 --gas-adjustment=1.4 --fees 1000000000000000000aconst
 ```
 
 ### Staking
