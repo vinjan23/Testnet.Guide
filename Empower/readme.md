@@ -143,5 +143,83 @@ empowerd keys add wallet --recover
 empowerd q bank balances $(empowerd keys show wallet -a)
 ```
 
+### Validator
+```
+empowerd tx staking create-validator \
+--amount 1000000umpwr \
+--chain-id circulus-1 \
+--commission-max-change-rate 0.1 \
+--commission-max-rate 0.2 \
+--commission-rate 0.05 \
+--min-self-delegation "1" \
+--moniker "vinjan" \
+--details="🎉Proffesional Stake & Node Validator🎉" \
+--website "https://service.vinjan.xyz" \
+--security-contact="<validator-security-contact>" \
+--identity="7C66E36EA2B71F68" \
+--pubkey=$(empowerd tendermint show-validator) \
+--gas-prices 0.025umpwr \
+--from wallet
+```
+
+### Edit
+```
+empowerd tx staking edit-validator \
+--new-moniker ""  \
+--chain-id circulus-1 \
+--details "" \
+--identity "" \
+--from "" \
+--gas-prices 0.025umpwr
+```
+
+### Unjail
+```
+empowerd tx slashing unjail --from wallet --chain-id circulus-1 --fees 5000umpwr
+```
+
+### Delegate
+```
+empowerd tx staking delegate <Val_address> 900000umpwr --from wallet --chain-id circulus-1 --fees 5000umpwr
+```
+
+### WD
+```
+empowerd tx distribution withdraw-all-rewards --from wallet --chain-id circulus-1 --fees 5000umpwr
+```
+```
+empowerd tx distribution withdraw-rewards $(empowerd keys show wallet --bech val -a) --commission --from wallet --chain-id circulus-1 --fees 5000umpwr
+```
+
+### Check Match
+```
+[[ $(empowerd q staking validator $(empowerd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(empowerd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+### Stop
+```
+sudo systemctl stop empowerd
+```
+### Restart
+```
+sudo systemctl restart empowerd
+```
+
+### Delete
+```
+sudo systemctl stop empowerd
+sudo systemctl disable empowerd
+sudo rm /etc/systemd/system/empowerd.service
+sudo systemctl daemon-reload
+rm -f $(which empowerd)
+rm -rf $HOME/.empowerchain
+rm -rf $HOME/empowerchain
+```
+
+
+
+
+
+    
+    
 
 
