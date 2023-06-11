@@ -274,7 +274,7 @@ gaiad keys add cosmos-wallet --recover
 ### Binary Stargaze
 ```
 cd $HOME
-git clone https://github.com/public-awesome/stargaze stargaze
+git clone https://github.com/public-awesome/stargaze
 cd stargaze
 git checkout v10.0.0-beta.1
 make install
