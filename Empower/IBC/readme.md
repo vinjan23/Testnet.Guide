@@ -211,7 +211,7 @@ memo_prefix = 'vinjan#1160'
 [chains.packet_filter]
 policy = 'allow'
 list = [
-  ['transfer', 'channel-459'], # circulus-1 channel-2
+  ['transfer', 'channel-459'], # circulus-1 channel-1
 ]
 EOF
 ```
@@ -294,4 +294,21 @@ osmosisd tx ibc-transfer transfer transfer channel-155 empowerwallet 5555uosmo -
 hermes update client --host-chain circulus-1 --client 07-tendermint-1
 hermes update client --host-chain osmo-test-5 --client 07-tendermint-146
 ```
+
+### Empower-Cosmos
+```
+empowerd tx ibc-transfer transfer transfer channel-2 cosmoswallet 111umpwr --from=empowerwallet --fees 200umpwr
+```
+```
+gaiad tx ibc-transfer transfer transfer channel-2765 empowerwallet 1000uatom --from=cosmoswallet --chain-id theta-testnet-001 --keyring-backend test --node https://rpc.sentry-01.theta-testnet.polypore.xyz
+```
+
+### Empower-Stargaze
+```
+empowerd tx ibc-transfer transfer transfer channel-1 starswallet 111umpwr --from=empowerwallet --fees 200umpwr
+```
+```
+starsd tx ibc-transfer transfer transfer channel-459 empowerwallet 1000ustars --from=starswallet --chain-id chain-id elgafar-1 --keyring-backend test --node https://rpc.elgafar-1.stargaze-apis.com
+```
+
 
