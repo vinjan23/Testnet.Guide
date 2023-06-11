@@ -102,7 +102,7 @@ max_block_time = '30s'
 trust_threshold = { numerator = '1', denominator = '3' }
 address_type = { derivation = 'cosmos' }
 
-memo_prefix = 'Geralt irlandali_turist#7300'
+memo_prefix = 'vinjan#1160'
 [chains.packet_filter]
 policy = 'allow'
 list = [
@@ -113,9 +113,9 @@ list = [
 id = 'circulus-1'
 ccv_consumer_chain = false
 
-rpc_addr = 'http://127.0.0.1:26657'
-grpc_addr = 'http://127.0.0.1:9090'
-websocket_addr = 'ws://127.0.0.1:26657/websocket'
+rpc_addr = 'http://127.0.0.1:24657'
+grpc_addr = 'http://localhost:24090'
+websocket_addr = 'ws://127.0.0.1:24657/websocket'
 rpc_timeout = '10s'
 trusted_node = false
 batch_delay = '500ms'
@@ -137,7 +137,7 @@ max_block_time = '30s'
 trust_threshold = { numerator = '1', denominator = '3' }
 address_type = { derivation = 'cosmos' }
 
-memo_prefix = 'Geralt irlandali_turist#7300'
+memo_prefix = 'vinjan#1160'
 [chains.packet_filter]
 policy = 'allow'
 list = [
@@ -172,7 +172,7 @@ max_block_time = '30s'
 trust_threshold = { numerator = '1', denominator = '3' }
 address_type = { derivation = 'cosmos' }
 
-memo_prefix = 'Geralt irlandali_turist#7300'
+memo_prefix = 'vinjan#1160'
 [chains.packet_filter]
 policy = 'allow'
 list = [
@@ -207,7 +207,7 @@ max_block_time = '30s'
 trust_threshold = { numerator = '1', denominator = '3' }
 address_type = { derivation = 'cosmos' }
 
-memo_prefix = 'Geralt irlandali_turist#7300'
+memo_prefix = 'vinjan#1160'
 [chains.packet_filter]
 policy = 'allow'
 list = [
@@ -256,3 +256,42 @@ cd osmosis
 git checkout v15.1.2
 make install
 ```
+```
+osmosisd keys add osmo-wallet --recover
+```
+### Binary Cosmos
+```
+cd $HOME
+git clone git clone https://github.com/cosmos/gaia
+cd cosmos
+git checkout v10.0.1
+make install
+```
+```
+gaiad keys add cosmos-wallet --recover
+```
+
+### Binary Stargaze
+```
+cd $HOME
+git clone https://github.com/public-awesome/stargaze stargaze
+cd stargaze
+git checkout v10.0.0-beta.1
+make install
+```
+```
+starsd keys add stars-wallet --recover
+```
+### Transfer Empower-Osmosis
+```
+empowerd tx ibc-transfer transfer transfer channel-0 osmowallet 111umpwr --from=empowerwallet --fees 200umpwr
+```
+```
+osmosisd tx ibc-transfer transfer transfer channel-155 empowerwallet 5555uosmo --from=osmowallet --fees 5000uosmo --chain-id osmo-test-5 --keyring-backend test --node https://rpc.osmotest5.osmosis.zone:443
+```
+### Update Client
+```
+hermes update client --host-chain circulus-1 --client 07-tendermint-1
+hermes update client --host-chain osmo-test-5 --client 07-tendermint-146
+```
+
