@@ -252,7 +252,7 @@ osmosisd keys add OSMO_TEST_REL_WALLET --recover
 ### Binary Cosmos
 ```
 cd $HOME
-git clone git clone https://github.com/cosmos/gaia
+git clone https://github.com/cosmos/gaia cosmos
 cd cosmos
 git checkout v10.0.1
 make install
