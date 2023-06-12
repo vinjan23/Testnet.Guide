@@ -284,10 +284,10 @@ starsd keys add stars-wallet --recover
 ```
 ### Transfer Empower-Osmosis
 ```
-empowerd tx ibc-transfer transfer transfer channel-0 osmowallet 111umpwr --from=empowerwallet --fees 200umpwr
+empowerd tx ibc-transfer transfer transfer channel-0 osmowallet 10000umpwr --from=empowerwallet --fees 200umpwr
 ```
 ```
-osmosisd tx ibc-transfer transfer transfer channel-155 empowerwallet 5555uosmo --from=osmowallet --fees 5000uosmo --chain-id osmo-test-5 --keyring-backend test --node https://rpc.osmotest5.osmosis.zone:443
+osmosisd tx ibc-transfer transfer transfer channel-155 empowerwallet 10000uosmo --from=osmowallet --fees 5000uosmo --chain-id osmo-test-5 --keyring-backend test --node https://rpc.osmotest5.osmosis.zone:443
 ```
 ### Update Client
 ```
@@ -297,7 +297,7 @@ hermes update client --host-chain osmo-test-5 --client 07-tendermint-146
 
 ### Empower-Cosmos
 ```
-empowerd tx ibc-transfer transfer transfer channel-2 cosmoswallet 111umpwr --from=empowerwallet --fees 200umpwr
+empowerd tx ibc-transfer transfer transfer channel-2 cosmoswallet 10000umpwr --from=empowerwallet --fees 200umpwr
 ```
 ```
 gaiad tx ibc-transfer transfer transfer channel-2765 empowerwallet 1000uatom --from=cosmoswallet --chain-id theta-testnet-001 --keyring-backend test --node https://rpc.sentry-01.theta-testnet.polypore.xyz
@@ -305,7 +305,7 @@ gaiad tx ibc-transfer transfer transfer channel-2765 empowerwallet 1000uatom --f
 
 ### Empower-Stargaze
 ```
-empowerd tx ibc-transfer transfer transfer channel-1 starswallet 111umpwr --from=empowerwallet --fees 200umpwr
+empowerd tx ibc-transfer transfer transfer channel-1 starswallet 10000umpwr --from=empowerwallet --fees 200umpwr
 ```
 ```
 starsd tx ibc-transfer transfer transfer channel-459 empowerwallet 1000ustars --from=starswallet --chain-id chain-id elgafar-1 --keyring-backend test --node https://rpc.elgafar-1.stargaze-apis.com
