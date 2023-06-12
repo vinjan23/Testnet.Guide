@@ -247,7 +247,7 @@ git checkout v15.1.2
 make install
 ```
 ```
-osmosisd keys add osmo-wallet --recover
+osmosisd keys add OSMO_TEST_REL_WALLET --recover
 ```
 ### Binary Cosmos
 ```
@@ -258,7 +258,7 @@ git checkout v10.0.1
 make install
 ```
 ```
-gaiad keys add cosmos-wallet --recover
+gaiad keys add COSMOS_TEST_REL_WALLET --recover
 ```
 
 ### Binary Stargaze
@@ -270,7 +270,7 @@ git checkout v10.0.0-beta.1
 make install
 ```
 ```
-starsd keys add stars-wallet --recover
+starsd keys add STARS_TEST_REL_WALLET --recover
 ```
 ### Transfer Empower-Osmosis
 ```
