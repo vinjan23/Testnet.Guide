@@ -219,21 +219,25 @@ EOF
 ```
 hermes config validate
 ```
-### Add Relayer Wallet
+### Add Relayer Wallet to Hermes
 ```
 read mnemonic && echo "$mnemonic" > $HOME/.hermes/EMPOWER_TEST_REL_WALLET.txt
-read mnemonic && echo "$mnemonic" > $HOME/.hermes/OSMO_TEST_REL_WALLET.txt
-read mnemonic && echo "$mnemonic" > $HOME/.hermes/COSMOS_TEST_REL_WALLET.txt
-read mnemonic && echo "$mnemonic" > $HOME/.hermes/STARS_TEST_REL_WALLET.txt
-```
-### Add Wallet to Hermes
-```
 hermes keys add --key-name EMPOWER_TEST_REL_WALLET --chain circulus-1 --mnemonic-file $HOME/.hermes/EMPOWER_TEST_REL_WALLET.txt
+```
+```
+read mnemonic && echo "$mnemonic" > $HOME/.hermes/OSMO_TEST_REL_WALLET.txt
 hermes keys add --key-name OSMO_TEST_REL_WALLET   --chain osmo-test-5 --mnemonic-file $HOME/.hermes/OSMO_TEST_REL_WALLET.txt
+```
+```
+read mnemonic && echo "$mnemonic" > $HOME/.hermes/COSMOS_TEST_REL_WALLET.txt
 hermes keys add --key-name COSMOS_TEST_REL_WALLET   --chain theta-testnet-001 --mnemonic-file $HOME/.hermes/COSMOS_TEST_REL_WALLET.txt
+```
+```
+read mnemonic && echo "$mnemonic" > $HOME/.hermes/STARS_TEST_REL_WALLET.txt
 hermes keys add --key-name STARS_TEST_REL_WALLET   --chain elgafar-1 --mnemonic-file $HOME/.hermes/STARS_TEST_REL_WALLET.txt
 ```
-### Start Hermesw
+
+### Start Hermes
 ```
 sudo systemctl start hermesd && journalctl -u hermesd -f -o cat
 ```
@@ -302,7 +306,7 @@ gaiad tx ibc-transfer transfer transfer channel-2765 \
   --from=cosmos1mrh485xmr5hhgnshl33qa2k66esfmdvgwrzv7j \
   --fees 1000uatom \
   --chain-id theta-testnet-001 \
-  --node https://cosmos-testnet-rpc.polkachu.com:443
+  --node https://rpc.sentry-01.theta-testnet.polypore.xyz:443
 ```
 
 ### Empower-Stargaze
