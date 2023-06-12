@@ -44,7 +44,7 @@ sudo systemctl enable hermesd
 
 
 
-### Hermes config `Change with ur own rpc > rpc_addr = 'http://127.0.0.1:24657'`
+### Hermes config `Change with ur own empower rpc > rpc_addr = 'http://127.0.0.1:24657'`
 ```
 tee $HOME/.hermes/config.toml > /dev/null <<EOF
 [global]
@@ -278,13 +278,13 @@ starsd keys add STARS_TEST_REL_WALLET --recover
 ```
 ### Transfer Empower-Osmosis
 ```
-empowerd tx ibc-transfer transfer transfer channel-0 osmowallet 10000umpwr --from=empowerwallet --fees 200umpwr
+empowerd tx ibc-transfer transfer transfer channel-0 osmo_addres 10000umpwr --from=empower_addres --fees 200umpwr
 ```
 ```
 osmosisd tx ibc-transfer transfer transfer channel-155 \
-  empower1mrh485xmr5hhgnshl33qa2k66esfmdvgj0x8yv \
+  "empower_address" \
   100000uosmo \
-  --from=osmo1mrh485xmr5hhgnshl33qa2k66esfmdvgxc3ugq \
+  --from="osmo_addres" \
   --fees 1000uosmo \
   --chain-id osmo-test-5 \
   --node https://rpc.osmotest5.osmosis.zone:443
@@ -297,13 +297,13 @@ hermes update client --host-chain osmo-test-5 --client 07-tendermint-146
 
 ### Empower-Cosmos
 ```
-empowerd tx ibc-transfer transfer transfer channel-2 cosmoswallet 10000umpwr --from=empowerwallet --fees 200umpwr
+empowerd tx ibc-transfer transfer transfer channel-2 cosmos_addres 10000umpwr --from=empower_addres --fees 200umpwr
 ```
 ```
 gaiad tx ibc-transfer transfer transfer channel-2765 \
-  empower1mrh485xmr5hhgnshl33qa2k66esfmdvgj0x8yv \
+  "empower_addres" \
   100000uatom \
-  --from=cosmos1mrh485xmr5hhgnshl33qa2k66esfmdvgwrzv7j \
+  --from="cosmos_addres" \
   --fees 1000uatom \
   --chain-id theta-testnet-001 \
   --node https://rpc.sentry-01.theta-testnet.polypore.xyz:443
@@ -311,13 +311,13 @@ gaiad tx ibc-transfer transfer transfer channel-2765 \
 
 ### Empower-Stargaze
 ```
-empowerd tx ibc-transfer transfer transfer channel-1 starswallet 10000umpwr --from=empowerwallet --fees 200umpwr
+empowerd tx ibc-transfer transfer transfer channel-1 stars_addres 10000umpwr --from=empower_addres --fees 200umpwr
 ```
 ```
 starsd tx ibc-transfer transfer transfer channel-459 \
-  empower1mrh485xmr5hhgnshl33qa2k66esfmdvgj0x8yv \
+  "empower_addres" \
   100000ustars \
-  --from=stars1mrh485xmr5hhgnshl33qa2k66esfmdvg6l434r \
+  --from="stars_addres" \
   --fees 3000ustars \
   --chain-id elgafar-1 \
   --node https://stargaze-testnet-rpc.polkachu.com:443
