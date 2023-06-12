@@ -44,7 +44,7 @@ sudo systemctl enable hermesd
 
 
 
-### Hermes config
+### Hermes config `Change with ur own rpc > rpc_addr = 'http://127.0.0.1:24657'`
 ```
 tee $HOME/.hermes/config.toml > /dev/null <<EOF
 [global]
