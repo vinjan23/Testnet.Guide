@@ -86,7 +86,7 @@ trusted_node = false
 batch_delay = '500ms'   # hermes default 500ms
 
 account_prefix = 'osmo'
-key_name = 'osmo-wallet'
+key_name = 'OSMO_TEST_REL_WALLET'
 store_prefix = 'ibc'
 
 default_gas = 800000
@@ -121,7 +121,7 @@ trusted_node = false
 batch_delay = '500ms'
 
 account_prefix = 'empower'
-key_name = 'empower-wallet'
+key_name = 'EMPOWER_TEST_REL_WALLET'
 store_prefix = 'ibc'
 
 default_gas = 800000
@@ -156,7 +156,7 @@ trusted_node = false
 batch_delay = '500ms'
 
 account_prefix = 'cosmos'
-key_name = 'cosmos-wallet'
+key_name = 'COSMOS_TEST_REL_WALLET'
 store_prefix = 'ibc'
 
 default_gas = 800000
@@ -191,7 +191,7 @@ trusted_node = false
 batch_delay = '500ms'
 
 account_prefix = 'stars'
-key_name = 'stars-wallet'
+key_name = 'STARS_TEST_REL_WALLET'
 store_prefix = 'ibc'
 
 default_gas = 800000
@@ -221,27 +221,17 @@ hermes config validate
 ```
 ### Add Relayer Wallet
 ```
-read mnemonic && echo "$mnemonic" > $HOME/.hermes/empower-wallet.txt
-## enter your mnemonics
-```
-```
-read mnemonic && echo "$mnemonic" > $HOME/.hermes/osmo-wallet.txt
-## enter your mnemonics
-```
-```
-read mnemonic && echo "$mnemonic" > $HOME/.hermes/cosmos-wallet.txt
-## enter your mnemonics
-```
-```
-read mnemonic && echo "$mnemonic" > $HOME/.hermes/stars-wallet.txt
-## enter your mnemonics
+read mnemonic && echo "$mnemonic" > $HOME/.hermes/EMPOWER_TEST_REL_WALLET.txt
+read mnemonic && echo "$mnemonic" > $HOME/.hermes/OSMO_TEST_REL_WALLET.txt
+read mnemonic && echo "$mnemonic" > $HOME/.hermes/COSMOS_TEST_REL_WALLET.txt
+read mnemonic && echo "$mnemonic" > $HOME/.hermes/STARS_TEST_REL_WALLET.txt
 ```
 ### Add Wallet to Hermes
 ```
-hermes keys add --key-name empower-wallet --chain circulus-1 --mnemonic-file $HOME/.hermes/empower-wallet.txt
-hermes keys add --key-name osmo-wallet   --chain osmo-test-5 --mnemonic-file $HOME/.hermes/osmo-wallet.txt
-hermes keys add --key-name cosmos-wallet   --chain theta-testnet-001 --mnemonic-file $HOME/.hermes/cosmos-wallet.txt
-hermes keys add --key-name stars-wallet   --chain elgafar-1 --mnemonic-file $HOME/.hermes/stars-wallet.txt
+hermes keys add --key-name EMPOWER_TEST_REL_WALLET --chain circulus-1 --mnemonic-file $HOME/.hermes/EMPOWER_TEST_REL_WALLET.txt
+hermes keys add --key-name OSMO_TEST_REL_WALLET   --chain osmo-test-5 --mnemonic-file $HOME/.hermes/OSMO_TEST_REL_WALLET.txt
+hermes keys add --key-name COSMOS_TEST_REL_WALLET   --chain theta-testnet-001 --mnemonic-file $HOME/.hermes/COSMOS_TEST_REL_WALLET.txt
+hermes keys add --key-name STARS_TEST_REL_WALLET   --chain elgafar-1 --mnemonic-file $HOME/.hermes/STARS_TEST_REL_WALLET.txt
 ```
 ### Start Hermesw
 ```
