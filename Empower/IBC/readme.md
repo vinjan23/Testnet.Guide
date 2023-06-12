@@ -277,7 +277,13 @@ starsd keys add STARS_TEST_REL_WALLET --recover
 empowerd tx ibc-transfer transfer transfer channel-0 osmowallet 10000umpwr --from=empowerwallet --fees 200umpwr
 ```
 ```
-osmosisd tx ibc-transfer transfer transfer channel-155 empowerwallet 10000uosmo --from=osmowallet --fees 5000uosmo --chain-id osmo-test-5 --keyring-backend test --node https://rpc.osmotest5.osmosis.zone:443
+osmosisd tx ibc-transfer transfer transfer channel-155 \
+  empower1mrh485xmr5hhgnshl33qa2k66esfmdvgj0x8yv \
+  100000uosmo \
+  --from=osmo1mrh485xmr5hhgnshl33qa2k66esfmdvgxc3ugq \
+  --fees 1000uosmo \
+  --chain-id osmo-test-5 \
+  --node https://rpc.osmotest5.osmosis.zone:443
 ```
 ### Update Client
 ```
@@ -290,7 +296,13 @@ hermes update client --host-chain osmo-test-5 --client 07-tendermint-146
 empowerd tx ibc-transfer transfer transfer channel-2 cosmoswallet 10000umpwr --from=empowerwallet --fees 200umpwr
 ```
 ```
-gaiad tx ibc-transfer transfer transfer channel-2765 empowerwallet 1000uatom --from=cosmoswallet --chain-id theta-testnet-001 --keyring-backend test --node https://rpc.sentry-01.theta-testnet.polypore.xyz
+gaiad tx ibc-transfer transfer transfer channel-2765 \
+  empower1mrh485xmr5hhgnshl33qa2k66esfmdvgj0x8yv \
+  100000uatom \
+  --from=cosmos1mrh485xmr5hhgnshl33qa2k66esfmdvgwrzv7j \
+  --fees 1000uatom \
+  --chain-id theta-testnet-001 \
+  --node https://cosmos-testnet-rpc.polkachu.com:443
 ```
 
 ### Empower-Stargaze
@@ -298,7 +310,13 @@ gaiad tx ibc-transfer transfer transfer channel-2765 empowerwallet 1000uatom --f
 empowerd tx ibc-transfer transfer transfer channel-1 starswallet 10000umpwr --from=empowerwallet --fees 200umpwr
 ```
 ```
-starsd tx ibc-transfer transfer transfer channel-459 empowerwallet 1000ustars --from=starswallet --chain-id chain-id elgafar-1 --keyring-backend test --node https://rpc.elgafar-1.stargaze-apis.com
+starsd tx ibc-transfer transfer transfer channel-459 \
+  empower1mrh485xmr5hhgnshl33qa2k66esfmdvgj0x8yv \
+  100000ustars \
+  --from=stars1mrh485xmr5hhgnshl33qa2k66esfmdvg6l434r \
+  --fees 3000ustars \
+  --chain-id elgafar-1 \
+  --node https://stargaze-testnet-rpc.polkachu.com:443
 ```
 
 
