@@ -280,6 +280,7 @@ starsd keys add STARS_TEST_REL_WALLET --recover
 ```
 empowerd tx ibc-transfer transfer transfer channel-0 osmo_addres 10000umpwr --from=empower_addres --fees 200umpwr
 ```
+### Osmosis-Empower
 ```
 osmosisd tx ibc-transfer transfer transfer channel-155 \
   "empower_address" \
@@ -289,6 +290,17 @@ osmosisd tx ibc-transfer transfer transfer channel-155 \
   --chain-id osmo-test-5 \
   --node https://rpc.osmotest5.osmosis.zone:443
 ```
+### aUSDC-Empower
+```
+osmosisd tx ibc-transfer transfer transfer channel-155 \
+  "empower_addres" \
+  5ibc/6F34E1BD664C36CE49ACC28E60D62559A5F96C4F9A6CCE4FC5A67B2852E24CFE \
+  --from="osmo_addres" \
+  --fees 1000uosmo \
+  --chain-id osmo-test-5 \
+  --node https://rpc.osmotest5.osmosis.zone:443
+  ```
+  
 ### Update Client
 ```
 hermes update client --host-chain circulus-1 --client 07-tendermint-1
