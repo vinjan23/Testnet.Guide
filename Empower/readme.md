@@ -40,6 +40,14 @@ git checkout v1.0.0-rc2
 cd chain
 make install
 ```
+### Update
+```
+cd $HOME/empowerchain
+git fetch --all
+git checkout v1.0.0-rc3
+cd chain
+make install
+```
 
 ### Init
 ```
