@@ -58,6 +58,13 @@ git fetch --all
 git checkout v0.5.4
 make install
 ```
+### Update
+```
+cd $HOME/elys
+git fetch --all
+git checkout v0.7.0
+make install
+```
 
 ### Moniker
 ```
