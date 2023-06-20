@@ -61,11 +61,12 @@ wget -O $HOME/.blockxd/config/genesis.json "https://raw.githubusercontent.com/vi
 wget -O $HOME/.blockxd/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/addrbook.json"
 ```
 
-### Peer
+### Peer & Gas
 ```
 peers="4a7401f7d6daa39d331196d8cc179a4dcb11b5f9@143.198.110.221:26656,49a5a62543f5fec60db42b00d9ebe192c3185e15@143.198.97.96:26656,dccf886659c4afcb0cd4895ccd9f2804c7e7e1cd@143.198.101.61:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.blockxd/config/config.toml
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.blockxd/config/config.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0abcx\"|" $HOME/.blockxd/config/app.toml
 ```
 ### Prunning
 ```
@@ -118,11 +119,6 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
 s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.blockxd/config/config.toml
 ```
 
-### Reset Chain
-```
-blockxd tendermint unsafe-reset-all --home $HOME/.blockxd
-```
-
 ### Start
 ```
 systemctl daemon-reload
@@ -164,7 +160,7 @@ blockxd query bank balances $WALLET_ADDRESS
 ### Create Validator
 ```
 blockxd tx staking create-validator \
-  --amount  abcx \
+  --amount  1000000000000000000abcx \
   --from <walletName> \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -188,7 +184,7 @@ blockxd tx staking edit-validator \
  --website= \
  --details=satsetsatseterror \
  --chain-id=blockx_12345-1 \
- --from=vj \
+ --from=<wallet> \
  --gas=auto \
  -y
  ```
