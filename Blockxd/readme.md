@@ -192,11 +192,37 @@ blockxd tx staking edit-validator \
  --gas=auto \
  -y
  ```
- ### Unjail
- ```
- blockxd tx slashing unjail --from vj --chain-id blockx_12345-2 --gas auto -y
- ```
- 
+### Unjail
+```
+blockxd tx slashing unjail --from vj --chain-id blockx_12345-2 --gas auto -y
+```
+### Withdraw
+```
+blockxd tx distribution withdraw-all-rewards --from <wallet> --chain-id blockx_12345-2 --gas auto -y
+```
+
+### Withdraw with commission
+```
+blockxd tx distribution withdraw-rewards <validaator_addr> --commission --from vj --chain-id blockx_12345-2 --gas auto -y
+```
+### Delegate
+```
+blockxd tx staking delegate <validator_addr> 1000000abcx --from wallet --chain-id blockx_12345-2 --gas auto -y
+```
+
+### Check Match Validator
+```
+[[ $(blockxd q staking validator $(blockxd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(blockxd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+### Restart Node
+```
+sudo systemctl restart blockxd
+```
+### Stop Node
+```
+sudo systemctl stop blockxd
+```
+
 ### Delete
 ```
 sudo systemctl stop blockxd
