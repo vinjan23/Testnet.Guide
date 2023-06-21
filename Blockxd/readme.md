@@ -119,7 +119,7 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
 s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.blockxd/config/config.toml
 ```
 ```
-"s|^(enable[[:space:]]+=[[:space:]]+).*$|\1false|" ~/.blockxd/config/config.toml
+sed -i.bak -e "s|^enable *=.*|enable = false|" $HOME/.blockxd/config/config.toml
 ```
 
 ### Start
