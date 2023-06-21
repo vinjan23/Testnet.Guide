@@ -206,11 +206,11 @@ blockxd tx distribution withdraw-rewards <validaator_addr> --commission --from v
 ```
 ### Delegate
 ```
-blockxd tx staking delegate <validator_addr> 1000000abcx --from wallet --chain-id blockx_12345-2 --gas auto -y
+blockxd tx staking delegate <validator_addr> 1000000000000000000abcx --from wallet --chain-id blockx_12345-2 --gas auto -y
 ```
 ### Transfer
 ```
-blockxd tx bank send wallet <TO_WALLET_ADDRESS> 1000000abcx --from wallet --chain-id blockx_12345-2 --gas auto -y
+blockxd tx bank send wallet <TO_WALLET_ADDRESS> 1000000000000000000abcx --from wallet --chain-id blockx_12345-2 --gas auto -y
 ```
 
 ### Check Match Validator
