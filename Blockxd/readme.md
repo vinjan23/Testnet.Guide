@@ -171,7 +171,7 @@ blockxd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(blockxd tendermint show-validator) \
   --moniker ${MONIKER} \
-  --chain-id blockx_12345-1 \
+  --chain-id blockx_12345-2 \
   --identity="7C66E36EA2B71F68" \
   --details="satsetsatset" \
   --website="" \
@@ -186,7 +186,7 @@ blockxd tx staking edit-validator \
  --identity=7C66E36EA2B71F68 \
  --website= \
  --details=satsetsatseterror \
- --chain-id=blockx_12345-1 \
+ --chain-id=blockx_12345-2 \
  --from=<wallet> \
  --gas=auto \
  -y
