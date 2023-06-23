@@ -1,3 +1,39 @@
+### Package
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
+```
+### GO
+```
+ver="1.20.4"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
+go version
+```
+### Build
+```
+cd $HOME
+git clone https://github.com/Timpi-official/Timpi-ChainTN.git
+cd Timpi-ChainTN
+cd cmd/TimpiChain
+go build
+mv TimpiChain $HOME/go/bin/timpid
+```
+### Init
+```
+MONIKER=
+```
+```
+timpid init $MONIKER --chain-id TimpiChainTN
+timpid config chain-id TimpiChainTN
+timpid config keyring-backend test
+```
+### Custom Port
 ```
 PORT=23
 timpid config node tcp://localhost:${PORT}657
@@ -6,10 +42,11 @@ timpid config node tcp://localhost:${PORT}657
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.TimpiChain/config/config.toml
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.TimpiChain/config/app.toml
 ```
+### Genesis
 ```
 wget -O $HOME/.TimpiChain/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Timpi/genesis.json"
 ```
-
+### Peer & Gas
 ```
 SEEDS=""
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.TimpiChain/config/config.toml
@@ -17,7 +54,7 @@ peers="f711d25e871cbee29210e7e7b89b67552a5b5357@173.249.54.208:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.TimpiChain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0utimpiTN\"|" $HOME/.TimpiChain/config/app.toml
 ```
-
+### Prunning
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
@@ -26,9 +63,11 @@ sed -i \
 -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.TimpiChain/config/app.toml
 ```
+### Indexer Off
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.TimpiChain/config/config.toml
 ```
+### Service
 ```
 sudo tee /etc/systemd/system/timpid.service << EOF
 [Unit]
@@ -46,6 +85,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+### Start
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable timpid
