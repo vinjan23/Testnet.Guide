@@ -93,7 +93,63 @@ sudo systemctl restart timpid
 sudo journalctl -u timpid -f -o cat
 ```
 
+### Sync
+```
+timpid status 2>&1 | jq .SyncInfo
+```
+### Log
+```
+sudo journalctl -u timpid -f -o cat
+```
 
+### Wallet
+```
+timpid keys add wallet
+```
+### Recover
+```
+timpid keys add wallet --recover
+```
+
+### Balance
+```
+timpid q bank balances $(timpid keys show wallet -a)
+```
+
+### Create Validator
+```
+timpid tx staking create-validator \
+--amount=1000000utimpiTN
+--moniker="<YOUR_MONIKER>" \
+--identity="<YOUR_KEYBASE_ID>" \
+--website="<YOUR_WEBSITE>" \
+--details="<YOUR_VALIDATOR_DETAILS>" \
+--security-contact="<YOUR_CONTACT_EMAIL>" \
+--chain-id TimpiChainTN \
+--commission-max-change-rate=0.01 \
+--commission-max-rate=0.20 \
+--commission-rate=0.05 \
+--min-self-delegation=1 \
+--from=wallet \
+--gas=auto \
+-y
+```
+
+### Delegate
+```
+timpid tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id blockx_12345-2 --gas auto -y
+```
+
+### Delete
+```
+sudo systemctl stop timpid
+sudo systemctl disable timpid
+sudo rm /etc/systemd/system/timpid.service
+sudo systemctl daemon-reload
+rm -f $(which timpid)
+rm -rf $HOME/.TimpiChain
+rm -rf $HOME/Timpi-ChainTN
+```
 
 
 
