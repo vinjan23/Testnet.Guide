@@ -1,0 +1,1548 @@
+{
+  "genesis_time": "2023-06-23T09:24:53.423222521Z",
+  "chain_id": "TimpiChainTN",
+  "initial_height": "1",
+  "consensus_params": {
+    "block": {
+      "max_bytes": "22020096",
+      "max_gas": "-1",
+      "time_iota_ms": "1000"
+    },
+    "evidence": {
+      "max_age_num_blocks": "100000",
+      "max_age_duration": "172800000000000",
+      "max_bytes": "1048576"
+    },
+    "validator": {
+      "pub_key_types": [
+        "ed25519"
+      ]
+    },
+    "version": {}
+  },
+  "app_hash": "",
+  "app_state": {
+    "auth": {
+      "params": {
+        "max_memo_characters": "256",
+        "tx_sig_limit": "7",
+        "tx_size_cost_per_byte": "10",
+        "sig_verify_cost_ed25519": "590",
+        "sig_verify_cost_secp256k1": "1000"
+      },
+      "accounts": [
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1ux27n8yd6qp2xh77kukgwa4pevk8g5ec7lsrm5",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1tjuerr40qapl36m7hsrl7l436kwvf429py2k5x",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1rzwvnzhxplu4w2urgcxpv87tq0ce2jg6r059zn",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1w5y2cua6625jtzuptarwghwjnflw590gnducfx",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1zcu25jlgms9eghj6f6pn0nlyqhmttu3kk2mf86",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1yu5rgca5hn553hss2jcjw3tpcgvj3qntlq8cd3",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1lr03sqf2mqp27s6dm4y6evt5nunkggpwy70gqa",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1y5d7dcwwxnt0aadws03k4csvagnddse8mc023z",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn18dps8w2mc3q0my9znhfrwgxs5syl023fjtke2z",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1weaa04kca3854g2rzq8mxthtejddd472s305fx",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1f4zzmhhp50t8ctphzkckml3h40ev0vghcgmcue",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1dnkxpy06hc46knxgr8lqzxnxwzpmqw6n7jqgmh",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn100qzcjdn7skz478ua0fh6vsahpyupjw9t5h2np",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1alvyceg96wqwuh99tc8dmznmspkwzs6ngtj9sy",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1n0p5cu6g2z8ejc3s34t06ndk7cskklmv857p0t",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn1cywhgqcc2s864fy97drk32wu2r9343yl65xusp",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "timpitn15s0agesyef7fsxv9fa6swqr8gmtkl6vu2nmqlt",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        }
+      ]
+    },
+    "authz": {
+      "authorization": []
+    },
+    "bank": {
+      "params": {
+        "send_enabled": [],
+        "default_send_enabled": true
+      },
+      "balances": [
+        {
+          "address": "timpitn1zcu25jlgms9eghj6f6pn0nlyqhmttu3kk2mf86",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1rzwvnzhxplu4w2urgcxpv87tq0ce2jg6r059zn",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1y5d7dcwwxnt0aadws03k4csvagnddse8mc023z",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1yu5rgca5hn553hss2jcjw3tpcgvj3qntlq8cd3",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn18dps8w2mc3q0my9znhfrwgxs5syl023fjtke2z",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1f4zzmhhp50t8ctphzkckml3h40ev0vghcgmcue",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1tjuerr40qapl36m7hsrl7l436kwvf429py2k5x",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1dnkxpy06hc46knxgr8lqzxnxwzpmqw6n7jqgmh",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1w5y2cua6625jtzuptarwghwjnflw590gnducfx",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1weaa04kca3854g2rzq8mxthtejddd472s305fx",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn100qzcjdn7skz478ua0fh6vsahpyupjw9t5h2np",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1n0p5cu6g2z8ejc3s34t06ndk7cskklmv857p0t",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn15s0agesyef7fsxv9fa6swqr8gmtkl6vu2nmqlt",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1cywhgqcc2s864fy97drk32wu2r9343yl65xusp",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1ux27n8yd6qp2xh77kukgwa4pevk8g5ec7lsrm5",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "400000000000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1alvyceg96wqwuh99tc8dmznmspkwzs6ngtj9sy",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "timpitn1lr03sqf2mqp27s6dm4y6evt5nunkggpwy70gqa",
+          "coins": [
+            {
+              "denom": "utimpiTN",
+              "amount": "10000000"
+            }
+          ]
+        }
+      ],
+      "supply": [],
+      "denom_metadata": [
+        {
+          "description": "The native staking token of the TimpiChainTN.",
+          "denom_units": [
+            {
+              "denom": "utimpiTN",
+              "exponent": 0,
+              "aliases": [
+                "microtimpi"
+              ]
+            },
+            {
+              "denom": "mtimpiTN",
+              "exponent": 3,
+              "aliases": [
+                "millitimpiTN"
+              ]
+            },
+            {
+              "denom": "timpiTN",
+              "exponent": 6,
+              "aliases": []
+            }
+          ],
+          "base": "utimpiTN",
+          "display": "timpiTN",
+          "name": "timpiTN",
+          "symbol": "TIMPICTN"
+        }
+      ]
+    },
+    "capability": {
+      "index": "1",
+      "owners": []
+    },
+    "crisis": {
+      "constant_fee": {
+        "denom": "utimpiTN",
+        "amount": "1000"
+      }
+    },
+    "distribution": {
+      "params": {
+        "community_tax": "0.020000000000000000",
+        "base_proposer_reward": "0.010000000000000000",
+        "bonus_proposer_reward": "0.040000000000000000",
+        "withdraw_addr_enabled": true
+      },
+      "fee_pool": {
+        "community_pool": []
+      },
+      "delegator_withdraw_infos": [],
+      "previous_proposer": "",
+      "outstanding_rewards": [],
+      "validator_accumulated_commissions": [],
+      "validator_historical_rewards": [],
+      "validator_current_rewards": [],
+      "delegator_starting_infos": [],
+      "validator_slash_events": []
+    },
+    "evidence": {
+      "evidence": []
+    },
+    "feegrant": {
+      "allowances": []
+    },
+    "genutil": {
+      "gen_txs": [
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1tjuerr40qapl36m7hsrl7l436kwvf429py2k5x",
+                "validator_address": "timpitnvaloper1tjuerr40qapl36m7hsrl7l436kwvf42975aaka",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "85GN7KFc7sP5jYBSmQ9e9ArQFmWgByuZGs0yt8bxFx8="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "e04abe5d9f7f364c1634e8ae08684af19b3fc800@207.180.251.220:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A4C/Om93G16FnLIoALsxjLbqXvLDPzHNda9uBjc6zFCn"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "/N5g4Fk1wxEQ0xZMuS2wkJT2eONjVMYgVUorqQxxT1ATiPjJL3t0EHQHhQRhbghrIXYT0zmTMJZSX9AqN4LBxg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Jocker | ND",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1rzwvnzhxplu4w2urgcxpv87tq0ce2jg6r059zn",
+                "validator_address": "timpitnvaloper1rzwvnzhxplu4w2urgcxpv87tq0ce2jg6ulrwqg",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "5B9JSz3n1gFdd6qv6NZY8xBpoi65tmm7q3mpUwUtz4w="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "0f76e5b539589df63c31e35f5514354ac3041eb4@217.160.211.213:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A/TLYeP9fwJjB/Qm51gs7Tz9ceEV+2gNo4H4my+uIi1b"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "QdpiBuK6p6rMOdikWA1fCm3EhH8JME1LEZY3IYENar06nH9oCF+atApQ+fz6rInLQrCeUyzAK6FlWgzb4eIgEQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Appieasahbie | AkNodes",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1w5y2cua6625jtzuptarwghwjnflw590gnducfx",
+                "validator_address": "timpitnvaloper1w5y2cua6625jtzuptarwghwjnflw590gvatnta",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "rLhsBZ0TsW3EAUvKg+It/GEMfKzc7zdvmHs50xGJhv4="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "2ae8297a76c1931addef023bd1ec46c033a4727e@217.160.201.92:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AmtEk0hBkKGYSl5WvNuOfl9rQ5pEQf7GGJmiCTMH/znT"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "acR+qb/A8CjZbc/5UPN3+fZ3z2hdbi87SuwbgiM389szaN4iW62UfVYg7imHX7AYqtz2w+Sk/slKWTFO/E0K/g=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1lr03sqf2mqp27s6dm4y6evt5nunkggpwy70gqa",
+                "validator_address": "timpitnvaloper1lr03sqf2mqp27s6dm4y6evt5nunkggpwmwcrzx",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "ch2IBs0gT7DpJusQlwH7CvI7V8NWDc1o/UY6IhFnu4g="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "38a34886bfee7720ff1ca6c65a7de7dbe6cef716@164.68.107.103:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AkRR4z7AFIzCGxoFCIpScic0cSaIqUT9O7yovYSD9q6C"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "stq75OMp03q3zze+lOonupN9VqzNoGxYSQaBv+N8PhoZ5gAXSmgsWTK361BjldDtYOymgxddunjYUbA+kofdpA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1zcu25jlgms9eghj6f6pn0nlyqhmttu3kk2mf86",
+                "validator_address": "timpitnvaloper1zcu25jlgms9eghj6f6pn0nlyqhmttu3kf6vz9p",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "grcT8d4AatK7rxurSzHHL6akLotPFHW/pIDjBw1WWiA="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "3caeeb19d95759d5b22db7b19fd7593fd7e294f0@65.109.154.182:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AiXp99PN0wtP+RmEe+evX4nPngIn35ICphcN33qf6mzq"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "vP8iUPz2Ld/7M6jryNf3BjLkQGUuYudGdrT4fLh/1yJGUoQrB0U057PgqsltQga69AlOwEKXhjhWiuPR2wIC/A=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn18dps8w2mc3q0my9znhfrwgxs5syl023fjtke2z",
+                "validator_address": "timpitnvaloper18dps8w2mc3q0my9znhfrwgxs5syl023fdmpjge",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "sIpmfWSvYf2txIBQJXFgVDgJXkI2BHoKMexIZv3j66Q="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "559b0ff16940afdfb60592dac8519fb984952a31@82.146.64.24:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Anw+1dhGZcYdo6enC0a9E3UDLkggjSAZNTtyle0uJcVq"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "tqUFKBE426TYwB2Oy9ne8rhWJQaDF82h+/OkaiqDxOBp0cQ4h85VWDAcukJUA7ScGnP67CHb5zrC0mCTggTxCQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1yu5rgca5hn553hss2jcjw3tpcgvj3qntlq8cd3",
+                "validator_address": "timpitnvaloper1yu5rgca5hn553hss2jcjw3tpcgvj3qntqssn02",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "G01WGZpgb3UCnede33+WiAYg2qFm3AZk3r4dq2V/SCw="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "7a9ddc34d8686d56e32f23895353bbc5df654cb2@82.146.87.39:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AghVBATnpnCdoXfLyF9kOy/nOnuQ4E2MhGbbdxuhW7HQ"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "E6NvVb8+pgMU8i3h1nf8R0/QkzNrSY839gUwRA6wB2k7KRstJldizSGc86KTmuiWJsQR2ArEZWdI4n48zkueWA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "vinjan",
+                  "identity": "7C66E36EA2B71F68",
+                  "website": "https://service.vinjan.xyz",
+                  "security_contact": "vinjan.xyz",
+                  "details": "🎉Proffesional Stake \u0026 Node Validator🎉"
+                },
+                "commission": {
+                  "rate": "0.050000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1y5d7dcwwxnt0aadws03k4csvagnddse8mc023z",
+                "validator_address": "timpitnvaloper1y5d7dcwwxnt0aadws03k4csvagnddse8ygcpne",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "u8UhMUpxjTVGTDYzU3h6sF3yqR8Tg1hrdNKUmA3P4zw="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "99a103ac40453eaa3468b550395381f8ff18f7f7@65.108.206.74:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A5jLMM4+DxVMm7mQIFHhtlY38JkD3p2kTWIz0VjLp9X/"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "303Uf/9qX2eTSmeKPFVc2tOP//wqqnHUzRfJ/KSqP/FubWKj6SQbnWgsSms3RytIiC7pH3JMDDz2PvMgCYftzg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1weaa04kca3854g2rzq8mxthtejddd472s305fx",
+                "validator_address": "timpitnvaloper1weaa04kca3854g2rzq8mxthtejddd4720pclta",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "ksA/hkGHEOShcXM+dA4O2XTf/gurBEOKJrukK8YAMFU="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "d7b38ad4606c871d5284834e28fcd9d6943d9eea@45.79.45.253:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A49BV/Fp4xGEpBOmmyFnj+9GNsITV/xThvfRGlUTJYXJ"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "C1KI2/rqJdMfrtBV7FXpa1HGLQ/uGiWC37S6XJXeAE8ZE2wmaLzElNuECOm759n7BX5US0Z+pLI59VJ4mht4NQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Hexnodes",
+                  "identity": "5CD9816C37D32C5B",
+                  "website": "https://hexnodes.co",
+                  "security_contact": "hexnodesvalidator@gmail.com",
+                  "details": "Service Staking Provider | 24/7 Monitored"
+                },
+                "commission": {
+                  "rate": "0.050000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.100000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn100qzcjdn7skz478ua0fh6vsahpyupjw9t5h2np",
+                "validator_address": "timpitnvaloper100qzcjdn7skz478ua0fh6vsahpyupjw95yqp36",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "IZI9sbp+xyIirTD1FK8s99KFe8nhDgSnS6ujyVkmHdE="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "f5010d9496b609f83bfcaaa9484b1623111fc6aa@65.109.156.208:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AvumoIleNQHoSEd2y1mXO19Yl7BdI7mdEptOUWQExOpu"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "UxCcEhuHgVcasahcX99E57vY/s0gSoUmjDmk6wLcdc49mXasTvVulm6vx1Exyod5gNm8HpG5KyRyLD5op7gELw=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "KonsorTech",
+                  "identity": "2DA657BCEA9489C2",
+                  "website": "https://konsortech.xyz",
+                  "security_contact": "konsortech@gmail.com",
+                  "details": "Stake With Us ! Become Professional Stake Provider"
+                },
+                "commission": {
+                  "rate": "0.050000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.100000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1alvyceg96wqwuh99tc8dmznmspkwzs6ngtj9sy",
+                "validator_address": "timpitnvaloper1alvyceg96wqwuh99tc8dmznmspkwzs6nhm9wjl",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "cmD+Q/rirrb1oqwDyI+Aznt0bVPW36nxjvpj8ftr4oM="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "129359ef688f416166072bdd607dd5d619a865b0@136.243.136.241:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AnronjvIZfrwcBSF/F7Gh5QzA2zYNH/tv/Mid90WnsxA"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "qyKn1FzH0e9lI2eAbnr1BGwy1g3dsd6IQIKtC1erjIVUNVXTVQQkALETiYi0Ssmi3yzVEA1ERTXYg8hpSnqw6w=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "⚡NodeX Validator⚡",
+                  "identity": "D47444F2EF3D9308",
+                  "website": "https://nodexcapital.com",
+                  "security_contact": "hello@nodexcapital.com",
+                  "details": "Hi, NodeX Capital is here! secure and reliable nodes validator. Discord : https://discord.gg/nodexcapital"
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1n0p5cu6g2z8ejc3s34t06ndk7cskklmv857p0t",
+                "validator_address": "timpitnvaloper1n0p5cu6g2z8ejc3s34t06ndk7cskklmvcyf2ds",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "lsDe02QqpmPAtvX7CO7vrF0MdOCGlRwLUU+nKc+bRUo="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "7f311cd3f32647ea9b388affdb8023eeaa88bb4b@65.109.116.204:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AsTgyRmRNwX/fihoHWvz+vJThE0fK/T7w/I6AaWzQUFj"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "p/MGqg+4VDQzM3XBTBddJs0Zd5jgVGwwE7vglVPuXTc9UaZrQGfFCbqQxs845Tm81UmgwG4rvJvYgVCYJfbGHQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn15s0agesyef7fsxv9fa6swqr8gmtkl6vu2nmqlt",
+                "validator_address": "timpitnvaloper15s0agesyef7fsxv9fa6swqr8gmtkl6vu4rvtas",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "fhi02BC3xqEI/ccSsNTzFPRIgXpy3/e7bXPGxX4Lcsw="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "4b3c3b76ae36275955ff2b5fc23ae943503977f5@5.180.186.25:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A1m68w/V8/l/8m7LUx1N3eOpWPBgAGWFl9upvr6+fU70"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "Y7d+v/KYi4IUR/peIrqEBEMdO8WAAVKxQGg2Xg1nz3giPBhMNrWTSsXZBrNXqwSYRxwLU5QMa0MUWFxzMs+dYA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "h2995645.stratoserver.net",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1f4zzmhhp50t8ctphzkckml3h40ev0vghcgmcue",
+                "validator_address": "timpitnvaloper1f4zzmhhp50t8ctphzkckml3h40ev0vgh8cvn7z",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "B7R5ejqHJtOdWquBPtFDPZlGWnb6MmJpaKqN6BGoLfw="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "ddd9e00e9544c01ecc22709ac1d20cc90ef8cf72@85.214.33.202:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "ApJ0NeFswniSB7b0S94FdxcY60iU/enf2cg2rR01ZK74"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "gz34Q6So5itWE9Rwb/hylt7V7StrSz32LzxEGlnpoMgpnTDVNSJAllzMlkUj7sIN1cvt/hZxAVQWJlok2g0wvg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1dnkxpy06hc46knxgr8lqzxnxwzpmqw6n7jqgmh",
+                "validator_address": "timpitnvaloper1dnkxpy06hc46knxgr8lqzxnxwzpmqw6npzhrev",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "EA9PlUPXEoI/MfMh+VlqXBSNm6Qb0l1wqi07T6ICuOQ="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "eae8a488754c5463578f6e27ec2ed57d694fc2c0@65.108.85.81:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Ag8+ccGITl7HjECFuaW/PtOFbBmZIDVg6R5OnWj3uURe"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "CqOa4VV4im+1InDyYzC7UjVp7rCqWxVikhr/YSixcvMRHZtgxh2FMqy9HPRf3mhDi3ZFW/drwoX8av1XlHsk9g=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "TimpiChain",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1ux27n8yd6qp2xh77kukgwa4pevk8g5ec7lsrm5",
+                "validator_address": "timpitnvaloper1ux27n8yd6qp2xh77kukgwa4pevk8g5ecp08ge0",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "/TkfYcsvpxEW84R2cmoWmHwMJ24JdJ/0wZ7faUtIovU="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "f711d25e871cbee29210e7e7b89b67552a5b5357@173.249.54.208:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AyitYld6cf3lrxjpCApKlnLcQUzT3vYr4uhX8ZwofHoV"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "Sf3qLR6D1zfCYGPth1kwRYYvei/XfSdOMesDVEeq/A43z5k/anMcuI6RvkNTHJ5HlALjzhpO3YdFF+plhc+3xQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "silent",
+                  "identity": "A47522A5527DB39F",
+                  "website": "https://silentvalidator.com",
+                  "security_contact": "",
+                  "details": "Silent is a professional validator who wanna bring value to cosmos community"
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "timpitn1cywhgqcc2s864fy97drk32wu2r9343yl65xusp",
+                "validator_address": "timpitnvaloper1cywhgqcc2s864fy97drk32wu2r9343yl9y3hj6",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "cqxlP2nKuPS0dTNos+zsGsQ51SzDCmbI23zkE4Cg8Dw="
+                },
+                "value": {
+                  "denom": "utimpiTN",
+                  "amount": "1000000"
+                }
+              }
+            ],
+            "memo": "a913b562682a08097f2f9e91fe001004c253d3d6@65.108.141.109:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AvdKqnJhRYogC5Qsb5vLGtOaiHGQWNgY/MWBD8RQ74qz"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "XLKJfRk5GJ13s8peJb3FtETozLC6KbDZm0TcZV5EjCd6avlDLS0ND0j14t9QAcc/usNzJb8zaDE2Uo4n40b84g=="
+          ]
+        }
+      ]
+    },
+    "gov": {
+      "starting_proposal_id": "1",
+      "deposits": [],
+      "votes": [],
+      "proposals": [],
+      "deposit_params": {
+        "min_deposit": [
+          {
+            "denom": "utimpiTN",
+            "amount": "10000000"
+          }
+        ],
+        "max_deposit_period": "172800s"
+      },
+      "voting_params": {
+        "voting_period": "172800s"
+      },
+      "tally_params": {
+        "quorum": "0.334000000000000000",
+        "threshold": "0.500000000000000000",
+        "veto_threshold": "0.334000000000000000"
+      }
+    },
+    "ibc": {
+      "client_genesis": {
+        "clients": [],
+        "clients_consensus": [],
+        "clients_metadata": [],
+        "params": {
+          "allowed_clients": [
+            "06-solomachine",
+            "07-tendermint"
+          ]
+        },
+        "create_localhost": false,
+        "next_client_sequence": "0"
+      },
+      "connection_genesis": {
+        "connections": [],
+        "client_connection_paths": [],
+        "next_connection_sequence": "0",
+        "params": {
+          "max_expected_time_per_block": "30000000000"
+        }
+      },
+      "channel_genesis": {
+        "channels": [],
+        "acknowledgements": [],
+        "commitments": [],
+        "receipts": [],
+        "send_sequences": [],
+        "recv_sequences": [],
+        "ack_sequences": [],
+        "next_channel_sequence": "0"
+      }
+    },
+    "mint": {
+      "minter": {
+        "inflation": "0.130000000000000000",
+        "annual_provisions": "0.000000000000000000"
+      },
+      "params": {
+        "mint_denom": "utimpiTN",
+        "inflation_rate_change": "0.130000000000000000",
+        "inflation_max": "0.000000000000000000",
+        "inflation_min": "0.000000000000000000",
+        "goal_bonded": "0.670000000000000000",
+        "blocks_per_year": "6311520"
+      }
+    },
+    "params": null,
+    "slashing": {
+      "params": {
+        "signed_blocks_window": "100",
+        "min_signed_per_window": "0.500000000000000000",
+        "downtime_jail_duration": "600s",
+        "slash_fraction_double_sign": "0.050000000000000000",
+        "slash_fraction_downtime": "0.010000000000000000"
+      },
+      "signing_infos": [],
+      "missed_blocks": []
+    },
+    "staking": {
+      "params": {
+        "unbonding_time": "1814400s",
+        "max_validators": 100,
+        "max_entries": 7,
+        "historical_entries": 10000,
+        "bond_denom": "utimpiTN"
+      },
+      "last_total_power": "0",
+      "last_validator_powers": [],
+      "validators": [],
+      "delegations": [],
+      "unbonding_delegations": [],
+      "redelegations": [],
+      "exported": false
+    },
+    "transfer": {
+      "port_id": "transfer",
+      "denom_traces": [],
+      "params": {
+        "send_enabled": true,
+        "receive_enabled": true
+      }
+    },
+    "upgrade": {},
+    "vesting": {},
+    "wasm": {
+      "params": {
+        "code_upload_access": {
+          "permission": "Everybody",
+          "address": ""
+        },
+        "instantiate_default_permission": "Everybody"
+      },
+      "codes": [],
+      "contracts": [],
+      "sequences": [],
+      "gen_msgs": []
+    }
+  }
+}
