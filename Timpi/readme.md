@@ -48,9 +48,9 @@ wget -O $HOME/.TimpiChain/config/genesis.json "https://raw.githubusercontent.com
 ```
 ### Peer & Gas
 ```
-SEEDS=""
+SEEDS="4e69f430ecbd3d8a4dc33f44b99d4ff8c67b7e3f@173.249.54.208:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.TimpiChain/config/config.toml
-peers="f711d25e871cbee29210e7e7b89b67552a5b5357@173.249.54.208:26656"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.TimpiChain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0utimpiTN\"|" $HOME/.TimpiChain/config/app.toml
 ```
@@ -91,6 +91,9 @@ sudo systemctl daemon-reload
 sudo systemctl enable timpid
 sudo systemctl restart timpid
 sudo journalctl -u timpid -f -o cat
+```
+```
+timpid tendermint unsafe-reset-all --home $HOME/.TimpiChain
 ```
 
 ### Sync
