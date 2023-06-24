@@ -116,6 +116,7 @@ sudo journalctl -u noriad -f -o cat
 ```
 
 ### Sync
+```
 noriad status 2>&1 | jq .SyncInfo
 ```
 ### Log
