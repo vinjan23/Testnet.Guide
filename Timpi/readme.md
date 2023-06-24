@@ -37,7 +37,7 @@ TimpiChain config keyring-backend test
 ### Custom Port
 ```
 PORT=23
-timpid config node tcp://localhost:${PORT}657
+TimpiChain config node tcp://localhost:${PORT}657
 ```
 ```
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.TimpiChain/config/config.toml
@@ -70,7 +70,7 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.TimpiChain/config/config.toml
 ```
 ### Service
 ```
-sudo tee /etc/systemd/system/timpid.service << EOF
+sudo tee /etc/systemd/system/TimpiChain.service << EOF
 [Unit]
 Description=TimpiChain
 After=network-online.target
@@ -89,9 +89,9 @@ EOF
 ### Start
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable timpid
-sudo systemctl restart timpid
-sudo journalctl -u timpid -f -o cat
+sudo systemctl enable TimpiChain
+sudo systemctl restart TimpiChain
+sudo journalctl -u TimpiChain -f -o cat
 ```
 ```
 timpid tendermint unsafe-reset-all --home $HOME/.TimpiChain
