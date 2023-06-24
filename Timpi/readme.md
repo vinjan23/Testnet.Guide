@@ -47,6 +47,11 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 wget -O $HOME/.TimpiChain/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Timpi/genesis.json"
 ```
+### Addrbook
+```
+wget -O $HOME/.TimpiChain/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Timpi/addrbook.json
+```
+
 ### Peer & Gas
 ```
 SEEDS="4e69f430ecbd3d8a4dc33f44b99d4ff8c67b7e3f@173.249.54.208:26656"
@@ -158,6 +163,8 @@ rm -f $(which TimpiChain)
 rm -rf $HOME/.TimpiChain
 rm -rf $HOME/Timpi-ChainTN
 ```
-
+```
+http://173.249.54.208:1337/YOURWALLET
+```
 
 
