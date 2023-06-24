@@ -22,16 +22,17 @@ git clone https://github.com/Timpi-official/Timpi-ChainTN.git
 cd Timpi-ChainTN
 cd cmd/TimpiChain
 go build
-mv TimpiChain $HOME/go/bin/timpid
+mv TimpiChain $HOME/go/bin/TimpiChain
 ```
+
 ### Init
 ```
 MONIKER=
 ```
 ```
-timpid init $MONIKER --chain-id TimpiChainTN
-timpid config chain-id TimpiChainTN
-timpid config keyring-backend test
+TimpiChain init $MONIKER --chain-id TimpiChainTN
+TimpiChain config chain-id TimpiChainTN
+TimpiChain config keyring-backend test
 ```
 ### Custom Port
 ```
