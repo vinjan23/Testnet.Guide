@@ -50,7 +50,7 @@ wget -O $HOME/.TimpiChain/config/genesis.json "https://raw.githubusercontent.com
 ```
 SEEDS="4e69f430ecbd3d8a4dc33f44b99d4ff8c67b7e3f@173.249.54.208:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.TimpiChain/config/config.toml
-peers=""
+peers="a7900b0e1c927a74415a6203c5f8496007a7297b@207.180.251.220:26656,84dec73dd411e884251f4d79946467c82ddf9a2c@45.79.45.253:26656,72c6c231bb7bdea9936305d8aa68454fd0edb7ed@82.146.64.24:26656,46be6dc53619c5e64347f68913fecb4373f122c4@82.146.87.39:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.TimpiChain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0utimpiTN\"|" $HOME/.TimpiChain/config/app.toml
 ```
