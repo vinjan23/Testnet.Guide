@@ -73,13 +73,13 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.noria/config/config.toml
 
 ### Service
 ```
-sudo tee /etc/systemd/system/noriad.service << EOF
+sudo tee /etc/systemd/system/noriad.service > /dev/null <<EOF
 [Unit]
-Description=Noria Node
+Description=noria
 After=network-online.target
 
 [Service]
-User= <user>
+User=$USER
 ExecStart=$(which noriad) start
 Restart=on-failure
 RestartSec=3
