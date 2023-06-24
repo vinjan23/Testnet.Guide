@@ -94,35 +94,35 @@ sudo systemctl restart TimpiChain
 sudo journalctl -u TimpiChain -f -o cat
 ```
 ```
-timpid tendermint unsafe-reset-all --home $HOME/.TimpiChain
+TimpiChain tendermint unsafe-reset-all --home $HOME/.TimpiChain
 ```
 
 ### Sync
 ```
-timpid status 2>&1 | jq .SyncInfo
+TimpiChain status 2>&1 | jq .SyncInfo
 ```
 ### Log
 ```
-sudo journalctl -u timpid -f -o cat
+sudo journalctl -u TimpiChain -f -o cat
 ```
 
 ### Wallet
 ```
-timpid keys add wallet
+TimpiChain keys add wallet
 ```
 ### Recover
 ```
-timpid keys add wallet --recover
+TimpiChain keys add wallet --recover
 ```
 
 ### Balance
 ```
-timpid q bank balances $(timpid keys show wallet -a)
+TimpiChain q bank balances $(TimpiChain keys show wallet -a)
 ```
 
 ### Create Validator
 ```
-timpid tx staking create-validator \
+TimpiChain tx staking create-validator \
 --amount=1000000utimpiTN
 --moniker="<YOUR_MONIKER>" \
 --identity="<YOUR_KEYBASE_ID>" \
@@ -141,16 +141,16 @@ timpid tx staking create-validator \
 
 ### Delegate
 ```
-timpid tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id blockx_12345-2 --gas auto -y
+TimpiChain tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id blockx_12345-2 --gas auto -y
 ```
 
 ### Delete
 ```
-sudo systemctl stop timpid
-sudo systemctl disable timpid
-sudo rm /etc/systemd/system/timpid.service
+sudo systemctl stop TimpiChain
+sudo systemctl disable TimpiChain
+sudo rm /etc/systemd/system/TimpiChain.service
 sudo systemctl daemon-reload
-rm -f $(which timpid)
+rm -f $(which TimpiChain)
 rm -rf $HOME/.TimpiChain
 rm -rf $HOME/Timpi-ChainTN
 ```
