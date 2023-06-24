@@ -49,6 +49,11 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 ```
 wget https://raw.githubusercontent.com/noria-net/noria/main/genesis.json -O $HOME/.noria/config/genesis.json
 ```
+### Addrbook
+```
+wget -O $HOME/.noria/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Noria/addrbook.json
+```
+
 ### Seed Peers Gas
 ```
 SEEDS=""
