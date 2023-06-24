@@ -123,19 +123,21 @@ TimpiChain q bank balances $(TimpiChain keys show wallet -a)
 ### Create Validator
 ```
 TimpiChain tx staking create-validator \
---amount=1000000utimpiTN
---moniker="<YOUR_MONIKER>" \
---identity="<YOUR_KEYBASE_ID>" \
---website="<YOUR_WEBSITE>" \
---details="<YOUR_VALIDATOR_DETAILS>" \
---security-contact="<YOUR_CONTACT_EMAIL>" \
---chain-id TimpiChainTN \
---commission-max-change-rate=0.01 \
---commission-max-rate=0.20 \
+--amount=2500000utimpiTN \
+--pubkey=$(TimpiChain tendermint show-validator) \
+--moniker="vinjan" \
+--identity="7C66E36EA2B71F68" \
+--details="🎉Proffesional Stake & Node Validator🎉" \
+--website="https://service.vinjan.xyz" \
+--chain-id=TimpiChainTN \
 --commission-rate=0.05 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
 --from=wallet \
+--gas-adjustment=1.4 \
 --gas=auto \
+--gas-prices=0utimpiTN \
 -y
 ```
 
