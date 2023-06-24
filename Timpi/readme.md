@@ -150,7 +150,7 @@ TimpiChain tx staking create-validator \
 
 ### Delegate
 ```
-TimpiChain tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id blockx_12345-2 --gas auto -y
+TimpiChain tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
 ```
 
 ### Delete
