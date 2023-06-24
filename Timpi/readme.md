@@ -74,14 +74,14 @@ sudo tee /etc/systemd/system/TimpiChain.service << EOF
 [Unit]
 Description=TimpiChain
 After=network-online.target
-#
+
 [Service]
 User=$USER
-ExecStart=$(which timpid) start
+ExecStart=$(which TimpiChain) start
 RestartSec=3
 Restart=on-failure
 LimitNOFILE=65535
-#
+
 [Install]
 WantedBy=multi-user.target
 EOF
