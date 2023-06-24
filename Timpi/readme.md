@@ -164,7 +164,7 @@ rm -rf $HOME/.TimpiChain
 rm -rf $HOME/Timpi-ChainTN
 ```
 ```
-http://173.249.54.208:1337/YOURWALLET
+http://173.249.54.208:1337/timpitn1y5d7dcwwxnt0aadws03k4csvagnddse8mc023z
 ```
 
 
