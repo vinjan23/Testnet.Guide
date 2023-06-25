@@ -147,10 +147,62 @@ TimpiChain tx staking create-validator \
 --gas-prices=0utimpiTN \
 -y
 ```
+### Edit
+```
+TimpiChain tx staking edit-validator \
+--new-moniker ""  \
+--chain-id TimpiChainTN \
+--details "" \
+--identity "" \
+--from "" \
+--gas auto \
+--gas-prices 0utimpiTN \
+-y
+```
+### Unjail
+```
+TimpiChain tx slashing unjail --from wallet --chain-id TimpiChainTN  --gas=auto -y
+```
+### Jail Reason
+```
+TimpiChain query slashing signing-info $(TimpiChain tendermint show-validator)
+```
 
 ### Delegate
 ```
 TimpiChain tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+```
+### WD
+```
+TimpiChain tx distribution withdraw-all-rewards --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+```
+### WD with commission
+```
+TimpiChain tx distribution withdraw-rewards $(TimpiChain keys show wallet --bech val -a) --commission --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+```
+### Vote
+```
+TimpiChain tx gov vote 1 yes --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+```
+### Cek Own Peer
+```
+echo $(TimpiChain tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.TimpiChain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+### Cek Connected Peer
+```
+curl -sS http://localhost:<$PORT>657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+### Cek Validator Match
+```
+[[ $(TimpiChain q staking validator $(TimpiChain keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(TimpiChain status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+### Validator Info
+```
+TimpiChain status 2>&1 | jq .ValidatorInfo
+```
+### Node Info
+```
+TimpiChain status 2>&1 | jq .NodeInfo
 ```
 
 ### Delete
