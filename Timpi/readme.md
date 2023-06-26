@@ -30,8 +30,8 @@ mv TimpiChain $HOME/go/bin/TimpiChain
 MONIKER=
 ```
 ```
-TimpiChain init $MONIKER --chain-id TimpiChainTN
-TimpiChain config chain-id TimpiChainTN
+TimpiChain init $MONIKER --chain-id TimpiChainTN2
+TimpiChain config chain-id TimpiChainTN2
 TimpiChain config keyring-backend test
 ```
 ### Custom Port
@@ -54,9 +54,9 @@ wget -O $HOME/.TimpiChain/config/addrbook.json https://raw.githubusercontent.com
 
 ### Peer & Gas
 ```
-SEEDS="4e69f430ecbd3d8a4dc33f44b99d4ff8c67b7e3f@173.249.54.208:26656"
+SEEDS=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.TimpiChain/config/config.toml
-peers=""
+peers="16700793659365235701335a41dd7b2b317518dd@173.249.54.208:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.TimpiChain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0utimpiTN\"|" $HOME/.TimpiChain/config/app.toml
 ```
@@ -136,7 +136,7 @@ TimpiChain tx staking create-validator \
 --identity="7C66E36EA2B71F68" \
 --details="🎉Proffesional Stake & Node Validator🎉" \
 --website="https://service.vinjan.xyz" \
---chain-id=TimpiChainTN \
+--chain-id=TimpiChainTN2 \
 --commission-rate=0.05 \
 --commission-max-rate=0.20 \
 --commission-max-change-rate=0.01 \
@@ -151,7 +151,7 @@ TimpiChain tx staking create-validator \
 ```
 TimpiChain tx staking edit-validator \
 --new-moniker ""  \
---chain-id TimpiChainTN \
+--chain-id TimpiChainTN2 \
 --details "" \
 --identity "" \
 --from "" \
@@ -161,7 +161,7 @@ TimpiChain tx staking edit-validator \
 ```
 ### Unjail
 ```
-TimpiChain tx slashing unjail --from wallet --chain-id TimpiChainTN  --gas=auto -y
+TimpiChain tx slashing unjail --from wallet --chain-id TimpiChainTN2  --gas=auto -y
 ```
 ### Jail Reason
 ```
@@ -170,19 +170,19 @@ TimpiChain query slashing signing-info $(TimpiChain tendermint show-validator)
 
 ### Delegate
 ```
-TimpiChain tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+TimpiChain tx staking delegate <validator_addr> 100000utimpiTN --from wallet --chain-id TimpiChainTN2 --fees 200000utimpiTN
 ```
 ### WD
 ```
-TimpiChain tx distribution withdraw-all-rewards --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+TimpiChain tx distribution withdraw-all-rewards --from wallet --chain-id TimpiChainTN2 --fees 200000utimpiTN
 ```
 ### WD with commission
 ```
-TimpiChain tx distribution withdraw-rewards $(TimpiChain keys show wallet --bech val -a) --commission --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+TimpiChain tx distribution withdraw-rewards $(TimpiChain keys show wallet --bech val -a) --commission --from wallet --chain-id TimpiChainTN2 --fees 200000utimpiTN
 ```
 ### Vote
 ```
-TimpiChain tx gov vote 1 yes --from wallet --chain-id TimpiChainTN --fees 200000utimpiTN
+TimpiChain tx gov vote 1 yes --from wallet --chain-id TimpiChainTN2 --fees 200000utimpiTN
 ```
 ### Cek Own Peer
 ```
