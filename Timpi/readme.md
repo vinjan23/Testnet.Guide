@@ -56,7 +56,7 @@ wget -O $HOME/.TimpiChain/config/addrbook.json https://raw.githubusercontent.com
 ```
 SEEDS=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.TimpiChain/config/config.toml
-peers="16700793659365235701335a41dd7b2b317518dd@173.249.54.208:26656"
+peers="16700793659365235701335a41dd7b2b317518dd@173.249.54.208:26656,7a7867cf1d286098641bb8b47bf1d8c555e2f385@65.108.206.74:23656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.TimpiChain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0utimpiTN\"|" $HOME/.TimpiChain/config/app.toml
 ```
