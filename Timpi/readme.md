@@ -137,12 +137,12 @@ TimpiChain tx staking create-validator \
 --details="🎉Proffesional Stake & Node Validator🎉" \
 --website="https://service.vinjan.xyz" \
 --chain-id=TimpiChainTN2 \
---commission-rate=0.05 \
+--commission-rate=0.1 \
 --commission-max-rate=0.20 \
 --commission-max-change-rate=0.01 \
---min-self-delegation=1 \
+--min-self-delegation=1000000 \
 --from=wallet \
---gas-adjustment=1.4 \
+--gas-adjustment=1.5 \
 --gas=auto \
 --gas-prices=0utimpiTN \
 -y
