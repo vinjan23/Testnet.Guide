@@ -176,7 +176,7 @@ noriad tx staking edit-validator \
 
 ### Unjail
 ```
-noriad tx slashing unjail --from wallet --chain-id oasis-3 --gas-prices 0.025ucrd --gas=auto -y
+noriad tx slashing unjail --from wallet --chain-id oasis-3 --gas-adjustment=1.5 --gas-prices 0.025ucrd --gas=auto -y
 ```
 ### Jail Reason
 ```
