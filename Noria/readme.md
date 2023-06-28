@@ -163,4 +163,79 @@ noriad tx staking create-validator \
 -y
 ```
 
+### Edit
+```
+noriad tx staking edit-validator \
+--new-moniker ""  \
+--chain-id oasis-3 \
+--details "" \
+--identity "" \
+--from "" \
+--gas-prices 0.0025ucrd
+```
 
+### Unjail
+```
+noriad tx slashing unjail --from wallet --chain-id oasis-3 --gas-prices 0.025ucrd --gas=auto -y
+```
+### Jail Reason
+```
+noriad query slashing signing-info $(noriad tendermint show-validator)
+```
+
+### Withdraw
+```
+noriad tx distribution withdraw-all-rewards --from wallet --chain-id oasis-3 --gas-adjustment=1.5 --gas-prices 0.0025ucrd --gas=auto -y
+```
+
+### Withdraw With Commission
+```
+noriad tx distribution withdraw-rewards $(noriad keys show wallet --bech val -a) --commission --from wallet --chain-id oasis-3 --gas-adjustment=1.5--gas-prices 0.0025ucrd --gas=auto -y
+```
+
+#### Delegate
+```
+noriad tx staking delegate <Val_address> 1000000unoria --from wallet --chain-id oasis-3 --gas-adjustment=1.5--gas-prices 0.0025ucrd --gas=auto -y
+```
+
+### Transfer
+```
+noriad tx bank send wallet <TO_WALLET_ADDRESS> 1000000unoria --from wallet --chain-id oasis-3
+```
+
+### Vote
+```
+noriad tx gov vote 1 yes --from wallet --chain-id oasis-3 --gas-adjustment=1.5 --gas-prices 0.025ucrd --gas=auto -y
+```
+
+### Check Own Peer
+```
+echo $(noriad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.noriad/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+
+### Check Validator Match
+```
+[[ $(noriad q staking validator $(noriad keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(noriad status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+### Validator Info
+```
+noriad status 2>&1 | jq .ValidatorInfo
+```
+### Stop
+```
+sudo systemctl stop noriad
+```
+### Restart
+```
+sudo systemctl restart noriad
+```
+#### Delete 
+```
+sudo systemctl stop noriad
+sudo systemctl disable noriad
+sudo rm /etc/systemd/system/noriad.service
+sudo systemctl daemon-reload
+rm -f $(which noriad)
+rm -rf $HOME/.noria
+rm -rf $HOME/noria
+```
