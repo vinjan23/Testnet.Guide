@@ -32,6 +32,13 @@ git fetch --all
 git checkout v0.5.2
 make install
 ```
+### Update
+```
+cd $HOME/archway
+git fetch --all
+git checkout v1.0.0
+make install
+```
 
 ### Init
 ```
