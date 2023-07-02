@@ -156,21 +156,18 @@ sudo journalctl -u elysd -f -o cat
 ```
 sudo systemctl stop elysd
 cp $HOME/.elys/data/priv_validator_state.json $HOME/.elys/priv_validator_state.json.backup
-elysd tendermint unsafe-reset-all --keep-addr-book --home $HOME/.elys
-STATE_SYNC_RPC=https://elys-testnet.rpc.kjnodes.com:443
-STATE_SYNC_PEER=d5519e378247dfb61dfe90652d1fe3e2b3005a5b@elys-testnet.rpc.kjnodes.com:15356
-LATEST_HEIGHT=$(curl -s $STATE_SYNC_RPC/block | jq -r .result.block.header.height)
-SYNC_BLOCK_HEIGHT=$(($LATEST_HEIGHT - 1000))
-SYNC_BLOCK_HASH=$(curl -s "$STATE_SYNC_RPC/block?height=$SYNC_BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i \
--e "s|^enable *=.*|enable = true|" \
--e "s|^rpc_servers *=.*|rpc_servers = \"$STATE_SYNC_RPC,$STATE_SYNC_RPC\"|" \
--e "s|^trust_height *=.*|trust_height = $SYNC_BLOCK_HEIGHT|" \
--e "s|^trust_hash *=.*|trust_hash = \"$SYNC_BLOCK_HASH\"|" \
--e "s|^persistent_peers *=.*|persistent_peers = \"$STATE_SYNC_PEER\"|" \
-$HOME/.elys/config/config.toml
+elysd tendermint unsafe-reset-all --home $HOME/.elys --keep-addr-book
+SNAP_RPC="https://elys-testnet-rpc.polkachu.com:443"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.elys/config/config.toml
 mv $HOME/.elys/priv_validator_state.json.backup $HOME/.elys/data/priv_validator_state.json
 sudo systemctl restart elysd && sudo journalctl -u elysd -f -o cat
+```
 
 ### Add Wallet
 ```
