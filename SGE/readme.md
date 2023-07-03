@@ -110,31 +110,16 @@ sged status 2>&1 | jq .SyncInfo
 ```
 sudo journalctl -u sged -f -o cat
 ```
-### Statesync
+### Snapshot
 ```
+sudo apt update
+sudo apt-get install snapd lz4 -y
 sudo systemctl stop sged
 sged tendermint unsafe-reset-all --home $HOME/.sge --keep-addr-book
 
-SNAP_RPC=sge.rpc.t.stavr.tech:1157
-peers="fc616f3e9dc79997e60bd915a9233b6cc81bcd0f@sge.peers.stavr.tech:1156"
-sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/.sge/config/config.toml
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 100)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+wget -O saage_1623827.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/saage/saage_1623827.tar.lz4 --inet4-only
+lz4 -c -d saage_1623827.tar.lz4  | tar -x -C $HOME/.sge
 
-echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
-
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
-s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.sge/config/config.toml
-
-sudo systemctl restart sged && journalctl -u sged -f -o cat
-```
-### Disable statesync
-```
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1false|" $HOME/.sge/config/config.toml
 sudo systemctl restart sged && journalctl -u sged -f -o cat
 ```
 
