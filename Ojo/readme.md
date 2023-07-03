@@ -114,6 +114,23 @@ ojod tendermint unsafe-reset-all --home /root/.ojo --keep-addr-book
 sed -i -e "s/^snapshot-interval *=.*/snapshot-interval = \"1500\"/" $HOME/.ojo/config/app.toml
 sudo systemctl restart ojod && journalctl -u ojod -f -o cat
 ```
+```
+sudo systemctl stop ojod
+ojod tendermint unsafe-reset-all --home $HOME/.ojo --keep-addr-book
+
+SNAP_RPC="https://ojo-testnet-rpc.polkachu.com:443"
+
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.ojo/config/config.toml
+sudo systemctl restart ojod && journalctl -u ojod -f -o cat
+```
+
 ### Sync
 ```
 ojod status 2>&1 | jq .SyncInfo
