@@ -100,6 +100,33 @@ sudo journalctl -u bonus-blockd -f -o cat
 ```
 bonus-blockd status 2>&1 | jq .SyncInfo
 ```
+### Statesync
+```
+sudo systemctl stop bonus-blockd
+cp $HOME/.bonusblock/data/priv_validator_state.json $HOME/.bonusblock/priv_validator_state.json.backup
+bonus-blockd tendermint unsafe-reset-all --home $HOME/.bonusblock
+
+STATE_SYNC_RPC=https://rpc.bonusblock-t.nodexcapital.com:443
+LATEST_HEIGHT=$(curl -s $STATE_SYNC_RPC/block | jq -r .result.block.header.height)
+SYNC_BLOCK_HEIGHT=$(($LATEST_HEIGHT - 2000))
+SYNC_BLOCK_HASH=$(curl -s "$STATE_SYNC_RPC/block?height=$SYNC_BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+sed -i \
+  -e "s|^enable *=.*|enable = true|" \
+  -e "s|^rpc_servers *=.*|rpc_servers = \"$STATE_SYNC_RPC,$STATE_SYNC_RPC\"|" \
+  -e "s|^trust_height *=.*|trust_height = $SYNC_BLOCK_HEIGHT|" \
+  -e "s|^trust_hash *=.*|trust_hash = \"$SYNC_BLOCK_HASH\"|" \
+  $HOME/.bonusblock/config/config.toml
+
+mv $HOME/.bonusblock/priv_validator_state.json.backup $HOME/.bonusblock/data/priv_validator_state.json
+sudo systemctl start bonus-blockd && sudo journalctl -u bonus-blockd -f --no-hostname -o cat
+```
+### Disable statesync
+```
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1false|" $HOME/.bonusblock/config/config.toml
+sudo systemctl restart bonus-blockd && journalctl -u bonus-blockd -f -o cat
+```
+
 ### Wallet
 ```
 bonus-blockd keys add wallet
