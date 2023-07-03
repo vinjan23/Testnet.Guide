@@ -116,7 +116,7 @@ sudo systemctl restart ojod && journalctl -u ojod -f -o cat
 ```
 ```
 sudo systemctl stop ojod
-ojod tendermint unsafe-reset-all --home $HOME/.ojo --keep-addr-book
+ojod unsafe-reset-all
 
 SNAP_RPC="https://ojo-testnet-rpc.polkachu.com:443"
 
