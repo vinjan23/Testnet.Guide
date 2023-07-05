@@ -36,7 +36,7 @@ althea config keyring-backend test
 
 ### Custom Port
 ```
-PORT=37
+PORT=31
 althea config node tcp://localhost:${PORT}657
 ```
 ```
