@@ -46,8 +46,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 
 #### Genesis
 ```
-wget https://raw.githubusercontent.com/althea-net/althea-L1-docs/main/testnet-4-genesis-collected.json
-cp genesis.json $HOME/.althea/config/genesis.json
+wget -O $HOME/.althea/config/genesis.json https://raw.githubusercontent.com/althea-net/althea-L1-docs/main/testnet-4-genesis-collected.json
 ```
 
 ### Seed Peers Gas
