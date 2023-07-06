@@ -41,7 +41,7 @@ cascadiad config node tcp://localhost:26657
 
 ### Custom Port (Optional)
 ```
-PORT=20
+PORT=41
 cascadiad config node tcp://localhost:${PORT}657
 ```
 ```
