@@ -131,7 +131,7 @@ althea q bank balances $(althea keys show wallet -a)
 ```
 
 althea tx staking create-validator \
---amount= 975000000000000000000aalthea\
+--amount=1000000000000000000000aalthea \
 --pubkey=$(althea tendermint show-validator) \
 --moniker="vinjan" \
 --details="🎉Proffesional Stake & Node Validator🎉" \
