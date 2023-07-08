@@ -134,6 +134,7 @@ althea tx staking create-validator \
 --amount=1000000000000000000000aalthea \
 --pubkey=$(althea tendermint show-validator) \
 --moniker="vinjan" \
+--identity="7C66E36EA2B71F68" \
 --details="🎉Proffesional Stake & Node Validator🎉" \
 --website "https://service.vinjan.xyz" \
 --chain-id=althea_417834-3 \
@@ -145,7 +146,17 @@ althea tx staking create-validator \
 --gas-adjustment=1.4 \
 --gas=auto 
 ```
-
+### Edit
+```
+althea tx staking edit-validator \
+--new-moniker="vinjan" \
+--identity="7C66E36EA2B71F68" \
+--chain-id=althea_417834-3 \
+--from=wallet \
+--gas-adjustment=1.4 \
+--gas=auto
+```
+ 
 ### Unjail
 ```
 althea tx slashing unjail --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
