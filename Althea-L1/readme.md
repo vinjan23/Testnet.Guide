@@ -19,18 +19,19 @@ go version
 
 ### Binary
 ```
-wget https://github.com/althea-net/althea-L1/releases/download/v0.5.4/althea-linux-amd64
+wget https://github.com/althea-net/althea-L1/releases/download/v0.5.5/althea-linux-amd64
 chmod +x althea-linux-amd64
-sudo mv althea-linux-amd64 /usr/sbin/althea
+sudo mv althea-linux-amd64 /usr/local/althea
 ```
+
 
 ### Init
 ```
 MONIKER=
 ```
 ```
-althea init $MONIKER --chain-id althea_417834-2
-althea config chain-id althea_417834-2
+althea init $MONIKER --chain-id althea_417834-3
+althea config chain-id althea_417834-3
 althea config keyring-backend test
 ```
 
@@ -52,7 +53,7 @@ wget -O $HOME/.althea/config/genesis.json https://raw.githubusercontent.com/alth
 ### Seed Peers Gas
 ```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0aalthea\"/;" ~/.althea/config/app.toml
-peers="72a7e729fbb2be68a39d50d2f9de18079da175c4@chainripper-2.althea.net:23296"
+peers="bc47f3e8f9134a812462e793d8767ef7334c0119@chainripper-2.althea.net:23296"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.althea/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.althea/config/config.toml
@@ -135,7 +136,7 @@ althea tx staking create-validator \
 --moniker="vinjan" \
 --details="🎉Proffesional Stake & Node Validator🎉" \
 --website "https://service.vinjan.xyz" \
---chain-id=althea_417834-2 \
+--chain-id=althea_417834-3 \
 --from=wallet \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
@@ -143,6 +144,43 @@ althea tx staking create-validator \
 --min-self-delegation="1" \
 --gas-adjustment=1.4 \
 --gas=auto 
+```
+
+### Unjail
+```
+althea tx slashing unjail --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+```
+### Delegate
+```
+althea tx staking delegate <TO_VALOPER_ADDRESS> 1000000ualthea --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+```
+### WD All
+```
+althea tx distribution withdraw-all-rewards --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+```
+### WD with Commission
+```
+althea tx distribution withdraw-rewards $(althea keys show wallet --bech val -a) --commission --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+```
+
+### Stop
+```
+sudo systemctl stop althea
+```
+### Restart
+```
+sudo systemctl restart althea
+```
+
+### Delete
+```
+sudo systemctl stop althea
+sudo systemctl disable althea
+sudo rm /etc/systemd/system/althea.service
+sudo systemctl daemon-reload
+rm -f $(which althea)
+rm -rf .althea
+rm -rf althea
 ```
 
 
