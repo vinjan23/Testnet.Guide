@@ -21,7 +21,7 @@ go version
 ```
 wget https://github.com/althea-net/althea-L1/releases/download/v0.5.5/althea-linux-amd64
 chmod +x althea-linux-amd64
-sudo mv althea-linux-amd64 /usr/local/althea
+sudo mv althea-linux-amd64 /usr/sbin/althea
 ```
 
 
