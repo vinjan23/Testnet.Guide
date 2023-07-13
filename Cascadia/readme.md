@@ -22,7 +22,7 @@ go version
 cd $HOME
 git clone https://github.com/CascadiaFoundation/cascadia.git
 cd cascadia
-git checkout v0.1.1
+git checkout v0.1.3
 make install
 ```
 ### Update
