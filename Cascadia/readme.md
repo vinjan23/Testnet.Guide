@@ -27,10 +27,10 @@ make install
 ```
 ### Update
 ```
-cd $HOME/cascadia
-git fetch --all
-git checkout v0.1.3
-make install
+cd $HOME
+curl -L https://github.com/CascadiaFoundation/cascadia/releases/download/v0.1.3/cascadiad-v0.1.3-linux-amd64 -o cascadiad
+chmod +x cascadiad
+sudo mv cascadiad $(which cascadiad)
 ```
 ```
 cascadiad version --long | grep -e commit -e version
