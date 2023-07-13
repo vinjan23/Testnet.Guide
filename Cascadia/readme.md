@@ -148,7 +148,8 @@ sed -i \
   $HOME/.cascadiad/config/config.toml
 
 mkdir -p $HOME/.cascadiad/data && mv $HOME/.cascadiad/priv_validator_state.json.backup $HOME/.cascadiad/data/priv_validator_state.json
-sudo systemctl start cascadiad && sudo journalctl -u cascadiad -fn 100 -o cat
+sudo systemctl restart cascadiad
+sudo journalctl -u cascadiad -f -o cat
 ```
 
 ### Sync
