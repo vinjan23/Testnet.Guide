@@ -25,6 +25,16 @@ cd cascadia
 git checkout v0.1.1
 make install
 ```
+### Update
+```
+cd $HOME/cascadia
+git fetch --all
+git checkout v0.1.3
+make install
+```
+```
+cascadiad version --long | grep -e commit -e version
+```
 
 ### Init
 ```
