@@ -41,7 +41,7 @@ ojod tx oracle delegate-feed-consent <ojo_wallet> <ojo_feeder> --from wallet --c
 
 ```
 export KEYRING="os"
-export LISTEN_PORT=48172
+export LISTEN_PORT=7172
 export RPC_PORT=48657
 export GRPC_PORT=48090
 export VALIDATOR_ADDRESS=$(ojod keys show wallet --bech val -a)
