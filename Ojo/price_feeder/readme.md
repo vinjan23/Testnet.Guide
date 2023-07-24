@@ -30,6 +30,9 @@ mv price-feeder.example.toml $HOME/.ojo-price-feeder/config.toml
 ```
 ojod keys add pricefeeder-wallet --keyring-backend os
 ```
+```
+export KEYRING_PASSWORD="PRICE_FEEDER_KEY_PASSWORD_GOES_HERE"
+```
 
 ```
 ojod tx bank send wallet $PRICEFEEDER_ADDRESS 1000000uojo --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
@@ -42,8 +45,8 @@ ojod tx oracle delegate-feed-consent <ojo_wallet> <ojo_feeder> --from wallet --c
 ```
 export KEYRING="os"
 export LISTEN_PORT=7172
-export RPC_PORT=48657
-export GRPC_PORT=48090
+export RPC_PORT=12657
+export GRPC_PORT=12090
 export VALIDATOR_ADDRESS=$(ojod keys show wallet --bech val -a)
 export MAIN_WALLET_ADDRESS=$(ojod keys show wallet -a)
 export PRICEFEEDER_ADDRESS=$(echo -e $KEYRING_PASSWORD | ojod keys show pricefeeder-wallet --keyring-backend os -a)
