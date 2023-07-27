@@ -130,7 +130,7 @@ sged q bank balances $(sged keys show wallet -a)
 ```
 sged tx staking create-validator \
 --moniker=vinjan \
---amount=1000000usge \
+--amount=1000000000usge \
 --from=wallet \
 --commission-max-change-rate="0.1" \
 --commission-max-rate="0.2" \
@@ -139,6 +139,7 @@ sged tx staking create-validator \
 --pubkey=$(sged tendermint show-validator) \
 --chain-id=sge-network-3 \
 --identity="7C66E36EA2B71F68" \
+--details=" 🎉 Stake & Node Operator 🎉" \
 --website="https://service.vinjan.xyz"
 --gas=auto \
 -y
