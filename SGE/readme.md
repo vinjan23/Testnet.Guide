@@ -124,7 +124,7 @@ sged keys add wallet --recover
 ```
 ### Balances
 ```
-sged query bank balances 
+sged q bank balances $(sged keys show wallet -a)
 ```
 ### Validator
 ```
@@ -134,7 +134,7 @@ sged tx staking create-validator \
 --from=wallet \
 --commission-max-change-rate="0.1" \
 --commission-max-rate="0.2" \
---commission-rate="0.05" \
+--commission-rate="0.1" \
 --min-self-delegation="1" \
 --pubkey=$(sged tendermint show-validator) \
 --chain-id=sge-network-3 \
