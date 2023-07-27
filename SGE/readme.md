@@ -54,7 +54,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0usge\"/" $HOME/.sg
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.sge/config/config.toml
 external_address=$(wget -qO- eth0.me) 
 sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.sge/config/config.toml
-peers="4980b478f91de9be0564a547779e5c6cb07eb995@3.239.15.80:26656,0e7042be1b77707aaf0597bb804da90d3a606c08@3.88.40.53:26656"
+peers="476a6214e6abbf038f1e489a3062d62e243150b3@147.135.105.3:17756,13408a5d533afc428a235aa7f58915302c3fccb6@185.246.86.199:26656,3819c7aebf9ec5f3694747ea3c061b91f555c590@148.251.177.108:17756"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sge/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sge/config/config.toml
@@ -111,15 +111,7 @@ sudo journalctl -u sged -f -o cat
 ```
 ### Snapshot
 ```
-sudo apt update
-sudo apt-get install snapd lz4 -y
-sudo systemctl stop sged
-sged tendermint unsafe-reset-all --home $HOME/.sge --keep-addr-book
 
-wget -O saage_1623827.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/saage/saage_1623827.tar.lz4 --inet4-only
-lz4 -c -d saage_1623827.tar.lz4  | tar -x -C $HOME/.sge
-
-sudo systemctl restart sged && journalctl -u sged -f -o cat
 ```
 
 ### Wallet
@@ -145,15 +137,15 @@ sged tx staking create-validator \
 --commission-rate="0.05" \
 --min-self-delegation="1" \
 --pubkey=$(sged tendermint show-validator) \
---chain-id=sge-network-2 \
+--chain-id=sge-network-3 \
 --identity="7C66E36EA2B71F68" \
---website="https://nodes.vinjan.xyz"
+--website="https://service.vinjan.xyz"
 --gas=auto \
 -y
 ```
 ### Unjail
 ```
-sged tx slashing unjail --broadcast-mode=block --from wallet --chain-id sge-network-2 --gas auto --gas-adjustment 1.4 --gas auto -y
+sged tx slashing unjail --broadcast-mode=block --from wallet --chain-id sge-network-3 --gas auto --gas-adjustment 1.4 --gas auto -y
 ```
 ### Reason Jail
 ```
@@ -161,15 +153,15 @@ sged query slashing signing-info $(sged tendermint show-validator)
 ```
 ### Staking
 ```
-sged tx staking delegate <TO_VALOPER_ADDRESS> 1000000usge --from wallet --chain-id sge-network-2 --gas-adjustment 1.4 --gas auto -y
+sged tx staking delegate <TO_VALOPER_ADDRESS> 1000000usge --from wallet --chain-id sge-network-3 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw
 ```
-sged tx distribution withdraw-all-rewards --from wallet --chain-id sge-network-2 --gas-adjustment 1.4 --gas auto -y
+sged tx distribution withdraw-all-rewards --from wallet --chain-id sge-network-3 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw with comission
 ```
-sged tx distribution withdraw-rewards $(sged keys show wallet --bech val -a) --commission --from wallet --chain-id sge-network-2 --gas-adjustment 1.4 --gas auto -y
+sged tx distribution withdraw-rewards $(sged keys show wallet --bech val -a) --commission --from wallet --chain-id sge-network-3 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Check Validator
 ```
