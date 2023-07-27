@@ -17,10 +17,9 @@ go version
 ### Binary
 ```
 cd $HOME
-rm -rf sge
 git clone https://github.com/sge-network/sge
 cd sge
-git checkout v0.0.5
+git checkout v1.0.1
 make install
 ```
 ### Init
@@ -28,8 +27,8 @@ make install
 MONIKER=
 ```
 ```
-sged init $MONIKER --chain-id sge-network-2
-sged config chain-id sge-network-2
+sged init $MONIKER --chain-id sge-network-3
+sged config chain-id sge-network-3
 sged config keyring-backend test
 ```
 ### Custom Port
