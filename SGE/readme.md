@@ -99,7 +99,8 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable sged
-sudo systemctl restart sged && sudo journalctl -u sged -f -o cat
+sudo systemctl restart sged
+sudo journalctl -u sged -f -o cat
 ```
 ### Sync
 ```
@@ -130,7 +131,7 @@ sged q bank balances $(sged keys show wallet -a)
 ```
 sged tx staking create-validator \
 --moniker=vinjan \
---amount=1000000000usge \
+--amount=100000000usge \
 --from=wallet \
 --commission-max-change-rate="0.1" \
 --commission-max-rate="0.2" \
