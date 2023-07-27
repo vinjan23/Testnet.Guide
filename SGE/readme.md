@@ -142,7 +142,6 @@ sged tx staking create-validator \
 --identity="7C66E36EA2B71F68" \
 --details=" 🎉 Stake & Node Operator 🎉" \
 --website="https://service.vinjan.xyz"
---gas=auto \
 -y
 ```
 ### Unjail
