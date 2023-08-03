@@ -178,17 +178,17 @@ blockxd query bank balances $WALLET_ADDRESS
 ```
 blockxd tx staking create-validator \
   --amount  1000000000000000000abcx \
-  --from <walletName> \
+  --from wallet \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
   --commission-rate "0.1" \
   --min-self-delegation "1" \
   --pubkey  $(blockxd tendermint show-validator) \
-  --moniker ${MONIKER} \
-  --chain-id blockx_12345-2 \
+  --moniker vinjan \
+  --chain-id blockx_50-1 \
   --identity="7C66E36EA2B71F68" \
-  --details="satsetsatset" \
-  --website="" \
+  --details="🎉 Stake & Node Operator 🎉" \
+  --website="https://service.vinjan.xyz/" \
   --gas=auto \
   -y
   ```
@@ -200,31 +200,31 @@ blockxd tx staking edit-validator \
  --identity=7C66E36EA2B71F68 \
  --website= \
  --details=satsetsatseterror \
- --chain-id=blockx_12345-2 \
+ --chain-id=blockx_50-1 \
  --from=<wallet> \
  --gas=auto \
  -y
  ```
 ### Unjail
 ```
-blockxd tx slashing unjail --from vj --chain-id blockx_12345-2 --gas auto -y
+blockxd tx slashing unjail --from vj --chain-id blockx_50-1 --gas auto -y
 ```
 ### Withdraw
 ```
-blockxd tx distribution withdraw-all-rewards --from <wallet> --chain-id blockx_12345-2 --gas auto -y
+blockxd tx distribution withdraw-all-rewards --from <wallet> --chain-id blockx_50-1 --gas auto -y
 ```
 
 ### Withdraw with commission
 ```
-blockxd tx distribution withdraw-rewards <validaator_addr> --commission --from vj --chain-id blockx_12345-2 --gas auto -y
+blockxd tx distribution withdraw-rewards <validaator_addr> --commission --from vj --chain-id blockx_50-1 --gas auto -y
 ```
 ### Delegate
 ```
-blockxd tx staking delegate <validator_addr> 1000000000000000000abcx --from wallet --chain-id blockx_12345-2 --gas auto -y
+blockxd tx staking delegate <validator_addr> 1000000000000000000abcx --from wallet --chain-id blockx_50-1 --gas auto -y
 ```
 ### Transfer
 ```
-blockxd tx bank send wallet <TO_WALLET_ADDRESS> 1000000000000000000abcx --from wallet --chain-id blockx_12345-2 --gas auto -y
+blockxd tx bank send wallet <TO_WALLET_ADDRESS> 1000000000000000000abcx --from wallet --chain-id blockx_50-1 --gas auto -y
 ```
 
 ### Check Match Validator
