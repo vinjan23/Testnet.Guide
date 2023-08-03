@@ -1,7 +1,3 @@
-### Auto Install
-```
-wget -O auto.sh https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/auto.sh && chmod +x auto.sh && ./auto.sh
-```
 
 ### Update Package
 ```
@@ -28,6 +24,12 @@ curl -LO https://github.com/defi-ventures/blockx-node-public-compiled/releases/d
 chmod +x blockxd
 sudo mv ./blockxd /usr/local/bin
 ```
+### Update Atlantis
+```
+curl -LO https://github.com/defi-ventures/blockx-node-public-compiled/releases/download/v10.0.0/blockxd
+chmod +x blockxd
+sudo mv ./blockxd /usr/local/bin
+```
 
 ### Setup
 ```
@@ -40,7 +42,11 @@ blockxd init $MONIKER --chain-id blockx_12345-2
 blockxd config chain-id blockx_12345-2
 blockxd config keyring-backend test
 ```
-
+```
+blockxd init $MONIKER --chain-id blockx_50-1
+blockxd config chain-id blockx_50-1
+blockxd config keyring-backend test
+```
 ```
 PORT=19
 blockxd config node tcp://localhost:${PORT}657
@@ -56,6 +62,9 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 wget -O $HOME/.blockxd/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/genesis.json"
 ```
+```
+wget -O $HOME/.blockxd/config/genesis.json "https://raw.githubusercontent.com/defi-ventures/blockx-node-public-compiled/Atlantis-Testnet/genesis.json"
+```
 ### Addrbook
 ```
 wget -O $HOME/.blockxd/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Blockxd/addrbook.json"
@@ -64,6 +73,12 @@ wget -O $HOME/.blockxd/config/addrbook.json "https://raw.githubusercontent.com/v
 ### Peer & Gas
 ```
 peers="4a7401f7d6daa39d331196d8cc179a4dcb11b5f9@143.198.110.221:26656,49a5a62543f5fec60db42b00d9ebe192c3185e15@143.198.97.96:26656,dccf886659c4afcb0cd4895ccd9f2804c7e7e1cd@143.198.101.61:26656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.blockxd/config/config.toml
+sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.blockxd/config/config.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0abcx\"|" $HOME/.blockxd/config/app.toml
+```
+```
+peers="3bdc1c076399ee1090b1b7efa0474ce1a1cb191a@146.190.153.165:26656,49a5a62543f5fec60db42b00d9ebe192c3185e15@146.190.157.123:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.blockxd/config/config.toml
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.blockxd/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0abcx\"|" $HOME/.blockxd/config/app.toml
