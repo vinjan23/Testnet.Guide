@@ -35,7 +35,12 @@ sudo mv cascadiad $(which cascadiad)
 ```
 cascadiad version --long | grep -e commit -e version
 ```
-
+```
+cd $HOME
+wget https://github.com/CascadiaFoundation/cascadia/releases/download/v0.1.4/cascadiad
+chmod +x cascadiad
+mv cascadiad $(which cascadiad)
+```
 ### Init
 ```
 MONIKER=
