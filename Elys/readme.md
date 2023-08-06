@@ -29,47 +29,7 @@ cp $HOME/elys/build/* $HOME/go/bin/
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.3.1
-make build
-cp $HOME/elys/build/* $HOME/go/bin/
-```
-### Update
-```
-cd $HOME
-cd elys
-git tag -d v0.4.0
-git fetch
-git checkout v0.4.0
-make build
-cp $HOME/elys/build/* $HOME/go/bin/
-```
-### Update v0.5.2
-```
-cd $HOME/elys
-git tag -d v0.5.2
-git fetch
-git checkout v0.5.2
-make install
-```
-### Update v0.5.4
-```
-cd $HOME/elys
-git fetch --all
-git checkout v0.5.4
-make install
-```
-### Update
-```
-cd $HOME/elys
-git fetch --all
-git checkout v0.7.0
-make install
-```
-### Update
-```
-cd $HOME/elys
-git fetch --all
-git checkout v0.8.0
+git checkout v0.9.0
 make install
 ```
 ### Moniker
