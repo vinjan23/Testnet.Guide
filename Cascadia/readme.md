@@ -35,12 +35,7 @@ make install
 ```
 cascadiad version --long | grep -e commit -e version
 ```
-```
-cd $HOME
-wget https://github.com/CascadiaFoundation/cascadia/releases/download/v0.1.4/cascadiad
-chmod +x cascadiad
-mv cascadiad $(which cascadiad)
-```
+
 ### Init
 ```
 MONIKER=
@@ -196,7 +191,7 @@ cascadiad tx staking edit-validator \
 
 ### Unjail
 ```
-cascadiad tx slashing unjail --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+cascadiad tx slashing unjail --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Jail Reason
