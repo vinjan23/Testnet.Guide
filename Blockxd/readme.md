@@ -151,7 +151,7 @@ blockxd keys list
 
 ### Check Balance
 ```
-blockxd query bank balances $WALLET_ADDRESS
+blockxd q bank balances $(blockxd keys show wallet -a)
 ```
 
 ### Create Validator
