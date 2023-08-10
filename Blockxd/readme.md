@@ -78,7 +78,7 @@ sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.blockxd/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0abcx\"|" $HOME/.blockxd/config/app.toml
 ```
 ```
-peers="3bdc1c076399ee1090b1b7efa0474ce1a1cb191a@146.190.153.165:26656,49a5a62543f5fec60db42b00d9ebe192c3185e15@146.190.157.123:26656"
+peers="3bdc1c076399ee1090b1b7efa0474ce1a1cb191a@146.190.153.165:26656,49a5a62543f5fec60db42b00d9ebe192c3185e15@146.190.157.123:26656,97d6e80a47707e98ab8ba02b0a59d490dab8eeb2@152.228.208.164:26656,fa3cc9935503c3e8179b1eef1c1fde20e3354ca3@51.159.172.34:26656,a9775b0118c794bc5a6359b68260ecec36cdbfa4@143.198.69.165:14356,b97cb67fd594a3ba458c82d12475f72f556ab804@3.145.104.95:26656,85270df0f25f8a3c56884a5f7bfe0a02b49d13d7@193.34.213.6:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.blockxd/config/config.toml
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.blockxd/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0abcx\"|" $HOME/.blockxd/config/app.toml
@@ -210,6 +210,10 @@ blockxd tx bank send wallet <TO_WALLET_ADDRESS> 1000000000000000000abcx --from w
 ### Check Match Validator
 ```
 [[ $(blockxd q staking validator $(blockxd keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(blockxd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+### Connected Peer
+```
+curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 ### Restart Node
 ```
