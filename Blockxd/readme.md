@@ -33,7 +33,7 @@ sudo mv ./blockxd /usr/local/bin
 
 ### Setup
 ```
-MONIKER=Your_NODENAME 
+MONIKER=
 ```
 
 ### Config
