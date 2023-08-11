@@ -167,7 +167,7 @@ blockxd tx staking edit-validator \
  ```
 ### Unjail
 ```
-blockxd tx slashing unjail --from wallet --chain-id blockx_50-1 --gas auto -y
+blockxd tx slashing unjail --from wallet --chain-id blockx_50-1 --fees 1000abcx
 ```
 ```
 blockxd query slashing signing-info $(blockxd tendermint show-validator)
