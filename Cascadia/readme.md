@@ -172,19 +172,20 @@ cascadiad tx staking create-validator \
 --website="https://nodes.vinjan.xyz" \
 --gas-adjustment 1.4 \
 --gas-prices 7aCC \
---gas auto \
+--gas 200000 \
 -y
 ```
 
 ### Edit
 ```
 cascadiad tx staking edit-validator \
---new-moniker "YOUR_MONIKER_NAME" \
+--new-moniker "vinjan" \
+--identity="7C66E36EA2B71F68" \
 --chain-id cascadia_6102-1 \
---commission-rate 0.05 \
+--commission-rate 0.07 \
 --from wallet \
 --gas-adjustment 1.4 \
---gas auto \
+--gas 200000 \
 --gas-prices 7aCC \
 -y
 ```
@@ -201,22 +202,22 @@ cascadiad query slashing signing-info $(cascadiad tendermint show-validator)
 
 ### Delegate
 ```
-cascadiad tx staking delegate <TO_VALOPER_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+cascadiad tx staking delegate <TO_VALOPER_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Withdraw All
 ```
-cascadiad tx distribution withdraw-all-rewards --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+cascadiad tx distribution withdraw-all-rewards --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Withdraw commision
 ```
-cascadiad tx distribution withdraw-rewards $(cascadiad keys show wallet --bech val -a) --commission --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+cascadiad tx distribution withdraw-rewards $(cascadiad keys show wallet --bech val -a) --commission --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Transfer
 ```
-cascadiad tx bank send wallet <TO_WALLET_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas auto --gas-prices 7aCC -y
+cascadiad tx bank send wallet <TO_WALLET_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Val Info
