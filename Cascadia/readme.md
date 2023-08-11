@@ -145,14 +145,14 @@ cascadiad keys add wallet
 cascadiad keys add wallet --recover
 ```
 
-### Concert
+### Convert
 ```
 cascadiad address-converter $(cascadiad keys show wallet -a)
 ```
 
 ### Check Balances
 ```
-cascadiad query bank balances 
+cascadiad q bank balances $(cascadiad keys show wallet -a)
 ```
 
 ### Validator
