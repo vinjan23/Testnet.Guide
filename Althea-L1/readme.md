@@ -163,15 +163,15 @@ althea tx slashing unjail --from wallet --chain-id althea_417834-3 --gas-prices 
 ```
 ### Delegate
 ```
-althea tx staking delegate <TO_VALOPER_ADDRESS> 1000000ualthea --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+althea tx staking delegate <TO_VALOPER_ADDRESS> 1000000ualthea --from wallet --chain-id althea_417834-3  --gas-adjustment 1.4 --gas auto -y
 ```
 ### WD All
 ```
-althea tx distribution withdraw-all-rewards --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+althea tx distribution withdraw-all-rewards --from wallet --chain-id althea_417834-3  --gas-adjustment 1.4 --gas auto -y
 ```
 ### WD with Commission
 ```
-althea tx distribution withdraw-rewards $(althea keys show wallet --bech val -a) --commission --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+althea tx distribution withdraw-rewards $(althea keys show wallet --bech val -a) --commission --from wallet --chain-id althea_417834-3  --gas-adjustment 1.4 --gas auto -y
 ```
 
 ### Stop
