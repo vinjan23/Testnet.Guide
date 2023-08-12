@@ -179,7 +179,7 @@ blockxd tx distribution withdraw-all-rewards --from wallet --chain-id blockx_50-
 
 ### Withdraw with commission
 ```
-blockxd tx distribution withdraw-rewards $(blockxd keys show wallet --bech val -a) --commission --from vj --chain-id blockx_50-1 --gas auto -y
+blockxd tx distribution withdraw-rewards $(blockxd keys show wallet --bech val -a) --commission --from wallet --chain-id blockx_50-1 --gas auto -y
 ```
 ### Delegate
 ```
