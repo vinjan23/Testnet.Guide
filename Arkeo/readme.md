@@ -45,7 +45,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 ### Genesis
 ```
-curl -s http://seed.arkeo.network:26657/genesis | jq '.result.genesis' > ~/.arkeo/config/genesis.json
+curl -s http://seed.arkeo.network:26657/genesis | jq '.result.genesis' > $HOME/.arkeo/config/genesis.json
 ```
 
 ### Peer & Seed
@@ -69,8 +69,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 ```
 ### Indexer Off
 ```
-indexer="null" && \
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.arkeo/config/config.toml
+sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.arkeo/config/config.toml
 ```
 ### Service
 ```
