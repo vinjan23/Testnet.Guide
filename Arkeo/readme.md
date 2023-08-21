@@ -20,11 +20,17 @@ go version
 ### Binary
 ```
 cd $HOME
-git clone https://github.com/arkeonetwork/arkeo
+git clone https://github.com/arkeonetwork/arkeo.git
 cd arkeo
-git checkout ab05b124336ace257baa2cac07f7d1bfeed9ac02
+git checkout 68c59e9
 make install
 ```
+```
+curl -LO https://github.com/arkeonetwork/arkeo/pkgs/container/arkeo/download/1-68c59e9/arkeod
+chmod +x arkeod
+sudo mv ./arkeo /usr/local/bin
+```
+
 ### Init
 ```
 MONIKER=
