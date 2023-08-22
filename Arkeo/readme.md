@@ -22,11 +22,11 @@ go version
 cd $HOME
 git clone https://github.com/arkeonetwork/arkeo.git
 cd arkeo
-git checkout 68c59e9
+git checkout testnet
 make install
 ```
 ```
-curl -LO https://github.com/arkeonetwork/arkeo/pkgs/container/arkeo/download/1-68c59e9/arkeod
+curl -LO https://github.com/arkeonetwork/arkeo/pkgs/container/arkeo/download/1-68c59e9057e306dd99cdf55ebf4e6b1876835dc8/arkeod
 chmod +x arkeod
 sudo mv ./arkeo /usr/local/bin
 ```
