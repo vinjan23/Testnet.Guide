@@ -53,6 +53,10 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 curl -s http://seed.arkeo.network:26657/genesis | jq '.result.genesis' > $HOME/.arkeo/config/genesis.json
 ```
+### Addrbook
+```
+wget -O $HOME/.arkeo/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Arkeo/addrbook.json
+```
 
 ### Peer & Seed
 ```
