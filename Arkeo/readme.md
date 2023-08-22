@@ -60,7 +60,7 @@ wget -O $HOME/.arkeo/config/addrbook.json https://raw.githubusercontent.com/vinj
 
 ### Peer & Seed
 ```
-PEERS="ed6dc23dd027cb0a248abdcad11dd11f3f10fce6@seed.arkeo.network:26656,727929c73968e07bf7a29c91d64eb3fab7269ee8@192.99.160.197:27656"
+PEERS="d228db1ef905886f0c0511a5830eda4e94611038@:29656,ed6dc23dd027cb0a248abdcad11dd11f3f10fce6@seed.arkeo.network:26656,727929c73968e07bf7a29c91d64eb3fab7269ee8@192.99.160.197:27656"
 SEEDS=""
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.arkeo/config/config.toml
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.arkeo/config/config.toml
