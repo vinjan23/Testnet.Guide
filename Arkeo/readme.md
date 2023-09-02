@@ -167,15 +167,19 @@ arkeod tx slashing unjail --from wallet --chain-id arkeo --gas-adjustment 1.4 --
 ```
 ### Delegate
 ```
-arkeod tx staking delegate $(arkeod keys show wallet -a) 1000000uarkeo --from wallet --chain-id arkeo --gas-adjustment 1.4 --gas auto -y
+arkeod tx staking delegate <valoper_addr> 1000000uarkeo --from wallet --chain-id arkeo --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw with commission
 ```
-arkeod tx distribution withdraw-rewards $(arkeod keys show wallet --bech val -a) --commission --from wallet --chain-id arkeo --gas-adjustment 1.4 --gas auto -y
+arkeod tx distribution withdraw-rewards <valoper_addr> --commission --from wallet --chain-id arkeo --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw
 ```
 arkeod tx distribution withdraw-all-rewards --from wallet --chain-id arkeo --gas-adjustment 1.4 --gas auto -y
+```
+### Send
+```
+arkeod tx bank send wallet <TO_WALLET_ADDRESS> 1000000uarkeo --from wallet --chain-id arkeo
 ```
 ### Stop
 ```
