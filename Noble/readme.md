@@ -21,7 +21,7 @@ go version
 cd $HOME
 git clone https://github.com/strangelove-ventures/noble.git
 cd noble
-git checkout v4.0.0-alpha3
+git checkout v4.0.0-alpha1
 make install
 ```
 ###
@@ -45,9 +45,9 @@ wget -O $HOME/.noble/config/genesis.json https://raw.githubusercontent.com/stran
 ```
 ###
 ```
-peers="d1b691c7d30372b7f03af169169e8bee2159dc22@65.109.80.150:26656,a8f91feb11f3da91418b0d40bfb5ad9623107933@192.168.70.132:26656,f8a0d8942bcf02b94ed875ded9cb23944a53e48a@141.95.97.28:26656,f1d4be49b5afe0970ea56af680da313b859fcfa2@192.168.178.23:2665,63e95eee5e07ba055cdaa00d8ab4f0c8f9339f10@172.31.12.187:26656,20b4f9207cdc9d0310399f848f057621f7251846@192.168.0.23:26656,d82829d886635ffcfcef66adfaa725acb522e1c6@83.136.255.243:26656,5298a3f0e1073f60b366cd98888c9f6d0c115eee@154.38.166.81:26656"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.noble/config/config.toml
-seeds=""
+seeds="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:21556"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.noble/config/config.toml
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.noble/config/config.toml
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.noble/config/config.toml
