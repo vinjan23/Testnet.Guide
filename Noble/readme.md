@@ -90,5 +90,14 @@ sudo systemctl enable nobled
 sudo systemctl restart nobled
 sudo journalctl -u nobled -f -o cat
 ```
+###
+```
+nobled status 2>&1 | jq .SyncInfo
+```
+###
+```
+nobled keys add wallet
+```
+
 
 
