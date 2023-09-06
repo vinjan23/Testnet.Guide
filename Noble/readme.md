@@ -45,13 +45,13 @@ wget -O $HOME/.noble/config/genesis.json https://raw.githubusercontent.com/stran
 ```
 ###
 ```
-peers="1c6b3f4902bc0d3bd0420cceddc6f91c22c9273d@43.157.15.16:26656,d1b691c7d30372b7f03af169169e8bee2159dc22@65.109.80.150:2590,8742f1b903942ada87687935b39397f5d34713dd@35.172.88.233:26656,4bb57f4075a485dfa3f7de6c08d1273790ff1d23@158.160.57.247:26656,d82829d886635ffcfcef66adfaa725acb522e1c6@83.136.255.243:26656,63e95eee5e07ba055cdaa00d8ab4f0c8f9339f10@3.76.85.22:26686,efbc3c52ddb6433b0ad08882c77917886604dbf4@65.109.85.221:2100,83fc164c170281783a72849d0c4fd2ee6aae6139@125.131.208.66:11002,20b4f9207cdc9d0310399f848f057621f7251846@222.106.187.13:42800,7a4eb59a4eba959ed1203f9b002eaaffc2174009@211.219.19.69:33656,4ff30bf8e15d2c388306426547af652be12dc4c2@38.109.200.33:26656,bed2a40cfc5394a65aaecbdeaf3bd35488a6ef82@43.157.55.4:26656,941f75760d93e9e49d2f6956c8348f07a232fe82@82.165.187.193:36656,047173cca5b39aa7c9cd63a141cf6fcd7d37bc3b@89.58.32.218:27671,55a9ae9020b6fbfe6d70b10b2bce59e4b3a13c24@88.198.8.79:2100,d64e7950d85cc1c0e925da1c3e39bd9542203bd6@104.196.4.97:26656,5298a3f0e1073f60b366cd98888c9f6d0c115eee@5.161.115.33:26656,e8fb6d9e3f0aa198f4afdbf9e3e3550dac71e718@83.171.248.177:10456,ebf14757996985264835cd24308a3ed483b41b89@208.88.251.50:26656,35143f246b1a2b657de54d19db1924d4c8595d18@35.229.24.22:26656,a0e5cf12f980032ada5974434c30fd5de4174d8f@63.229.234.75:26656,9ca847e57153e85b4586c1dd2fbaa1b684e31340@65.108.226.183:21556"
+peers="d1b691c7d30372b7f03af169169e8bee2159dc22@65.109.80.150:26656,a8f91feb11f3da91418b0d40bfb5ad9623107933@192.168.70.132:26656,f8a0d8942bcf02b94ed875ded9cb23944a53e48a@141.95.97.28:26656,f1d4be49b5afe0970ea56af680da313b859fcfa2@192.168.178.23:2665,63e95eee5e07ba055cdaa00d8ab4f0c8f9339f10@172.31.12.187:26656,20b4f9207cdc9d0310399f848f057621f7251846@192.168.0.23:26656,d82829d886635ffcfcef66adfaa725acb522e1c6@83.136.255.243:26656,5298a3f0e1073f60b366cd98888c9f6d0c115eee@154.38.166.81:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.noble/config/config.toml
-seeds="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:21556"
+seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.noble/config/config.toml
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.noble/config/config.toml
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.noble/config/config.toml
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0uusdc\"/;" ~/.noble/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0ustake\"/;" ~/.noble/config/app.toml
 ```
 ###
 ```
@@ -99,5 +99,14 @@ nobled status 2>&1 | jq .SyncInfo
 nobled keys add wallet
 ```
 
-
+###
+```
+sudo systemctl stop nobled
+sudo systemctl disable nobled
+sudo rm /etc/systemd/system/nobled.service
+sudo systemctl daemon-reload
+rm -f $(which nobled)
+rm -rf .noble
+rm -rf noble
+```
 
