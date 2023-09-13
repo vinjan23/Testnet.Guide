@@ -178,6 +178,11 @@ selfchaind tx distribution withdraw-rewards $(selfchaind keys show wallet --bech
 ```
 selfchaind tx staking delegate $(selfchaind keys show wallet --bech val -a) 1000000uself --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.5uself --gas auto -y
 ```
+### Node Id
+```
+selfchaind status 2>&1 | jq .NodeInfo
+```
+
 ### Restart
 ```
 sudo systemctl restart selfchaind
