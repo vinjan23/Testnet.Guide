@@ -48,6 +48,9 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 wget -O $HOME/.selfchain/config/genesis.json https://raw.githubusercontent.com/hotcrosscom/selfchain-genesis/main/networks/devnet/genesis.json
 ```
+```
+wget -O $HOME/.selfchain/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Selfchain/addrbook.json
+```
 
 ### Configure Seeds and Peers
 
