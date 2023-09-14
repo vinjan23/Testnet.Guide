@@ -132,16 +132,17 @@ selfchaind tx staking create-validator \
 --moniker=vinjan \
 --identity=7C66E36EA2B71F68 \
 --website=https://service.vinjan.xyz \
---details=🎉Proffesional Stake & Node Validator🎉 \
+--details=Handsome Guys \
 --chain-id=self-dev-1 \
 --commission-rate="0.1" \
 --commission-max-rate="0.15" \
 --commission-max-change-rate="0.05" \
 --min-self-delegation=1000000000 \
---from=wallet \
+--broadcast-mode block \
 --gas-adjustment=1.2 \
 --gas-prices="0.5uself" \
---gas=auto
+--gas=auto \
+--from=<address>
 ```
 
 #### Edit Validator
@@ -150,10 +151,10 @@ selfchaind tx staking edit-validator \
 --new-moniker="" \
 --identity="" \
 --chain-id=self-dev-1 \
---from=wallet \
 --gas-adjustment=1.2 \
 --gas-prices="0.5uself" \
---gas=auto
+--gas=auto \
+--from=wallet
 ```
 ### Unjail Validator
 ```
