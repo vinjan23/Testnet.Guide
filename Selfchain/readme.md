@@ -171,16 +171,16 @@ selfchaind query slashing signing-info $(selfchaind tendermint show-validator)
 
 ### Withdraw Rewards
 ```
-selfchaind tx distribution withdraw-all-rewards --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.5uself --gas auto -y
+selfchaind tx distribution withdraw-all-rewards --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.05uself --gas auto -y
 ```
 #### Withdraw Rewards with Comission
 ```
-selfchaind tx distribution withdraw-rewards $(selfchaind keys show wallet --bech val -a) --commission --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.5uself --gas auto -y
+selfchaind tx distribution withdraw-rewards $(selfchaind keys show wallet --bech val -a) --commission --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.05uself --gas auto -y
 ```
 
 ### Delegate Token to your own validator
 ```
-selfchaind tx staking delegate $(selfchaind keys show wallet --bech val -a) 1000000uself --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.5uself --gas auto -y
+selfchaind tx staking delegate $(selfchaind keys show wallet --bech val -a) 1000000uself --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.05uself --gas auto -y
 ```
 ### Node Id
 ```
