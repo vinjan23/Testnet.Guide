@@ -1,0 +1,116 @@
+#### Package
+```
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y build-essential curl wget jq make gcc chrony git
+```
+### GO
+```
+ver="1.20.4"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
+go version
+```
+### Binary
+
+
+### Init
+```
+MONIKER=
+```
+```
+entangled init $MONIKER --chain-id entangle_33133-1
+entangled config chain-id entangle_33133-1
+entangled config keyring-backend test
+```
+### Port
+```
+PORT=30
+entangled config node tcp://localhost:${PORT}657
+```
+```
+sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.entangled/config/config.toml
+sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.entangled/config/app.toml
+```
+### Genesis
+
+
+### Seed & Peers & Gass
+```
+SEEDS="76492a1356c14304bdd7ec946a6df0b57ba51fe2@3.92.0.61:26656"
+sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.entangled/config/config.toml
+peers=""
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.entangled/config/config.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.00aNGL\"|" $HOME/.entangled/config/app.toml
+```
+### Prunning
+```
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="0"
+pruning_interval="10"
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.entangled/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.entangled/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.entangled/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.entangled/config/app.toml
+```
+### Indexer Off
+```
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.entangled/config/config.toml
+```
+
+### Service
+```
+sudo tee /etc/systemd/system/entangled.service > /dev/null <<EOF
+[Unit]
+Description=entangle-blockchain
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which entangled) start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+### Start
+```
+sudo systemctl daemon-reload
+sudo systemctl enable entangled
+sudo systemctl restart entangled
+sudo journalctl -u entangled -f -o cat
+```
+
+### Sync
+```
+entangled status 2>&1 | jq .SyncInfo
+```
+### Log
+```
+sudo journalctl -u entangled -f -o cat
+```
+### Wallet
+```
+entangled keys add wallet
+```
+### Recover
+```
+entangled keys add wallet --recover
+```
+
+### Balances
+```
+entangled q bank balances $(entangled keys show wallet -a)
+```
+
+
+
