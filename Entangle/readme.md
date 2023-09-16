@@ -17,7 +17,11 @@ source ~/.bash_profile
 go version
 ```
 ### Binary
-
+```
+git clone https://github.com/Entangle-Protocol/entangle-blockchain
+cd entangle-blockchain
+make install
+```
 
 ### Init
 ```
@@ -38,7 +42,9 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.entangled/config/app.toml
 ```
 ### Genesis
-
+```
+wget -O $HOME/.entangled/config/genesis.json https://raw.githubusercontent.com/Entangle-Protocol/entangle-blockchain/main/config/genesis.json
+```
 
 ### Seed & Peers & Gass
 ```
@@ -115,6 +121,18 @@ entangled q bank balances $(entangled keys show wallet -a)
 ```
 entangled tx slashing unjail --from wallet --chain-id entangle_33133-1 --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
 ```
+### Snapshot
+```
+sudo systemctl stop entangled
+cp $HOME/.entangled/data/priv_validator_state.json $HOME/.entangled/priv_validator_state.json.backup
+rm -rf $HOME/.entangled/data
+entangled tendermint unsafe-reset-all --home ~/.entangled/ --keep-addr-book
+curl -L https://snapshot.1.vinjan.xyz/2/entangle-snapshot-20230916.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
+sudo systemctl restart entangled
+sudo journalctl -u entangled -f -o cat
+```
 
-
+```
+entangled tx staking delegate $(entangled keys show wallet --bech val -a) 10000000000000000000aNGL --from wallet --chain-id entangle_33133-1  --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
+```
 
