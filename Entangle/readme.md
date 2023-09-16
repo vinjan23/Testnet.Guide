@@ -111,6 +111,10 @@ entangled keys add wallet --recover
 ```
 entangled q bank balances $(entangled keys show wallet -a)
 ```
+### Unjail
+```
+entangled tx slashing unjail --from wallet --chain-id entangle_33133-1 --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
+```
 
 
 
