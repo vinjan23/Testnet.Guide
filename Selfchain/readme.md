@@ -120,8 +120,17 @@ selfchaind keys add wallet
 ```
 ### Recover
 ```
-selfchaind keys add wallet
+selfchaind keys add wallet --recover
 ```
+### List Wallet
+```
+selfchaind keys list
+```
+### Delete Wallet
+```
+selfchaind keys delete wallet
+```
+
 ### Balances
 ```
 selfchaind q bank balances $(selfchaind keys show wallet -a)
