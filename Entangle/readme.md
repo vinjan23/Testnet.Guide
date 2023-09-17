@@ -99,15 +99,13 @@ sudo systemctl enable entangled
 sudo systemctl restart entangled
 sudo journalctl -u entangled -f -o cat
 ```
-### Snapshot
+### Snapshot ( Block 5028178 )
 ```
 sudo systemctl stop entangled
-cp $HOME/.entangled/data/priv_validator_state.json $HOME/.entangled/priv_validator_state.json.backup
-rm -rf $HOME/.entangled/data
-entangled tendermint unsafe-reset-all --home ~/.entangled/ --keep-addr-book
-curl -L https://snapshot.1.vinjan.xyz/2/entangle-snapshot-20230916.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
+entangled tendermint unsafe-reset-all --home $HOME/.entangled --keep-addr-book
+curl -L https://snapshot.3.vinjan.xyz/entangle/entangle-snapshot-20230917.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
 sudo systemctl restart entangled
-sudo journalctl -u entangled -f -o cat
+journalctl -fu entangled -o cat
 ```
 
 ### Sync
