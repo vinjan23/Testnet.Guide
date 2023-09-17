@@ -95,6 +95,16 @@ sudo systemctl enable entangled
 sudo systemctl restart entangled
 sudo journalctl -u entangled -f -o cat
 ```
+### Snapshot
+```
+sudo systemctl stop entangled
+cp $HOME/.entangled/data/priv_validator_state.json $HOME/.entangled/priv_validator_state.json.backup
+rm -rf $HOME/.entangled/data
+entangled tendermint unsafe-reset-all --home ~/.entangled/ --keep-addr-book
+curl -L https://snapshot.1.vinjan.xyz/2/entangle-snapshot-20230916.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
+sudo systemctl restart entangled
+sudo journalctl -u entangled -f -o cat
+```
 
 ### Sync
 ```
@@ -117,22 +127,84 @@ entangled keys add wallet --recover
 ```
 entangled q bank balances $(entangled keys show wallet -a)
 ```
+
+### Create Validator
+```
+entangled tx staking create-validator \
+--amount="9990000000000000000aNGL" \
+--pubkey=$(entangled tendermint show-validator) \
+--moniker="" \
+--identity="" \
+--details="" \
+--website="" \
+--chain-id=entangle_33133-1 \
+--commission-rate="0.10" \
+--commission-max-rate="0.20" \
+--commission-max-change-rate="0.01" \
+--min-self-delegation="1" \
+--from=wallet \
+--gas-adjustment 1.4 \
+--gas=500000 \
+--gas-prices=10aNGL
+```
+### Edit
+```
+entangled tx staking edit-validator \
+--new-moniker="" \
+--identity="" \
+--details="" \
+--website="" \
+--chain-id=entangle_33133-1 \
+--from=wallet \
+--gas-adjustment 1.4 \
+--gas=500000 \
+--gas-prices=10aNGL
+```
+
 ### Unjail
 ```
 entangled tx slashing unjail --from wallet --chain-id entangle_33133-1 --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
 ```
-### Snapshot
-```
-sudo systemctl stop entangled
-cp $HOME/.entangled/data/priv_validator_state.json $HOME/.entangled/priv_validator_state.json.backup
-rm -rf $HOME/.entangled/data
-entangled tendermint unsafe-reset-all --home ~/.entangled/ --keep-addr-book
-curl -L https://snapshot.1.vinjan.xyz/2/entangle-snapshot-20230916.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
-sudo systemctl restart entangled
-sudo journalctl -u entangled -f -o cat
-```
 
+### Delegate
 ```
 entangled tx staking delegate $(entangled keys show wallet --bech val -a) 10000000000000000000aNGL --from wallet --chain-id entangle_33133-1  --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
 ```
+### Withdraw
+```
+entangled tx distribution withdraw-all-rewards --from wallet --chain-id entangle_33133-1  --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
+```
+### Withdraw with Commission
+```
+entangled tx distribution withdraw-rewards $(entangled keys show wallet --bech val -a) --commission --from wallet --chain-id entangle_33133-1  --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
+```
+
+### Node Info
+```
+entangled status 2>&1 | jq .NodeInfo
+```
+### Validator Info
+```
+entangled status 2>&1 | jq .ValidatorInfo
+```
+### Connected Peer
+```
+curl -sS http://localhost:<$PORT>657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+### Send Fund
+```
+entangled tx bank send wallet <TO_WALLET_ADDRESS> 10000000000000000000aNGL --from wallet --chain-id entangle_33133-1
+```
+
+### Delete Node
+```
+sudo systemctl stop entangled
+sudo systemctl disable entangled
+sudo rm /etc/systemd/system/entangled.service
+sudo systemctl daemon-reload
+rm -f $(which entangled)
+rm -rf .entangled
+rm -rf entangle-blockchain
+```
+
 
