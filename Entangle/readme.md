@@ -122,6 +122,10 @@ entangled keys add wallet
 ```
 entangled keys add wallet --recover
 ```
+### Export Wallet to EVM
+```
+entangled keys unsafe-export-eth-key wallet
+```
 
 ### Balances
 ```
