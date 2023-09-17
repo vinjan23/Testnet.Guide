@@ -54,7 +54,7 @@ wget -O $HOME/.entangled/config/addrbook.json https://raw.githubusercontent.com/
 ```
 SEEDS="76492a1356c14304bdd7ec946a6df0b57ba51fe2@3.92.0.61:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.entangled/config/config.toml
-peers="263b106f9755656ac18594cb951754187f3d51ba@65.109.85.170:42626,6f41e8e2764c9a00645eab3e41bf6da427cea52b@65.109.116.204:20756,b8c87a374c097ce3f100bea7418eac6569a07592@81.0.221.49:14656,d43e9ddae034b8f98334041f7971d95a308cd17d@95.216.7.136:29656,7afbc1c83b9a116223a4417bfc429ea1073be5ca@65.109.154.181:16656,6f72726d6d97a2ea27cf472bb4e30416e243d57b@65.109.65.163:20756,f2f8f5f823ed66418af09874580d2a12546a76fd@65.108.238.74:12256,3137cb72e3ff5f479600dcbd2f2c9e17a83f8740@65.109.82.17:12356"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.entangled/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.00aNGL\"|" $HOME/.entangled/config/app.toml
 ```
