@@ -99,11 +99,11 @@ sudo systemctl enable entangled
 sudo systemctl restart entangled
 sudo journalctl -u entangled -f -o cat
 ```
-### Snapshot ( Block 5075165 / 1,2 GB )
+### Snapshot ( Block 5191327 )
 ```
 sudo systemctl stop entangled
 entangled tendermint unsafe-reset-all --home $HOME/.entangled --keep-addr-book
-curl -L https://snapshot.vinjan.xyz/entangle/entangle-snapshot-20230918.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
+curl -L https://snapshot.vinjan.xyz/entangle/entangle-snapshot-20230920.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
 sudo systemctl restart entangled
 journalctl -fu entangled -o cat
 ```
