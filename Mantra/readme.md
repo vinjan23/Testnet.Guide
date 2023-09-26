@@ -62,6 +62,12 @@ sudo systemctl enable mantrachaind
 sudo systemctl restart mantrachaind
 sudo journalctl -u mantrachaind -f -o cat
 ```
+```
+mantrachaind status 2>&1 | jq .SyncInfo
+```
+```
+mantrachaind keys add wallet
+```
 
 
 
