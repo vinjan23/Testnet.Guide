@@ -116,12 +116,12 @@ mantrachaind q bank balances $(mantrachaind keys show wallet -a)
 ### Validator
 ```
 mantrachaind tx staking create-validator \
---amount=1000000uaum \
+--amount=10000000uaum \
 --pubkey=$(mantrachaind tendermint show-validator) \
 --moniker="<your-moniker>" \
---identity="7C66E36EA2B71F68" \
---details="Trusted Stake & Node Validator" \
---website "https://service.vinjan.xyz" \
+--identity="" \
+--details="" \
+--website "" \
 --chain-id="mantrachain-1" \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
