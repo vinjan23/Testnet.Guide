@@ -179,12 +179,6 @@ sudo systemctl daemon-reload
 rm -f $(which mantrachaind)
 rm -rf .mantrachain
 rm -rf mantrachaind
-
-
-
- 
-
-
-
+```
 
 
