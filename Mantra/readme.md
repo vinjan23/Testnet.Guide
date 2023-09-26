@@ -22,6 +22,9 @@ sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/releases/download/v1.3.
 ```
 ### Init
 ```
+MONIKER=
+```
+```
 mantrachaind init $MONIKER --chain-id mantrachain-1
 mantrachaind config keyring-backend test
 ```
