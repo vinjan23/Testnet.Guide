@@ -90,6 +90,14 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable mantrachaind
+```
+### Snapshot ( Block 178605 )
+```
+sudo apt install lz4 -y
+mantrachaind tendermint unsafe-reset-all --home $HOME/.mantrachain --keep-addr-book
+curl -L https://snapshot.vinjan.xyz/mantrachain/mantrachain-snapshot-20230926.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.mantrachain
+```
+```
 sudo systemctl restart mantrachaind
 sudo journalctl -u mantrachaind -f -o cat
 ```
