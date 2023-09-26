@@ -68,6 +68,30 @@ mantrachaind status 2>&1 | jq .SyncInfo
 ```
 mantrachaind keys add wallet
 ```
+### Balancea
+```
+mantrachaind q bank balances $(mantrachaind keys show wallet -a)
+```
+### Validator
+```
+mantrachaind tx staking create-validator \
+--amount=1000000uaum \
+--pubkey=$(mantrachaind tendermint show-validator) \
+--moniker="<your-moniker>" \
+--identity="7C66E36EA2B71F68" \
+--details="Trusted Stake & Node Validator" \
+--website "https://service.vinjan.xyz" \
+--chain-id="mantrachain-1" \
+--commission-rate="0.10" \
+--commission-max-rate="0.20" \
+--commission-max-change-rate="0.01" \
+--min-self-delegation="1000000" \
+--from=wallet \
+--gas=auto \
+-y
+```
+
+ 
 
 
 
