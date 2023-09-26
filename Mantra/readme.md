@@ -151,7 +151,7 @@ mantrachaind tx slashing unjail --from wallet --chain-id mantrachain-1 --gas-adj
 ```
 ### Reason
 ```
-
+mantrachaind query slashing signing-info $(mantrachaind tendermint show-validator)
 ```
 ### Delegate
 ```
