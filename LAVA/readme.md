@@ -22,25 +22,29 @@ cd $HOME
 git clone https://github.com/lavanet/lava.git
 cd lava
 git checkout v0.23.5
-make install
+make build-all
 ```
 
-### Setup Moniker
 ```
 MONIKER=
 ```
 
 ### Init Config
+
+```
+lavad init $MONIKER --chain-id lava-testnet-2
+lavad config chain-id lava-testnet-1
+lavad config keyring-backend test
+```
+### Custom Port
 ```
 PORT=42
-lavap config node tcp://localhost:${PORT}657
+lavad config node tcp://localhost:${PORT}657
 ```
 ```
-lavap init $MONIKER --chain-id lava-testnet-2
-lavap config chain-id lava-testnet-1
-lava config keyring-backend test
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.lava/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"localhost:9090\"%address = \"localhost:${PORT}090\"%; s%^address = \"localhost:9091\"%address = \"localhost:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.lava/config/app.toml
 ```
-
 ### Download Genesis
 ```
 wget https://raw.githubusercontent.com/lavanet/lava-config/main/testnet-2/genesis_json/genesis.json
@@ -53,8 +57,9 @@ wget https://raw.githubusercontent.com/lavanet/lava-config/main/testnet-2/genesi
 ### Seed & Peer
 ```
 SEEDS="3a445bfdbe2d0c8ee82461633aa3af31bc2b4dc0@prod-pnet-seed-node.lavanet.xyz:26656,e593c7a9ca61f5616119d6beb5bd8ef5dd28d62d@prod-pnet-seed-node2.lavanet.xyz:26656"
-PEERS="49b998f8c91005cbc1050380a9bd293be56ba759@95.217.41.58:26656,4b1dfa6c538de8d13a116bc68205636e42d6fbbd@146.190.82.119:26656,bd1e1f8df77e7b61200c490c9fabe6bbc4412d4e@91.223.3.144:26856,d3eb474a1f90d004e49638e384069c32d7dcc8a2@185.252.232.110:26656"
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.lava/config/config.toml
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.lava/config/config.toml
+PEERS=7902b049bae54b62ca6a70f5f4c60411cf13ae52@65.109.33.48:20656,f1bb78a30c9381bed392fda141a5c1f6fa4d25e6@144.76.114.49:36656,c5afdeddc6b8d2f005b86bc70592068ef1844239@34.147.95.235:26656,913656c2a2e5a8446070a6461b0a5a1786dee328@213.133.100.172:27262,1b913d5181bb489214f5bf2eb7ebdf6b2a9fa0a2@95.214.55.138:1656
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.lava/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ulava\"/" $HOME/.lava/config/app.toml
 sed -i 's/create_empty_blocks = .*/create_empty_blocks = true/g' ~/.lava/config/config.toml
 sed -i 's/create_empty_blocks_interval = ".*s"/create_empty_blocks_interval = "60s"/g' ~/.lava/config/config.toml
@@ -79,11 +84,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" ~
 ```
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.lava/config/config.toml
 ```
-### Custom Port
-```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.lava/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.lava/config/app.toml
-```
+
 
 ### Creste Service File
 ```
@@ -108,7 +109,8 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable lavad
-sudo systemctl restart lavad && sudo journalctl -u lavad -f -o cat
+sudo systemctl restart lavad
+sudo journalctl -u lavad -f -o cat
 ```
 
 
