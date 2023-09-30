@@ -1,17 +1,3 @@
-<p align="right">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/108977419/207516348-c160303a-57b0-4149-8118-b0d7785dfde8.jpg">
-</p>
-
-<p align="centre">
-  <img height="400" height="auto" src="https://user-images.githubusercontent.com/108977419/210974211-54997e98-c6c4-4f48-91e7-766efaba273e.jpg">
-</p>
-
-# LAVA TESTNET
-
-### ✅️ [Explorer](https://lava.explorers.guru/validators)
-
-### MANUAL GUIDE
-
 ### Update Tool
 ```
 sudo apt update && sudo apt upgrade -y
@@ -20,46 +6,49 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 
 ### Install GO
 ```
-ver="1.19.1"
+ver="1.20.6"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
+go version
 ```
 ### Build Binary
 ```
 cd $HOME
-rm -rf $HOME/lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout v0.5.2
+git checkout v0.23.5
 make install
 ```
 
 ### Setup Moniker
 ```
-MONIKER=Your_NODENAME 
+MONIKER=
 ```
 
 ### Init Config
 ```
-PORT=17
-lavad init $MONIKER --chain-id lava-testnet-1
-lavad config chain-id lava-testnet-1
-lavad config keyring-backend test
-lavad config node tcp://localhost:${PORT}657
+PORT=42
+lavap config node tcp://localhost:${PORT}657
+```
+```
+lavap init $MONIKER --chain-id lava-testnet-2
+lavap config chain-id lava-testnet-1
+lava config keyring-backend test
 ```
 
 ### Download Genesis
 ```
-curl https://raw.githubusercontent.com/K433QLtr6RA9ExEq/GHFkqmTzpdNLDd6T/main/testnet-1/genesis_json/genesis.json > ~/.lava/config/genesis.json
+wget https://raw.githubusercontent.com/lavanet/lava-config/main/testnet-2/genesis_json/genesis.json
 ```
+
 ### Download addrbook
 ```
-wget -O $HOME/.lava/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/LAVA/Manual/addrbook.json"
+
 ```
 ### Seed & Peer
 ```
