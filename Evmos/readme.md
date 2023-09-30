@@ -91,4 +91,14 @@ sudo journalctl -u evmosd -f -o cat
 ```
 evmosd status 2>&1 | jq .SyncInfo
 ```
+### Delete
+```
+sudo systemctl stop evmosd
+sudo systemctl disable evmosd
+sudo rm /etc/systemd/system/evmosd.service
+sudo systemctl daemon-reload
+rm -f $(which evmosd)
+rm -rf .evmosd
+rm -rf evmos
+```
 
