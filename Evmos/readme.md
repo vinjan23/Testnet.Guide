@@ -42,7 +42,7 @@ curl -Ls https://snapshots.kjnodes.com/evmos-testnet/genesis.json > $HOME/.evmos
 ```
 ### Seed
 ```
-sed -i -e "s|^seeds *=.*|seeds = \"3f472746f46493309650e5a033076689996c8881@evmos-testnet.rpc.kjnodes.com:16759,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:13456\"|" $HOME/.evmosd/config/config.toml
+sed -i -e "s|^seeds *=.*|seeds = \"ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:13456\"|" $HOME/.evmosd/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0atevmos\"|" $HOME/.evmosd/config/app.toml
 peers=
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.evmosd/config/config.toml
