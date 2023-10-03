@@ -29,7 +29,7 @@ cp $HOME/elys/build/* $HOME/go/bin/
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.9.0
+git checkout v0.12.0
 make install
 ```
 ### Moniker
