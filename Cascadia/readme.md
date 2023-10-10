@@ -22,15 +22,15 @@ go version
 cd $HOME
 git clone https://github.com/CascadiaFoundation/cascadia.git
 cd cascadia
-git checkout v0.1.3
+git checkout v0.1.6
 make install
 ```
 ### Update
 ```
-cd $HOME/cascadia
-git fetch --all
-git checkout v0.1.4
-make install
+cd $HOME
+wget -O cascadiad https://github.com/CascadiaFoundation/cascadia/releases/download/v0.1.6/cascadiad
+chmod +x $HOME/cascadiad
+sudo mv $HOME/cascadiad $(which cascadiad)
 ```
 ```
 cascadiad version --long | grep -e commit -e version
