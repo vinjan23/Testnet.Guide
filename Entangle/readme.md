@@ -189,6 +189,10 @@ entangled status 2>&1 | jq .NodeInfo
 ```
 entangled status 2>&1 | jq .ValidatorInfo
 ```
+### Own peer
+```
+echo $(entangled tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.entangled/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
 ### Connected Peer
 ```
 curl -sS http://localhost:<$PORT>657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
