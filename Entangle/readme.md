@@ -100,7 +100,7 @@ sudo systemctl enable entangled
 ```
 ### Snapshot ( Block 5320700 )
 ```
-curl -L https://snapshot.vinjan.xyz/entangle/entangle-snapshot-20230922.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
+curl -L https://snapshot.vinjan.xyz/entangle/entangle-snapshot-20231012.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.entangled
 sudo systemctl restart entangled
 journalctl -fu entangled -o cat
 ```
