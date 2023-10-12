@@ -33,10 +33,8 @@ entangled config chain-id entangle_33133-1
 entangled config keyring-backend test
 ```
 ### Port
-```
-PORT=30
-entangled config node tcp://localhost:${PORT}657
-```
+
+- PORT=30
 ```
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:30658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:30657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:30060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:30656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":30660\"%" $HOME/.entangled/config/config.toml
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:30317\"%; s%^address = \":8080\"%address = \":30080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:$30090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:30091\"%; s%^address = \"127.0.0.1:8545\"%address = \"127.0.0.1:30545\"%; s%^ws-address = \"127.0.0.1:8546\"%ws-address = \"127.0.0.1:30546\"%" $HOME/.entangled/config/app.toml
@@ -58,15 +56,7 @@ peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.entangled/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001aNGL\"|" $HOME/.entangled/config/app.toml
 ```
-```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0001aNGL\"/;" ~/.entangled/config/app.toml
-external_address=$(wget -qO- eth0.me) 
-sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.entangled/config/config.toml
-peers=""
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.entangled/config/config.toml
-seeds=""
-sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.entangled/config/config.toml
-```
+
 ### Prunning
 ```
 pruning="custom"
