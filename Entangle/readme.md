@@ -61,7 +61,7 @@ sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001aNGL\"|" $HOME
 
 ### Prunning
 ```
-pruning="custom"
+pruning="nothing"
 pruning_keep_recent="100"
 pruning_keep_every="0"
 pruning_interval="10"
