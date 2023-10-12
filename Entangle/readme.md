@@ -47,7 +47,7 @@ wget -O $HOME/.entangled/config/genesis.json https://raw.githubusercontent.com/E
 ```
 ### Addrbook
 ```
-wget -O $HOME/.entangled/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Entangle/addrbook.json
+curl -Ls https://ss-t.entangle.nodestake.top/addrbook.json > $HOME/.entangled/config/addrbook.json 
 ```
 
 ### Seed & Peers & Gass
