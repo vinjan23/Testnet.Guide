@@ -43,11 +43,11 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 ### Genesis
 ```
-wget -O $HOME/.entangled/config/genesis.json https://raw.githubusercontent.com/Entangle-Protocol/entangle-blockchain/main/config/genesis.json
+wget -O $HOME/.entangled/config/genesis.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Entangle/genesis.json
 ```
 ### Addrbook
 ```
-curl -Ls https://ss-t.entangle.nodestake.top/addrbook.json > $HOME/.entangled/config/addrbook.json 
+wget -O $HOME/.entangled/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Entangle/addrbook.json
 ```
 
 ### Seed & Peers & Gass
