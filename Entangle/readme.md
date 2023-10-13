@@ -58,7 +58,15 @@ peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.entangled/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001aNGL\"|" $HOME/.entangled/config/app.toml
 ```
-
+```
+SEEDS=""
+peers="f7f8c7b2b13b7af762a5513658a1cc5f0923acbd@144.91.124.126:30656,a6a6535a4bb72daa5420e215c42f31ae57ca4e90@65.108.72.253:29656,fe8c954ed37bfc3e5fc5eaf19b861d8a5947b2f5@entangle-testnet-peer.itrocket.net:29656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.entangled/config/config.toml
+sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 20/g' $HOME/.entangled/config/config.toml
+sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 10/g' $HOME/.entangled/config/config.toml
+sed -i -e "s/^seeds =./seeds = "$SEEDS"/; s/^persistent_peers =./persistent_peers = "$PEERS"/" $HOME/.entangled/config/config.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001aNGL\"|" $HOME/.entangled/config/app.toml
+```
 ### Prunning
 ```
 pruning="nothing"
