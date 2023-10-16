@@ -49,6 +49,18 @@ wget -O $HOME/.entangled/config/genesis.json https://raw.githubusercontent.com/v
 ```
 wget -O $HOME/.entangled/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Entangle/addrbook.json
 ```
+```
+sudo systemctl stop entangled
+curl -L -o backup_data.tar.gz https://entangle-public.s3.amazonaws.com/node_backup_13_10_23/backup_data.tar.gz
+rm -rf $HOME/.entangled/data
+mkdir $HOME/.entangled/data
+tar -xzvf backup_data.tar.gz -C $HOME/.entangled/data
+rm backup_data.tar.gz
+entangled tendermint unsafe-reset-all --home $HOME/.entangled
+```
+```
+entangled start --pruning=nothing --evm.tracer=json --log_level info --minimum-gas-prices=0.0001aNGL --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable --api.enabled-unsafe-cors
+```
 
 ### Seed & Peers & Gass
 ```
@@ -110,7 +122,7 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable entangled
-sudo systemctl restart entangled
+sudo systemctl start entangled
 journalctl -fu entangled -o cat
 ```
 
