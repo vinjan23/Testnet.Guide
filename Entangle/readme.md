@@ -80,6 +80,7 @@ sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 0/g' $HOME/.entang
 sed -i '' "s/\"signature\": \".*\"/\"signature\": \"\"/g" $HOME/.entangleddata/priv_validator_state.json
 sed -i '' "s/\"signbytes\": \".*\"/\"signbytes\": \"\"/g" $HOME/.entangleddata/priv_validator_state.json
 ```
+```
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001aNGL\"|" $HOME/.entangled/config/app.toml
 ```
 
