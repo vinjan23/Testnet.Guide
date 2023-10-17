@@ -194,6 +194,10 @@ echo $(entangled tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 ```
 curl -sS http://localhost:<$PORT>657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
+### Match Validator
+```
+[[ $(entangled q staking validator $(entangled keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(entangled status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
 ### Send Fund
 ```
 entangled tx bank send wallet <TO_WALLET_ADDRESS> 10000000000000000000aNGL --from wallet --chain-id entangle_33133-1
