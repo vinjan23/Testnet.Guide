@@ -97,7 +97,7 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable entangled
-sudo systemctl start entangled
+sudo systemctl restart entangled
 journalctl -fu entangled -o cat
 ```
 
