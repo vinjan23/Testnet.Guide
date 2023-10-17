@@ -232,10 +232,10 @@ rm -rf $HOME/.entangled/config/addrbook.json
 ### Seed & Peers & Gass
 ```
 SEEDS=""76492a1356c14304bdd7ec946a6df0b57ba51fe2@35.175.80.14:26656
-sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.entangled/config/config.toml
+sed -i "s/^seeds =.*/seeds = \'$SEEDS\'/" $HOME/.entangled/config/config.toml
 UNCONDITIONAL_PEER_IDS="76492a1356c14304bdd7ec946a6df0b57ba51fe2,9ba119b1dd617efb02a55c5a2ba67e16872bccfa,94ab1432b3f3a4b81f7eb0e16e14924a805d8f05,1fef0cad71ccb4a002dfbdd977af319fba0c3978,4ae0f2c882a25414a8a24a5597c95f06f4115f07,8de5ae99b036bbbde75cc7310e19b3723cff5bd8,f61e642debaee9682c54f24a03bd33bf73e327eb,41c30eaa97a917b1b7cb228da5dfada6f06040d1,d644cf8da1054d893eaa5c4a2586875d1975c76a,c2a885dae42a0eb2714d5aeb1d3f28115e2d8e9c,9af19bfc29daf7e5535cf10d5f59c32406b69e05,342c1851d3ad8cc72e41c965594a0a01f190d13c,07577d39b32ecb7f8bd4a92cc9b03d4048758027,a4138a69d236586b6d03269a8ffcf0f41d69a9b5,a20f27e5dd1b373b4b19508277a735dae622d00b,a6a6535a4bb72daa5420e215c42f31ae57ca4e90,87459b2f952b7f71bfff3a97a0504c603f03d02f,6147eaf50495d03e19dd09fb3610dea92bc7f89e,d24ca66e664f7b689f217caa4c7464a7235e1094,19a50b655f9438095f7a1707022468b01949a0a9"
 sed -i "s/^unconditional_peer_ids =.*/unconditional_peer_ids = \"$UNCONDITIONAL_PEER_IDS\"/" $HOME/.entangled/config/config.toml
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.entangled/config/config.toml
+sed -i 's/^persistent_peers =.*/persistent_peers = ""/' $HOME/.entangled/config/config.toml
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 0/g' $HOME/.entangled/config/config.toml
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 0/g' $HOME/.entangled/config/config.toml
 sed -i "s/\"signature\": \".*\"/\"signature\": \"\"/g" $HOME/.entangled/data/priv_validator_state.json
