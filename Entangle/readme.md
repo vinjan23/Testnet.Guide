@@ -65,7 +65,7 @@ entangled start --pruning=nothing --evm.tracer=json --log_level info --minimum-g
 sudo systemctl stop entangled
 ```
 ```
-rm -rf $CHAIN_DIR/config/addrbook.json
+rm -rf $HOME/.entangled/config/addrbook.json
 ```
 
 ### Seed & Peers & Gass
