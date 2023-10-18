@@ -34,7 +34,7 @@ entangled config keyring-backend test
 ```
 ### Port
 ```
-PORT=26
+PORT=30
 entangled config node tcp://localhost:${PORT}657
 ```
 ```
@@ -84,7 +84,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which entangled) start
+ExecStart=$(which entangled) start --pruning=nothing --evm.tracer=json --log_level info --minimum-gas-prices=0.0001aNGL --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable --api.enabled-unsafe-cors
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
