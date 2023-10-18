@@ -79,7 +79,7 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.entangled/config/config.toml
 ```
 sudo tee /etc/systemd/system/entangled.service > /dev/null <<EOF
 [Unit]
-Description=entangle-blockchain
+Description=entangle
 After=network-online.target
 
 [Service]
