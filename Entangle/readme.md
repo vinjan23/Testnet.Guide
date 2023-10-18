@@ -214,7 +214,7 @@ rm -rf .entangled
 rm -rf entangle-blockchain
 ```
 
-### V2
+### V2.1
 ```
 sudo systemctl stop entangled
 entangled tendermint unsafe-reset-all --home $HOME/.entangled
@@ -234,6 +234,7 @@ sed -i "s/^max_num_outbound_peers =.*/max_num_outbound_peers = 0/" $HOME/.entang
 ```
 entangled start --pruning=nothing --evm.tracer=json --log_level info --minimum-gas-prices=0.0001aNGL --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable --api.enabled-unsafe-cors
 ```
+### V2.2
 ```
 sudo systemctl stop entangled
 ```
