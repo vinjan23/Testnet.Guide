@@ -34,7 +34,7 @@ entangled config keyring-backend test
 ```
 ### Port
 ```
-PORT=30
+PORT=10
 entangled config node tcp://localhost:${PORT}657
 ```
 ```
