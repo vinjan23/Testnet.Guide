@@ -164,7 +164,9 @@ entangled tx staking edit-validator \
 ```
 entangled tx slashing unjail --from wallet --chain-id entangle_33133-1 --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
 ```
-
+```
+entangled query slashing signing-info $(entangled tendermint show-validator)
+```
 ### Delegate
 ```
 entangled tx staking delegate $(entangled keys show wallet --bech val -a) 10000000000000000000aNGL --from wallet --chain-id entangle_33133-1  --gas-adjustment 1.4 --gas=500000 --gas-prices=10aNGL
