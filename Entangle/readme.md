@@ -225,6 +225,13 @@ tar -xzvf backup_data.tar.gz -C $HOME/.entangled/data
 rm backup_data.tar.gz
 ```
 ```
+SEEDS="76492a1356c14304bdd7ec946a6df0b57ba51fe2@35.175.80.14:26656"
+sed -i 's/^persistent_peers =.*/persistent_peers = ""/' $HOME/.entangled/config/config.toml
+sed -i "s/^seeds =.*/seeds = \'$SEEDS\'/" $HOME/.entangled/config/config.toml
+sed -i "s/^max_num_inbound_peers =.*/max_num_inbound_peers = 0/" $HOME/.entangled/config/config.toml
+sed -i "s/^max_num_outbound_peers =.*/max_num_outbound_peers = 0/" $HOME/.entangled/config/config.toml
+```
+```
 entangled start --pruning=nothing --evm.tracer=json --log_level info --minimum-gas-prices=0.0001aNGL --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable --api.enabled-unsafe-cors
 ```
 ```
