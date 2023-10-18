@@ -251,11 +251,14 @@ UNCONDITIONAL_PEER_IDS="76492a1356c14304bdd7ec946a6df0b57ba51fe2,94ab1432b3f3a4b
 sed -i "s/^unconditional_peer_ids =.*/unconditional_peer_ids = \"$UNCONDITIONAL_PEER_IDS\"/" $HOME/.entangled/config/config.toml
 sed -i 's/^persistent_peers =.*/persistent_peers = ""/' $HOME/.entangled/config/config.toml
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 20/g' $HOME/.entangled/config/config.toml
-sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 20/g' $HOME/.entangled/config/config.toml
+sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 10/g' $HOME/.entangled/config/config.toml
 sed -i "s/\"signature\": \".*\"/\"signature\": \"\"/g" $HOME/.entangled/data/priv_validator_state.json
 sed -i "s/\"signbytes\": \".*\"/\"signbytes\": \"\"/g" $HOME/.entangled/data/priv_validator_state.json
 ```
 ```
 entangled start --pruning=nothing --evm.tracer=json --log_level info --minimum-gas-prices=0.0001aNGL --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable --api.enabled-unsafe-cors
 ```
-
+### Sync
+```
+entangled status 2>&1 | jq .SyncInfo
+```
