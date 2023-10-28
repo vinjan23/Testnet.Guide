@@ -26,9 +26,9 @@ git checkout testnet
 make install
 ```
 ```
-curl -LO https://github.com/arkeonetwork/arkeo/pkgs/container/arkeo/download/1-68c59e9057e306dd99cdf55ebf4e6b1876835dc8/arkeod
+wget https://snap.kynraze.com/test/arkeo/arkeod
 chmod +x arkeod
-sudo mv ./arkeo /usr/local/bin
+mv arkeod $HOME/go/bin/
 ```
 
 ### Init
