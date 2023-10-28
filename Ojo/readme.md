@@ -189,7 +189,7 @@ ojod tx bank send wallet address 5000000000uojo --from wallet --chain-id ojo-dev
 ```
 ### Unjail
 ```
-ojod tx slashing unjail --broadcast-mode=block --from wallet --chain-id ojo-devnet --gas auto --gas-adjustment 1.5 --fees 100uojo
+ojod tx slashing unjail --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --fees 100uojo -y
 ```
 ```
 ojod query slashing signing-info $(ojod tendermint show-validator)
