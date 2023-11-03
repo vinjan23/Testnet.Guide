@@ -57,7 +57,7 @@ wget -O $HOME/.mantrachain/config/genesis.json https://raw.githubusercontent.com
 ```
 SEEDS=""
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.mantrachain/config/config.toml
-peers="a435339f38ce3f973739a08afc3c3c7feb862dc5@35.192.223.187:26656,c1595cd03f5e0bb5d615e70bc176be790cc2cfaa@45.94.4.203:26656,8f574a466c8c8f9d8d15bed98829364d79253a93@170.64.181.221:22656,114988f9a053f594ab9592beb79b924430d355ba@34.123.40.240:26656,db0c275586b8fa5ac5a11538436d4994f92fb410@57.128.84.159:26656,8df752df7047a8dabf89f8a01e2c1235f86283b8@65.109.33.48:24656"
+peers="0e687ef17922361c1aa8927df542482c67fb7571@35.222.198.102:26656,114988f9a053f594ab9592beb79b924430d355ba@34.123.40.240:26656,c533d7ee2037ee6d382f773be04c5bbf27da7a29@34.70.189.2:26656,a435339f38ce3f973739a08afc3c3c7feb862dc5@35.192.223.187:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.mantrachain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.00uaum\"|" $HOME/.mantrachain/config/app.toml
 ```
