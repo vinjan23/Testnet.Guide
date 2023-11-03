@@ -1,3 +1,11 @@
+### Update Package
+```
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y build-essential curl wget jq make gcc chrony git
+apt install unzip
+```
+
 ### GO
 ```
 ver="1.20.6"
@@ -49,7 +57,7 @@ wget -O $HOME/.mantrachain/config/genesis.json https://raw.githubusercontent.com
 ```
 SEEDS=""
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.mantrachain/config/config.toml
-peers="0e687ef17922361c1aa8927df542482c67fb7571@35.222.198.102:26656,114988f9a053f594ab9592beb79b924430d355ba@34.123.40.240:26656,c533d7ee2037ee6d382f773be04c5bbf27da7a29@34.70.189.2:26656,a435339f38ce3f973739a08afc3c3c7feb862dc5@35.192.223.187:26656"
+peers="4afc6984d2776a05865771577fcd2746ada498bc@144.91.124.126,a435339f38ce3f973739a08afc3c3c7feb862dc5@35.192.223.187:26656,c1595cd03f5e0bb5d615e70bc176be790cc2cfaa@45.94.4.203:26656,c533d7ee2037ee6d382f773be04c5bbf27da7a29@34.70.189.2:26656.a2130910e8f8a04888b9b01a372fa1e74ab50b3a@62.171.130.196:11156,8f574a466c8c8f9d8d15bed98829364d79253a93@170.64.181.221:22656,114988f9a053f594ab9592beb79b924430d355ba@34.123.40.240:26656,db0c275586b8fa5ac5a11538436d4994f92fb410@57.128.84.159:26656,8df752df7047a8dabf89f8a01e2c1235f86283b8@65.109.33.48:24656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.mantrachain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.00uaum\"|" $HOME/.mantrachain/config/app.toml
 ```
@@ -90,14 +98,6 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable mantrachaind
-```
-### Snapshot ( Block 178605 )
-```
-sudo apt install lz4 -y
-mantrachaind tendermint unsafe-reset-all --home $HOME/.mantrachain --keep-addr-book
-curl -L https://snapshot.vinjan.xyz/mantrachain/mantrachain-snapshot-20230926.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.mantrachain
-```
-```
 sudo systemctl restart mantrachaind
 sudo journalctl -u mantrachaind -f -o cat
 ```
