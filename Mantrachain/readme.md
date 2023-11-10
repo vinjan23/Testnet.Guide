@@ -104,6 +104,13 @@ sudo systemctl enable mantrachaind
 sudo systemctl restart mantrachaind
 sudo journalctl -u mantrachaind -f -o cat
 ```
+-Block 37690
+```
+curl -L https://snapshot.vinjan.xyz/mantrachain/mantrachain-snapshot-20231110.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.mantrachain
+sudo systemctl restart mantrachaind
+journalctl -fu mantrachaind -o cat
+```
+
 ### Sync
 ```
 mantrachaind status 2>&1 | jq .SyncInfo
