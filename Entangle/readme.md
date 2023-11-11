@@ -6,7 +6,7 @@ sudo apt-get install -y build-essential curl wget jq make gcc chrony git
 ```
 ### GO
 ```
-ver="1.20.4"
+ver="1.20.6"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
