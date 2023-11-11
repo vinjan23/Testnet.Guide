@@ -29,7 +29,7 @@ cp $HOME/elys/build/* $HOME/go/bin/
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.13.0
+git checkout v0.14.0
 make install
 ```
 ```
