@@ -21,14 +21,8 @@ go version
 ### Binary
 ```
 wget https://github.com/MANTRA-Finance/public/raw/main/mantrachain-testnet/mantrachaind-linux-amd64.zip
-```
-```
 unzip mantrachaind-linux-amd64.zip
-```
-```
 sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/releases/download/v1.3.0/libwasmvm.x86_64.so
-```
-```
 sudo mv ./mantrachaind /usr/local/bin
 ```
 
