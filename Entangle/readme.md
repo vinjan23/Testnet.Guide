@@ -52,9 +52,9 @@ wget -O $HOME/.entangled/config/addrbook.json https://raw.githubusercontent.com/
 ### Seed Peer Gas
 ```
 SEEDS="76492a1356c14304bdd7ec946a6df0b57ba51fe2@35.175.80.14:26656"
-sed -i "s/^seeds =.*/seeds = \'$SEEDS\'/" $HOME/.entangled/config/config.toml
-peers="76492a1356c14304bdd7ec946a6df0b57ba51fe2@35.175.80.14:26656,d34376a8eeb62f9849f2b199ea5748cbc317eb72@38.242.153.36:10656,94ab1432b3f3a4b81f7eb0e16e14924a805d8f05@65.109.154.182:15656,4c54c26655da3a4f6b25689ae1f8dd656e881990@162.19.69.193:26656,1fef0cad71ccb4a002dfbdd977af319fba0c3978@207.244.253.244:29656,87459b2f952b7f71bfff3a97a0504c603f03d02f@65.21.139.155:51656,4ae0f2c882a25414a8a24a5597c95f06f4115f07@144.76.236.211:23656,7bff324a17426a00731f425ae29fe6ef05eebbac@213.239.217.52:33656,a4138a69d236586b6d03269a8ffcf0f41d69a9b5@65.109.104.118:61556,d24ca66e664f7b689f217caa4c7464a7235e1094@213.239.207.175:63656,41c30eaa97a917b1b7cb228da5dfada6f06040d1@5.189.183.119:26656,c2a885dae42a0eb2714d5aeb1d3f28115e2d8e9c@144.91.99.255:36656,a6a6535a4bb72daa5420e215c42f31ae57ca4e90@65.108.72.253:29656"
-sed -i 's/^persistent_peers =.*/persistent_peers = ""/' $HOME/.entangled/config/config.toml
+sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.entangled/config/config.toml
+PEERS="76492a1356c14304bdd7ec946a6df0b57ba51fe2@35.175.80.14:26656,d34376a8eeb62f9849f2b199ea5748cbc317eb72@38.242.153.36:10656,94ab1432b3f3a4b81f7eb0e16e14924a805d8f05@65.109.154.182:15656,4c54c26655da3a4f6b25689ae1f8dd656e881990@162.19.69.193:26656,1fef0cad71ccb4a002dfbdd977af319fba0c3978@207.244.253.244:29656,87459b2f952b7f71bfff3a97a0504c603f03d02f@65.21.139.155:51656,4ae0f2c882a25414a8a24a5597c95f06f4115f07@144.76.236.211:23656,7bff324a17426a00731f425ae29fe6ef05eebbac@213.239.217.52:33656,a4138a69d236586b6d03269a8ffcf0f41d69a9b5@65.109.104.118:61556,d24ca66e664f7b689f217caa4c7464a7235e1094@213.239.207.175:63656,41c30eaa97a917b1b7cb228da5dfada6f06040d1@5.189.183.119:26656,c2a885dae42a0eb2714d5aeb1d3f28115e2d8e9c@144.91.99.255:36656,a6a6535a4bb72daa5420e215c42f31ae57ca4e90@65.108.72.253:29656"
+sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.entangled/config/config.toml
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 20/g' $HOME/.entangled/config/config.toml
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 10/g' $HOME/.entangled/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001aNGL\"|" $HOME/.entangled/config/app.toml
