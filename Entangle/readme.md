@@ -97,6 +97,12 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable entangled
+```
+### Snapshot
+```
+sudo apt install lz4 -y
+SNAP_NAME=$(curl -s https://ss-t.entangle.nodestake.top/ | egrep -o ">20.*\.tar.lz4" | tr -d ">")
+curl -o - -L https://ss-t.entangle.nodestake.top/${SNAP_NAME}  | lz4 -c -d - | tar -x -C $HOME/.entangled
 sudo systemctl restart entangled
 journalctl -fu entangled -o cat
 ```
