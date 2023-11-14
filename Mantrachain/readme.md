@@ -126,7 +126,7 @@ mantrachaind tx staking create-validator \
 --identity="" \
 --details="" \
 --website "" \
---chain-id="mantrachain-1" \
+--chain-id="mantrachain-testnet-1" \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
 --commission-max-change-rate="0.01" \
@@ -143,7 +143,7 @@ mantrachaind tx staking edit-validator \
 --identity="IDENTITY KEYBASE" \
 --details="DETAILS VALIDATOR" \
 --website="LINK WEBSITE" \
---chain-id=mantrachain-1 \
+--chain-id=mantrachain-testnet-1 \
 --from=wallet \
 --gas-adjustment 1.4 \
 --gas="auto" \
@@ -151,7 +151,7 @@ mantrachaind tx staking edit-validator \
 ```
 ### Unjail
 ```
-mantrachaind tx slashing unjail --from wallet --chain-id mantrachain-1 --gas-adjustment 1.4 --gas auto -y
+mantrachaind tx slashing unjail --from wallet --chain-id mantrachain-testnet-1 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Reason
 ```
@@ -159,19 +159,19 @@ mantrachaind query slashing signing-info $(mantrachaind tendermint show-validato
 ```
 ### Delegate
 ```
-mantrachaind tx staking delegate $(mantrachaind keys show wallet --bech val -a) 1000000uaum --from wallet --chain-id mantrachain-1 --gas-adjustment 1.4 --gas auto -y
+mantrachaind tx staking delegate $(mantrachaind keys show wallet --bech val -a) 1000000uaum --from wallet --chain-id mantrachain-testnet-1 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw with Commission
 ```
-mantrachaind tx distribution withdraw-rewards $(mantrachaind keys show wallet --bech val -a) --commission --from wallet --chain-id mantrachain-1 --gas-adjustment 1.4 --gas auto -y
+mantrachaind tx distribution withdraw-rewards $(mantrachaind keys show wallet --bech val -a) --commission --from wallet --chain-id mantrachain-testnet-1 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw
 ```
-mantrachaind tx distribution withdraw-all-rewards --from wallet --chain-id mantrachain-1 --gas-adjustment 1.4 --gas auto -y
+mantrachaind tx distribution withdraw-all-rewards --from wallet --chain-id mantrachain-testnet-1 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Transfer
 ```
-mantrachaind tx bank send wallet <TO_WALLET_ADDRESS> 1000000uaum --from wallet --chain-id mantrachain-1 --gas-adjustment 1.4 --gas auto -y
+mantrachaind tx bank send wallet <TO_WALLET_ADDRESS> 1000000uaum --from wallet --chain-id mantrachain-testnet-1 --gas-adjustment 1.4 --gas auto -y
 ```
 
 ### Delete Node
