@@ -21,14 +21,14 @@ go version
 cd $HOME
 git clone https://github.com/elys-network/elys
 cd elys
-git checkout v0.15.0
+git checkout v0.16.0
 make install
 ```
 ### Update
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.15.0
+git checkout v0.16.0
 make install
 ```
 ```
