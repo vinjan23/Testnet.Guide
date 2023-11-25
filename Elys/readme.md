@@ -166,4 +166,19 @@ elysd tx staking create-validator \
 --gas-prices 0uelys \
 -y
 ```
+### Edit
+```
+elysd tx staking edit-validator \
+--new-moniker="vinjan" \
+--identity="7C66E36EA2B71F68" \
+--details="🎉Stake & Relayer Operator 🎉" \
+--website=https://service.vinjan.xyz \
+--chain-id elystestnet-1 \
+--from=wallet \
+--gas-adjustment=1.4 \
+--gas=auto \
+--gas-prices=0.00025uelys \
+-y
+```
+
 
