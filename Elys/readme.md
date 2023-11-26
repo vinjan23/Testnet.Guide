@@ -62,7 +62,7 @@ wget -O $HOME/.elys/config/genesis.json https://raw.githubusercontent.com/elys-n
 ### Seed $ Peer
 ```
 sed -i 's/seeds = ""/seeds = "ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22056"/' ~/.elys/config/config.toml
-sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0uelys\"|" $HOME/.elys/config/app.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.0018ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65,0.00025ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4,0.00025uelys\"|" $HOME/.elys/config/app.toml
 ```
 
 ### Prunning
