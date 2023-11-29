@@ -21,7 +21,7 @@ go version
 cd $HOME
 git clone https://github.com/elys-network/elys
 cd elys
-git checkout v0.16.0
+git checkout v0.17.0
 make install
 ```
 ### Update
@@ -32,7 +32,18 @@ git checkout v0.16.0
 make install
 ```
 ```
-sudo systemctl restart elysd && sudo journalctl -u elysd -f -o cat
+cd $HOME/elys
+git fetch --all --tags
+git tag -d v0.17.0
+git checkout fix/v0.17.0-division-by-zero-issue
+git tag v0.17.0
+make install
+```
+```
+sudo systemctl restart elysd
+```
+```
+sudo journalctl -u elysd -f -o cat
 ```
 ### Moniker
 ```
