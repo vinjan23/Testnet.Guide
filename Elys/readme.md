@@ -40,6 +40,13 @@ git tag v0.17.0
 make install
 ```
 ```
+cd $HOME/elys
+git tag -d v0.18.0
+git fetch --all
+git checkout v0.18.0
+make install
+```
+```
 sudo systemctl restart elysd
 ```
 ```
