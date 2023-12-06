@@ -6,7 +6,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 
 ### GO
 ```
-ver="1.20.2"
+ver="1.20.7"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -22,16 +22,10 @@ go version
 cd $HOME
 git clone https://github.com/CascadiaFoundation/cascadia.git
 cd cascadia
-git checkout v0.1.7
+git checkout v0.1.9
 make install
 ```
 ### Update
-```
-cd $HOME
-wget -O cascadiad https://github.com/CascadiaFoundation/cascadia/releases/download/v0.1.6/cascadiad
-chmod +x $HOME/cascadiad
-sudo mv $HOME/cascadiad $(which cascadiad)
-```
 ```
 cd $HOME/cascadia
 git pull
@@ -168,7 +162,7 @@ cascadiad tx staking create-validator \
 --min-self-delegation "1" \
 --pubkey  $(cascadiad tendermint show-validator) \
 --moniker "vinjan" \
---chain-id cascadia_6102-1 \
+--chain-id cascadia_11029-1 \
 --details="satsetsit" \
 --identity="7C66E36EA2B71F68" \
 --website="https://nodes.vinjan.xyz" \
@@ -183,7 +177,7 @@ cascadiad tx staking create-validator \
 cascadiad tx staking edit-validator \
 --new-moniker "vinjan" \
 --identity="7C66E36EA2B71F68" \
---chain-id cascadia_6102-1 \
+--chain-id cascadia_11029-1 \
 --commission-rate 0.07 \
 --from wallet \
 --gas-adjustment 1.4 \
@@ -194,7 +188,7 @@ cascadiad tx staking edit-validator \
 
 ### Unjail
 ```
-cascadiad tx slashing unjail --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
+cascadiad tx slashing unjail --from wallet --chain-id cascadia_11029-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Jail Reason
@@ -204,22 +198,22 @@ cascadiad query slashing signing-info $(cascadiad tendermint show-validator)
 
 ### Delegate
 ```
-cascadiad tx staking delegate <TO_VALOPER_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
+cascadiad tx staking delegate <TO_VALOPER_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_11029-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Withdraw All
 ```
-cascadiad tx distribution withdraw-all-rewards --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
+cascadiad tx distribution withdraw-all-rewards --from wallet --chain-id cascadia_11029-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Withdraw commision
 ```
-cascadiad tx distribution withdraw-rewards $(cascadiad keys show wallet --bech val -a) --commission --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
+cascadiad tx distribution withdraw-rewards $(cascadiad keys show wallet --bech val -a) --commission --from wallet --chain-id cascadia_11029-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Transfer
 ```
-cascadiad tx bank send wallet <TO_WALLET_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_6102-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
+cascadiad tx bank send wallet <TO_WALLET_ADDRESS> 1000000aCC --from wallet --chain-id cascadia_11029-1 --gas-adjustment 1.4 --gas 200000 --gas-prices 7aCC -y
 ```
 
 ### Val Info
