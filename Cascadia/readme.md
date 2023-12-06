@@ -46,8 +46,8 @@ cascadiad version --long | grep -e commit -e version
 MONIKER=
 ```
 ```
-cascadiad init $MONIKER --chain-id cascadia_6102-1
-cascadiad config chain-id cascadia_6102-1
+cascadiad init $MONIKER --chain-id cascadia_11029-1
+cascadiad config chain-id cascadia_11029-1
 cascadiad config keyring-backend test
 ```
 ```
@@ -77,10 +77,7 @@ wget -O $HOME/.cascadiad/config/addrbook.json "https://raw.githubusercontent.com
 ### Seed & Peer & Gas
 ```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025aCC\"/;" ~/.cascadiad/config/app.toml
-sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.cascadiad/config/config.toml
-external_address=$(wget -qO- eth0.me) 
-sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.cascadiad/config/config.toml
-peers="1d61222b7b8e180aacebfd57fbd2d8ab95ebdc4c@65.109.93.152:35656,b651ea2a0517e82c1a476e25966ab3de3159afe8@54.204.246.120:26656,3b389873f999763d3f937f63f765f0948411e296@44.192.85.92:26656"
+peers="d1ed80e232fc2f3742637daacab454e345bbe475@54.204.246.120:26656,0c96a6c328eb58d1467afff4130ab446c294108c@34.239.67.55:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.cascadiad/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.cascadiad/config/config.toml
@@ -113,7 +110,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which cascadiad) start
+ExecStart=$(which cascadiad) start --chain-id=cascadia_11029-1
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
