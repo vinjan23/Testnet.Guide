@@ -33,6 +33,11 @@ chmod +x $HOME/cascadiad
 sudo mv $HOME/cascadiad $(which cascadiad)
 ```
 ```
+cd $HOME/cascadia
+git pull
+git checkout v0.1.9
+```
+```
 cascadiad version --long | grep -e commit -e version
 ```
 
