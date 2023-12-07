@@ -121,7 +121,15 @@ sudo systemctl enable cascadiad
 sudo systemctl restart cascadiad
 sudo journalctl -u cascadiad -f -o cat
 ```
-
+### Snapshot `Thursday 12/7 : 2023` `740 MB`
+```
+sudo apt install lz4 -y
+sudo systemctl stop cascadiad
+cascadiad tendermint unsafe-reset-all --home $HOME/.cascadiad --keep-addr-book
+curl -L https://snap.vinjan.xyz/cascadia/cascadia-snapshot-20231207.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.cascadiad
+sudo systemctl restart cascadiad
+journalctl -fu cascadiad -o cat
+```
 ### Sync
 ```
 cascadiad status 2>&1 | jq .SyncInfo
