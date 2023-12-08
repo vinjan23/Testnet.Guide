@@ -151,7 +151,7 @@ sged tx staking create-validator \
 --commission-rate="0.1" \
 --min-self-delegation="1" \
 --pubkey=$(sged tendermint show-validator) \
---chain-id=sge-network-3 \
+--chain-id=sge-network-4 \
 --identity="7C66E36EA2B71F68" \
 --details=" 🎉 Stake & Node Operator 🎉" \
 --website="https://service.vinjan.xyz"
@@ -159,7 +159,7 @@ sged tx staking create-validator \
 ```
 ### Unjail
 ```
-sged tx slashing unjail --broadcast-mode=block --from wallet --chain-id sge-network-3 --gas auto --gas-adjustment 1.4 --gas auto -y
+sged tx slashing unjail --broadcast-mode=block --from wallet --chain-id sge-network-4 --gas auto --gas-adjustment 1.4 --gas auto -y
 ```
 ### Reason Jail
 ```
@@ -167,15 +167,15 @@ sged query slashing signing-info $(sged tendermint show-validator)
 ```
 ### Staking
 ```
-sged tx staking delegate $(sged keys show wallet --bech val -a) 1000000usge --from wallet --chain-id sge-network-3 --gas-adjustment 1.4 --gas auto -y
+sged tx staking delegate $(sged keys show wallet --bech val -a) 1000000usge --from wallet --chain-id sge-network-4 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw
 ```
-sged tx distribution withdraw-all-rewards --from wallet --chain-id sge-network-3 --gas-adjustment 1.4 --gas auto -y
+sged tx distribution withdraw-all-rewards --from wallet --chain-id sge-network-4 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Withdraw with comission
 ```
-sged tx distribution withdraw-rewards $(sged keys show wallet --bech val -a) --commission --from wallet --chain-id sge-network-3 --gas-adjustment 1.4 --gas auto -y
+sged tx distribution withdraw-rewards $(sged keys show wallet --bech val -a) --commission --from wallet --chain-id sge-network-4 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Check Validator
 ```
