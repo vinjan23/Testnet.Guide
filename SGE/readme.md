@@ -22,6 +22,14 @@ cd sge
 git checkout v1.1.1
 make install
 ```
+### Update
+```
+cd $HOME/sge
+git pull
+git checkout v1.2.0
+make install
+```
+
 ### Init
 ```
 MONIKER=
