@@ -95,6 +95,16 @@ sudo systemctl enable pryzmd
 sudo systemctl restart pryzmd
 sudo journalctl -u pryzmd -f -o cat
 ```
+### Snapshot `162300`
+```
+sudo apt install lz4 -y
+sudo systemctl stop pryzmd
+pryzmd tendermint unsafe-reset-all --home $HOME/.pryzm --keep-addr-book
+curl -L https://snap.vinjan.xyz/pryzm/pryzm-snapshot-20231218.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.pryzm
+sudo systemctl restart pryzmd
+journalctl -fu pryzmd -o cat
+```
+
 ### Sync
 ```
 pryzmd status 2>&1 | jq .SyncInfo
