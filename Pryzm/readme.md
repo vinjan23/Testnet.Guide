@@ -47,7 +47,9 @@ wget -O $HOME/.pryzm/config/genesis.json https://raw.githubusercontent.com/vinja
 ```
 
 ### Addrbook
-
+```
+wget -O $HOME/.pryzm/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Pryzm/addrbook.json
+```
 ### Seed
 ```
 seeds="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:24856,d1d43cc7c7aef715957289fd96a114ecaa7ba756@testnet-seeds.nodex.one:23210"
