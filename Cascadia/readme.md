@@ -27,9 +27,11 @@ make install
 ```
 ### Update
 ```
+
 cd $HOME/cascadia
 git pull
-git checkout v0.1.9
+git checkout v0.2.0
+make install
 ```
 ```
 cascadiad version --long | grep -e commit -e version
