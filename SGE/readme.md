@@ -177,6 +177,11 @@ sged tx distribution withdraw-all-rewards --from wallet --chain-id sge-network-4
 ```
 sged tx distribution withdraw-rewards $(sged keys show wallet --bech val -a) --commission --from wallet --chain-id sge-network-4 --gas-adjustment 1.4 --gas auto -y
 ```
+### Vote
+```
+sged tx gov vote 6 yes --from wallet --chain-id sge-network-4 --gas-adjustment 1.4 --gas auto -y
+```
+
 ### Check Validator
 ```
 [[ $(sged q staking validator $(sged keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(sged status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
