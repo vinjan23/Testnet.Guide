@@ -101,7 +101,11 @@ EOF
 ```
 systemctl daemon-reload
 systemctl enable blockxd
+```
+```
 systemctl restart blockxd
+```
+```
 journalctl -fu blockxd -ocat
 ```
 
