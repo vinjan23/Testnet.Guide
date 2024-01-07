@@ -107,7 +107,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable sged
+```
+```
 sudo systemctl restart sged
+```
+```
 sudo journalctl -u sged -f -o cat
 ```
 ### Sync
