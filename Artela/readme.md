@@ -133,7 +133,7 @@ artelad q bank balances $(artelad keys show wallet -a)
 ### Validator
 ```
 artelad tx staking create-validator \
---amount=1000000usrt" \
+--amount=1000000uart" \
 --pubkey=$(artelad tendermint show-validator) \
 --moniker="" \
 --identity="" \
@@ -147,6 +147,7 @@ artelad tx staking create-validator \
 --from=wallet \
 --gas-adjustment 1.4 \
 --gas=auto \
+--gas-prices 0.025art \
 -y
 ```
 
