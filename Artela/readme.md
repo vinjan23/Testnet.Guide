@@ -96,6 +96,15 @@ sudo systemctl enable artelad
 sudo systemctl restart artelad
 sudo journalctl -u artelad -f -o cat
 ```
+### Snapshot `396500`
+```
+sudo apt install lz4 -y
+sudo systemctl stop artelad
+artelad tendermint unsafe-reset-all --home $HOME/.artelad --keep-addr-book
+curl -L https://snap.vinjan.xyz/artela/artela-snapshot-20240110.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.artelad
+sudo systemctl restart artelad
+journalctl -fu artelad -o cat
+```
 ### Sync
 ```
 artelad status 2>&1 | jq .SyncInfo
