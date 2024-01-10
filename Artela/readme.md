@@ -152,4 +152,35 @@ artelad tx staking create-validator \
 --gas-prices 0.025art \
 -y
 ```
+### Unjail Validator
+```
+artelad tx slashing unjail --from wallet --chain-id artela_11822-1 --gas-adjustment 1.4 --gas=auto --gas-prices=0.025uart -y
+```
+### Withdraw Rewards
+```
+artelad tx distribution withdraw-all-rewards --from wallet --chain-id artela_11822-1 --gas-adjustment 1.4 --gas=auto --gas-prices=0.025uart -y
+```
 
+### Withdraw Rewards with Comission
+```
+artelad tx distribution withdraw-rewards $(artelad keys show wallet --bech val -a) --commission --from wallet --chain-id artela_11822-1 --gas-adjustment 1.4 --gas=auto --gas-prices=0.025uart -y
+```
+
+### Delegate Token to your own validator
+```
+artelad tx staking delegate $(artelad keys show wallet --bech val -a) 1000000uart --from wallet --chain-id artela_11822-1 --gas-adjustment 1.4 --gas=auto --gas-prices=0.025uart -y
+```
+### Vote
+```
+artelad tx gov vote 1 yes --from wallet --chain-id artela_11822-1 --gas-adjustment 1.4 --gas=auto --gas-prices=0.025uart -y
+```
+### Delete
+```
+sudo systemctl stop artelad
+sudo systemctl disable artelad
+sudo rm /etc/systemd/system/artelad.service
+sudo systemctl daemon-reload
+rm -f $(which artelad)
+rm -rf .artelad
+rm -rf artela
+```
