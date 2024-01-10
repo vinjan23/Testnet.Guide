@@ -46,7 +46,9 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 wget -O $HOME/.artelad/config/genesis.json https://docs.artela.network/assets/files/genesis-314f4b0294712c1bc6c3f4213fa76465.json
 ```
 ### Addrbook
-
+```
+wget -O $HOME/.artelad/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Artela/addrbook.json
+```
 ### Seed Peer
 ```
 seed="43b0a791ba5a2cd500c615ccc88304f3f4ab2501@rpc-t.artela.nodestake.org:666"
