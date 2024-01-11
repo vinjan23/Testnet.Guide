@@ -135,7 +135,7 @@ artelad q bank balances $(artelad keys show wallet -a)
 ### Validator
 ```
 artelad tx staking create-validator \
---amount=1000000uart" \
+--amount=1000000000000000000uart" \
 --pubkey=$(artelad tendermint show-validator) \
 --moniker="" \
 --identity="" \
@@ -168,7 +168,7 @@ artelad tx distribution withdraw-rewards $(artelad keys show wallet --bech val -
 
 ### Delegate Token to your own validator
 ```
-artelad tx staking delegate $(artelad keys show wallet --bech val -a) 1000000uart --from wallet --chain-id artela_11822-1 --gas-adjustment 1.4 --gas=auto --gas-prices=0.025uart -y
+artelad tx staking delegate $(artelad keys show wallet --bech val -a) 1000000000000000000uart --from wallet --chain-id artela_11822-1 --gas-adjustment 1.4 --gas=auto --gas-prices=0.025uart -y
 ```
 ### Vote
 ```
