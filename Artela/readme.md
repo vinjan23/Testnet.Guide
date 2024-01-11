@@ -6,7 +6,6 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ### GO
 ```
 ver="1.21.1"
-cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
@@ -135,21 +134,21 @@ artelad q bank balances $(artelad keys show wallet -a)
 ### Validator
 ```
 artelad tx staking create-validator \
---amount=1000000000000000000uart" \
---pubkey=$(artelad tendermint show-validator) \
---moniker="" \
---identity="" \
---details="" \
---website="" \
---chain-id=artela_11822-1 \
---commission-rate="0.10" \
---commission-max-rate="0.20" \
---commission-max-change-rate="0.05" \
---min-self-delegation="1" \
---from=wallet \
---gas-adjustment 1.4 \
---gas=auto \
---gas-prices 0.025art \
+--amount 1000000000000000000uart \
+--pubkey $(artelad tendermint show-validator) \
+--moniker "your-moniker-name" \
+--identity "your-keybase-id" \
+--details "your-details" \
+--website "your-website" \
+--chain-id artela_11822-1 \
+--commission-rate 0.1 \
+--commission-max-rate 0.20 \
+--commission-max-change-rate 0.01 \
+--min-self-delegation 1 \
+--from wallet \
+--gas-adjustment 1.5 \
+--gas auto \
+--gas-prices 0.025uart \
 -y
 ```
 ### Unjail Validator
