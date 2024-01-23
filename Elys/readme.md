@@ -27,12 +27,6 @@ make install
 ### Update
 ```
 cd $HOME/elys
-git fetch --all
-git checkout v0.16.0
-make install
-```
-```
-cd $HOME/elys
 git fetch --all --tags
 git tag -d v0.17.0
 git checkout fix/v0.17.0-division-by-zero-issue
@@ -42,7 +36,7 @@ make install
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.26.0
+git checkout v0.27.0
 make install
 ```
 ```
