@@ -28,7 +28,7 @@ make install
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.28.0
+git checkout v0.28.1
 make install
 ```
 ```
