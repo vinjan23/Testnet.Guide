@@ -106,7 +106,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable artelad
+```
+```
 sudo systemctl restart artelad
+```
+```
 sudo journalctl -u artelad -f -o cat
 ```
 ### Snapshot `709896`
