@@ -24,7 +24,7 @@ MONIKER=
 ```
 ```
 sided init $MONIKER --chain-id=side-testnet-1
-sided config chain-id=side-testnet-1
+sided config chain-id side-testnet-1
 sided config keyring-backend test
 ```
 ```
