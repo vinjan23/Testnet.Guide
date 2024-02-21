@@ -36,6 +36,12 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"localhost:9090\"%address = \"localhost:${PORT}090\"%; s%^address = \"localhost:9091\"%address = \"localhost:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.sidechain/config/app.toml
 ```
 ```
+wget -O $HOME/.sidechain/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/SideProtocol/genesis.json"
+```
+```
+wget -O $HOME/.sidechain/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/SideProtocol/addrbook.json"
+```
+```
 seed="871aea8a3cccd58a01dbdba6cd7de52b7eb26d73@rpc-t.side.nodestake.org:666"
 sed -i.bak -e "s/^seed *=.*/seed = \"$seed\"/" ~/.sidechain/config/config.toml
 peers=$(curl -s https://ss-t.side.nodestake.org/peers.txt)
