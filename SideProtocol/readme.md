@@ -75,6 +75,37 @@ sudo systemctl enable sided
 sudo systemctl restart sided
 sudo journalctl -u sided -f -o cat
 ```
+```
+sided status 2>&1 | jq .SyncInfo
+```
+```
+sudo journalctl -u sided -f -o cat
+```
+```
+sided keys add wallet
+```
+```
+sided q bank balances $(sided keys show wallet -a)
+```
+```
+sided tx staking create-validator \
+--moniker=vinjan \
+--amount=1000000uside \
+--from=wallet \
+--commission-max-change-rate="0.1" \
+--commission-max-rate="0.2" \
+--commission-rate="0.1" \
+--min-self-delegation="1" \
+--pubkey=$(sided tendermint show-validator) \
+--chain-id=side-testnet-1 \
+--identity="7C66E36EA2B71F68" \
+--details=" 🎉 Stake & Node Operator 🎉" \
+--website="https://service.vinjan.xyz"
+-y
+```
+
+
+
 
 
 
