@@ -32,6 +32,9 @@ git checkout v0.29.14
 make install
 ```
 ```
+elysd version --long | grep -e commit -e version
+```
+```
 sudo systemctl restart elysd
 ```
 ```
