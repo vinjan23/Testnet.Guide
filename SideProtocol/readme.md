@@ -104,7 +104,7 @@ sided tx staking create-validator \
 --commission-rate="0.1" \
 --min-self-delegation="1" \
 --pubkey=$(sided tendermint show-validator) \
---chain-id=side-testnet-1 \
+--chain-id=side-testnet-2 \
 --identity="7C66E36EA2B71F68" \
 --details=" 🎉 Stake & Node Operator 🎉" \
 --website="https://service.vinjan.xyz"
