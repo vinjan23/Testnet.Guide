@@ -111,6 +111,16 @@ sided tx staking create-validator \
 ```
 
 
+```
+sudo systemctl stop sided
+sudo systemctl disable sided
+sudo rm /etc/systemd/system/sided.service
+sudo systemctl daemon-reload
+rm -f $(which sided)
+rm -rf .side
+rm -rf side
+```
+
 
 
 
