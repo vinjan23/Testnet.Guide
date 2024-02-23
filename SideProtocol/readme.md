@@ -109,7 +109,12 @@ sided tx staking create-validator \
 --details=" 🎉 Stake & Node Operator 🎉" \
 --website="https://service.vinjan.xyz"
 ```
-
+```
+sided tx slashing unjail --from wallet --chain-id side-testnet-2
+```
+```
+sided tx staking delegate $(sided keys show wallet --bech val -a) 100000000uside --from wallet --chain-id side-testnet-2
+```
 
 ```
 sudo systemctl stop sided
