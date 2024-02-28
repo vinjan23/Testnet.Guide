@@ -20,7 +20,7 @@ go version
 ```
 cd $HOME
 mkdir -p /root/go/bin/
-wget https://ss-t.self.nodestake.top/selfchaind
+wget https://ss-t.selfchain.nodestake.org/selfchaind
 chmod +x selfchaind
 mv selfchaind /root/go/bin/
 ```
@@ -59,7 +59,7 @@ SEEDS=""
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.selfchain/config/config.toml
 peers="94a7baabb2bcc00c7b47cbaa58adf4f433df9599@157.230.119.165:26656,d3b5b6ca39c8c62152abbeac4669816166d96831@165.22.24.236:26656,35f478c534e2d58dc2c4acdf3eb22eeb6f23357f@165.232.125.66:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.selfchain/config/config.toml
-sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.005uself\"|" $HOME/.selfchain/config/app.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.0uself\"|" $HOME/.selfchain/config/app.toml
 ```
 
 ### config pruning
@@ -152,9 +152,8 @@ selfchaind tx staking create-validator \
 --min-self-delegation=1000000000 \
 --broadcast-mode block \
 --gas-adjustment=1.2 \
---gas-prices="0.5uself" \
 --gas=auto \
---from=<address>
+--from=wallet
 ```
 
 #### Edit Validator
@@ -170,7 +169,7 @@ selfchaind tx staking edit-validator \
 ```
 ### Unjail Validator
 ```
-selfchaind tx slashing unjail --from wallet --chain-id self-dev-1 --gas-prices 0.5uself --gas-adjustment 1.2 --gas auto
+selfchaind tx slashing unjail --from wallet --chain-id self-dev-1 --gas-adjustment 1.2 --gas auto -y
 ```
 
 ### Check Jailed Reason
@@ -180,16 +179,16 @@ selfchaind query slashing signing-info $(selfchaind tendermint show-validator)
 
 ### Withdraw Rewards
 ```
-selfchaind tx distribution withdraw-all-rewards --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.05uself --gas auto -y
+selfchaind tx distribution withdraw-all-rewards --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas auto -y
 ```
 #### Withdraw Rewards with Comission
 ```
-selfchaind tx distribution withdraw-rewards $(selfchaind keys show wallet --bech val -a) --commission --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.05uself --gas auto -y
+selfchaind tx distribution withdraw-rewards $(selfchaind keys show wallet --bech val -a) --commission --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas auto -y
 ```
 
 ### Delegate Token to your own validator
 ```
-selfchaind tx staking delegate $(selfchaind keys show wallet --bech val -a) 1000000uself --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas-prices 0.05uself --gas auto -y
+selfchaind tx staking delegate $(selfchaind keys show wallet --bech val -a) 1000000uself --from wallet --chain-id self-dev-1  --gas-adjustment 1.2 --gas auto -y
 ```
 ### Node Id
 ```
