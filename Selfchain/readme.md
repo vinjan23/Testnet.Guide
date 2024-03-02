@@ -159,13 +159,14 @@ selfchaind tx staking create-validator \
 #### Edit Validator
 ```
 selfchaind tx staking edit-validator \
---new-moniker="" \
---identity="" \
+--new-moniker=vinjan \
+--identity="7C66E36EA2B71F68" \
 --chain-id=self-dev-1 \
+--from=wallet \
+--commission-rate="0.15" \
 --gas-adjustment=1.2 \
---gas-prices="0.5uself" \
---gas=auto \
---from=wallet
+--gas=auto
+
 ```
 ### Unjail Validator
 ```
