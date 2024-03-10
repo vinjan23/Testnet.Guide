@@ -23,15 +23,22 @@ wget https://github.com/althea-net/althea-L1/releases/download/v0.5.5/althea-lin
 chmod +x althea-linux-amd64
 sudo mv althea-linux-amd64 /usr/sbin/althea
 ```
-
+### Update
+```
+cd $HOME
+mkdir -p go/bin/
+wget https://github.com/althea-net/althea-L1/releases/download/v1.0.0-rc1/althea-linux-amd64
+chmod +x althea-linux-amd64
+sudo mv althea-linux-amd64 $HOME/go/bin/althea
+```
 
 ### Init
 ```
 MONIKER=
 ```
 ```
-althea init $MONIKER --chain-id althea_417834-3
-althea config chain-id althea_417834-3
+althea init $MONIKER --chain-id althea_417834-4
+althea config chain-id althea_417834-4
 althea config keyring-backend test
 ```
 
@@ -47,7 +54,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 
 #### Genesis
 ```
-wget -O $HOME/.althea/config/genesis.json https://raw.githubusercontent.com/althea-net/althea-L1-docs/main/testnet-4-genesis-collected.json
+wget -O $HOME/.althea/config/genesis.json "https://raw.githubusercontent.com/althea-net/althea-L1-docs/main/althea-l1-dress-rehersal-genesis-collected.json"
 ```
 
 ### Seed Peers Gas
@@ -135,9 +142,9 @@ althea tx staking create-validator \
 --pubkey=$(althea tendermint show-validator) \
 --moniker="vinjan" \
 --identity="7C66E36EA2B71F68" \
---details="🎉Proffesional Stake & Node Validator🎉" \
+--details="🎉 Stake & Node Validator🎉" \
 --website "https://service.vinjan.xyz" \
---chain-id=althea_417834-3 \
+--chain-id=althea_417834-4 \
 --from=wallet \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
@@ -151,7 +158,7 @@ althea tx staking create-validator \
 althea tx staking edit-validator \
 --new-moniker="vinjan" \
 --identity="7C66E36EA2B71F68" \
---chain-id=althea_417834-3 \
+--chain-id=althea_417834-4 \
 --from=wallet \
 --gas-adjustment=1.4 \
 --gas=auto
@@ -159,19 +166,19 @@ althea tx staking edit-validator \
  
 ### Unjail
 ```
-althea tx slashing unjail --from wallet --chain-id althea_417834-3 --gas-prices 0.1ualthea --gas-adjustment 1.4 --gas auto -y
+althea tx slashing unjail --from wallet --chain-id althea_417834-4 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Delegate
 ```
-althea tx staking delegate <TO_VALOPER_ADDRESS> 1000000ualthea --from wallet --chain-id althea_417834-3  --gas-adjustment 1.4 --gas auto -y
+althea tx staking delegate $(althea keys show wallet --bech val -a) 1000000ualthea --from wallet --chain-id althea_417834-4  --gas-adjustment 1.4 --gas auto -y
 ```
 ### WD All
 ```
-althea tx distribution withdraw-all-rewards --from wallet --chain-id althea_417834-3  --gas-adjustment 1.4 --gas auto -y
+althea tx distribution withdraw-all-rewards --from wallet --chain-id althea_417834-4  --gas-adjustment 1.4 --gas auto -y
 ```
 ### WD with Commission
 ```
-althea tx distribution withdraw-rewards $(althea keys show wallet --bech val -a) --commission --from wallet --chain-id althea_417834-3  --gas-adjustment 1.4 --gas auto -y
+althea tx distribution withdraw-rewards $(althea keys show wallet --bech val -a) --commission --from wallet --chain-id althea_417834-4  --gas-adjustment 1.4 --gas auto -y
 ```
 
 ### Stop
