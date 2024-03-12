@@ -86,6 +86,9 @@ sudo journalctl -u sided -f -o cat
 sided status 2>&1 | jq .SyncInfo
 ```
 ```
+sudo systemctl restart sided
+```
+```
 sudo journalctl -u sided -f -o cat
 ```
 ```
