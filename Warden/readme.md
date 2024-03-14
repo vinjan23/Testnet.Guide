@@ -10,8 +10,8 @@ mv wardend $HOME/go/bin
 MONIKER=
 ```
 ```
-wardend init $MONIKER --chain-id alfama
-wardend config --chain-id alfama
+wardend init $MONIKER chain-id alfama
+wardend config chain-id alfama
 wardend config keyring-backend test
 ```
 ```
