@@ -4,7 +4,7 @@ rm -rf wardenprotocol
 git clone --depth 1 --branch v0.1.0 https://github.com/warden-protocol/wardenprotocol/
 cd  wardenprotocol/warden/cmd/wardend
 go build
-mv wardend $HOME/go/bin
+sudo mv wardend $HOME/go/bin
 ```
 ```
 MONIKER=
