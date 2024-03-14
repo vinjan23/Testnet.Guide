@@ -11,12 +11,6 @@ MONIKER=
 ```
 ```
 wardend init vinjan --chain-id alfama
-wardend config chain-id alfama
-wardend config keyring-backend test
-```
-```
-PORT=51
-wardend config node tcp://localhost:${PORT}657
 ```
 ```
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:51658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:51657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:51060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:51656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":51660\"%" $HOME/.warden/config/config.toml
