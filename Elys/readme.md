@@ -153,7 +153,7 @@ elysd keys add wallet --recover
 
 ### Balances
 ```
-elysd query bank balances 
+elysd q bank balances $(elysd keys show wallet -a)
 ```
 
 ### Validator
@@ -190,5 +190,49 @@ elysd tx staking edit-validator \
 --gas-prices=0.00025uelys \
 -y
 ```
+### Unjail
+```
+elysd tx slashing unjail --from wallet --chain-id elystestnet-1 --gas-adjustment=1.4 --gas-prices 0.00025uelys --gas 300000 -y
+```
+### Info Jail
+```
+elysd query slashing signing-info $(elysd tendermint show-validator)
+```
+### Withdraw
+```
+elysd tx incentive withdraw-rewards $(elysd keys show wallet --bech val -a) --commission --from wallet --chain-id elystestnet-1 --gas-adjustment 1.4 --gas-prices 0.00025uelys --gas 300000 -y
+```
+
+### Validator Info
+```
+elysd status 2>&1 | jq .ValidatorInfo
+```
+### Node Info
+```
+elysd status 2>&1 | jq .NodeInfo
+```
+### Node ID
+```
+elysd tendermint show-node-id
+```
+
+### Own Peer
+```
+echo $(elysd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.elys/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+### Connected Peer
+```
+curl -sS http://localhost:16657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
 
 
+### Delete
+```
+sudo systemctl stop elysd
+sudo systemctl disable elysd
+sudo rm /etc/systemd/system/elysd.service
+sudo systemctl daemon-reload
+rm -rf $(which elysd)
+rm -rf $HOME/.elys
+rm -rf $HOME/elys
+```
