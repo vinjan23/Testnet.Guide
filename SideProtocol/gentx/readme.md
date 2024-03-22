@@ -11,9 +11,7 @@ sided keys add wallet
 ```
 sided init vinjan --chain-id side-testnet-3
 ```
-```
-sided config chain-id side-testnet-3
-```
+
 ```
 curl -s https://raw.githubusercontent.com/sideprotocol/testnet/main/side-testnet-3/pregenesis.json > ~/.side/config/genesis.json
 ```
@@ -32,7 +30,6 @@ sided gentx wallet 100000000uside \
 --website="https://service.vinjan.xyz" \
 --pubkey $(sided tendermint show-validator) \
 --chain-id side-testnet-3
---keyring-backend os
 ```
 
 
