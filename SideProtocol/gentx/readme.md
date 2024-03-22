@@ -1,8 +1,8 @@
 ```
 cd $HOME
 git clone https://github.com/sideprotocol/side.git
-cd side
 git checkout v0.7.0-rc2
+cd side
 make install
 ```
 ```
