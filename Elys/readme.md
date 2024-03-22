@@ -24,6 +24,14 @@ cd elys
 git checkout v0.28.0
 make install
 ```
+```
+cd $HOME/elys
+git fetch
+git checkout build/rocksdb
+git tag v0.29.26 -d
+git tag v0.29.26
+make install
+```
 ### Update
 ```
 cd $HOME/elys
