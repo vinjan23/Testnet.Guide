@@ -15,10 +15,6 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 ```
-echo "export LD_LIBRARY_PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
-source ~/.bash_profile
-sudo make install-shared INSTALL_PATH=/usr/local/go/bin
-
 
 ### Binary
 ```
@@ -29,12 +25,12 @@ git checkout v0.29.26
 make install
 ```
 ```
-cd $HOME/elys
-git fetch
-git checkout build/rocksdb
-git tag v0.29.26 -d
-git tag v0.29.26
-make install
+cd $HOME
+rm -rf elys
+git clone https://github.com/elys-network/elys.git
+cd elys
+git checkout v0.29.26
+make build
 ```
 ### Update
 ```
@@ -44,13 +40,38 @@ git checkout v0.29.26
 make install
 ```
 ```
+cd $HOME
+rm -rf elys
+git clone https://github.com/elys-network/elys.git
+cd elys
+git checkout build/rocksdb
+git tag v0.29.26 -d
+git tag v0.29.26
+make build
+```
+```
+mkdir -p $HOME/.elys/cosmovisor/genesis/bin
+mv build/elysd $HOME/.elys/cosmovisor/genesis/bin/
+rm -rf build
+```
+```
+sudo ln -s $HOME/.elys/cosmovisor/genesis $HOME/.elys/cosmovisor/current -f
+sudo ln -s $HOME/.elys/cosmovisor/current/bin/elysd /usr/local/bin/elysd -f
+```
+```
 elysd version --long | grep -e commit -e version
 ```
 ```
 sudo systemctl restart elysd
 ```
 ```
+sudo systemctl restart elys.service
+```
+```
 sudo journalctl -u elysd -f -o cat
+```
+```
+sudo journalctl -u elys.service -f --no-hostname -o cat
 ```
 ### Moniker
 ```
@@ -71,6 +92,10 @@ elysd config node tcp://localhost:${PORT}657
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.elys/config/config.toml
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.elys/config/app.toml
 ```
+### Install Cosmovisor
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+```
 
 ### Genesis
 ```
@@ -79,7 +104,7 @@ wget -O $HOME/.elys/config/genesis.json https://raw.githubusercontent.com/elys-n
 
 ### Seed $ Peer
 ```
-seeds="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22056,8d9845f7ef934ade824981b9145a26f00192b575@45.79.24.206:26656"
+seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.elys/config/config.toml
 peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.elys/config/config.toml
@@ -91,9 +116,6 @@ sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.0018ibc/2180E84E2
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "nothing"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
--e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.elys/config/app.toml
 ```
 ### Indexer Null
@@ -119,12 +141,40 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+```
+sudo tee /etc/systemd/system/elys.service > /dev/null << EOF
+[Unit]
+Description=elys node service
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.elys"
+Environment="DAEMON_NAME=elysd"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.elys/cosmovisor/current/bin"
+Environment="LD_LIBRARY_PATH=/usr/local/lib"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
 
 ### Start
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable elysd
 sudo systemctl restart elysd && sudo journalctl -u elysd -f -o cat
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl enable elys.service
+sudo systemctl start elys.service
+sudo journalctl -u elys.service -f --no-hostname -o cat
 ```
 
 ### Sync
