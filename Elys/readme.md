@@ -15,13 +15,17 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 ```
+echo "export LD_LIBRARY_PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
+sudo make install-shared INSTALL_PATH=/usr/local/go/bin
+
 
 ### Binary
 ```
 cd $HOME
 git clone https://github.com/elys-network/elys
 cd elys
-git checkout v0.28.0
+git checkout v0.29.26
 make install
 ```
 ```
