@@ -8,9 +8,7 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 ```
-```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
-```
+
 ```
 cd $HOME
 rm -rf elys
@@ -19,7 +17,15 @@ cd elys
 git checkout build/rocksdb
 git tag v0.29.26 -d
 git tag v0.29.26
-make build
+make install
+```
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+```
+```
+mkdir -p ~/.elys/cosmovisor/genesis/bin
+mkdir -p ~/.elys/cosmovisor/upgrades
+cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
 ```
 ```
 elysd init $MONIKER --chain-id elystestnet-1
@@ -52,12 +58,6 @@ $HOME/.elys/config/app.toml
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.elys/config/config.toml
 ```
-```
-mkdir -p ~/.elys/cosmovisor/genesis/bin
-mkdir -p ~/.elys/cosmovisor/upgrades
-cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
-```
-
 
 ```
 sudo tee /etc/systemd/system/elysd.service > /dev/null << EOF
