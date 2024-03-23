@@ -68,9 +68,9 @@ After=network-online.target
 [Service]
 User=$USER
 ExecStart=$(which cosmovisor) run start
-Restart=on-failure
+Restart=on-always
 RestartSec=3
-LimitNOFILE=10000
+LimitNOFILE=65535
 Environment="DAEMON_NAME=elysd"
 Environment="DAEMON_HOME=$HOME/.elys"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
