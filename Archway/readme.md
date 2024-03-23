@@ -121,6 +121,22 @@ sudo systemctl enable archwayd
 sudo systemctl restart archwayd
 sudo journalctl -u archwayd -f -o cat
 ```
+```
+sudo systemctl stop archwayd
+cp $HOME/.archway/data/priv_validator_state.json $HOME/.archway/priv_validator_state.json.backup
+archwayd tendermint unsafe-reset-all --home $HOME/.archway --keep-addr-book
+SNAP_RPC="https://archway-testnet-rpc.polkachu.com:443"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.archway/config/config.toml
+mv $HOME/.archway/priv_validator_state.json.backup $HOME/.archway/data/priv_validator_state.json
+sudo systemctl restart archwayd && sudo journalctl -u archwayd -f -o cat
+```
+
 
 ### Sync
 ```
