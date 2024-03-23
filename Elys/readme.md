@@ -49,6 +49,21 @@ git tag v0.29.26 -d
 git tag v0.29.26
 make build
 ```
+### Update With Cosmovisor
+```
+cd $HOME
+rm -rf elys
+git clone https://github.com/elys-network/elys.git
+cd elys
+git checkout v0.29.26
+make build
+```
+```
+mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.26/bin
+mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.29.26/bin/
+rm -rf build
+```
+
 ```
 elysd version --long | grep -e commit -e version
 ```
