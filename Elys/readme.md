@@ -6,7 +6,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 
 ### GO
 ```
-ver="1.21.1"
+ver="1.21.7"
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
@@ -50,29 +50,25 @@ git tag v0.29.26
 make build
 ```
 ```
-mkdir -p $HOME/.elys/cosmovisor/genesis/bin
-mv build/elysd $HOME/.elys/cosmovisor/genesis/bin/
-rm -rf build
-```
-```
-sudo ln -s $HOME/.elys/cosmovisor/genesis $HOME/.elys/cosmovisor/current -f
-sudo ln -s $HOME/.elys/cosmovisor/current/bin/elysd /usr/local/bin/elysd -f
-```
-```
 elysd version --long | grep -e commit -e version
 ```
 ```
 sudo systemctl restart elysd
 ```
 ```
-sudo systemctl restart elys.service
-```
-```
 sudo journalctl -u elysd -f -o cat
 ```
+
+### Cosmovisor
 ```
-sudo journalctl -u elys.service -f --no-hostname -o cat
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
 ```
+```
+mkdir -p ~/.elys/cosmovisor/genesis/bin
+mkdir -p ~/.elys/cosmovisor/upgrades
+cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
+```
+
 ### Moniker
 ```
 MONIKER=
@@ -90,11 +86,7 @@ elysd config node tcp://localhost:${PORT}657
 ```
 ```
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.elys/config/config.toml
-sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.elys/config/app.toml
-```
-### Install Cosmovisor
-```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.elys/config/app.toml
 ```
 
 ### Genesis
@@ -141,22 +133,24 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+### Cosmovisor
 ```
-sudo tee /etc/systemd/system/elys.service > /dev/null << EOF
+sudo tee /etc/systemd/system/elysd.service > /dev/null << EOF
 [Unit]
-Description=elys node service
+Description=Elys Node
 After=network-online.target
 
 [Service]
 User=$USER
 ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=10
+Restart=on-always
+RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.elys"
 Environment="DAEMON_NAME=elysd"
+Environment="DAEMON_HOME=$HOME/.elys"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.elys/cosmovisor/current/bin"
 Environment="LD_LIBRARY_PATH=/usr/local/lib"
 
 [Install]
@@ -168,13 +162,8 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable elysd
-sudo systemctl restart elysd && sudo journalctl -u elysd -f -o cat
-```
-```
-sudo systemctl daemon-reload
-sudo systemctl enable elys.service
-sudo systemctl start elys.service
-sudo journalctl -u elys.service -f --no-hostname -o cat
+sudo systemctl restart elysd
+sudo journalctl -u elysd -f -o cat
 ```
 
 ### Sync
