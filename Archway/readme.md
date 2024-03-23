@@ -99,12 +99,12 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.archway/config/config.toml
 ```
 sudo tee /etc/systemd/system/archwayd.service << EOF
 [Unit]
-Description="archway node"
+Description=archway
 After=network-online.target
 
 [Service]
 User=USER
-ExecStart=/home/USER/go/bin/cosmovisor start
+ExecStart=$(which cosmovisor) run start
 Restart=always
 RestartSec=3
 LimitNOFILE=4096
