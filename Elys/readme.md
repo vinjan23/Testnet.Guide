@@ -196,7 +196,9 @@ sudo systemctl restart elysd && sudo journalctl -u elysd -f -o cat
 ```
 elysd keys add wallet
 ```
-
+```
+export LD_LIBRARY_PATH=/usr/local/lib
+```
 ### Recover
 ```
 elysd keys add wallet --recover
