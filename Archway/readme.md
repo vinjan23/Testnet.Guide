@@ -22,7 +22,7 @@ go version
 cd $HOME
 git clone https://github.com/archway-network/archway.git
 cd archway
-git checkout v0.5.1
+git checkout v6.0.0
 make install
 ```
 ### Update
@@ -97,22 +97,17 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.archway/config/config.toml
 ```
 ### Service
 ```
-sudo tee /etc/systemd/system/archwayd.service << EOF
+sudo tee /etc/systemd/system/archwayd.service > /dev/null <<EOF
 [Unit]
 Description=archway
 After=network-online.target
 
 [Service]
-User=USER
-ExecStart=$(which cosmovisor) run start
-Restart=always
+User=$USER
+ExecStart=$(which archwayd) start
+Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
-Environment="DAEMON_NAME=archwayd"
-Environment="DAEMON_HOME=/home/USER/.archway"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
