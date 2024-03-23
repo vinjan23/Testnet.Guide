@@ -99,19 +99,23 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.archway/config/config.toml
 ```
 sudo tee /etc/systemd/system/archwayd.service << EOF
 [Unit]
-Description=archway-testnet
+Description="archway node"
 After=network-online.target
-#
+
 [Service]
-User=$USER
-ExecStart=$(which archwayd) start
+User=USER
+ExecStart=/home/USER/go/bin/cosmovisor start
+Restart=always
 RestartSec=3
-Restart=on-failure
-LimitNOFILE=65535
-#
+LimitNOFILE=4096
+Environment="DAEMON_NAME=archwayd"
+Environment="DAEMON_HOME=/home/USER/.archway"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+
 [Install]
 WantedBy=multi-user.target
-EOF
 ```
 
 ### Start
