@@ -87,7 +87,7 @@ neutrond status 2>&1 | jq .SyncInfo
 neutrond keys add ibc-neutron
 ```
 ```
-neutrond q bank balances $(neutrond keys show ibc-ntrn -a)
+neutrond q bank balances $(neutrond keys show ibc-neutron -a)
 ```
 ```
 sudo systemctl stop neutrond
