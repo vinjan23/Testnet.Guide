@@ -84,7 +84,7 @@ sudo systemctl restart neutrond && sudo journalctl -u neutrond -f -o cat
 neutrond status 2>&1 | jq .SyncInfo
 ```
 ```
-neutrond keys add ibc-star
+neutrond keys add ibc-neutron
 ```
 ```
 neutrond q bank balances $(neutrond keys show ibc-ntrn -a)
