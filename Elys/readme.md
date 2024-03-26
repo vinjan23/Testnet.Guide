@@ -59,8 +59,8 @@ git checkout v0.29.28
 make build
 ```
 ```
-mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.27/bin
-mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.29.27/bin/
+mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.28/bin
+mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.29.28/bin/
 rm -rf build
 ```
 
