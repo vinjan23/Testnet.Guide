@@ -16,15 +16,15 @@ go version
 cd $HOME
 git clone https://github.com/sideprotocol/side.git
 cd side
-git checkout v0.6.0
+git checkout v0.7.0-rc2
 make install
 ```
 ```
 MONIKER=
 ```
 ```
-sided init $MONIKER --chain-id=side-testnet-2
-sided config chain-id side-testnet-2
+sided init $MONIKER --chain-id side-testnet-3
+sided config chain-id side-testnet-3
 sided config keyring-backend test
 ```
 ```
@@ -36,7 +36,7 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"localhost:9090\"%address = \"localhost:${PORT}090\"%; s%^address = \"localhost:9091\"%address = \"localhost:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.side/config/app.toml
 ```
 ```
-wget -O $HOME/.side/config/genesis.json "https://raw.githubusercontent.com/sideprotocol/testnet/main/side-testnet-2/genesis.json"
+curl -s https://raw.githubusercontent.com/sideprotocol/testnet/main/side-testnet-3/pregenesis.json > ~/.side/config/genesis.json
 ```
 ```
 wget -O $HOME/.side/config/addrbook.json ""
