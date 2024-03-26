@@ -48,9 +48,9 @@ curl -s https://raw.githubusercontent.com/sideprotocol/testnet/main/side-testnet
 wget -O $HOME/.side/config/addrbook.json ""
 ```
 ```
-seed=""
+seed="00170c0c23c3e97c740680a7f881511faf68289a@202.182.119.24:26656"
 sed -i.bak -e "s/^seed *=.*/seed = \"$seed\"/" ~/.side/config/config.toml
-peers="d9911bd0eef9029e8ce3263f61680ef4f71a87c4@13.230.121.124:26656,693bdfec73a81abddf6f758aa49321de48456a96@13.231.67.192:26656"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.side/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uside\"/" $HOME/.side/config/app.toml
 ```
