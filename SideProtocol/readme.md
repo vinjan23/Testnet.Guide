@@ -20,6 +20,12 @@ git checkout v0.7.0-rc2
 make install
 ```
 ```
+cd $HOME/side
+git fetch --all
+git checkout v0.7.0
+make install
+```
+```
 MONIKER=
 ```
 ```
