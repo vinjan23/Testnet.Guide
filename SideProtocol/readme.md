@@ -129,12 +129,14 @@ sided tx staking edit-validator \
 --website="https://service.vinjan.xyz \
 --gas auto 
 ```
-
+```
+sided tx staking edit-validator --from wallet --chain-id side-testnet-3 --commission-rate 0.2
+```
 ```
 sided tx slashing unjail --from wallet --chain-id side-testnet-3
 ```
 ```
-sided tx staking delegate $(sided keys show wallet --bech val -a) 100000000uside --from wallet --chain-id side-testnet-3
+sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id side-testnet-3
 ```
 ```
 sided tx distribution withdraw-rewards $(sided keys show wallet --bech val -a) --commission --from wallet --chain-id side-testnet-3 --gas-adjustment 1.4 --gas auto -y
