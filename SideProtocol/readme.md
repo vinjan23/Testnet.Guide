@@ -16,7 +16,7 @@ go version
 cd $HOME
 git clone https://github.com/sideprotocol/side.git
 cd side
-git checkout v0.7.0-rc2
+git checkout v0.7.0
 make install
 ```
 ```
