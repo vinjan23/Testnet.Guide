@@ -11,7 +11,7 @@ address=$($app_daemon keys show $key_name -a)
 val_address=$($app_daemon keys show $key_name --bech val -a)
 
 for (( ;; )); do
-echo -e "Collecting rewards!"
+echo -e "\033[0;32mCollecting rewards!\033[0m"
 $app_daemon tx distribution withdraw-rewards $val_address --from=$key_name --commission --chain-id=$chain_id -y
 echo -e "\033[0;32mWaiting 30 seconds before requesting balance"
 sleep 30
