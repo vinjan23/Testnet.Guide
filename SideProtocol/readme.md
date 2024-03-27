@@ -113,16 +113,31 @@ sided tx staking create-validator \
 --commission-rate="0.1" \
 --min-self-delegation="1" \
 --pubkey=$(sided tendermint show-validator) \
---chain-id=side-testnet-2 \
+--chain-id=side-testnet-3 \
 --identity="7C66E36EA2B71F68" \
 --details=" 🎉 Stake & Node Operator 🎉" \
 --website="https://service.vinjan.xyz"
 ```
 ```
-sided tx slashing unjail --from wallet --chain-id side-testnet-2
+sided tx staking edit-validator \
+--new-moniker=vinjan \
+--from=wallet \
+--chain-id side-testnet-3 \
+--commission-rate="0.2" \
+--identity="7C66E36EA2B71F68" \
+--details=" 🎉 Stake & Node Operator 🎉" \
+--website="https://service.vinjan.xyz \
+--gas auto 
+```
+
+```
+sided tx slashing unjail --from wallet --chain-id side-testnet-3
 ```
 ```
-sided tx staking delegate $(sided keys show wallet --bech val -a) 100000000uside --from wallet --chain-id side-testnet-2
+sided tx staking delegate $(sided keys show wallet --bech val -a) 100000000uside --from wallet --chain-id side-testnet-3
+```
+```
+sided tx distribution withdraw-rewards $(sided keys show wallet --bech val -a) --commission --from wallet --chain-id side-testnet-3 --gas-adjustment 1.4 --gas auto -y
 ```
 
 ```
