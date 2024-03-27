@@ -174,7 +174,7 @@ AMOUNT_STRING=$AMOUNT$denom
 echo -e "Your total balance: \033[0;32m$AMOUNT_STRING\033[0m"
 $app_daemon tx staking delegate $val_address $AMOUNT_STRING --from $key_name --chain-id $chain_id -y
 echo -e "\033[0;32m$AMOUNT_STRING staked! Restarting in 90 sec!\033[0m"
-sleep 120
+sleep 180
 done
 ```
 
