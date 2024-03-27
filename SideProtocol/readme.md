@@ -155,7 +155,7 @@ rm -rf side
 #!/bin/bash
 
 # Start your configuration
-denom=uaum
+denom=uside
 app_daemon=sided
 key_name=wallet
 chain_id=side-testnet-3
