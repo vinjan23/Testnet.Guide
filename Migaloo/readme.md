@@ -6,6 +6,12 @@ git checkout v4.1.x-testnet-rc9
 make install
 ```
 ```
+cd $HOME/migaloo
+git pull
+git checkout v4.1.4
+make install
+```
+```
 migalood init $MONIKER --chain-id narwhal-2
 migalood config chain-id narwhal-2
 migalood config keyring-backend test
