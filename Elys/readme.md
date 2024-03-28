@@ -65,6 +65,16 @@ rm -rf build
 ```
 
 ```
+cd $HOME
+git clone https://github.com/elys-network/elys.git
+cd elys
+git fetch
+git checkout v0.29.29
+make install
+cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.29.29/bin/elysd
+```
+
+```
 elysd version --long | grep -e commit -e version
 ```
 ```
