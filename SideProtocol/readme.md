@@ -127,6 +127,7 @@ sided tx staking edit-validator \
 --identity="7C66E36EA2B71F68" \
 --details=" 🎉 Stake & Node Operator 🎉" \
 --website="https://service.vinjan.xyz \
+--contact=wijaton23@gmail.com \
 --gas auto 
 ```
 ```
