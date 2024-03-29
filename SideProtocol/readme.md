@@ -45,7 +45,7 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 curl -s https://raw.githubusercontent.com/sideprotocol/testnet/main/side-testnet-3/pregenesis.json > ~/.side/config/genesis.json
 ```
 ```
-wget -O $HOME/.side/config/addrbook.json ""
+wget -O $HOME/.side/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/SideProtocol/addrbook.json"
 ```
 ```
 seed="00170c0c23c3e97c740680a7f881511faf68289a@202.182.119.24:26656"
