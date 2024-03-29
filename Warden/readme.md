@@ -1,9 +1,9 @@
 ```
 cd $HOME
-git clone https://github.com/warden-protocol/wardenprotocol warden 
-cd warden
-git checkout v0.2.0
-make install
+git clone --depth 1 --branch v0.2.0 https://github.com/warden-protocol/wardenprotocol/
+cd wardenprotocol
+make build-wardend
+sudo mv build/wardend /root/go/bin
 ```
 ```
 wardend version --long | grep -e commit -e version
