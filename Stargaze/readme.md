@@ -6,6 +6,12 @@ git checkout v13.0.0-rc.7-testnet
 make install
 ```
 ```
+cd $HOME/stargaze
+git pull
+git checkout v13.0.0-rc.7-testnet
+make install
+```
+```
 starsd init YOUR_MONIKER --chain-id elgafar-1
 starsd config chain-id elgafar-1
 ```
