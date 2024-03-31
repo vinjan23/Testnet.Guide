@@ -89,8 +89,26 @@ starsd status 2>&1 | jq .SyncInfo
 starsd keys add ibc-star
 ```
 ```
-starsd q bank balances $(starsd keys show ibc-miga -a)
+starsd q bank balances $(starsd keys show ibc-star -a)
 ```
+```
+starsd tx staking create-validator \
+--amount=10000000ustars \
+--moniker=vinjan \
+--identity="7C66E36EA2B71F68" \
+--details=" 🎉 Stake & Node Operator 🎉" \
+--website="https://service.vinjan.xyz" \
+--from=ibc-star \
+--commission-max-change-rate="0.05" \
+--commission-max-rate="0.2" \
+--commission-rate="0.1" \
+--min-self-delegation="1" \
+--pubkey=$(starsd tendermint show-validator) \
+--chain-id=elgafar-1 \
+--fees 250000ustars \
+-y
+```
+
 ```
 sudo systemctl stop starsd
 sudo systemctl disable starsd
