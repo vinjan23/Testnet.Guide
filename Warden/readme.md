@@ -59,7 +59,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.warden/config/config.toml
 ```
-### Service
+### Service with cosmovisor
 ```
 sudo tee /etc/systemd/system/wardend.service > /dev/null << EOF
 [Unit]
@@ -82,6 +82,25 @@ Environment="UNSAFE_SKIP_BACKUP=true"
 WantedBy=multi-user.target
 EOF
 ```
+ Service
+```
+sudo tee /etc/systemd/system/wardend.service > /dev/null <<EOF
+[Unit]
+Description=wardend
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which wardend) start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+### Start
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable wardend
