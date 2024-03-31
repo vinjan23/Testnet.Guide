@@ -1,3 +1,19 @@
+### Package
+```
+sudo apt update && sudo apt upgrade -y && sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
+```
+### GO
+```
+ver="1.21.7"
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
+go version
+```
+### Build
 ```
 cd $HOME
 git clone --depth 1 --branch v0.2.0 https://github.com/warden-protocol/wardenprotocol/
@@ -13,7 +29,7 @@ wardend version --long | grep -e commit -e version
 wardend init vinjan --chain-id alfama
 wardend config chain-id alfama
 ```
-### Cosmo
+### Cosmovisor
 ```
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
 ```
@@ -107,42 +123,63 @@ sudo systemctl enable wardend
 sudo systemctl restart wardend
 sudo journalctl -u wardend -f -o cat
 ```
+### Check Sync
 ```
 wardend status 2>&1 | jq .sync_info
 ```
+### Add wallet
 ```
 wardend keys add wallet
 ```
+### Balances
 ```
 wardend q bank balances $(wardend keys show wallet -a)
 ```
+### Create Validator
+- Check Your Pubkey
 ```
-wardend tx staking create-validator \
---amount=1000000uward \
---moniker=vinjan \
---identity= \
---details= \
---chain-id=alfama \
---from=wallet \
---commission-rate=0.1 \
---commission-max-rate=0.2 \
---commission-max-change-rate=0.05 \
---min-self-delegation=1 \
---pubkey=$(wardend tendermint show-validator) \
---gas auto
---gas-adjustment 1.5 \
--y
+wardend comet show-validator
+```
+- Make File validator.json
+```
+nano $HOME/validator.json
 ```
 ```
-wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 10000000uward --from wallet --gas 350000 --chain-id=alfama -y
+{
+  "pubkey": {"#pubkey"},
+  "amount": "1000000uward",
+  "moniker": "",
+  "identity": "",
+  "website": "",
+  "security": "",
+  "details": "",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.2",
+  "min-self-delegation": "1"
+}
 ```
+- Crtl X + Y enter
+
+```
+wardend tx staking create-validator validator.json \
+    --from=wallet \
+    --chain-id=alfama \
+    --fees=500uward
+```
+### Delegate
+```
+wardend tx staking delegate (valoper-address) 10000000uward --from wallet --gas 350000 --chain-id=alfama -y
+```
+### WD
 ```
 wardend tx distribution withdraw-all-rewards --from wallet --chain-id alfama --gas 350000 -y
 ```
+### WD with commission
 ```
 wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --gas 350000 --chain-id=alfama --commission -y
 ```
-
+### Delete Node
 ```
 sudo systemctl stop wardend
 sudo systemctl disable wardend
