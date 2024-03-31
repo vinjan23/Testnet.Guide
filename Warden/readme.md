@@ -114,4 +114,23 @@ wardend tx staking create-validator \
 --gas-adjustment 1.5 \
 -y
 ```
+```
+wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 10000000uward --from wallet --gas 350000 --chain-id=alfama -y
+```
+```
+wardend tx distribution withdraw-all-rewards --from wallet --chain-id alfama --gas 350000 -y
+```
+```
+wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --gas 350000 --chain-id=alfama --commission -y
+```
 
+```
+sudo systemctl stop wardend
+sudo systemctl disable wardend
+rm /etc/systemd/system/wardend.service
+sudo systemctl daemon-reload
+cd $HOME
+rm -rf wardenprotocol
+rm -rf .wardend
+rm -rf $(which wardend)
+```
