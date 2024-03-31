@@ -132,7 +132,7 @@ wardend status 2>&1 | jq .sync_info
 sudo apt install lz4 -y
 sudo systemctl stop waqrdend
 wardend tendermint unsafe-reset-all --home $HOME/.warden --keep-addr-book
-curl -L https://snap.vinjan.xyz/warden/warden-snapshot-20240331.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.**
+curl -L https://snap.vinjan.xyz/warden/warden-snapshot-20240331.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.warden
 sudo systemctl restart wardend
 journalctl -fu wardend -o cat
 ```
