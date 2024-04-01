@@ -122,12 +122,9 @@ sided tx staking create-validator \
 sided tx staking edit-validator \
 --new-moniker "vinjan" \
 --identity "7C66E36EA2B71F68" \
---details "Stake & Node Operator" \
---website "https://service.vinjan.xyz" \
---security-contact "wijaton23@gmail.com" \
+--commission-rate="0.11" \
 --chain-id side-testnet-3 \
---from wallet \
---gas 350000 -y
+--from wallet
 ```
 ```
 sided tx staking edit-validator --from wallet --chain-id side-testnet-3 --commission-rate 0.2
