@@ -56,12 +56,12 @@ rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git tag v0.29.29
+git tag v0.29.30
 make build
 ```
 ```
-mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.29/bin
-mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.29.29/bin/
+mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.30/bin
+mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.29.30/bin/
 rm -rf build
 ```
 
