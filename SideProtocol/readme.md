@@ -124,7 +124,8 @@ sided tx staking edit-validator \
 --identity "7C66E36EA2B71F68" \
 --commission-rate="0.11" \
 --chain-id side-testnet-3 \
---from wallet
+--from wallet \
+-y
 ```
 ```
 sided tx staking edit-validator --from wallet --chain-id side-testnet-3 --commission-rate 0.2
