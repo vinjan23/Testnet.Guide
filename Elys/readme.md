@@ -73,7 +73,6 @@ git checkout v0.29.30-p1
 make install
 cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.29.30-p1/bin/elysd
 ```
-
 ```
 elysd version --long | grep -e commit -e version
 ```
