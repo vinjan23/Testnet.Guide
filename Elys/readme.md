@@ -21,7 +21,7 @@ go version
 cd $HOME
 git clone https://github.com/elys-network/elys
 cd elys
-git checkout v0.29.26
+git checkout v0.29.30-p1
 make install
 ```
 ```
