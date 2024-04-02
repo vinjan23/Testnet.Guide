@@ -98,7 +98,7 @@ cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
 cd $HOME
 git clone https://github.com/elys-network/elys.git 
 cd elys
-version="v0.29.28"
+version="v0.29.30-p1"
 git checkout $version
 
 go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
