@@ -29,8 +29,8 @@ cd $HOME
 rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
-git checkout v0.29.26
-make build
+git checkout v0.29.30-p1
+make install
 ```
 ### Update
 ```
