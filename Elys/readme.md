@@ -36,7 +36,7 @@ make build
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.29.26
+git checkout v0.29.30-p1
 make install
 ```
 ```
