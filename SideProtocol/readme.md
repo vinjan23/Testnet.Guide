@@ -50,7 +50,7 @@ wget -O $HOME/.side/config/addrbook.json "https://raw.githubusercontent.com/vinj
 ```
 seed="00170c0c23c3e97c740680a7f881511faf68289a@202.182.119.24:26656"
 sed -i.bak -e "s/^seed *=.*/seed = \"$seed\"/" ~/.side/config/config.toml
-peers=""
+peers="9cde06c5cc446575ca1cc2f67af352ea5134417e@144.91.124.126:49656,ca3379b48e196c3ef910a08452b459b0f327fdb6@95.216.3.115:34656,f1c77528a14f8981381b117c573dc1441e6a5882@213.199.48.13:26656,00170c0c23c3e97c740680a7f881511faf68289a@202.182.119.24:26656,8d8bf287dfd9ce7da209b4152f6dd4d4b146131c@23.88.105.251:26656,2fb44a8e4bdebf44f55703c144d19c0c47101bb9@188.34.192.238:16456"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.side/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uside\"/" $HOME/.side/config/app.toml
 ```
