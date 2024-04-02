@@ -69,9 +69,9 @@ cd $HOME
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout v0.29.30
+git checkout v0.29.30-p1
 make install
-cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.29.29/bin/elysd
+cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.29.30-p1/bin/elysd
 ```
 
 ```
