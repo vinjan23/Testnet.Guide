@@ -50,8 +50,8 @@ git checkout v0.29.29-pebbledb
 make install
 ```
 ```
-mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.30/bin
-mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.29.30/bin/
+mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.29/bin
+mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.29.29/bin/
 rm -rf build
 ```
 
