@@ -136,7 +136,7 @@ wget -O $HOME/.elys/config/genesis.json https://raw.githubusercontent.com/elys-n
 
 ### Seed $ Peer
 ```
-seeds=""
+seeds="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22056"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.elys/config/config.toml
 peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.elys/config/config.toml
