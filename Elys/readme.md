@@ -30,7 +30,7 @@ rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
 git checkout v0.29.29
-make install
+make build
 ```
 ### Update
 ```
