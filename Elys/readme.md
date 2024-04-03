@@ -29,8 +29,8 @@ cd $HOME
 rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
-git checkout v0.29.29
-make build
+git checkout v0.29.30-p2
+make install
 ```
 ### Update
 ```
@@ -82,31 +82,6 @@ go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
 mkdir -p ~/.elys/cosmovisor/genesis/bin
 mkdir -p ~/.elys/cosmovisor/upgrades
 cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
-```
-### Pebbledb
-```
-cd $HOME
-git clone https://github.com/elys-network/elys.git 
-cd elys
-version="v0.29.29"
-git checkout $version
-
-go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
-go mod tidy
-
-go install -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb \
- -X github.com/cosmos/cosmos-sdk/version.Version=$version \
- -X github.com/cosmos/cosmos-sdk/version.Commit=$(git log -1 --format='%H') \
- -X github.com/cosmos/cosmos-sdk/version.ServerName=elysd \
- -X github.com/cosmos/cosmos-sdk/version.ClientName=elysd \
- -X github.com/cosmos/cosmos-sdk/version.Name=elys \
- -X github.com/cosmos/cosmos-sdk/version.AppName=elys" -tags pebbledb ./...
-
-elysd version --home $ELYS_HOME --long | tail -n7
-
-db_backend="pebbledb"
-sed -i "s/^db_backend *=.*/db_backend = \"$db_backend\"/" $ELYS_HOME/config/config.toml
-sed -i "s/^app-db-backend *=.*/app-db-backend = \"$db_backend\"/" $ELYS_HOME/config/app.toml
 ```
 
 ### Moniker
