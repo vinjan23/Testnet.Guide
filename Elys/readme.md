@@ -29,7 +29,7 @@ cd $HOME
 rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
-git checkout v0.29.30-p1
+git checkout v0.29.29
 make install
 ```
 ### Update
@@ -39,24 +39,15 @@ git fetch --all
 git checkout v0.29.30-p1
 make install
 ```
-```
-cd $HOME
-rm -rf elys
-git clone https://github.com/elys-network/elys.git
-cd elys
-git checkout build/rocksdb
-git tag v0.29.26 -d
-git tag v0.29.26
-make build
-```
+
 ### Update With Cosmovisor
 ```
 cd $HOME
 rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
-git checkout v0.29.30
-make build
+git checkout v0.29.29-pebbledb
+make install
 ```
 ```
 mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.30/bin
@@ -97,7 +88,7 @@ cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
 cd $HOME
 git clone https://github.com/elys-network/elys.git 
 cd elys
-version="v0.29.30-p1"
+version="v0.29.29"
 git checkout $version
 
 go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
