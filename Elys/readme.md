@@ -191,7 +191,6 @@ Environment="DAEMON_HOME=$HOME/.elys"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="LD_LIBRARY_PATH=/usr/local/lib"
 
 [Install]
 WantedBy=multi-user.target
