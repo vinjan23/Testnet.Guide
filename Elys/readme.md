@@ -21,17 +21,19 @@ go version
 cd $HOME
 git clone https://github.com/elys-network/elys
 cd elys
-git checkout v0.29.30-p1
-make install
-```
-```
-cd $HOME
-rm -rf elys
-git clone https://github.com/elys-network/elys.git
-cd elys
 git checkout v0.29.30-p2
 make install
 ```
+### Cosmovisor
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+```
+```
+mkdir -p ~/.elys/cosmovisor/genesis/bin
+mkdir -p ~/.elys/cosmovisor/upgrades
+cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
+```
+
 ### Update
 ```
 cd $HOME/elys
@@ -46,8 +48,8 @@ cd $HOME
 rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
-git checkout v0.29.29-pebbledb
-make install
+git checkout v0.29.30-p2
+make build
 ```
 ```
 mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.29.30/bin
@@ -60,7 +62,7 @@ cd $HOME
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout v0.29.30-p1
+git checkout v0.29.30-p2
 make install
 cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.29.30-p1/bin/elysd
 ```
@@ -74,15 +76,7 @@ sudo systemctl restart elysd
 sudo journalctl -u elysd -f -o cat
 ```
 
-### Cosmovisor
-```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
-```
-```
-mkdir -p ~/.elys/cosmovisor/genesis/bin
-mkdir -p ~/.elys/cosmovisor/upgrades
-cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
-```
+
 
 ### Moniker
 ```
