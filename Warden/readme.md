@@ -179,7 +179,7 @@ wardend tx staking create-validator validator.json \
 ```
 ### Delegate
 ```
-wardend tx staking delegate (valoper-address) 10000000uward --from wallet --gas 350000 --chain-id=alfama -y
+wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 20000000uward --from wallet --fees 500uward --chain-id=alfama -y
 ```
 ### WD
 ```
