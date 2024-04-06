@@ -93,6 +93,24 @@ migalood keys add ibc-miga --recover
 migalood q bank balances $(migalood keys show ibc-miga -a)
 ```
 ```
+migalood tx staking create-validator \
+--amount 5000000uwhale \
+--pubkey $(migalood tendermint show-validator) \
+--moniker "vinjan" \
+--identity "7C66E36EA2B71F68" \
+--details "🎉 Stake & Node Validator🎉" \
+--website "https://service.vinjan.xyz" \
+--chain-id narwhal-2 \
+--commission-rate 0.1 \
+--commission-max-rate 0.20 \
+--commission-max-change-rate 0.05 \
+--min-self-delegation 1 \
+--from ibc-miga \
+--gas-adjustment 1.4 \
+--fees 5000uwhale
+```
+
+```
 sudo systemctl stop migalood
 sudo systemctl disable migalood
 sudo rm /etc/systemd/system/migalood.service
