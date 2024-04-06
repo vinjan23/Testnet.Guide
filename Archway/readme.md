@@ -159,27 +159,26 @@ archwayd keys add wallet --recover
 
 ### Balances
 ```
-archwayd  q bank balances archway1lg68f0x669kd4ga50mtc320lkp53ddkzz9ufpe
+archwayd  q bank balances $(archwayd keys show ibc-arch -a)
 ```
 
 ### Validator
 ```
 archwayd tx staking create-validator \
---amount 4500000000000000000aconst \
+--amount 4000000000000000000aconst \
 --pubkey $(archwayd tendermint show-validator) \
 --moniker "vinjan" \
 --identity "7C66E36EA2B71F68" \
---details "🎉Proffesional Stake & Node Validator🎉" \
---website "https://nodes.vinjan.xyz" \
+--details "🎉 Stake & Node Validator🎉" \
+--website "https://service.vinjan.xyz" \
 --chain-id constantine-3 \
 --commission-rate 0.1 \
 --commission-max-rate 0.20 \
---commission-max-change-rate 0.01 \
+--commission-max-change-rate 0.05 \
 --min-self-delegation 1 \
---from wallet \
+--from ibc-arch \
 --gas-adjustment 1.4 \
 --fees 70000000000000000aconst
--y
 ```
 
 ### Unjail
