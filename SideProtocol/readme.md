@@ -122,10 +122,9 @@ sided tx staking create-validator \
 sided tx staking edit-validator \
 --new-moniker "vinjan" \
 --identity "7C66E36EA2B71F68" \
---commission-rate="0.11" \
+--commission-rate="0.15" \
 --chain-id side-testnet-3 \
---from wallet \
--y
+--from wallet
 ```
 ```
 sided tx staking edit-validator --from wallet --chain-id side-testnet-3 --commission-rate 0.2
