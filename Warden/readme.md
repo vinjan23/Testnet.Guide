@@ -22,12 +22,19 @@ make build-wardend
 sudo mv build/wardend /root/go/bin
 ```
 ```
+cd $HOME
+git clone https://github.com/warden-protocol/wardenprotocol.git
+cd wardenprotocol
+git checkout v0.3.0
+make install
+```
+```
 wardend version --long | grep -e commit -e version
 ```
 ### Init
 ```
-wardend init vinjan --chain-id alfama
-wardend config chain-id alfama
+wardend init vinjan --chain-id buenavista
+wardend config chain-id buenavista
 ```
 ### Cosmovisor
 ```
@@ -45,19 +52,20 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:51317\"
 ```
 ### Genesis
 ```
-wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/warden-protocol/networks/main/testnet-alfama/genesis.json"
+wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/warden-protocol/networks/main/testnets/buenavista/genesis.json"
 ```
 ### Addrbook
 ```
-wget -O $HOME/.warden/config/addrbook.json "https://snapshot-de-1.genznodes.dev/warden/addrbook.json"
+
 ```
 ### Seed
 ```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.00uward\"/;" ~/.warden/config/app.toml
-peers="6a8de92a3bb422c10f764fe8b0ab32e1e334d0bd@sentry-1.alfama.wardenprotocol.org:26656,7560460b016ee0867cae5642adace5d011c6c0ae@sentry-2.alfama.wardenprotocol.org:26656,24ad598e2f3fc82630554d98418d26cc3edf28b9@sentry-3.alfama.wardenprotocol.org:26656"
+peers="ddb4d92ab6eba8363bab2f3a0d7fa7a970ae437f@sentry-1.buenavista.wardenprotocol.org:26656,c717995fd56dcf0056ed835e489788af4ffd8fe8@sentry-2.buenavista.wardenprotocol.org:26656,e1c61de5d437f35a715ac94b88ec62c482edc166@sentry-3.buenavista.wardenprotocol.org:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.warden/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.warden/config/config.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.005uward\"|" $HOME/.warden/config/app.toml
 ```
 ### Pruning
 ```
