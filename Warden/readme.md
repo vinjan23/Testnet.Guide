@@ -14,13 +14,7 @@ source ~/.bash_profile
 go version
 ```
 ### Build
-```
-cd $HOME
-git clone --depth 1 --branch v0.2.0 https://github.com/warden-protocol/wardenprotocol/
-cd wardenprotocol
-make build-wardend
-sudo mv build/wardend /root/go/bin
-```
+
 ```
 cd $HOME
 git clone https://github.com/warden-protocol/wardenprotocol.git
@@ -36,15 +30,7 @@ wardend version --long | grep -e commit -e version
 wardend init vinjan --chain-id buenavista-1
 wardend config chain-id buenavista-1
 ```
-### Cosmovisor
-```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
-```
-```
-mkdir -p ~/.warden/cosmovisor/genesis/bin
-mkdir -p ~/.warden/cosmovisor/upgrades
-cp ~/go/bin/wardend ~/.warden/cosmovisor/genesis/bin
-```
+
 ### Port 51
 ```
 wardend config node tcp://localhost:51757
@@ -81,34 +67,12 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_rec
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.warden/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.warden/config/app.toml
 ```
-### Indexer
+### Indexer Off
 ```
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.warden/config/config.toml
 ```
-### Service with cosmovisor
-```
-sudo tee /etc/systemd/system/wardend.service > /dev/null << EOF
-[Unit]
-Description=Warden
-After=network-online.target
 
-[Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-always
-RestartSec=3
-LimitNOFILE=65535
-Environment="DAEMON_NAME=wardend"
-Environment="DAEMON_HOME=$HOME/.warden"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
  Service
 ```
 sudo tee /etc/systemd/system/wardend.service > /dev/null <<EOF
