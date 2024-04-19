@@ -154,19 +154,17 @@ wardend tx staking create-validator validator.json \
 ```
 ### Delegate
 ```
-wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 20000000uward --from wallet --fees 500uward --chain-id=alfama -y
+wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 20000000uward --from wallet --fees 500uward --chain-id=buenavista-1 -y
 ```
 ### WD
 ```
-wardend tx distribution withdraw-all-rewards --from wallet --chain-id alfama --gas 350000 -y
+wardend tx distribution withdraw-all-rewards --from wallet --chain-id buenavista-1 --gas 350000 -y
 ```
 ### WD with commission
 ```
-wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --gas 350000 --chain-id=alfama --commission -y
+wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --gas 350000 --chain-id buenavista-1 --commission -y
 ```
-```
-echo $(wardend tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.warden/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
-```
+
 ```
 curl -sS http://localhost:51657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
