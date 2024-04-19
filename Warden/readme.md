@@ -149,7 +149,7 @@ nano $HOME/validator.json
 ```
 wardend tx staking create-validator validator.json \
     --from=wallet \
-    --chain-id=alfama \
+    --chain-id=buenavista-1 \
     --fees=500uward
 ```
 ### Delegate
