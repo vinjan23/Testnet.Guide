@@ -59,12 +59,12 @@ wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/war
 ```
 ### Addrbook
 ```
-
+wget -O $HOME/.warden/config/addrbook.json.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Warden/addrbook.json"
 ```
 ### Seed
 ```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.00uward\"/;" ~/.warden/config/app.toml
-peers="ddb4d92ab6eba8363bab2f3a0d7fa7a970ae437f@sentry-1.buenavista.wardenprotocol.org:26656,c717995fd56dcf0056ed835e489788af4ffd8fe8@sentry-2.buenavista.wardenprotocol.org:26656,e1c61de5d437f35a715ac94b88ec62c482edc166@sentry-3.buenavista.wardenprotocol.org:26656"
+peers="3ac30a74ec46e7a4984f0d52e850099720b05bda@95.217.161.226:26656,bda08962882048fea4331fcf96ad02789671700e@65.21.202.124:35656.ea8e0c3a936a9c5ea9b9dbbfb5542514d8ead33f@95.179.166.220:18656,ddb4d92ab6eba8363bab2f3a0d7fa7a970ae437f@sentry-1.buenavista.wardenprotocol.org:26656,c717995fd56dcf0056ed835e489788af4ffd8fe8@sentry-2.buenavista.wardenprotocol.org:26656,e1c61de5d437f35a715ac94b88ec62c482edc166@sentry-3.buenavista.wardenprotocol.org:26656,a63e119b629fa8d6e4be1c48e507bca6f1a05832@65.108.237.188:51656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.warden/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.warden/config/config.toml
@@ -200,6 +200,13 @@ wardend tx distribution withdraw-all-rewards --from wallet --chain-id alfama --g
 ```
 wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --gas 350000 --chain-id=alfama --commission -y
 ```
+```
+echo $(wardend tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.warden/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+```
+curl -sS http://localhost:51657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+
 ### Delete Node
 ```
 sudo systemctl stop wardend
