@@ -33,7 +33,8 @@ wardend version --long | grep -e commit -e version
 ```
 ### Init
 ```
-wardend init vinjan --chain-id buenavista
+wardend init vinjan --chain-id buenavista-1
+wardend config chain-id buenavista-1
 ```
 ### Cosmovisor
 ```
@@ -45,6 +46,9 @@ mkdir -p ~/.warden/cosmovisor/upgrades
 cp ~/go/bin/wardend ~/.warden/cosmovisor/genesis/bin
 ```
 ### Port 51
+```
+wardend config node tcp://localhost:51757
+```
 ```
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:51658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:51657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:51060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:51656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":51660\"%" $HOME/.warden/config/config.toml
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:51317\"%; s%^address = \"localhost:9090\"%address = \"localhost:51090\"%;\"%" $HOME/.warden/config/app.toml
