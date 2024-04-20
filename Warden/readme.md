@@ -177,6 +177,6 @@ rm /etc/systemd/system/wardend.service
 sudo systemctl daemon-reload
 cd $HOME
 rm -rf wardenprotocol
-rm -rf .wardend
+rm -rf .warden
 rm -rf $(which wardend)
 ```
