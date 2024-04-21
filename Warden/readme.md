@@ -27,8 +27,7 @@ wardend version --long | grep -e commit -e version
 ```
 ### Init
 ```
-wardend init vinjan --chain-id buenavista-1
-wardend config chain-id buenavista-1
+wardend init (Moniker) --chain-id buenavista-1
 ```
 
 ### Port 51
