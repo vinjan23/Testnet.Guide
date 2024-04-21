@@ -150,19 +150,19 @@ nano $HOME/validator.json
 wardend tx staking create-validator validator.json \
     --from=wallet \
     --chain-id=buenavista-1 \
-    --fees=500uward
+    --fees=1000uward
 ```
 ### Delegate
 ```
-wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 20000000uward --from wallet --fees 500uward --chain-id=buenavista-1 -y
+wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 20000000uward --from wallet --fees 1000uward --chain-id=buenavista-1 -y
 ```
 ### WD
 ```
-wardend tx distribution withdraw-all-rewards --from wallet --chain-id buenavista-1 --gas 350000 -y
+wardend tx distribution withdraw-all-rewards --from wallet --chain-id buenavista-1 --fees 1000uward -y
 ```
 ### WD with commission
 ```
-wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --gas 350000 --chain-id buenavista-1 --commission -y
+wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --chain-id buenavista-1 --commission --fees 1000uward -y
 ```
 
 ```
