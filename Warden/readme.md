@@ -102,8 +102,15 @@ sudo journalctl -u wardend -f -o cat
 ```
 wardend status 2>&1 | jq .sync_info
 ```
-### Snapshot Update (Height 444058)
-
+### Snapshot Update (Height 62200)
+```
+sudo apt install lz4 -y
+sudo systemctl stop wardend
+wardend tendermint unsafe-reset-all --home $HOME/.warden --keep-addr-book
+curl -L https://snapshot.vinjan.xyz/warden/warden-snapshot-20240421.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.warden
+sudo systemctl restart wardend
+journalctl -fu wardend -o cat
+```
 
 ### Add wallet
 ```
