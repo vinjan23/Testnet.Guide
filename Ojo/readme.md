@@ -44,7 +44,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 ### Genesis
 ```
-curl -s https://rpc.devnet-n0.ojo-devnet.node.ojo.network/genesis | jq -r .result.genesis > $HOME/.ojo/config/genesis.json
+wget -O $HOME/.ojo/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Ojo/genesis.json"
 ```
 ### Addrbook
 ```
