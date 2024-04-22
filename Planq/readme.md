@@ -28,6 +28,8 @@ wget -O $HOME/.planqd/config/genesis.json "https://raw.githubusercontent.com/pla
 ```
 seeds="9bea353c3ebfcba081c45aa4c2a8929809437859@54.37.78.240:26656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$SEEDS\"/" ~/.planqd/config/config.toml
+peers="9bea353c3ebfcba081c45aa4c2a8929809437859@54.37.78.240:26656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.planqd/config/config.toml
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aplanq\"/;" ~/.planqd/config/app.toml
 ```
 ```
@@ -68,6 +70,35 @@ sudo systemctl restart planqd
 ```
 sudo journalctl -u planqd -f -o cat
 ```
+```
+planqd status 2>&1 | jq .SyncInfo
+```
+```
+planqd keys add wallet --recover
+```
+```
+planqd query bank balances $(planqd keys show wallet -a)
+```
+```
+planqd tx staking create-validator \
+--moniker=vinjan \
+--identity=	7C66E36EA2B71F68 \
+--amount=1000000000aplanq \
+--from=wallet
+--details=satsetsatseterror \
+--website=https://service.vinjan.xyz \
+--pubkey=$(planqd tendermint show-validator) \
+--chain-id=planq_7077-1 \
+--commission-rate="0.1" \
+--commission-max-rate="0.20" \
+--commission-max-change-rate="0.05" \
+--min-self-delegation="1000000" \
+--gas-adjustment="1.15" \
+--gas-prices 20000000000aplanq \
+--gas 1000000
+```
+
+
 
 
 
