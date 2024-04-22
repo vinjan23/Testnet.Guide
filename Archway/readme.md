@@ -177,12 +177,12 @@ archwayd tx staking create-validator \
 
 ### Unjail
 ```
-archwayd tx slashing unjail --from wallet --chain-id constantine-3 --gas-adjustment=1.4 --fees 1000000000000000000aconst
+archwayd tx slashing unjail --from ibc-arch --chain-id constantine-3 --gas-adjustment=1.4 --fees 1000000000000000000aconst
 ```
 
 ### Staking
 ```
-archwayd tx staking delegate <TO_VALOPER_ADDRESS> 1000000000000000000aconst --from wallet --chain-id constantine-3 --gas-adjustment 1.4 --fees 1000000000000000000aconst
+archwayd tx staking delegate archwayvaloper1pe6ugl820mr68nwr293kc2uza8y6rquegn665d 4000000000000000000aconst --from ibc-arch --chain-id constantine-3 --gas-adjustment 1.4 --fees 1000000000000000000aconst
 ```
 ### WD 
 ```
