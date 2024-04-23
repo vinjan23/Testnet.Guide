@@ -27,11 +27,11 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 ```
 wget -O $HOME/.galactica/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Galactica/genesis.json"
 ```
-### ddrbook
+### Addrbook
 ```
 wget -O $HOME/.galactica/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Galactica/addrbook.json"
 ```
-### Peers Gas
+### Peers & Gas
 ```
 PEERS="391b717302c9bf393cad589a55368e1f9ec075ab@135.181.238.38:27456,9990ab130eac92a2ed1c3d668e9a1c6e811e8f35@148.251.177.108:27456,8949fb771f2859248bf8b315b6f2934107f1cf5a@168.119.241.1:26656,c722e6dc5f762b0ef19be7f8cc8fd67cdf988946@49.12.96.14:26656,3afb7974589e431293a370d10f4dcdb73fa96e9b@157.90.158.222:26656,c459ba143c479c5b5d86cf09fb644965fbb98577@89.163.132.156:26656,31b834fb1021e805d5414429fc4cbcc13cfd89f7@38.242.141.28:26656,f5645abeab4ddef2ff523aa0d97db3716feeb7a9@65.108.237.188:18656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.galactica/config/config.toml
