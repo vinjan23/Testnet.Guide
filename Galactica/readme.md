@@ -67,3 +67,26 @@ galacticad keys add wallet
 ```
 galacticad keys unsafe-export-eth-key wallet
 ```
+```
+galacticad q bank balances $(galacticad keys show wallet -a)
+```
+```
+galacticad tx staking create-validator \
+--amount 9990000000000000000agnet \
+--moniker vinjan \
+--identity "7C66E36EA2B71F68" \
+--website "https://service.vinjan.xyz" \
+--details "Lord Validator" \
+--chain-id galactica_9302-1 \
+--from wallet \
+--commission-rate 0.1 \
+--commission-max-rate 0.2 \
+--commission-max-change-rate 0.05 \
+--min-self-delegation 1 \
+--pubkey $(galacticad tendermint show-validator) \
+--gas 250000 \
+--gas-prices 10agnet \
+-y
+```
+```
+galacticad tx staking delegate $(galacticad keys show wallet --bech val -a) 9990000000000000000agnet --from wallet --chain-id galactica_9302-1 --gas=250000 --gas-prices=10agnet
