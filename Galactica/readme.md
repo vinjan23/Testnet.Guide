@@ -42,8 +42,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-WorkingDirectory=$HOME/.galactica
-ExecStart=$(which galacticad)
+ExecStart=$(which galacticad) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
