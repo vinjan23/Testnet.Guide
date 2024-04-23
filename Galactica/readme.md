@@ -42,7 +42,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which galacticad) start
+ExecStart=$(which galacticad) start --chain-id galactica_9302-1
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
