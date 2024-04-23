@@ -13,7 +13,7 @@ galacticad init $MONIKER --chain-id galactica_9302-1
 galacticad config chain-id galactica_9302-1
 ```
 ```
-PORT=
+PORT=18
 galacticad config node tcp://localhost:${PORT}657
 ```
 ```
