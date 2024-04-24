@@ -82,10 +82,10 @@ planqd query bank balances $(planqd keys show wallet -a)
 ```
 planqd tx staking create-validator \
 --moniker=vinjan \
---identity=	7C66E36EA2B71F68 \
---amount=1000000000aplanq \
+--identity=7C66E36EA2B71F68 \
+--amount=499990000000000000000atplanq \
 --from=wallet
---details=satsetsatseterror \
+--details=Lord Validator \
 --website=https://service.vinjan.xyz \
 --pubkey=$(planqd tendermint show-validator) \
 --chain-id=planq_7077-1 \
@@ -94,7 +94,7 @@ planqd tx staking create-validator \
 --commission-max-change-rate="0.05" \
 --min-self-delegation="1000000" \
 --gas-adjustment="1.15" \
---gas-prices 20000000000aplanq \
+--gas-prices 20000000000atplanq \
 --gas 1000000
 ```
 
