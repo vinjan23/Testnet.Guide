@@ -83,9 +83,9 @@ planqd query bank balances $(planqd keys show wallet -a)
 planqd tx staking create-validator \
 --moniker=vinjan \
 --identity=7C66E36EA2B71F68 \
---amount=499990000000000000000atplanq \
---from=wallet
---details=Lord Validator \
+--amount=499900000000000000000atplanq \
+--from=wallet \
+--details=Validator_Empire \
 --website=https://service.vinjan.xyz \
 --pubkey=$(planqd tendermint show-validator) \
 --chain-id=planq_7077-1 \
