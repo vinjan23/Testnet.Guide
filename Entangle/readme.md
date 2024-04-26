@@ -208,7 +208,7 @@ curl -sS http://localhost:<$PORT>657/net_info | jq -r '.result.peers[] | "\(.nod
 ```
 ### Send Fund
 ```
-entangled tx bank send wallet <TO_WALLET_ADDRESS> 10000000000000000000aNGL --from wallet --chain-id entangle_33133-1
+entangled tx bank send wallet ent... 5000000000000000000aNGL --from wallet --chain-id entangle_33033-1 --gas=500000 --gas-prices=10aNGL
 ```
 
 ### Delete Node
