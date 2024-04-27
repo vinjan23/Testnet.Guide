@@ -25,7 +25,7 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 ```
 ### Genesis
 ```
-wget -O $HOME/.galactica/config/genesis.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Galactica/genesis.json"
+wget -O $HOME/.galactica/config/genesis.json https://testnet-files.itrocket.net/galactica/genesis.json
 ```
 ### Addrbook
 ```
