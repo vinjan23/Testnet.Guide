@@ -91,7 +91,7 @@ viper wallet query account-balance <address>
 ```
 ### Stake
 ```
-viper servicers stake self <address> 20000000000 0001 0001 https://<hostname or ip>:443 testnet
+viper servicers stake self <address> 20000000000 0001 0D02 https://<hostname or ip>:443 testnet
 ```
 ### Check Txhash
 ```
