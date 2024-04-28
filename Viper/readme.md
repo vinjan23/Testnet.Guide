@@ -105,7 +105,6 @@ rm -r data
 rm -r viper_evidence.db
 rm -r viper_result.db
 sudo git clone https://github.com/vishruthsk/data.git data
-sudo chown -R viper ~/.viper/data
 cd config
 rm addrbook.json
 sudo systemctl restart viper.service
