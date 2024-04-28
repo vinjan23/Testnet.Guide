@@ -110,6 +110,13 @@ viper wallet export-encrypted <address>
 ```
 viper wallet export-raw <address>
 ```
+### Import Wallet
+```
+viper wallet import-encrypted <address>
+```
+```
+viper wallet import-raw <address>
+```
 
 ### Error Exit Code
 ```
