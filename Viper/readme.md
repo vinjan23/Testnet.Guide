@@ -99,6 +99,17 @@ viper servicers stake self <address> 20000000000 0001 0D02 https://<hostname or 
 ```
 viper network query fetch-tx <txhash>
 ```
+### Check Validator
+```
+viper servicers query servicer <address>
+```
+### Backup Wallet
+```
+viper wallet export-encrypted <address>
+```
+```
+viper wallet export-raw <address>
+```
 
 ### Error Exit Code
 ```
