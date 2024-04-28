@@ -26,10 +26,7 @@ chmod +x /usr/local/bin/viper
 ```
 viper wallet create-account
 ```
-### Create Validator (use address)
-```
-viper servicers create-validator <address>
-```
+
 ### Peer
 ```
 echo $(viper util print-configs) | jq '.tendermint_config.P2P.PersistentPeers = "859674aa64c0ee20ebce8a50e69390698750a65f@mynode1.testnet.vipernet.xyz:26656,eec6c84a7ededa6ee2fa25e3da3ff821d965f94d@mynode2.testnet.vipernet.xyz:26656,81f4c53ccbb36e190f4fc5220727e25c3186bfeb@mynode3.testnet.vipernet.xyz:26656,d53f620caab13785d9db01515b01d6f21ab26d54@mynode4.testnet.vipernet.xyz:26656,e2b1dc002270c8883abad96520a2fe5982cb3013@mynode5.testnet.vipernet.xyz:26656"' | jq . > ~/.viper/config/configuration.json
@@ -47,11 +44,16 @@ viper util gen-geozone
 ```
 `0D02`
 
+### Download Genesis
 ```
 cd ~/.viper/config
 ```
 ```
 wget https://raw.githubusercontent.com/vipernet-xyz/genesis/main/testnet/genesis.json genesis.json
+```
+or
+```
+wget -O ~/.viper/config/genesis.json https://raw.githubusercontent.com/vipernet-xyz/genesis/main/testnet/genesis.json
 ```
 ```
 ulimit -Sn 16384
@@ -91,7 +93,7 @@ curl http://127.0.0.1:26657/status
 ```
 viper wallet query account-balance <address>
 ```
-### Stake
+### Stake & Create Validator
 ```
 viper servicers stake self <address> 20000000000 0001 0D02 https://<hostname or ip>:443 testnet
 ```
@@ -112,10 +114,10 @@ viper wallet export-raw <address>
 ```
 ### Import Wallet
 ```
-viper wallet import-encrypted <address>
+viper wallet import-encrypted <encrypted>
 ```
 ```
-viper wallet import-raw <address>
+viper wallet import-raw <pk>
 ```
 
 ### Error Exit Code
