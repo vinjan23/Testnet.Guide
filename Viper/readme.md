@@ -119,6 +119,10 @@ viper wallet import-encrypted <encrypted>
 ```
 viper wallet import-raw <pk>
 ```
+### List Validator
+```
+curl -sX POST http://127.0.0.1:8082/v1/query/servicers|jq '.result[].node_url'
+```
 
 ### Error Exit Code
 ```
