@@ -17,11 +17,21 @@ go version
 ```
 ### Binary
 ```
-wget -O /usr/local/bin/viper http://37.120.189.81/viper/viper
+sudo mkdir -p viper-network
 ```
 ```
-chmod +x /usr/local/bin/viper
+cd viper-network
 ```
+```
+sudo git clone https://github.com/vipernet-xyz/viper-binaries
+```
+```
+cd viper-binaries
+```
+```
+sudo cp viper_linux_amd64 /usr/local/bin/viper
+```
+
 ### Create Wallet
 ```
 viper wallet create-account
@@ -48,10 +58,6 @@ viper util gen-geozone
 ```
 cd ~/.viper/config
 ```
-```
-wget https://raw.githubusercontent.com/vipernet-xyz/genesis/main/testnet/genesis.json genesis.json
-```
-or
 ```
 wget -O ~/.viper/config/genesis.json https://raw.githubusercontent.com/vipernet-xyz/genesis/main/testnet/genesis.json
 ```
