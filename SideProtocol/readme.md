@@ -113,9 +113,9 @@ sided tx staking create-validator \
 --commission-rate="0.1" \
 --min-self-delegation="1" \
 --pubkey=$(sided tendermint show-validator) \
---chain-id=side-testnet-3 \
+--chain-id=S2-testnet-1 \
 --identity="7C66E36EA2B71F68" \
---details=" 🎉 Stake & Node Operator 🎉" \
+--details=" 🎉 Stake Operator 🎉" \
 --website="https://service.vinjan.xyz"
 ```
 ```
@@ -123,20 +123,20 @@ sided tx staking edit-validator \
 --new-moniker "vinjan" \
 --identity "7C66E36EA2B71F68" \
 --commission-rate="0.15" \
---chain-id side-testnet-3 \
+--chain-id S2-testnet-1 \
 --from wallet
 ```
 ```
-sided tx staking edit-validator --from wallet --chain-id side-testnet-3 --commission-rate 0.2
+sided tx staking edit-validator --from wallet --chain-id S2-testnet-1 --commission-rate 0.2
 ```
 ```
-sided tx slashing unjail --from wallet --chain-id side-testnet-3
+sided tx slashing unjail --from wallet --chain-id S2-testnet-1
 ```
 ```
-sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id side-testnet-3 -y
+sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id S2-testnet-1 -y
 ```
 ```
-sided tx distribution withdraw-rewards $(sided keys show wallet --bech val -a) --commission --from wallet --chain-id side-testnet-3 -y
+sided tx distribution withdraw-rewards $(sided keys show wallet --bech val -a) --commission --from wallet --chain-id S2-testnet-1 -y
 ```
 
 ```
