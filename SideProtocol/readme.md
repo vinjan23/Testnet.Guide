@@ -16,21 +16,21 @@ go version
 cd $HOME
 git clone https://github.com/sideprotocol/side.git
 cd side
-git checkout v0.7.0
+git checkout v0.8.0
 make install
 ```
 ```
 cd $HOME/side
 git fetch --all
-git checkout v0.7.0
+git checkout v0.8.0
 make install
 ```
 ```
 MONIKER=
 ```
 ```
-sided init $MONIKER --chain-id side-testnet-3
-sided config chain-id side-testnet-3
+sided init $MONIKER --chain-id S2-testnet-1
+sided config chain-id S2-testnet-1
 sided config keyring-backend test
 ```
 ```
@@ -42,15 +42,15 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"localhost:9090\"%address = \"localhost:${PORT}090\"%; s%^address = \"localhost:9091\"%address = \"localhost:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.side/config/app.toml
 ```
 ```
-curl -s https://raw.githubusercontent.com/sideprotocol/testnet/main/side-testnet-3/pregenesis.json > ~/.side/config/genesis.json
+wget -O $HOME/.side/config/genesis.json "https://github.com/sideprotocol/testnet/raw/main/S2-testnet-1/genesis.json"
 ```
 ```
 wget -O $HOME/.side/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/SideProtocol/addrbook.json"
 ```
 ```
-seed="00170c0c23c3e97c740680a7f881511faf68289a@202.182.119.24:26656"
+seed="582dedd866dd77f25ac0575118cf32df1ee50f98@202.182.119.24:26656"
 sed -i.bak -e "s/^seed *=.*/seed = \"$seed\"/" ~/.side/config/config.toml
-peers="9cde06c5cc446575ca1cc2f67af352ea5134417e@144.91.124.126:49656,ca3379b48e196c3ef910a08452b459b0f327fdb6@95.216.3.115:34656,f1c77528a14f8981381b117c573dc1441e6a5882@213.199.48.13:26656,00170c0c23c3e97c740680a7f881511faf68289a@202.182.119.24:26656,8d8bf287dfd9ce7da209b4152f6dd4d4b146131c@23.88.105.251:26656,2fb44a8e4bdebf44f55703c144d19c0c47101bb9@188.34.192.238:16456"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.side/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uside\"/" $HOME/.side/config/app.toml
 ```
