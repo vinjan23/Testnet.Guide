@@ -36,6 +36,10 @@ sudo cp viper_linux_amd64 /usr/local/bin/viper
 ```
 viper wallet create-account
 ```
+### Create Validator Address
+```
+viper servicers create-validator <address>
+```
 
 ### Peer
 ```
