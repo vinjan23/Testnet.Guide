@@ -99,6 +99,10 @@ journalctl -u viper -f
 ```
 curl http://127.0.0.1:26657/status
 ```
+### Check Block Height
+```
+viper network query current-height
+```
 ### Check Balance
 ```
 viper wallet query account-balance <address>
