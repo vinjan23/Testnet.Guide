@@ -29,7 +29,7 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 ```
 ### Genesis
 ```
-wget -O $HOME/.side/config/genesis.json "https://raw.githubusercontent.com/Fairblock/fairyring/main/networks/testnets/fairyring-testnet-1/genesis.json"
+wget -O $HOME/.fairyring/config/genesis.json "https://raw.githubusercontent.com/Fairblock/fairyring/main/networks/testnets/fairyring-testnet-1/genesis.json"
 ```
 ### Peer
 ```
