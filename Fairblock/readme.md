@@ -20,7 +20,7 @@ fairyringd config keyring-backend test
 ```
 ### Port
 ```
-PORT=49
+PORT=12
 fairyringd config node tcp://localhost:${PORT}657
 ```
 ```
