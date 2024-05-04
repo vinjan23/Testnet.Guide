@@ -7,7 +7,7 @@ git checkout v0.5.0
 make install
 ```
 ```
-fairyringd version
+fairyringd version --long | grep -e commit -e version
 ```
 ### Init
 ```
