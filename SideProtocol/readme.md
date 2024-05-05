@@ -56,9 +56,9 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uside\"/" $HOME/.s
 ```
 ```
 sed -i \
--e 's|^pruning *=.*|pruning = "nothing"|' \
+-e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "2000"|' \
 -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.side/config/app.toml
 ```
@@ -87,6 +87,16 @@ sudo systemctl daemon-reload
 sudo systemctl enable sided
 sudo systemctl restart sided
 sudo journalctl -u sided -f -o cat
+```
+```
+SNAP_RPC="https://rpc-side.vinjan.xyz:443"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.side/config/config.toml
 ```
 ```
 sided status 2>&1 | jq .SyncInfo
