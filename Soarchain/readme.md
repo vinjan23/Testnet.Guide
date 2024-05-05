@@ -38,7 +38,7 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.soarchain/config/app.toml
 ```
 ```
-seeds ="3f472746f46493309650e5a033076689996c8881@soarchain-testnet.rpc.kjnodes.com:17259"
+seed="3f472746f46493309650e5a033076689996c8881@soarchain-testnet.rpc.kjnodes.com:17259"
 sed -i.bak -e "s/^seed *=.*/seed = \"$seed\"/" ~/.soarchain/config/config.toml
 sed -i -e 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001utmotus"|' $HOME/.soarchain/config/app.toml
 ```
@@ -76,5 +76,39 @@ sudo systemctl enable soarchaind
 sudo systemctl restart soarchaind
 sudo journalctl -u soarchaind -f -o cat
 ```
+```
+soarchaind status 2>&1 | jq .SyncInfo
+```
+```
+soarchaind keys add wallet
+```
+```
+soarchaind q bank balances $(sided keys show wallet -a)
+```
+```
+soarchaind tx staking edit-validator \
+--new-moniker "Vinjan.Inc" \
+--identity "7C66E36EA2B71F68" \
+--details "Staking Provider-IBC Relayer" \
+--website "https://service.vinjan.xyz" \
+--chain-id soarchaintestnet \
+--commission-rate 0.05 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.02 \
+--from wallet \
+--min-self-delegation=1 \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 0.0001utsoar \
+-y
+```
 
-
+```
+cd $HOME
+sudo systemctl stop soarchaind
+sudo systemctl disable soarchaind
+sudo rm /etc/systemd/system/soarchaind.service
+sudo systemctl daemon-reload
+rm -f $(which soarchaind)
+rm -rf $HOME/.soarchain
+```
