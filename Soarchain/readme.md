@@ -40,7 +40,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 seed="3f472746f46493309650e5a033076689996c8881@soarchain-testnet.rpc.kjnodes.com:17259"
 sed -i.bak -e "s/^seed *=.*/seed = \"$seed\"/" ~/.soarchain/config/config.toml
-sed -i -e 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001utmotus"|' $HOME/.soarchain/config/app.toml
+sed -i -e 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0utsoar"|' $HOME/.soarchain/config/app.toml
 ```
 ```
 sed -i \
