@@ -83,11 +83,11 @@ soarchaind status 2>&1 | jq .SyncInfo
 soarchaind keys add wallet
 ```
 ```
-soarchaind q bank balances $(sided keys show wallet -a)
+soarchaind q bank balances $(soarchaind keys show wallet -a)
 ```
 ```
 soarchaind tx staking edit-validator \
---new-moniker "Vinjan.Inc" \
+--moniker "Vinjan.Inc" \
 --identity "7C66E36EA2B71F68" \
 --details "Staking Provider-IBC Relayer" \
 --website "https://service.vinjan.xyz" \
@@ -96,13 +96,31 @@ soarchaind tx staking edit-validator \
 --commission-max-rate=0.20 \
 --commission-max-change-rate=0.02 \
 --from wallet \
+--amount 1000000000utmotus \
+--pubkey $(soarchaind tendermint show-validator) \
 --min-self-delegation=1 \
 --gas-adjustment 1.4 \
 --gas auto \
 --gas-prices 0.0001utsoar \
 -y
 ```
-
+```
+soarchaind tx staking create-validator \
+--amount=1000000000utsoar \
+--pubkey=$(soarchaind tendermint show-validator) \
+--moniker="Vinjan.Inc" \
+--identity=7C66E36EA2B71F68 \
+--details="Staking Provider-IBC Relayer" \
+--chain-id=soarchaintestnet \
+--commission-rate=0.10 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
+--min-self-delegation=1 \
+--from=wallet \
+--gas-adjustment=1.5 \
+--gas=auto \
+-y 
+```
 ```
 cd $HOME
 sudo systemctl stop soarchaind
