@@ -115,8 +115,8 @@ sided q bank balances $(sided keys show wallet -a)
 ```
 ```
 sided tx staking create-validator \
---moniker=vinjan \
---amount=100000000uside \
+--moniker=Vinjan.Inc \
+--amount=5000000uside \
 --from=wallet \
 --commission-max-change-rate="0.1" \
 --commission-max-rate="0.2" \
@@ -125,7 +125,7 @@ sided tx staking create-validator \
 --pubkey=$(sided tendermint show-validator) \
 --chain-id=S2-testnet-1 \
 --identity="7C66E36EA2B71F68" \
---details=" 🎉 Stake Operator 🎉" \
+--details=" 🎉 Stake Provider-IBC Relayer 🎉" \
 --website="https://service.vinjan.xyz"
 ```
 ```
