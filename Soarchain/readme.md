@@ -85,28 +85,10 @@ soarchaind keys add wallet
 ```
 soarchaind q bank balances $(soarchaind keys show wallet -a)
 ```
-```
-soarchaind tx staking edit-validator \
---moniker "Vinjan.Inc" \
---identity "7C66E36EA2B71F68" \
---details "Staking Provider-IBC Relayer" \
---website "https://service.vinjan.xyz" \
---chain-id soarchaintestnet \
---commission-rate 0.05 \
---commission-max-rate=0.20 \
---commission-max-change-rate=0.02 \
---from wallet \
---amount 1000000000utmotus \
---pubkey $(soarchaind tendermint show-validator) \
---min-self-delegation=1 \
---gas-adjustment 1.4 \
---gas auto \
---gas-prices 0.0001utsoar \
--y
-```
+
 ```
 soarchaind tx staking create-validator \
---amount=1000000000utsoar \
+--amount=999900000utsoar \
 --pubkey=$(soarchaind tendermint show-validator) \
 --moniker="Vinjan.Inc" \
 --identity=7C66E36EA2B71F68 \
@@ -118,6 +100,7 @@ soarchaind tx staking create-validator \
 --min-self-delegation=1 \
 --from=wallet \
 --gas-adjustment=1.5 \
+--gas-prices 0.0001utsoar \
 --gas=auto \
 -y 
 ```
