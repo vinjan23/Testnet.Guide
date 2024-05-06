@@ -100,6 +100,12 @@ planqd tx staking create-validator \
 ```
 planqd tx gov vote 2 yes --from wallet --chain-id planq_7077-1 --gas-adjustment 1.15 --gas="1000000" --gas-prices=20000000000atplanq -y
 ```
+```
+planqd tx distribution withdraw-rewards $(planqd keys show wallet --bech val -a) --commission --from wallet --chain-id planq_7077-1 --gas-adjustment 1.15 --gas="1000000" --gas-prices=20000000000atplanq -y
+```
+```
+planqd tx bank send wallet plq1870nwu7dxz7nzwxf043k75p405vaj5vuwmmnap 10000000000000000000atplanq --from wallet --chain-id planq_7077-1 --gas-adjustment 1.15 --gas="1000000" --gas-prices=20000000000atplanq -y
+```
 
 
 
