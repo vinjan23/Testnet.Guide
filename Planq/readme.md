@@ -97,7 +97,9 @@ planqd tx staking create-validator \
 --gas-prices 20000000000atplanq \
 --gas 1000000
 ```
-
+```
+planqd tx gov vote 2 yes --from wallet --chain-id planq_7077-1 --gas-adjustment 1.15 --gas="1000000" --gas-prices=20000000000atplanq -y
+```
 
 
 
