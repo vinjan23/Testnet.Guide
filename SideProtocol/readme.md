@@ -16,7 +16,7 @@ go version
 cd $HOME
 git clone https://github.com/sideprotocol/side.git
 cd side
-git checkout v0.8.0
+git checkout v0.8.1
 make install
 ```
 ```
@@ -29,8 +29,8 @@ make install
 MONIKER=
 ```
 ```
-sided init $MONIKER --chain-id S2-testnet-1
-sided config chain-id S2-testnet-1
+sided init $MONIKER --chain-id S2-testnet-2
+sided config chain-id S2-testnet-2
 sided config keyring-backend test
 ```
 ```
@@ -42,10 +42,10 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"localhost:9090\"%address = \"localhost:${PORT}090\"%; s%^address = \"localhost:9091\"%address = \"localhost:${PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${PORT}546\"%" $HOME/.side/config/app.toml
 ```
 ```
-wget -O $HOME/.side/config/genesis.json "https://github.com/sideprotocol/testnet/raw/main/S2-testnet-1/genesis.json"
+wget - $HOME/.side/config/genesis.json "https://github.com/sideprotocol/testnet/raw/main/S2-testnet-2/genesis.json" 
 ```
 ```
-wget -O $HOME/.side/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/SideProtocol/addrbook.json"
+wget -O $HOME/.side/config/addrbook.json ""
 ```
 ```
 seeds="582dedd866dd77f25ac0575118cf32df1ee50f98@202.182.119.24:26656"
@@ -123,7 +123,7 @@ sided tx staking create-validator \
 --commission-rate="0.1" \
 --min-self-delegation="1" \
 --pubkey=$(sided tendermint show-validator) \
---chain-id=S2-testnet-1 \
+--chain-id=S2-testnet-2 \
 --identity="7C66E36EA2B71F68" \
 --details=" 🎉 Stake Provider-IBC Relayer 🎉" \
 --website="https://service.vinjan.xyz"
@@ -137,16 +137,16 @@ sided tx staking edit-validator \
 --from wallet
 ```
 ```
-sided tx staking edit-validator --from wallet --chain-id S2-testnet-1 --commission-rate 0.2
+sided tx staking edit-validator --from wallet --chain-id S2-testnet-2 --commission-rate 0.2
 ```
 ```
 sided tx slashing unjail --from wallet --chain-id S2-testnet-1
 ```
 ```
-sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id S2-testnet-1 -y
+sided tx staking delegate $(sided keys show wallet --bech val -a) 1000000uside --from wallet --chain-id S2-testnet-2 -y
 ```
 ```
-sided tx distribution withdraw-rewards $(sided keys show wallet --bech val -a) --commission --from wallet --chain-id S2-testnet-1 -y
+sided tx distribution withdraw-rewards $(sided keys show wallet --bech val -a) --commission --from wallet --chain-id S2-testnet-2 -y
 ```
 
 ```
