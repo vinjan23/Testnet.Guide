@@ -70,7 +70,7 @@ nano $HOME/validator.json
 ```
 {
   "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"916Ym0TQXzVEOKGNXBJZG1WFsAYwbMhOfPzirIl3MWQ="},
-  "amount": "10000000amf",
+  "amount": "9990000amf",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
@@ -86,7 +86,7 @@ nano $HOME/validator.json
 junctiond tx staking create-validator $HOME/validator.json \
     --from=wallet \
     --chain-id=junction \
-    --gas auto
+    --fees 2000amf
 ```
 
 
