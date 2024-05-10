@@ -57,6 +57,37 @@ junctiond status 2>&1 | jq .sync_info
 ```
 junctiond keys add wallet
 ```
+```
+junctiond q bank balances $(junctiond keys show wallet -a)
+```
+10000000
+```
+junctiond comet show-validator
+```
+```
+nano $HOME/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"916Ym0TQXzVEOKGNXBJZG1WFsAYwbMhOfPzirIl3MWQ="},
+  "amount": "10000000amf",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.1",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.01",
+  "min-self-delegation": "1"
+}
+```
+```
+junctiond tx staking create-validator $HOME/validator.json \
+    --from=wallet \
+    --chain-id=junction \
+    --gas auto
+```
 
 
 
