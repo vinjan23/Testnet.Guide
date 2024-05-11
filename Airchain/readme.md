@@ -9,6 +9,10 @@ ignite chain build
 wget -O $HOME/.junction/config/genesis.json https://raw.githubusercontent.com/airchains-network/junction-resources/main/testnet/genesis.json
 ```
 ```
+wget -O $HOME/.junction/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Airchain/addrbook.json
+```
+
+```
 junctiond init vinjan --chain-id junction
 ```
 ```
