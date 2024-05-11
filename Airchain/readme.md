@@ -93,6 +93,18 @@ junctiond tx staking create-validator $HOME/validator.json \
     --fees 2000amf
 ```
 ```
+junctiond tx slashing unjail --from wallet --chain-id junction --fees 2000amf
+```
+```
+junctiond query slashing signing-info $(junctiond tendermint show-validator)
+```
+```
+junctiond tx distribution withdraw-all-rewards --from wallet --chain-id junction --fees 2000amf
+```
+```
+junctiond tx staking delegate $(junctiond keys show wallet --bech val -a) 1000000amf --from wallet --chain-id junction --fees 2000amf
+```
+```
 echo $(junctiond tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.junction/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 ```
@@ -114,8 +126,23 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.junction/
 sudo systemctl restart junctiond
 sudo journalctl -u junctiond -f -o cat
 ```
-
-
+```
+sudo apt install lz4 -y
+sudo systemctl stop junctiond
+junctiond tendermint unsafe-reset-all --home $HOME/.junction --keep-addr-book
+curl -L https://snapshot.vinjan.xyz./airchain/airchain-snapshot-20240511.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.junction
+sudo systemctl restart junctiond
+journalctl -fu junctiond -o cat
+```
+```
+sudo systemctl stop junctiond
+sudo systemctl disable junctiond
+sudo rm /etc/systemd/system/junctiond.service
+sudo systemctl daemon-reload
+rm -f $(which junctiond)
+rm -rf .junction
+rm -rf junction
+```
 
 
 
