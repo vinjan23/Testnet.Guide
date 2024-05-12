@@ -4,6 +4,7 @@ git clone --branch v0.2.0-beta https://github.com/playstructs/structsd.git
 cd structsd
 ignite chain build
 ```
+
 ### Genesis
 ```
 wget -O $HOME/.structs/config/genesis.json https://raw.githubusercontent.com/playstructs/structs-networks/88b/genesis.json
