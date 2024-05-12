@@ -89,6 +89,9 @@ sudo journalctl -u 0gchaind -f -o cat
 --gas-adjustment=1.4
 ```
 
+```
+0gchaind tx staking delegate $(0gchaind keys show wallet --bech val -a) 3000000ua0gi --from wallet --chain-id zgtendermint_16600-1 --gas-adjustment=1.4 --gas=auto -y
+```
 
 
 
