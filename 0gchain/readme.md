@@ -21,10 +21,11 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}
 ```
 seeds="c4d619f6088cb0b24b4ab43a0510bf9251ab5d7f@54.241.167.190:26656,44d11d4ba92a01b520923f51632d2450984d5886@54.176.175.48:26656,f2693dd86766b5bf8fd6ab87e2e970d564d20aff@54.193.250.204:26656,f878d40c538c8c23653a5b70f615f8dccec6fb9f@18.166.164.232:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$seeds\"|" $HOME/.0gchain/config/config.toml
-peers=""
+peers="445f20cc15a24d8159cf491e542cc3ee779888b8@152.53.18.245:20656,b012a5683ca5a10b8bf64667bbedb594880b07d4@95.111.248.207:26656,f2693dd86766b5bf8fd6ab87e2e970d564d20aff@54.193.250.204:26656,8cfe612c6bed3ea559ac656c5595683fcaef0540@213.199.53.85:16656,1ea4bbcc95f45d791a0f37bd8d261f01c99971c9@65.108.73.189:29659,252b663069f7d1f812fa0d0085f9d4e11d0b1ba5@77.237.234.142:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.0gchain/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.0ua0gi\"|" $HOME/.0gchain/config/app.toml
 ```
+
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
