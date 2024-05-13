@@ -70,6 +70,9 @@ sudo journalctl -u 0gchaind -f -o cat
 0gchaind keys unsafe-export-eth-key wallet
 ```
 ```
+0gchaind keys add wallet --eth --recover
+```
+```
 0gchaind q bank balances $(0gchaind keys show wallet -a)
 ```
 ```
