@@ -93,8 +93,14 @@ sudo journalctl -u 0gchaind -f -o cat
 ```
 0gchaind tx staking delegate $(0gchaind keys show wallet --bech val -a) 3000000ua0gi --from wallet --chain-id zgtendermint_16600-1 --gas-adjustment=1.4 --gas=auto -y
 ```
-
-
-
+```
+sudo systemctl stop 0gchaind
+sudo systemctl disable junctiond
+sudo rm /etc/systemd/system/0gchaind.service
+sudo systemctl daemon-reload
+rm -f $(which 0gchaind)
+rm -rf .0gchain
+rm -rf 0g-chain
+```
 
 
