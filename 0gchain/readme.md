@@ -92,12 +92,12 @@ sudo journalctl -u 0gchaind -f -o cat
 --gas=auto \
 --gas-adjustment=1.4
 ```
-111500
+122720
 ```
 sudo apt install lz4 -y
 sudo systemctl stop 0gchaind
 0gchaind tendermint unsafe-reset-all --home $HOME/.0gchain --keep-addr-book
-curl -L https://snapshot.vinjan.xyz./0gchain/0gchain-snapshot-20240513.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.0gchain
+curl -L https://snapshot.vinjan.xyz./0gchain/0gchain-snapshot-20240514.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.0gchain
 sudo systemctl restart 0gchaind
 journalctl -fu 0gchaind -o cat
 ```
