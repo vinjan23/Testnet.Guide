@@ -103,6 +103,9 @@ initiad tx mstaking create-validator \
 ```
 initiad tx bank send wallet init1khea05wwtedrj78exaddk55jzwrjvxcnu5mwat 99900000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
 ```
+```
+initiad tx mstaking delegate $(initiad keys show wallet --bech val -a) 100000000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
+```
 
 ```
 sudo systemctl stop initiad
