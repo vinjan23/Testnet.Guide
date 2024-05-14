@@ -30,7 +30,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 
 ```
-peers="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656"
+peers="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,ff9dbc6bb53227ef94dc75ab1ddcaeb2404e1b0b@178.170.47.171:26656,47ad94a6abc97d4810e2f2be1711d6356c04a83b@135.125.246.102:26656,329227cf8632240914511faa9b43050a34aa863e@43.131.13.84:26656,42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,d35102679b876be785a2e03d932300e3a8123086@95.217.85.149:46656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,c28827cb96c14c905b127b92065a3fb4cd77d7f6@testnet-seeds.whispernode.com:25756"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.toml
