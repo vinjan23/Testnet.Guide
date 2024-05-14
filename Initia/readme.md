@@ -80,19 +80,25 @@ initiad status 2>&1 | jq .sync_info
 initiad keys add wallet
 ```
 ```
-sudo systemctl stop initiad
-initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-SNAP_RPC="https://initia-testnet-rpc.polkachu.com:443"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.initia/config/config.toml
-sudo systemctl restart initiad
-sudo journalctl -u initiad -f -o cat
+initiad q bank balances $(initiad keys show wallet -a)
+```
+```
+initiad tx mstaking create-validator \
+--amount 99900000uinit \
+--pubkey $(initiad tendermint show-validator) \
+--moniker "Vinjan.Inc" \
+--identity "7C66E36EA2B71F68" \
+--details "Staking Provider & IBC Relayer" \
+--website "https://service.vinjan.xyz" \
+--chain-id initiation-1 \
+--commission-rate 0.05 \
+--commission-max-rate 0.20 \
+--commission-max-change-rate 0.05 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 0.15uinit \
+-y
 ```
 ```
 sudo systemctl stop initiad
