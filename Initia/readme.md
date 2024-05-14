@@ -7,7 +7,7 @@ make install
 ```
 cd $HOME/initia
 git pull
-git checkout v0.2.11
+git checkout v0.2.12
 make install
 ```
 ```
