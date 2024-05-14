@@ -131,7 +131,7 @@ ojod keys add wallet --recover
 ```
 ### Balances
 ```
-ojod  q bank balances <address>
+ojod  q bank balances $(ojod keys show wallet -a)
 ```
 
 ### Validator
@@ -169,7 +169,7 @@ ojod tx staking edit-validator
 
 ### Staking
 ```
-ojod tx staking delegate <TO_VALOPER_ADDRESS> 1000000uojo --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
+ojod tx staking delegate $(ojod keys show wallet --bech val -a) 500000000000uojo --from wallet --chain-id ojo-devnet --gas-adjustment 1.4 --gas auto --fees 100uojo
 ```
 ### Withdraw
 ```
