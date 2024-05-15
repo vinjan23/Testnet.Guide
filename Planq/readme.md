@@ -7,6 +7,12 @@ git checkout v1.1.2
 make install
 ```
 ```
+cd $HOME/planq
+git fetch --all
+git checkout v2.0.1
+make install
+```
+```
 MONIKER=
 ```
 ```
