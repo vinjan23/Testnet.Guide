@@ -13,6 +13,12 @@ git checkout v2.0.1
 make install
 ```
 ```
+curl -LO https://github.com/planq-network/planq/releases/tag/v2.0.1/planqd
+chmod +x planqd
+sudo mv planqd /root/go/bin/
+```
+
+```
 MONIKER=
 ```
 ```
