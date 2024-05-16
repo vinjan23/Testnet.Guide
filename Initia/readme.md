@@ -102,6 +102,17 @@ initiad tx mstaking create-validator \
 -y
 ```
 ```
+initiad tx mstaking edit-validator \
+--moniker "Jan" \
+--identity "B9FD76B74CE3CA7D" \
+--chain-id initiation-1 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 0.15uinit \
+-y
+```
+```
 initiad tx bank send wallet init1khea05wwtedrj78exaddk55jzwrjvxcnu5mwat 99900000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
 ```
 ```
