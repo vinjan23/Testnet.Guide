@@ -21,6 +21,7 @@ initiad init Vinjan.Inc --chain-id initiation-1
 ```
 wget -O $HOME/.initia/config/genesis.json https://raw.githubusercontent.com/initia-labs/networks/main/initiation-1/genesis.json
 ```
+
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:37657\"%" $HOME/.initia/config/client.toml
 ```
@@ -150,6 +151,9 @@ make run-oracle-client
 journalctl -fu slinky --no-hostname
 ```
 ```
+echo $(initiad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.initia/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+```
 curl -sS http://localhost:37657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 ```
@@ -161,6 +165,8 @@ rm -f $(which initiad)
 rm -rf .initia
 rm -rf initia
 ```
-
-
+```
+peers="42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,0f6d3a20140188a16d959482e0cc9fc7f365939c@65.108.237.188:37656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
+```
 
