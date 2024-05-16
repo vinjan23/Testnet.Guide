@@ -177,7 +177,7 @@ rm -rf .initia
 rm -rf initia
 ```
 ```
-peers="42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,0f6d3a20140188a16d959482e0cc9fc7f365939c@65.108.237.188:37656"
+peers="42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,0f6d3a20140188a16d959482e0cc9fc7f365939c@65.108.237.188:37656,90c1c1ee7942aef1930b272a02783fee75edaf39@88.99.61.53:37656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 ```
 
