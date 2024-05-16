@@ -6,8 +6,8 @@ make install
 ```
 ```
 cd $HOME/initia
-git pull
-git checkout v0.2.12
+git fetch --all
+git checkout v0.2.14
 make install
 ```
 ```
