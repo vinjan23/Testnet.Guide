@@ -1,7 +1,7 @@
 ```
 git clone https://github.com/initia-labs/initia.git
 cd initia
-git checkout v0.2.10
+git checkout v0.2.14
 make install
 ```
 ```
@@ -31,7 +31,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 
 ```
-peers="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,ff9dbc6bb53227ef94dc75ab1ddcaeb2404e1b0b@178.170.47.171:26656,47ad94a6abc97d4810e2f2be1711d6356c04a83b@135.125.246.102:26656,329227cf8632240914511faa9b43050a34aa863e@43.131.13.84:26656,42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,d35102679b876be785a2e03d932300e3a8123086@95.217.85.149:46656"
+peers="42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,0f6d3a20140188a16d959482e0cc9fc7f365939c@65.108.237.188:37656,90c1c1ee7942aef1930b272a02783fee75edaf39@88.99.61.53:37656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,c28827cb96c14c905b127b92065a3fb4cd77d7f6@testnet-seeds.whispernode.com:25756"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.toml
@@ -42,10 +42,8 @@ sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = "2000"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
 -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
--e 's|^snapshot-interval *=.*|snapshot-interval = "2000"|' \
--e 's|^snapshot-keep-recent *=.*|snapshot-keep-recent = "5"|' \
 $HOME/.initia/config/app.toml
 ```
 ```
@@ -176,8 +174,5 @@ rm -f $(which initiad)
 rm -rf .initia
 rm -rf initia
 ```
-```
-peers="42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,0f6d3a20140188a16d959482e0cc9fc7f365939c@65.108.237.188:37656,90c1c1ee7942aef1930b272a02783fee75edaf39@88.99.61.53:37656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
-```
+
 
