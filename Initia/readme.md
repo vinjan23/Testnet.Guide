@@ -148,49 +148,7 @@ initiad tx mstaking edit-validator \
 initiad tx mstaking delegate $(initiad keys show wallet --bech val -a) 100000000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
 ```
 
-### ORACLE (Optionaql)
-```
-cd $HOME
-rm -rf slinky
-git clone https://github.com/skip-mev/slinky.git
-cd slinky
-git checkout v0.4.3
-make build
-```
-```
-mv build/slinky /usr/local/bin/
-rm -rf build
-```
-### Service
-```
-sudo tee /etc/systemd/system/slinky.service > /dev/null <<EOF
-[Unit]
-Description=Initia Slinky Oracle
-After=network-online.target
 
-[Service]
-User=$USER
-ExecStart=$(which slinky) --oracle-config-path $HOME/slinky/config/core/oracle.json --market-map-endpoint 0.0.0.0:47990
-Restart=on-failure
-RestartSec=30
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-### Start
-```
-sudo systemctl daemon-reload
-sudo systemctl enable slinky.service
-sudo systemctl restart slinky.service
-```
-```
-make run-oracle-client
-```
-```
-journalctl -fu slinky --no-hostname
-```
 ### Send Fund
 ```
 initiad tx bank send wallet init1khea05wwtedrj78exaddk55jzwrjvxcnu5mwat 99900000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
@@ -212,5 +170,11 @@ rm -f $(which initiad)
 rm -rf .initia
 rm -rf initia
 ```
-
-
+```
+sudo systemctl stop initiad
+initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
+wget -O initia_150902.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_150902.tar.lz4 --inet4-only
+lz4 -c -d initia_150902.tar.lz4  | tar -x -C $HOME/.initia
+sudo systemctl restart initiad
+sudo journalctl -u initiad -f -o cat
+```
