@@ -100,7 +100,7 @@ sudo systemctl enable initiad
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
 ```
-### Snapshot Polkachu
+### Snapshot Polkachu ( Height 170K )
 ```
 sudo systemctl stop initiad
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
