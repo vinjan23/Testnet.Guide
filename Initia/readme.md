@@ -122,6 +122,10 @@ local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_h
 ```
 initiad keys add wallet
 ```
+### Cek validator address
+```
+initiad keys show wallet --bech val -a
+```
 ### Cek Balances
 ```
 initiad q bank balances $(initiad keys show wallet -a)
