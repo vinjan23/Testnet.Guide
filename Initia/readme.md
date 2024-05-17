@@ -104,7 +104,7 @@ sudo journalctl -u initiad -f -o cat
 ```
 sudo systemctl stop initiad
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-wget -O initia_150902.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_150902.tar.lz4 --inet4-only
+wget -O initia_170136.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_170136.tar.lz4 --inet4-only
 lz4 -c -d initia_150902.tar.lz4  | tar -x -C $HOME/.initia
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
