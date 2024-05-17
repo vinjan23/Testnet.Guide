@@ -41,6 +41,10 @@ initiad init Vinjan.Inc --chain-id initiation-1
 ```
 wget -O $HOME/.initia/config/genesis.json https://raw.githubusercontent.com/initia-labs/networks/main/initiation-1/genesis.json
 ```
+### Addrbook
+```
+wget -O $HOME/.initia/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Initia/addrbook.json
+```
 
 ### Custom Port
 ```
