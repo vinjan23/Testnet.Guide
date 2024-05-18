@@ -170,7 +170,7 @@ initiad tx mstaking delegate $(initiad keys show wallet --bech val -a) 100000000
 
 ### Send Fund
 ```
-initiad tx bank send wallet init1khea05wwtedrj78exaddk55jzwrjvxcnu5mwat 99900000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
+initiad tx bank send wallet init19j3v9ghs76jvqd70s809g539kcspw659sc0sfv 7000000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
 ```
 ```
 echo $(initiad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.initia/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
