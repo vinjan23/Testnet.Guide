@@ -100,7 +100,7 @@ sudo systemctl enable initiad
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
 ```
-### Snapshot Polkachu ( Height 170K )
+### Snapshot Polkachu ( Height 187918 )
 ```
 sudo systemctl stop initiad
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
@@ -109,6 +109,16 @@ lz4 -c -d initia_187918.tar.lz4  | tar -x -C $HOME/.initia
 rm -v initia_187918.tar.lz4
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
+```
+### Snapshot Nodejumper (189774)
+```
+sudo systemctl stop initiad
+cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
+initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
+curl https://snapshots-testnet.nodejumper.io/initia-testnet/initia-testnet_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.initia
+mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
+sudo systemctl restart initiad
+sudo journalctl -u initiad -f --no-hostname -o cat
 ```
 ### Cek Sync
 ```
