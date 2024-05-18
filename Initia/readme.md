@@ -56,7 +56,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ### Peer & Gas
 ```
-peers="0f6d3a20140188a16d959482e0cc9fc7f365939c@65.108.237.188:37656,ae72b52e0e313c4445da26494ed384a1b392f4f1@88.99.61.53:37656,27811bb5e1aad01bfbe7d780a23a00d7760deb8d@195.201.9.32:37656"
+peers="0f6d3a20140188a16d959482e0cc9fc7f365939c@65.108.237.188:37656,27811bb5e1aad01bfbe7d780a23a00d7760deb8d@195.201.9.32:37656,f48610351be116d5e01ebee3e9c6c4178091f480@65.109.113.233:25756"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:25756"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.toml
