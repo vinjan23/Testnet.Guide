@@ -160,6 +160,11 @@ initiad tx mstaking create-validator \
 --gas-prices 0.15uinit \
 -y
 ```
+- if rpc error add
+```
+--node https://rpc-initia.vinjan.xyz:443 \
+```
+  
 ### Edit Validator
 ```
 initiad tx mstaking edit-validator \
