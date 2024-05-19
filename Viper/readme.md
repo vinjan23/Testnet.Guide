@@ -137,6 +137,20 @@ viper wallet import-raw <pk>
 ```
 curl -sX POST http://127.0.0.1:8082/v1/query/servicers|jq '.result[].node_url'
 ```
+### Update Binary
+```
+cd ~/viper-network
+sudo systemctl stop viper.service
+cd viper-binaries
+sudo git pull origin main
+sudo cp viper_linux_amd64 /usr/local/bin/viper
+```
+```
+sudo systemctl restart viper.service
+```
+```
+viper network version
+```
 
 ### Error Exit Code
 ```
