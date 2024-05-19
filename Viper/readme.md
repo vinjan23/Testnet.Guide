@@ -144,8 +144,6 @@ sudo systemctl stop viper.service
 cd viper-binaries
 sudo git pull origin main
 sudo cp viper_linux_amd64 /usr/local/bin/viper
-```
-```
 sudo systemctl restart viper.service
 ```
 ```
