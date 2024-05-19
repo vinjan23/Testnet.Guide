@@ -184,6 +184,14 @@ initiad tx mstaking edit-validator \
 initiad tx mstaking delegate $(initiad keys show wallet --bech val -a) 100000000uinit --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
 ```
 
+### List Pro Gov
+```
+initiad query gov proposals
+```
+### Vote Yes
+```
+initiad tx gov vote 80 yes --from wallet --chain-id initiation-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.15uinit -y
+```
 
 ### Send Fund
 ```
