@@ -18,7 +18,7 @@ go version
 ```
 git clone https://github.com/initia-labs/initia.git
 cd initia
-git checkout v0.2.14
+git checkout v0.2.15
 make install
 ```
 ### For Update
@@ -31,7 +31,7 @@ make install
 ```
 initiad version --long | grep -e commit -e version
 ```
-`commit: 636bce546ea1bbe0411df61a13acd7f1e951ee60`
+`commit: 31051a01e01609be014d6fec36d00a17be408663`
 
 ### Init
 ```
