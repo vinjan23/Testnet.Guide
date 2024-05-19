@@ -110,7 +110,7 @@ rm -v initia_187918.tar.lz4
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
 ```
-### Snapshot Nodejumper (189774)
+### Snapshot Nodejumper (201757)
 ```
 sudo systemctl stop initiad
 cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
@@ -120,16 +120,7 @@ mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_valida
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f --no-hostname -o cat
 ```
-### Height 199K
-```
-sudo systemctl stop initiad
-cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
-initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-curl -L https://snapshots.kzvn.xyz/initia/initiation-1_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.initia
-mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
-sudo systemctl restart initiad
-sudo journalctl -u initiad -f --no-hostname -o cat
-```
+
 ### Cek Sync
 ```
 initiad status 2>&1 | jq .sync_info
