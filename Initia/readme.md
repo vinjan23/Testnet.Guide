@@ -116,8 +116,7 @@ sudo journalctl -u initiad -f -o cat
 sudo systemctl stop initiad
 cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-curl https://snapshots-testnet.nodejumper.io/initia-testnet/initia-testnet_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.initia
-mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
+curl https://initia-testnet-snapshots.f5nodes.com/initiation-1_223392.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.initia
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f --no-hostname -o cat
 ```
