@@ -101,13 +101,13 @@ sudo systemctl enable initiad
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
 ```
-### Snapshot Polkachu ( Height 218063 )
+### Snapshot Polkachu ( Height 228343 )
 ```
 sudo systemctl stop initiad
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-wget -O initia_218063.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_218063.tar.lz4 --inet4-only
-lz4 -c -d initia_218063.tar.lz4  | tar -x -C $HOME/.initia
-rm -v initia_218063.tar.lz4
+wget -O initia_228343.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_228343.tar.lz4 --inet4-only
+lz4 -c -d initia_228343.tar.lz4  | tar -x -C $HOME/.initia
+rm -v initia_228343.tar.lz4
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
 ```
