@@ -101,13 +101,13 @@ sudo systemctl enable initiad
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
 ```
-### Snapshot Polkachu ( Height 202803 )
+### Snapshot Polkachu ( Height 218063 )
 ```
 sudo systemctl stop initiad
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-wget -O initia_202803.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_202803.tar.lz4 --inet4-only
-lz4 -c -d initia_202803.tar.lz4  | tar -x -C $HOME/.initia
-rm -v initia_202803.tar.lz4
+wget -O initia_218063.tar.lz4 https://snapshots.polkachu.com/testnet-snapshots/initia/initia_218063.tar.lz4 --inet4-only
+lz4 -c -d initia_218063.tar.lz4  | tar -x -C $HOME/.initia
+rm -v initia_218063.tar.lz4
 sudo systemctl restart initiad
 sudo journalctl -u initiad -f -o cat
 ```
@@ -129,6 +129,9 @@ initiad status 2>&1 | jq .sync_info
 ### Cek Left Block
 ```
 local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://rpc-initia.vinjan.xyz/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
+```
+```
+local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://rpc-initia-testnet.trusted-point.com/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
 ```
 
 ### Add Wallet
