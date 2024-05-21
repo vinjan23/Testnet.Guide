@@ -62,9 +62,9 @@ cd $HOME
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout v0.31.0
+git checkout fix/v0.31.0-distribution-module
+git tag -f v0.31.0
 make install
-mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.31.0/bin
 cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.31.0/bin/elysd
 ```
 ```
