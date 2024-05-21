@@ -64,6 +64,7 @@ cd elys
 git fetch
 git checkout v0.31.0
 make install
+mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.31.0/bin
 cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.31.0/bin/elysd
 ```
 ```
