@@ -44,11 +44,11 @@ make install
 
 ### Update With Cosmovisor
 ```
-sudo systemctl stop elysd.service
+sudo systemctl stop elysd
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout fix/v0.31.0-increase-max-block-size
+git checkout fix/v0.31.0-increase-max-block-size-disable-allocateTokens
 git tag -f v0.31.0
 make install
 cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.31.0/bin/elysd
