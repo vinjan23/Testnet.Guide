@@ -58,7 +58,7 @@ rm -rf build
 ```
 
 ```
-cd $HOME
+mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.31.0/bin
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
