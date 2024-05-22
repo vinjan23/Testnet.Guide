@@ -62,7 +62,7 @@ cd $HOME
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout fix/v0.31.0-distribution-module
+git checkout fix/v0.31.0-increase-max-block-size
 git tag -f v0.31.0
 make install
 cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.31.0/bin/elysd
