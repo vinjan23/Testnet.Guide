@@ -76,7 +76,9 @@ sudo systemctl restart elysd
 ```
 sudo journalctl -u elysd -f -o cat
 ```
-
+```
+sudo journalctl -u elysd.service | grep -i "apphash"
+```
 
 
 ### Moniker
