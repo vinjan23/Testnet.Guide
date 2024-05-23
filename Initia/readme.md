@@ -172,7 +172,7 @@ initiad tx mstaking create-validator \
 ```
 - if rpc error add
 ```
---node https://rpc-initia.vinjan.xyz:443 \
+--node https://initia-testnet-rpc.polkachu.com:443 \
 ```
   
 ### Edit Validator
