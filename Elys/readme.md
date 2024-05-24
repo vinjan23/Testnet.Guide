@@ -48,7 +48,7 @@ sudo systemctl stop elysd
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout fix/v0.31.0-increase-max-block-size-disable-allocateTokens
+git checkout fix/v0.31.0-restore-clock-gas-limit-value
 git tag -f v0.31.0
 make install
 cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.31.0/bin/elysd
