@@ -62,7 +62,12 @@ seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,ade4d8bc8cbe
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc\"|" $HOME/.initia/config/app.toml
 ```
-
+```
+peers=""
+seeds="cae5090c0fde1de1c9890e9139dbdda24233737b@seeds.cros-nest.com:26756,d1d43cc7c7aef715957289fd96a114ecaa7ba756@testnet-seeds.nodex.one:24510"
+rm $HOME/.initia/config/addrbook.json && \
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
+```
 ### Prunning
 ```
 sed -i \
@@ -227,3 +232,4 @@ rm -rf .initia
 rm -rf initia
 ```
 
+    
