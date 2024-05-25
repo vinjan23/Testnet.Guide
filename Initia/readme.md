@@ -125,15 +125,14 @@ sudo systemctl restart initiad
 rm -v initia_308650.tar.lz4
 sudo journalctl -u initiad -f -o cat
 ```
-### Snapshot KVN (261666)
+### Snapshot  (311258)
 ```
 sudo systemctl stop initiad
-cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
-initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-curl -L https://snapshots.kzvn.xyz/initia/initiation-1_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.initia
-mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
-sudo systemctl restart initiad
-sudo journalctl -u initiad -f --no-hostname -o cat
+cp .initia/data/priv_validator_state.json .initia/priv_validator_state.json.backup
+rm -rf .initia/data
+curl -L https://snapshots.lavenderfive.com/testnet-snapshots/initia/initia_311258.tar.lz4 | tar -Ilz4 -xf - -C .initia
+mv .initia/priv_validator_state.json.backup .initia/data/priv_validator_state.json
+sudo systemctl start initiad && sudo journalctl -u initiad -f --no-hostname -o cat
 ```
 
 ### Cek Sync
