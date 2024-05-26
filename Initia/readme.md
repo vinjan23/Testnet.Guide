@@ -56,27 +56,19 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ### Peer & Gas
 ```
-peers="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,ff9dbc6bb53227ef94dc75ab1ddcaeb2404e1b0b@178.170.47.171:26656,47ad94a6abc97d4810e2f2be1711d6356c04a83b@135.125.246.102:26656,329227cf8632240914511faa9b43050a34aa863e@43.131.13.84:26656,42cd9d7a33f8250ad2dbe04634e7c7c23fca6657@5.9.80.214:26656,d35102679b876be785a2e03d932300e3a8123086@95.217.85.149:46656"
+peers="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,a5f82f261e5f023110d2fd43e6246f556eed379e@167.86.105.248:14656,34fb9c19693f31061d6afc9475678579be4d257e@149.102.140.218:15656,2e120200e1ce0e5db42f8de0664304bc6e780c3b@85.190.240.122:25756,4df47624dedb1754c99bf5db998e7fe16fd6faef@194.163.136.96:26656,42ef41a1c59ca4078123e2a204d63ddcec58a3a2@149.56.107.219:53456,7ec27b911d93995ce385e6eb9ba85d5c62afca4a@86.57.164.146:26656,57294d395acc84810ea020587544ed491527e3e3@149.50.109.42:14656,d9ddaebdb1ac17d0b13d5b56a417585274e9b740@195.179.231.90:25756"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
-seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:25756"
+seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc\"|" $HOME/.initia/config/app.toml
 ```
 ```
-peers=""
-seeds="cae5090c0fde1de1c9890e9139dbdda24233737b@seeds.cros-nest.com:26756"
+peers="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,a5f82f261e5f023110d2fd43e6246f556eed379e@167.86.105.248:14656,34fb9c19693f31061d6afc9475678579be4d257e@149.102.140.218:15656,2e120200e1ce0e5db42f8de0664304bc6e780c3b@85.190.240.122:25756,4df47624dedb1754c99bf5db998e7fe16fd6faef@194.163.136.96:26656,42ef41a1c59ca4078123e2a204d63ddcec58a3a2@149.56.107.219:53456,7ec27b911d93995ce385e6eb9ba85d5c62afca4a@86.57.164.146:26656,57294d395acc84810ea020587544ed491527e3e3@149.50.109.42:14656,d9ddaebdb1ac17d0b13d5b56a417585274e9b740@195.179.231.90:25756"
+seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656"
 rm $HOME/.initia/config/addrbook.json
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 ```
-```
-PEERS=""
-SEEDS="cae5090c0fde1de1c9890e9139dbdda24233737b@seeds.cros-nest.com:26756,d1d43cc7c7aef715957289fd96a114ecaa7ba756@testnet-seeds.nodex.one:24510,cd69bcb00a6ecc1ba2b4a3465de4d4dd3e0a3db1@initia-testnet-seed.itrocket.net:51656" && \
-rm $HOME/.initia/config/addrbook.json && \
-sed -i \
-    -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" \
-    -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" \
-    "$HOME/.initia/config/config.toml"
-```    
+
 ### Prunning
 ```
 sed -i \
