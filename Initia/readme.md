@@ -120,12 +120,12 @@ sudo journalctl -u initiad -f -o cat
 ### Snapshot  (311258)
 ```
 sudo systemctl stop initiad
-cp .initia/data/priv_validator_state.json .initia/priv_validator_state.json.backup
-rm -rf .initia/data
-curl -L https://snapshots.lavenderfive.com/testnet-snapshots/initia/initia_311258.tar.lz4 | tar -Ilz4 -xf - -C .initia
-mv .initia/priv_validator_state.json.backup .initia/data/priv_validator_state.json
+initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
+wget -O initia_latest.tar.lz4 https://snapshots.tienthuattoan.com/testnet/initia/initia_latest.tar.lz4
+lz4 -c -d initia_latest.tar.lz4 | tar -x -C $HOME/.initia
 sudo systemctl start initiad && sudo journalctl -u initiad -f --no-hostname -o cat
 ```
+https://storage.crouton.digital/testnet/initia/snapshots/initia_latest.tar.lz4
 
 ### Cek Sync
 ```
