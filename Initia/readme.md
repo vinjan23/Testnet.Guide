@@ -63,8 +63,8 @@ sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.tom
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc\"|" $HOME/.initia/config/app.toml
 ```
 ```
-peers="093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,a5f82f261e5f023110d2fd43e6246f556eed379e@167.86.105.248:14656,34fb9c19693f31061d6afc9475678579be4d257e@149.102.140.218:15656,2e120200e1ce0e5db42f8de0664304bc6e780c3b@85.190.240.122:25756,4df47624dedb1754c99bf5db998e7fe16fd6faef@194.163.136.96:26656,42ef41a1c59ca4078123e2a204d63ddcec58a3a2@149.56.107.219:53456,7ec27b911d93995ce385e6eb9ba85d5c62afca4a@86.57.164.146:26656,57294d395acc84810ea020587544ed491527e3e3@149.50.109.42:14656,d9ddaebdb1ac17d0b13d5b56a417585274e9b740@195.179.231.90:25756"
-seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656"
+peers=""
+seeds="148c0845575c874e677978112b1c8059090ed4ab@initia-testnet-rpc.tienthuattoan.com:29656"
 rm $HOME/.initia/config/addrbook.json
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 ```
@@ -117,7 +117,7 @@ sudo systemctl restart initiad
 rm -v initia_308650.tar.lz4
 sudo journalctl -u initiad -f -o cat
 ```
-### Snapshot  (311258)
+### Snapshot  ()
 ```
 sudo systemctl stop initiad
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
@@ -125,7 +125,6 @@ wget -O initia_latest.tar.lz4 https://snapshots.tienthuattoan.com/testnet/initia
 lz4 -c -d initia_latest.tar.lz4 | tar -x -C $HOME/.initia
 sudo systemctl start initiad && sudo journalctl -u initiad -f --no-hostname -o cat
 ```
-https://storage.crouton.digital/testnet/initia/snapshots/initia_latest.tar.lz4
 
 ### Cek Sync
 ```
