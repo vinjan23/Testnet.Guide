@@ -134,13 +134,13 @@ initiad status 2>&1 | jq .sync_info
 ```
 local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://rpc-initia.vinjan.xyz/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
 ```
-- DingCotach
+- Lavender
 ```
-local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://rpc.dinhcongtac221.fun/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
+local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://testnet-initia-rpc.lavenderfive.com/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
 ```
-- Polkachu
+- Orbital
 ```
-local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://initia-testnet-rpc.polkachu.com/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
+local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://initia-testnet-rpc.orbitalcommand.io/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
 ```
   
 ### Add Wallet
