@@ -64,7 +64,7 @@ sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc
 ```
 ```
 peers=""
-seeds="148c0845575c874e677978112b1c8059090ed4ab@initia-testnet-rpc.tienthuattoan.com:29656"
+seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,148c0845575c874e677978112b1c8059090ed4ab@initia-testnet-rpc.tienthuattoan.com:29656"
 rm $HOME/.initia/config/addrbook.json
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 ```
@@ -104,9 +104,18 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable initiad
+```
+```
 sudo systemctl restart initiad
+```
+```
 sudo journalctl -u initiad -f -o cat
 ```
+```
+rm $HOME/.initia/config/addrbook.json
+```
+
+
 ### Snapshot Polkachu ( Height 308650 )
 ```
 sudo systemctl stop initiad
@@ -131,9 +140,6 @@ sudo systemctl start initiad && sudo journalctl -u initiad -f --no-hostname -o c
 initiad status 2>&1 | jq .sync_info
 ```
 ### Cek Left Block
-```
-local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://rpc-initia.vinjan.xyz/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
-```
 - Lavender
 ```
 local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://testnet-initia-rpc.lavenderfive.com/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
