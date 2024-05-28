@@ -64,7 +64,7 @@ sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc
 ```
 ```
 peers=""
-seeds="2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,148c0845575c874e677978112b1c8059090ed4ab@initia-testnet-rpc.tienthuattoan.com:29656"
+seeds="937d30cb67bb92479e648f904a91da9e6cfd0233@seeds.staking4all.org:50156,148c0845575c874e677978112b1c8059090ed4ab@initia-testnet-rpc.tienthuattoan.com:29656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 ```
 
