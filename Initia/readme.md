@@ -132,7 +132,7 @@ sudo systemctl stop initiad
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
 wget -O initia_latest.tar.lz4 https://snapshots.tienthuattoan.com/testnet/initia/initia_latest.tar.lz4
 lz4 -c -d initia_latest.tar.lz4 | tar -x -C $HOME/.initia
-sudo systemctl start initiad && sudo journalctl -u initiad -f --no-hostname -o cat
+sudo systemctl restart initiad && sudo journalctl -u initiad -f --no-hostname -o cat
 ```
 
 ### Cek Sync
