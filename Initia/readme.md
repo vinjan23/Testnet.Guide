@@ -74,14 +74,21 @@ sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.tom
 peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 ```
-
+```
+sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.initia/config/config.toml
+URL="https://initia-testnet-rpc.polkachu.com/net_info"
+response=$(curl -s $URL)
+PEERS=$(echo $response | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):" + (.node_info.listen_addr | capture("(?<ip>.+):(?<port>[0-9]+)$").port)' | paste -sd "," -)
+echo "PEERS=\"$PEERS\""
+sed -i 's|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.initia/config/config.toml
+```
 ### Prunning
 ```
 sed -i \
--e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning *=.*|pruning = "nothing"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "500"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
 $HOME/.initia/config/app.toml
 ```
 ### Indexer Off
