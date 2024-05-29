@@ -121,6 +121,12 @@ sudo journalctl -u initiad -f -o cat
 rm $HOME/.initia/config/addrbook.json
 ```
 
+### Cek Left Block
+
+- Orbital
+```
+local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://initia-testnet-rpc.orbitalcommand.io/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
+```
 
 ### Snapshot Polkachu ( Height 308650 )
 ```
@@ -146,15 +152,7 @@ sudo systemctl restart initiad && sudo journalctl -u initiad -f --no-hostname -o
 ```
 initiad status 2>&1 | jq .sync_info
 ```
-### Cek Left Block
-- Lavender
-```
-local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://testnet-initia-rpc.lavenderfive.com/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
-```
-- Orbital
-```
-local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://initia-testnet-rpc.orbitalcommand.io/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
-```
+
   
 ### Add Wallet
 ```
