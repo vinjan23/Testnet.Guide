@@ -67,6 +67,13 @@ peers=""
 seeds="937d30cb67bb92479e648f904a91da9e6cfd0233@seeds.staking4all.org:50156,148c0845575c874e677978112b1c8059090ed4ab@initia-testnet-rpc.tienthuattoan.com:29656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
 ```
+```
+sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.initia/config/config.toml
+seeds=""
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.initia/config/config.toml
+peers=""
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.initia/config/config.toml
+```
 
 ### Prunning
 ```
