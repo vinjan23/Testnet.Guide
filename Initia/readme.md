@@ -84,6 +84,11 @@ sed -i \
 -e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
 $HOME/.initia/config/app.toml
 ```
+```
+sed -i \
+-e 's|^pruning *=.*|pruning = "nothing"|' \
+$HOME/.initia/config/app.toml
+```
 ### Indexer Off
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.initia/config/config.toml
