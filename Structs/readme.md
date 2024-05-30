@@ -1,17 +1,17 @@
 ### Build
 ```
-git clone --branch v0.2.0-beta https://github.com/playstructs/structsd.git 
+git clone --branch v0.3.0-beta https://github.com/playstructs/structsd.git 
 cd structsd
 ignite chain build
 ```
 
 ### Genesis
 ```
-wget -O $HOME/.structs/config/genesis.json https://raw.githubusercontent.com/playstructs/structs-networks/88b/genesis.json
+wget -O $HOME/.structs/config/genesis.json https://raw.githubusercontent.com/playstructs/structs-networks/97b/genesis.json
 ```
 ### Peers Gass
 ```
-peers="605886634736003095e841b03736a214f5111ffe@155.138.142.145:26656"
+peers="f9ff152e331904924c26a4f8b1f46e859d574342@155.138.142.145:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.structs/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0alpha\"/" $HOME/.structs/config/app.toml
 ```
@@ -99,7 +99,17 @@ structsd tx staking create-validator validator.json \
     --gas auto
 ```
 
-
+### Delete
+```
+sudo systemctl stop structsd
+sudo systemctl disable structsd
+rm /etc/systemd/system/structsd.service
+sudo systemctl daemon-reload
+cd $HOME
+rm -rf structsd
+rm -rf .structs
+rm -rf $(which structsd)
+```
 
 
 
