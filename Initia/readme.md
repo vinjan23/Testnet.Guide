@@ -87,6 +87,14 @@ $HOME/.initia/config/app.toml
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "nothing"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "0"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "0"|' \
+$HOME/.initia/config/app.toml
+```
+```
+sed -i \
+-e 's|^pruning *=.*|pruning = "nothing"|' \
 $HOME/.initia/config/app.toml
 ```
 ### Indexer Off
@@ -131,6 +139,9 @@ rm $HOME/.initia/config/addrbook.json
 - Orbital
 ```
 local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://initia-testnet-rpc.orbitalcommand.io/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
+```
+```
+local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://b545809c-5562-4e60-b5a1-22e83df57748.initiation-1.mesa-rpc.ue1-prod.newmetric.xyz/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
 ```
 ```
 local_height=$(initiad status | jq -r .sync_info.latest_block_height); network_height=$(curl -s https://rpc-initia.vinjan.xyz/status | jq -r .result.sync_info.latest_block_height); blocks_left=$((network_height - local_height)); echo "Your node height: $local_height"; echo "Network height: $network_height"; echo "Blocks left: $blocks_left"
