@@ -81,16 +81,16 @@ nano $HOME/validator.json
 ```
 ```
 {
-  "pubkey": {"#pubkey"},
-  "amount": "1000000uallo",
-  "moniker": "",
-  "identity": "",
-  "website": "",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"IUEwrUM3CZu1NSdFBVWHLRa/hLPxnWaoxi9iuzSru2w="},
+  "amount": "6000000000uallo",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
   "security": "",
-  "details": "",
+  "details": "Staking Provider-IBC Relayer",
   "commission-rate": "0.05",
   "commission-max-rate": "0.2",
-  "commission-max-change-rate": "0.2",
+  "commission-max-change-rate": "0.5",
   "min-self-delegation": "1"
 }
 ```
