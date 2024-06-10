@@ -67,6 +67,39 @@ sudo systemctl enable allorad
 sudo systemctl restart allorad
 sudo journalctl -u allorad -f -o cat
 ```
+```
+allorad status 2>&1 | jq .sync_info
+```
+```
+allorad q bank balances $(allorad keys show wallet -a)
+```
+```
+allorad comet show-validator
+```
+```
+nano $HOME/validator.json
+```
+```
+{
+  "pubkey": {"#pubkey"},
+  "amount": "1000000uallo",
+  "moniker": "",
+  "identity": "",
+  "website": "",
+  "security": "",
+  "details": "",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.2",
+  "min-self-delegation": "1"
+}
+```
+```
+allorad tx staking create-validator validator.json \
+    --from=wallet \
+    --chain-id=testnet \
+    --gas auto
+```
 
 
 
