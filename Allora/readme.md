@@ -94,6 +94,7 @@ nano $HOME/validator.json
   "min-self-delegation": "1"
 }
 ```
+
 ```
 allorad tx staking create-validator validator.json \
     --from=wallet \
