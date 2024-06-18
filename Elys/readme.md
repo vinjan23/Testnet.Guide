@@ -55,13 +55,13 @@ cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.31.0/bin/elysd
 ```
 
 ```
-mkdir -p ~/.elys/cosmovisor/upgrades/v0.32.0/bin
+mkdir -p ~/.elys/cosmovisor/upgrades/v0.33.0/bin
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout v0.32.0
+git checkout v0.33.0
 make install
-cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.32.0/bin/elysd
+cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.33.0/bin/elysd
 ```
 ```
 elysd version --long | grep -e commit -e version
