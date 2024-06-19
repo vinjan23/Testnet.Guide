@@ -22,7 +22,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 wget -O $HOME/.allorad/config/genesis.json https://raw.githubusercontent.com/allora-network/networks/main/testnet/genesis.json
 ```
 ```
-wget -O $HOME/.allorad/config/addrbook.json https://snapshots.polkachu.com/testnet-addrbook/allora/addrbook.json --inet4-only
+wget -O $HOME/.allorad/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Allora/addrbook.json
 ```
 ```
 seeds="83c9558aaf4235574c7e78a568243b1f7eba6bae@seed-0.testnet.allora.network:32000,3584b56ad639bb46c20ec9e5d05f39b630c19c4b@seed-1.testnet.allora.network:32001,99c10c7c5ccad59090e34d0fd181dc9b779f1fc5@seed-2.testnet.allora.network:32002"
@@ -102,6 +102,21 @@ allorad tx staking create-validator validator.json \
     --gas auto
 ```
 
+```
+allorad tx staking delegate $(allorad keys show wallet --bech val -a) 1000000000uallo --from wallet --chain-id testnet --gas auto -y
+```
+
+
+```
+sudo systemctl stop allorad
+sudo systemctl disable allorad
+rm /etc/systemd/system/allorad.service
+sudo systemctl daemon-reload
+cd $HOME
+rm -rf allora
+rm -rf .allorad
+rm -rf $(which allorad)
+```
 
 
 
