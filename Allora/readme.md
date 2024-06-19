@@ -81,9 +81,9 @@ nano $HOME/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"IUEwrUM3CZu1NSdFBVWHLRa/hLPxnWaoxi9iuzSru2w="},
+  "pubkey": ,
   "amount": "6000000000uallo",
-  "moniker": "Vinjan.Inc",
+  "moniker": "",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
   "security": "",
