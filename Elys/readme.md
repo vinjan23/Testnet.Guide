@@ -55,13 +55,13 @@ cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.31.0/bin/elysd
 ```
 
 ```
-mkdir -p ~/.elys/cosmovisor/upgrades/v0.33.0/bin
+mkdir -p ~/.elys/cosmovisor/upgrades/v0.34.0/bin
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout v0.33.0
+git checkout v0.34.0
 make install
-cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.33.0/bin/elysd
+cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.34.0/bin/elysd
 ```
 ```
 elysd version --long | grep -e commit -e version
@@ -111,13 +111,21 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.e
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.0018ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65,0.00025ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4,0.00025uelys\"|" $HOME/.elys/config/app.toml
 ```
 
-
 ### Prunning
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "nothing"|' \
 $HOME/.elys/config/app.toml
 ```
+```
+sed -i \
+-e 's|^pruning *=.*|pruning = "custom"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
+$HOME/.elys/config/app.toml
+```
+
 ### Indexer Null
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.elys/config/config.toml
