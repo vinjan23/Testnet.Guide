@@ -19,14 +19,14 @@ go version
 cd $HOME
 git clone https://github.com/sge-network/sge
 cd sge
-git checkout v1.7.0
+git checkout v1.7.1
 make install
 ```
 ### Update
 ```
 cd $HOME/sge
 git pull
-git checkout v1.7.0
+git checkout v1.7.1
 make install
 ```
 
