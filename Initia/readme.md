@@ -25,7 +25,7 @@ make install
 ```
 cd $HOME/initia
 git fetch --all
-git checkout v0.2.15
+git checkout v0.2.21
 make install
 ```
 ```
