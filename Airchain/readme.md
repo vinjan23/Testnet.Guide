@@ -31,6 +31,8 @@ peers="0fc70473e7ee84b77ebcb1c098d457379931bc0a@88.99.61.53:38656,eb4d2c546be8d2
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.junction/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0amf\"/" $HOME/.junction/config/app.toml
 ```
+
+
 ```
 sudo tee /etc/systemd/system/junctiond.service > /dev/null <<EOF
 [Unit]
