@@ -119,7 +119,7 @@ curl -sS http://localhost:38657/net_info | jq -r '.result.peers[] | "\(.node_inf
 ```
 sudo systemctl stop junctiond
 junctiond tendermint unsafe-reset-all --home $HOME/.junction --keep-addr-book
-SNAP_RPC=":443"
+SNAP_RPC="https://testnet-airchains-rpc.genznodes.dev:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -148,6 +148,7 @@ rm -f $(which junctiond)
 rm -rf .junction
 rm -rf junction
 ```
+
 
 
 
