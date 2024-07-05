@@ -163,7 +163,7 @@ sged tx staking create-validator \
 ```
 ### Unjail
 ```
-sged tx slashing unjail --broadcast-mode=block --from wallet --chain-id sge-network-4 --gas auto --gas-adjustment 1.4 --gas auto -y
+sged tx slashing unjail --from wallet --chain-id sge-network-4 --gas auto --gas-adjustment 1.4 --gas auto -y
 ```
 ### Reason Jail
 ```
