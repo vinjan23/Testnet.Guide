@@ -105,6 +105,16 @@ soarchaind tx staking create-validator \
 -y 
 ```
 ```
+soarchaind tx slashing unjail --from wallet --chain-id soarchaintestnet --gas-adjustment 1.5 --gas-prices 0.0001utsoar --gas=auto -y
+```
+```
+soarchaind tx distribution withdraw-rewards $(soarchaind keys show wallet --bech val -a) --commission --from wallet --chain-id soarchaintestnet --gas-adjustment 1.5 --gas-prices 0.0001utsoar --gas=auto -y
+```
+```
+soarchaind tx staking delegate $(soarchaind keys show wallet --bech val -a) 1000000utsoar --from wallet -chain-id soarchaintestnet --gas-adjustment 1.5 --gas-prices 0.0001utsoar --gas=auto -y
+```
+
+```
 cd $HOME
 sudo systemctl stop soarchaind
 sudo systemctl disable soarchaind
