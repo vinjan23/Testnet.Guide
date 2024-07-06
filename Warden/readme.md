@@ -163,7 +163,9 @@ wardend tx distribution withdraw-all-rewards --from wallet --chain-id buenavista
 ```
 wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --chain-id buenavista-1 --commission --fees 1000uward -y
 ```
-
+```
+wardend tx slashing unjail --from wallet --chain-id buenavista-1 --fees 1000uward -y
+```
 ```
 curl -sS http://localhost:51657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
