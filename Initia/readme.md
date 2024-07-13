@@ -25,13 +25,13 @@ make install
 ```
 cd $HOME/initia
 git fetch --all
-git checkout v0.2.21
+git checkout v0.2.23-stage-2
 make install
 ```
 ```
 initiad version --long | grep -e commit -e version
 ```
-`commit: 31051a01e01609be014d6fec36d00a17be408663`
+`commit: 2f01bedf12e0fa2be0a21a6f183aadf6ac0cddb7`
 
 ### Init
 ```
