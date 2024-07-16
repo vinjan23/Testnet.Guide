@@ -8,7 +8,7 @@ make install
 ```
 cd $HOME/migaloo
 git pull
-git checkout v4.1.4
+git checkout v4.1.6-rc1
 make install
 ```
 ```
