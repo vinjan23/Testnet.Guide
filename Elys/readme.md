@@ -53,7 +53,7 @@ make build
 ```
 ```
 mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.38.2/bin
-mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.37.0/bin/
+mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.38.2/bin/
 rm -rf build
 ```
 ```
