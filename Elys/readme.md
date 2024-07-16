@@ -44,17 +44,18 @@ make install
 
 ### Update With Cosmovisor
 ```
-sudo systemctl stop elysd
+cd $HOME
+rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
-git fetch
-git checkout main
-git pull origin main
-git tag -f v0.37.0
-make install
-cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.37.0/bin/elysd
+git checkout v0.38.2
+make build
 ```
-
+```
+mkdir -p $HOME/.elys/cosmovisor/upgrades/v0.38.2/bin
+mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.37.0/bin/
+rm -rf build
+```
 ```
 mkdir -p ~/.elys/cosmovisor/upgrades/v0.38.2/bin
 git clone https://github.com/elys-network/elys.git
