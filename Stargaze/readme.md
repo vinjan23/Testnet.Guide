@@ -8,7 +8,7 @@ make install
 ```
 cd $HOME/stargaze
 git pull
-git checkout v13.0.0-rc.7-testnet
+git checkout v14.0.0-rc.2
 make install
 ```
 ```
@@ -29,7 +29,7 @@ mv genesis.json ~/.starsd/config
 ```
 ```
 sed -i 's/seeds = ""/seeds = "ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:13756"/' ~/.starsd/config/config.toml
-PEERS="e31886cba90a06e165b0df18cc5c8ae015ecd23e@74.50.79.62:26656,4a5c42536c6dc93baca18e155d7147bf0e89e166@46.4.102.40:24004,959bc9c26983db31df31b8bbefe8213e6d44e6d3@51.158.241.137:26656,b3465b8853d8dd0897f3b0d8521c8e4769b32a94@65.109.117.113:27056,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@176.9.82.221:13756"
+PEERS="4671eec4f54e093a80b65a647b56b2f4fcddac38@65.109.23.114:13756"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.starsd/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.025ustars\"|" $HOME/.starsd/config/app.toml
 ```
