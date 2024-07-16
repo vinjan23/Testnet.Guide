@@ -109,7 +109,9 @@ migalood tx staking create-validator \
 --gas-adjustment 1.4 \
 --fees 5000uwhale
 ```
-
+```
+migalood tx slashing unjail --from ibc-miga --chain-id narwhal-2 --gas-adjustment 1.4 --fees 5000uwhale
+```
 ```
 sudo systemctl stop migalood
 sudo systemctl disable migalood
@@ -119,4 +121,5 @@ rm -f $(which migalood)
 rm -rf .migalood
 rm -rf migaloo
 ```
+
 
