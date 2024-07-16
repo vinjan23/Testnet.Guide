@@ -109,6 +109,9 @@ starsd tx staking create-validator \
 -y
 ```
 ```
+starsd tx slashing unjail --from ibc-star --chain-id elgafar-1 --fees 250000ustars
+```
+```
 starsd tx staking delegate $(starsd keys show ibc-star --bech val -a) 30000000000ustars --from ibc-star --chain-id elgafar-1 --fees 250000ustars -y
 ```
 ```
