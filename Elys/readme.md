@@ -119,6 +119,9 @@ sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.0018ibc/2180E84E2
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "nothing"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "0"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "0"|' \
 $HOME/.elys/config/app.toml
 ```
 ```
