@@ -109,7 +109,7 @@ junctiond tx slashing unjail --from wallet --chain-id junction --fees 2000amf
 junctiond query slashing signing-info $(junctiond tendermint show-validator)
 ```
 ```
-junctiond tx distribution withdraw-all-rewards --from wallet --chain-id junction --fees 2000amf
+junctiond tx distribution withdraw-rewards $(junctiond keys show wallet --bech val -a) --commission --from wallet --chain-id junction --fees 2000amf
 ```
 ```
 junctiond tx staking delegate $(junctiond keys show wallet --bech val -a) 10000000amf --from wallet --chain-id junction --fees 2000amf
