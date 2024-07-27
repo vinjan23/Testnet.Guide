@@ -128,7 +128,7 @@ $HOME/.elys/config/app.toml
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "2000"|' \
 -e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
 $HOME/.elys/config/app.toml
 ```
