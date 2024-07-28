@@ -88,9 +88,12 @@ emped q bank balances $(emped keys show wallet -a)
 ### Create Validator
 ```
 emped tx staking create-validator \
---amount=10000000uempe \
---pubkey=$(emped tendermint show-validator) \
+--amount=79000000uempe \
 --moniker=Vinjan.Inc \
+--identity="7C66E36EA2B71F68" \
+--details="Staking Provider-IBC Relayer" \
+--website="https://service.vinjan.xyz" \
+--pubkey=$(emped tendermint show-validator) \
 --chain-id=empe-testnet-2 \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
@@ -98,6 +101,7 @@ emped tx staking create-validator \
 --min-self-delegation="1000000" \
 --from=wallet \
 --gas="auto" \
+--fees=20000uempe \
 -y
 ```
 ```
@@ -105,20 +109,21 @@ emped tx staking edit-validator \
 -new-moniker ""  \
 --chain-id=empe-testnet-2\
 --from=wallet \
----gas=auto \
+--gas=auto \
+--fees=20000uempe \
 -y
 ```
 ### Unjail
 ```
-emped  tx slashing unjail --from wallet --chain-id empe-testnet-2 ---gas=auto -y
+emped  tx slashing unjail --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
 ```
 ### Delegate
 ```
-emped tx staking delegate $(emped keys show wallet --bech val -a) 1000000uempe --from wallet --chain-id empe-testnet-2 ---gas=auto -y
+emped tx staking delegate $(emped keys show wallet --bech val -a) 10000000uempe --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
 ```
 ### Withdraw
 ```
-emped tx distribution withdraw-rewards $(emped keys show wallet --bech val -a) --commission --from wallet --chain-id empe-testnet-2 ---gas=auto -y
+emped tx distribution withdraw-rewards $(emped keys show wallet --bech val -a) --commission --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
 ```
 
 
