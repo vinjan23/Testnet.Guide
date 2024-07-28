@@ -25,6 +25,10 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 ```
 wget -O $HOME/.empe-chain/config/genesis.json https://raw.githubusercontent.com/empe-io/empe-chains/master/testnet-2/genesis.json
 ```
+### Addrbook
+```
+wget -O $HOME/.empe-chain/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Empeiria/addrbook.json
+```
 ### Peer & Gas
 ```
 peers="edfc10bbf28b5052658b3b8b901d7d0fc25812a0@193.70.45.145:26656,4bd60dee1cb81cb544f545589b8dd286a7b3fd65@149.202.73.140:26656,149383fab60d8845c408dce7bb93c05aa1fd115e@54.37.80.141:26656"
