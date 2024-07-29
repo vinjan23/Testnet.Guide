@@ -138,6 +138,10 @@ emped status 2>&1 | jq .ValidatorInfo
 ```
 emped status 2>&1 | jq .NodeInfo
 ```
+### Transfer
+```
+emped tx bank send wallet <TO_WALLET_ADDRESS> 1000000uempe --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
+```
 
 ### Connected Peer
 ```
