@@ -62,7 +62,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable junctiond
+```
+```
 sudo systemctl restart junctiond
+```
+```
 sudo journalctl -u junctiond -f -o cat
 ```
 ```
