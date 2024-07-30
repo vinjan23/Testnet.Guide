@@ -84,9 +84,9 @@ symphonyd q bank balances $(symphonyd keys show wallet -a)
 ```
 ### 
 ```
-sudo systemctl stop emped
-cp $HOME/.empe-chain/data/priv_validator_state.json $HOME/.empe-chain/priv_validator_state.json.backup
-emped tendermint unsafe-reset-all --home $HOME/.empe-chain --keep-addr-book
+sudo systemctl stop symphonyd
+cp $HOME/.symphonyd/data/priv_validator_state.json $HOME/.symphonyd/priv_validator_state.json.backup
+symphonyd tendermint unsafe-reset-all --home $HOME/.symphonyd --keep-addr-book
 SNAP_RPC="https://symphony-testnet-rpc.polkachu.com:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
@@ -94,9 +94,27 @@ TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.bloc
 sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.empe-chain/config/config.toml
-mv $HOME/.empe-chain/priv_validator_state.json.backup $HOME/.empe-chain/data/priv_validator_state.json
-sudo systemctl restart emped && sudo journalctl -u emped -f -o cat
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.symphonyd/config/config.toml
+mv $HOME/.symphonyd/priv_validator_state.json.backup $HOME/.symphonyd/data/priv_validator_state.json
+sudo systemctl restart symphonyd && sudo journalctl -u symphonyd -f -o cat
+```
+### 
+```
+symphonyd tx staking create-validator \
+--amount=1000000note \
+--moniker="$MONIKER" \
+--identity="" \
+--details="" \
+--website="" \
+--from $WALLET \
+--commission-rate 0.05 \
+--commission-max-rate 0.2 \
+--commission-max-change-rate 0.05 \
+--min-self-delegation 1 \
+--pubkey $(symphonyd tendermint show-validator) \
+--chain-id symphony-testnet-2 \
+--fees=800note \
+-y
 ```
 
 
