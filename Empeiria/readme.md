@@ -77,6 +77,22 @@ sudo journalctl -u emped -f -o cat
 ```
 emped status 2>&1 | jq .SyncInfo
 ```
+### Statesync
+```
+sudo systemctl stop emped
+cp $HOME/.empe-chain/data/priv_validator_state.json $HOME/.empe-chain/priv_validator_state.json.backup
+emped tendermint unsafe-reset-all --home $HOME/.empe-chain --keep-addr-book
+SNAP_RPC="https://rpc-empe.vinjan.xyz:443"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.empe-chain/config/config.toml
+mv $HOME/.empe-chain/priv_validator_state.json.backup $HOME/.empe-chain/data/priv_validator_state.json
+sudo systemctl restart emped && sudo journalctl -u emped -f -o cat
+```
 ### Add Wallet
 ```
 emped keys add wallet
@@ -89,10 +105,10 @@ emped q bank balances $(emped keys show wallet -a)
 ```
 emped tx staking create-validator \
 --amount=79000000uempe \
---moniker=Vinjan.Inc \
---identity="7C66E36EA2B71F68" \
---details="Staking Provider-IBC Relayer" \
---website="https://service.vinjan.xyz" \
+--moniker="" \
+--identity="" \
+--details="" \
+--website="" \
 --pubkey=$(emped tendermint show-validator) \
 --chain-id=empe-testnet-2 \
 --commission-rate="0.10" \
@@ -106,7 +122,10 @@ emped tx staking create-validator \
 ```
 ```
 emped tx staking edit-validator \
--new-moniker ""  \
+--new-moniker ""  \
+--identity="" \
+--details="" \
+--website="" \
 --chain-id=empe-testnet-2\
 --from=wallet \
 --gas=auto \
