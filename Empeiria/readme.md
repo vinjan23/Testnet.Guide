@@ -77,6 +77,15 @@ sudo journalctl -u emped -f -o cat
 ```
 emped status 2>&1 | jq .SyncInfo
 ```
+### Snapshot (763000)
+```
+sudo apt install lz4 -y
+sudo systemctl stop emped
+emped tendermint unsafe-reset-all --home $HOME/.empe-chain --keep-addr-book
+curl -L https://snapshot.vinjan.xyz/empeiria/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.empe-chain
+sudo systemctl restart emped
+sudo journalctl -u emped -f -o cat
+```
 ### Statesync
 ```
 sudo systemctl stop emped
