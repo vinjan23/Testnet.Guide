@@ -166,6 +166,10 @@ emped tx bank send wallet <TO_WALLET_ADDRESS> 1000000uempe --from wallet --chain
 ```
 curl -sS http://localhost:20657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
+### Own Peer
+```
+echo $(emped tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.empe-chain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
 ### Check if Validator Match
 ```
 [[ $(emped q staking validator $(emped keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(emped status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
