@@ -38,7 +38,7 @@ cp ~/go/bin/elysd ~/.elys/cosmovisor/genesis/bin
 ```
 cd $HOME/elys
 git fetch --all
-git checkout v0.30.0
+git checkout v0.40.0
 make install
 ```
 
@@ -57,13 +57,13 @@ mv build/elysd $HOME/.elys/cosmovisor/upgrades/v0.39.0/bin/
 rm -rf build
 ```
 ```
-mkdir -p ~/.elys/cosmovisor/upgrades/v0.39.0/bin
+mkdir -p ~/.elys/cosmovisor/upgrades/v0.40.0/bin
 git clone https://github.com/elys-network/elys.git
 cd elys
 git fetch
-git checkout v0.39.0
+git checkout v0.40.0
 make install
-cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.39.0/bin/elysd
+cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.40.0/bin/elysd
 ```
 ```
 elysd version --long | grep -e commit -e version
