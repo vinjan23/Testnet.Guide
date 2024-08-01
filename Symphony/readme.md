@@ -87,13 +87,13 @@ symphonyd keys add wallet
 ```
 symphonyd q bank balances $(symphonyd keys show wallet -a)
 ```
-### Snapshot (Height 152500)
+### Snapshot (Height 186660)
 ```
 sudo apt update
 sudo apt install lz4
 sudo systemctl stop symphonyd
 symphonyd tendermint unsafe-reset-all --home $HOME/.symphonyd --keep-addr-book
-curl -L https://snap-t.vinjan.xyz/symphony/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.symphonyd
+curl -L https://snapshot.vinjan.xyz./symphony/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.symphonyd
 sudo systemctl restart symphonyd
 sudo journalctl -u symphonyd -f -o cat
 ```
