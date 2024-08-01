@@ -87,7 +87,7 @@ symphonyd keys add wallet
 ```
 symphonyd q bank balances $(symphonyd keys show wallet -a)
 ```
-### Snapshot (Height 186660)
+### Snapshot (Height 186660)(866 MB)
 ```
 sudo apt update
 sudo apt install lz4
@@ -113,10 +113,7 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.symphonyd
 mv $HOME/.symphonyd/priv_validator_state.json.backup $HOME/.symphonyd/data/priv_validator_state.json
 sudo systemctl restart symphonyd && sudo journalctl -u symphonyd -f -o cat
 ```
-### Check Connected Peer
-```
-curl -sS http://localhost:21657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
-```
+
 ### Create Validator
 ```
 symphonyd tx staking create-validator \
@@ -134,6 +131,45 @@ symphonyd tx staking create-validator \
 --chain-id symphony-testnet-2 \
 --fees=800note \
 -y
+```
+### Edit
+```
+symphonyd tx staking edit-validator \
+--new-moniker="" \
+--identity="" \
+--details="" \
+--website="" \
+--chain-id=symphony-testnet-2 \
+--from=wallet \
+--fees=800note \
+-y
+```
+
+### Unjail
+```
+symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-2 --fees=800note -y
+```
+### Delegate
+```
+symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-2 --fees 800note -y
+```
+### WD 
+```
+symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-2 --fees 800note -y
+```
+### Check Connected Peer
+```
+curl -sS http://localhost:21657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+### Delete
+```
+sudo systemctl stop symphonyd
+sudo systemctl disable symphonyd
+sudo rm /etc/systemd/system/symphonyd.service
+sudo systemctl daemon-reload
+rm -f $(which symphonyd)
+rm -rf .symphonyd
+rm -rf symphony
 ```
 
 
