@@ -107,6 +107,16 @@ junctiond tx staking create-validator $HOME/validator.json \
     --fees 2000amf
 ```
 ```
+junctiond tx staking edit-validator \
+--new-moniker": "Vinjan.Inc" \
+--identity": "7C66E36EA2B71F68" \
+--commission-rate": "0.11" \
+--from=wallet \
+--chain-id=junction \
+--fees 2000amf
+```
+
+```
 junctiond tx slashing unjail --from wallet --chain-id junction --fees 2000amf
 ```
 ```
