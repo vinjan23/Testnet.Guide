@@ -108,12 +108,14 @@ junctiond tx staking create-validator $HOME/validator.json \
 ```
 ```
 junctiond tx staking edit-validator \
---new-moniker": "Vinjan.Inc" \
---identity": "7C66E36EA2B71F68" \
---commission-rate": "0.11" \
---from=wallet \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--website="https://service.vinjan.xyz" \
+--details="Staking Provider-IBC Relaye \
+--commission-rate "0.11" \
 --chain-id=junction \
---fees 2000amf
+--from=wallet \
+--fees=2000amf
 ```
 
 ```
