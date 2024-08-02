@@ -81,7 +81,7 @@ sudo journalctl -u emped -f -o cat
 ```
 emped status 2>&1 | jq .SyncInfo
 ```
-### Snapshot (775145)
+### Snapshot (789835)
 ```
 sudo apt install lz4 -y
 sudo systemctl stop emped
