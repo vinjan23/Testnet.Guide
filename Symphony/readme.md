@@ -87,7 +87,7 @@ symphonyd keys add wallet
 ```
 symphonyd q bank balances $(symphonyd keys show wallet -a)
 ```
-### Snapshot (Height 186660)(866 MB)
+### Snapshot (Height 205532)(1.2 GB)
 ```
 sudo apt update
 sudo apt install lz4
