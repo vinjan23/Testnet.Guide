@@ -35,6 +35,10 @@ peers="7419cc5bafc3c9c49b18ec67e3263344cbcc30f2@49.13.215.45:43656,91fb8e75a4b92
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.empe-chain/config/config.toml
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0uempe\"/" $HOME/.empe-chain/config/app.toml
 ```
+```
+peers="$(curl -sS https://rpc-empe.vinjan.xyz:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.empe-chain/config/config.toml
+```
 ### Prunning
 ```
 sed -i \
@@ -102,6 +106,7 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.empe-chai
 mv $HOME/.empe-chain/priv_validator_state.json.backup $HOME/.empe-chain/data/priv_validator_state.json
 sudo systemctl restart emped && sudo journalctl -u emped -f -o cat
 ```
+
 ### Add Wallet
 ```
 emped keys add wallet
