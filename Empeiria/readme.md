@@ -140,7 +140,7 @@ emped tx staking edit-validator \
 --identity="" \
 --details="" \
 --website="" \
---chain-id=empe-testnet-2\
+--chain-id=empe-testnet-2 \
 --from=wallet \
 --gas=auto \
 --fees=20000uempe \
