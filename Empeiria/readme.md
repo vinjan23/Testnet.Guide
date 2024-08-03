@@ -134,6 +134,7 @@ emped tx staking create-validator \
 --fees=20000uempe \
 -y
 ```
+### Edit Validator
 ```
 emped tx staking edit-validator \
 --new-moniker ""  \
