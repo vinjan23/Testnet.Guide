@@ -162,6 +162,10 @@ emped tx staking delegate $(emped keys show wallet --bech val -a) 10000000uempe 
 ```
 emped tx distribution withdraw-rewards $(emped keys show wallet --bech val -a) --commission --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
 ```
+### Vote
+```
+emped tx gov vote 7 yes --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
+```
 ### Validator Info
 ```
 emped status 2>&1 | jq .ValidatorInfo
