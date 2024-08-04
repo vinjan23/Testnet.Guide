@@ -130,7 +130,6 @@ emped tx staking create-validator \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1000000" \
 --from=wallet \
---gas="auto" \
 --fees=20000uempe \
 -y
 ```
@@ -143,7 +142,6 @@ emped tx staking edit-validator \
 --website="" \
 --chain-id=empe-testnet-2 \
 --from=wallet \
---gas=auto \
 --fees=20000uempe \
 -y
 ```
@@ -158,11 +156,11 @@ emped query slashing signing-info $(emped tendermint show-validator)
 
 ### Delegate
 ```
-emped tx staking delegate $(emped keys show wallet --bech val -a) 10000000uempe --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
+emped tx staking delegate $(emped keys show wallet --bech val -a) 10000000uempe --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
 ```
 ### Withdraw
 ```
-emped tx distribution withdraw-rewards $(emped keys show wallet --bech val -a) --commission --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
+emped tx distribution withdraw-rewards $(emped keys show wallet --bech val -a) --commission --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
 ```
 ### Validator Info
 ```
@@ -174,7 +172,7 @@ emped status 2>&1 | jq .NodeInfo
 ```
 ### Transfer
 ```
-emped tx bank send wallet <TO_WALLET_ADDRESS> 1000000uempe --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
+emped tx bank send wallet <TO_WALLET_ADDRESS> 1000000uempe --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
 ```
 
 ### Connected Peer
