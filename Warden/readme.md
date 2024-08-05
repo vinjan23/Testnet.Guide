@@ -30,7 +30,7 @@ wardend version --long | grep -e commit -e version
 wardend init (Moniker) --chain-id buenavista-1
 ```
 
-### Port 51
+### Port 24
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:24657\"%" $HOME/.warden/config/client.toml
 ```
@@ -154,7 +154,7 @@ wardend tx staking create-validator validator.json \
 ```
 ### Delegate
 ```
-wardend tx staking delegate wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa 20000000uward --from wallet --fees 1000uward --chain-id=buenavista-1 -y
+wardend tx staking delegate $(wardend keys show wallet --bech val -a) 1000000uward --from wallet --chain-id buenavista-1 --fees 1000uward -y
 ```
 ### WD
 ```
@@ -162,7 +162,7 @@ wardend tx distribution withdraw-all-rewards --from wallet --chain-id buenavista
 ```
 ### WD with commission
 ```
-wardend tx distribution withdraw-rewards wardenvaloper158pfzqxkumdlpv6q7lx7ttdhen6klrhn5cwtqa --from wallet --chain-id buenavista-1 --commission --fees 1000uward -y
+wardend tx distribution withdraw-rewards $(wardend keys show wallet --bech val -a) --commission --from wallet --chain-id buenavista-1  --fees 1000uward -y
 ```
 ```
 wardend tx slashing unjail --from wallet --chain-id buenavista-1 --fees 1000uward -y
