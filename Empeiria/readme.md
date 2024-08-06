@@ -81,7 +81,7 @@ sudo journalctl -u emped -f -o cat
 ```
 emped status 2>&1 | jq .SyncInfo
 ```
-### Snapshot (830360)( 10 GB)
+### Snapshot (848735)( 11 GB)
 ```
 sudo apt install lz4 -y
 sudo systemctl stop emped
