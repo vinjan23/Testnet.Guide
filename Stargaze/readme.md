@@ -2,7 +2,7 @@
 cd $HOME
 git clone https://github.com/public-awesome/stargaze stargaze
 cd stargaze
-git checkout v13.0.0-rc.7-testnet
+git checkout v14.0.0-rc.2
 make install
 ```
 ```
