@@ -64,3 +64,39 @@ sudo systemctl enable fiammad
 sudo systemctl restart fiammad
 sudo journalctl -fu fiammad -o cat
 ```
+```
+fiammad status 2>&1 | jq .sync_info
+```
+```
+fiammad q bank balances $(fiammad keys show wallet -a)
+```
+```
+fiammad comet show-validator
+```
+```
+nano $HOME/validator.json
+```
+
+```
+{
+  "pubkey": {"#pubkey"},
+  "amount": "30000ufia",
+  "moniker": "",
+  "identity": "",
+  "website": "",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.2",
+  "min-self-delegation": "1"
+}
+```
+```
+fiammad tx staking create-validator $HOME/.fiamma/validator.json \
+    --from=wallet \
+    --chain-id=fiamma-testnet-1 \
+    -y
+```
+
+
