@@ -99,4 +99,14 @@ fiammad tx staking create-validator $HOME/.fiamma/validator.json \
     -y
 ```
 
+```
+sudo systemctl stop fiammad
+sudo systemctl disable fiammad
+sudo rm /etc/systemd/system/fiammad.service
+sudo systemctl daemon-reload
+rm -f $(which fiammad)
+rm -rf .fiamma
+rm -rf fiamma
+```
+
 
