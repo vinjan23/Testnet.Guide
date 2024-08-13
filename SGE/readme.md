@@ -26,7 +26,7 @@ make install
 ```
 cd $HOME/sge
 git pull
-git checkout v1.7.2
+git checkout v1.7.4
 make install
 ```
 
