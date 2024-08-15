@@ -98,7 +98,12 @@ fiammad tx staking create-validator $HOME/.fiamma/validator.json \
     --chain-id=fiamma-testnet-1 \
     -y
 ```
-
+```
+fiammad  tx distribution withdraw-rewards $(fiammad keys show wallet --bech val -a) --from Wallet_Name --gas 350000 --chain-id=fiamma-testnet-1--commission -y
+```
+```
+fiammad tx staking delegate $(fiammad keys show wallet --bech val -a) 140000ufia --from wallet --gas 350000 --chain-id=fiamma-testnet-1 -y
+```
 ```
 sudo systemctl stop fiammad
 sudo systemctl disable fiammad
