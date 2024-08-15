@@ -130,7 +130,7 @@ symphonyd tx staking create-validator \
 --commission-max-change-rate 0.05 \
 --min-self-delegation 1 \
 --pubkey $(symphonyd tendermint show-validator) \
---chain-id symphony-testnet-2 \
+--chain-id symphony-testnet-3 \
 --fees=800note \
 -y
 ```
@@ -149,19 +149,19 @@ symphonyd tx staking edit-validator \
 
 ### Unjail
 ```
-symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-2 --fees=800note -y
+symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-3 --fees=800note -y
 ```
 ### Delegate
 ```
-symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-2 --fees 800note -y
+symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-3 --fees 800note -y
 ```
 ### WD 
 ```
-symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-2 --fees 800note -y
+symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-3 --fees 800note -y
 ```
 ### Transfer
 ```
-symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-2 --fees 800note -y
+symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-3 --fees 800note -y
 ```
 
 ### Check Connected Peer
