@@ -131,6 +131,10 @@ soarchaind tx distribution withdraw-rewards $(soarchaind keys show wallet --bech
 ```
 soarchaind tx staking delegate $(soarchaind keys show wallet --bech val -a) 1000000utsoar --from wallet -chain-id ssoarchaintestnet-1 --fees 20utsoar
 ```
+### Transfer
+```
+soarchaind tx bank send wallet .1000000utsoar --from wallet -chain-id ssoarchaintestnet-1 --fees 20utsoar
+```
 ### Delete
 ```
 sudo systemctl stop soarchaind
