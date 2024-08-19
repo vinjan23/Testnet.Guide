@@ -118,6 +118,12 @@ symphonyd tx staking create-validator \
 --fees=800note \
 -y
 ```
+```
+--fees=800note \
+--node https://rpc-symphony.vinjan.xyz:443 \
+-y
+```
+
 ### Edit
 ```
 symphonyd tx staking edit-validator \
