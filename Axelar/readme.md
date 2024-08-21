@@ -32,13 +32,12 @@ seeds="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:15156
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.axelar/config/config.toml
 peers="34ef50d8b6424808458d8fb537fc0f8f6e23752a@65.109.23.114:15156"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.axelar/config/config.toml
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.007uaxl\"/" $HOME/axelar/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.007uaxl\"/" $HOME/.axelar/config/app.toml
 ```
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
 -e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
 $HOME/.axelar/config/app.toml
 ```
@@ -65,3 +64,7 @@ sudo systemctl enable axelard
 sudo systemctl restart axelard
 sudo journalctl -u axelard -f -o cat
 ```
+```
+axelard status 2>&1 | jq .SyncInfo
+```
+
