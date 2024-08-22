@@ -1,9 +1,9 @@
 ```
 cd $HOME
 mkdir binaries && cd binaries
-wget https://github.com/axelarnetwork/axelar-core/releases/download/v1.0.1/axelard-linux-amd64-v1.0.1
+wget https://github.com/axelarnetwork/axelar-core/releases/download/v1.0.1/axelard-linux-amd64-v1.0.2
 wget https://github.com/axelarnetwork/tofnd/releases/download/v1.0.1/tofnd-linux-amd64-v1.0.1
-mv axelard-linux-amd64-v1.0.1 axelard
+mv axelard-linux-amd64-v1.0.2 axelard
 mv tofnd-linux-amd64-v1.0.1 tofnd
 chmod +x *
 sudo mv * /usr/bin/
