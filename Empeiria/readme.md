@@ -1,10 +1,30 @@
 ### Binary
 ```
 mkdir -p ~/go/bin
+mkdir -p empe-chain && cd empe-chain
 curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.1.0/emped_linux_amd64.tar.gz
 tar -xvf emped_linux_amd64.tar.gz
 sudo mv emped ~/go/bin
 chmod u+x ~/go/bin/emped
+```
+```
+mkdir -p empe-chain && cd empe-chain
+curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.2.2/emped_v0.2.2_linux_amd64.tar.gz
+tar -xvf emped_v0.2.2_linux_amd64.tar.gz
+sudo mv emped ~/go/bin
+chmod u+x ~/go/bin/emped
+```
+### Update
+```
+mkdir -p empe-chain && cd empe-chain
+curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.2.2/emped_v0.2.2_linux_amd64.tar.gz
+tar -xvf emped_v0.2.2_linux_amd64.tar.gz
+rm -r emped_*
+chmod 744 $HOME/empe-chain/emped
+mv $HOME/empe-chain/emped $(which emped)
+```
+```
+emped version --long | grep -e version -e commit
 ```
 ### Init
 ```
@@ -74,7 +94,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable emped
+```
+```
 sudo systemctl restart emped
+```
+```
 sudo journalctl -u emped -f -o cat
 ```
 ### Sync
