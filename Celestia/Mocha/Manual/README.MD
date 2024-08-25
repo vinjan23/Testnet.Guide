@@ -100,7 +100,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
-sudo journalctl -u celestia-appd -f
+sudo journalctl -u celestia-appd -f  -o cat
 ```
 
 ### Check Sync Log
