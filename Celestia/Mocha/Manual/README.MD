@@ -1,11 +1,3 @@
-<p align="right">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/108977419/207516348-c160303a-57b0-4149-8118-b0d7785dfde8.jpg">
-</p>
-
-<p align="centre">
-  <img height="400" height="auto" src="https://user-images.githubusercontent.com/108977419/208578898-e8d22371-98b8-4522-8109-a907d79d11ef.jpg">
-</p>
-
 # TESTNET CELESTIA_MOCHA
 
 4x CPU
@@ -46,9 +38,8 @@ cd $HOME
 rm -rf celestia-app
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app/
-git checkout v0.11.0
+git checkout v2.0.0
 make install
-celestia-appd version # 0.11.0
 ```
 
 ### Setup P2P Network
@@ -56,94 +47,63 @@ celestia-appd version # 0.11.0
 cd $HOME
 rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
-```
-
-### Set Moniker (Replace `<YOUR_MONIKER>` & `<YOUR_WALLET_NAME>` Without `" "`
- 
-```
-CELESTIA_PORT=11
-echo "export CELESTIA_WALLET="<YOUR_WALLET_NAME>"" >> $HOME/.bash_profile
-echo "export CELESTIA_MONIKER="<YOUR_MONIKER>"" >> $HOME/.bash_profile
-echo "export CELESTIA_CHAIN_ID="mocha"" >> $HOME/.bash_profile
-echo "export CELESTIA_PORT="${CELESTIA_PORT}"" >> $HOME/.bash_profile
-source $HOME/.bash_profile
+cp $HOME/networks/mocha-4/genesis.json $HOME/.celestia-app/config
+sed -i -e "s|^target_height_duration *=.*|timeout_commit = \"11s\"|" $HOME/.celestia-app/config/config.toml
 ```
 
 ### Set Vars
 ```
-celestia-appd config chain-id $CELESTIA_CHAIN_ID
-celestia-appd init $CELESTIA_MONIKER --chain-id $CELESTIA_CHAIN_ID
-celestia-appd config node tcp://localhost:${CELESTIA_PORT}657
+celestia-appd init vinjan --chain-id mocha-4
+celestia-appd config chain-id mocha-4
+celestia-appd config keyring-backend os
 ```
-
-### Download Genesis
 ```
-wget -O $HOME/.celestia-app/config/genesis.json "https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/genesis.json"
+PORT=11
+celestia-appd config node tcp://localhost:${PORT}657
 ```
-### Download Addressbook
-```
-wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Celestia/addrbook.json"
-```
-
-### Set Peers/Seed/Gas
-```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utia\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.celestia-app/config/config.toml
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.celestia-app/config/config.toml
-peers=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/peers.txt | tr -d '\n')
-bootstrap_peers=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/bootstrap-peers.txt | tr -d '\n')
-sed -i.bak -e 's|^bootstrap-peers *=.*|bootstrap-peers = "'"$bootstrap_peers"'"|; s|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/.celestia-app/config/config.toml
-peers="cc8bc8ace772faf69071b6673bd4293555f1d84b@65.21.128.125:26656,6c87a8be23b8f7cdec4ec66cfcff5c13d6114ed9@135.181.3.38:28656,3dfe469862cb9f46f0e46e6ca135ff823a4a901e@77.241.194.154:26656,be7ceaf63e894e2a248061f5f82d7e348c95e69c@65.21.190.12:20656,78091973241d5638259f518f3b19f6320b7fb451@135.181.119.59:20656,d00ef425145afbfa91e49602f4f760c3e953575c@65.108.202.230:28656,8262231964896250acd4e8171663f59bd53d7a91@5.161.80.30:20656,ed24130ae96e7bc97c58d400f44cd8e2784e17fd@65.21.131.215:11656,4a44fd602e08ed8bcca1c8ed5f4726c8a6759d41@38.242.147.206:26656,3343ca28eca632a7eec639a47182dd0d15df2ee5@95.217.194.249:26656,7d2210c93768bed2e8fbc4bfc574b5a2c4ce5a40@176.57.150.79:26656,ddabf652375c8618c9f4246b09a2a36b575fb1b1@65.21.134.202:11656,e505a80b4b107e1b9502a438038464325ad842ff@185.182.184.194:11656,5ec7477a55b48984ec778bd1bef87d2ac8cf95eb@138.201.60.238:26656,58b668eac33b67c57e5cb64d821aa7529f92eaff@190.2.155.67:26656,a3f21747aaad6acba6661ab64519be5d2df9c8de@38.242.235.201:26656,e7dc98812ba79276f045ed080a6910540ce37e2a@159.69.241.155:20656,27217ca681c2018577ba4a11538152a6ae9a1bb9@65.108.225.158:11656,e074e923e1c69e4ca86c1b002c4886b422ca5dc6@135.181.183.93:23656,314e2b38b0f1a1848f0b9a10b1a7759cf2342224@38.242.133.24:26656,31784a0df387900c1faf31e4e69ffaaa94d399eb@65.109.90.177:26656,59ff849dd45e763a6b4f6ad33d38bb49e3bee735@65.108.233.109:11656,17d95cd92c5409fa7fe33667b937b1478db09c72@161.97.173.28:26656,06d9b51e2545f3d5bff43840a1a16e420fb27602@38.242.204.8:31656,410e86b87573e827b0bd172bc94bd39c1721c30a@207.180.231.123:28656,3ccaca3a32779bcf4c5cc85aae66a46902f0b641@95.216.223.149:26656,51cb0e181b9f056db6a045d8a4522a9ae4ed8671@65.109.132.186:26656,9ef909374bfbb35204871cba64342bef92c8e70c@102.129.138.248:26656,d56748be04b245936ebdfa8e9b5db4e4c2cd9c03@194.180.176.140:26656,eaeddbe2253fc33c66892068d5092a3f834a6c40@51.68.204.169:26666"
-```
-
-### Prunning
-```
-sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/.celestia-app/config/app.toml
-sed -i 's|pruning-interval = "0"|pruning-interval = "17"|g' $HOME/.celestia-app/config/app.toml
-```
-
-### Set Custom Port
 ```
 sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${CELESTIA_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${CELESTIA_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${CELESTIA_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${CELESTIA_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${CELESTIA_PORT}660\"%" $HOME/.celestia-app/config/config.toml
 sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${CELESTIA_PORT}317\"%; s%^address = \":8080\"%address = \":${CELESTIA_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${CELESTIA_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${CELESTIA_PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${CELESTIA_PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${CELESTIA_PORT}546\"%" $HOME/.celestia-app/config/app.toml
 ```
 
-### Set Validator Mode
+### Download Genesis
 ```
-sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
+wget -O $HOME/.celestia-app/config/genesis.json https://server-4.itrocket.net/testnet/celestia/genesis.json
 ```
-### Disable Indexing
+### Download Addressbook
 ```
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.celestia-app/config/config.toml
+wget -O $HOME/.celestia-app/config/addrbook.json  https://server-4.itrocket.net/testnet/celestia/addrbook.json
 ```
 
-### Statesync & Snapshot
+### Set Peers/Seed/Gas
 ```
-cd $HOME
-rm -rf ~/.celestia-app/data
-mkdir -p ~/.celestia-app/data
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">mocha.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
-    -C ~/.celestia-app/data/
-celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app --keep-addr-book
+SEEDS="5d0bf034d6e6a8b5ee31a2f42f753f1107b3a00e@celestia-testnet-seed.itrocket.net:11656"
+PEERS="daf2cecee2bd7f1b3bf94839f993f807c6b15fbf@celestia-testnet-peer.itrocket.net:11656,ca328c8c75dbbc9d753ed50a52dfcb02af829a29@85.207.33.76:26656,caffb110b9e3a6e26263539899aa9b0cdf15f0c6@152.53.66.211:26656,5acdbf6c908c68f40877e99520e47c6d6266fdce@65.21.232.175:11656,a8bb0bc58133022effcf415663d93c0ca835ebde@13.212.141.100:26656,f3e7283930538a637f66f7cea46d012f76c2c89c@65.21.65.101:26656,49e0ad1852417267c60c63c2a86ea9e84c47c0ca@13.213.66.56:26656,bb8b5d8b2506ae940d7a91c77399a6b6cee7ae15@136.243.55.115:28804,ef3174f760040744db1c01320f7f330ed615d703@65.109.30.163:27656,34499b1ac473fbb03894c883178ecc83f0d6eaf6@64.227.18.169:26656,5e5284c5ceff1913eae6ba76cc9e64cbf539bfd6@86.48.2.78:26656,8d8ea488c2d9f0a98f0f0b72bbdb4929c768a8e6@193.34.213.77:11007,8811d2ca0ff7078a87bfbbfe7c340c6cb7de616b@164.68.111.29:26656,43e9da043318a4ea0141259c17fcb06ecff816af@141.94.73.39:43656,cd47743b5971de4731d2e798b4ef77a72a6a5600@88.198.12.182:26656,6ef7240548222ae9505e1a01c5aeb74b3e4cb242@80.232.244.29:26676,ba32e9adccc429da88fa57339348560a790f4696@54.39.128.229:26656,1019dff1c4e9a811bcd047abda8d7e442cfcd6b6@34.142.137.246:26656,f3c76f618b984fd0ffe9888d16fc8c4687e1f0f3@54.251.130.26:26656,878e4d1b5300754f5797c23f03e8f95259ed9192@5.9.115.9:21656"
+sed -i -e "/^\[p2p\]/,/^\[/{s/^[[:space:]]*seeds *=.*/seeds = \"$SEEDS\"/}" \
+       -e "/^\[p2p\]/,/^\[/{s/^[[:space:]]*persistent_peers *=.*/persistent_peers = \"$PEERS\"/}" $HOME/.celestia-app/config/config.toml
+sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.002utia"|g' $HOME/.celestia-app/config/app.toml
+```
+
+### Prunning
+```
+sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"50\"/" $HOME/.celestia-app/config/app.toml
 ```
 
 ### Create Service File
 ```
 sudo tee /etc/systemd/system/celestia-appd.service > /dev/null <<EOF
 [Unit]
-Description=celestia
+Description=Celestia node
 After=network-online.target
-
 [Service]
 User=$USER
-ExecStart=$(which celestia-appd) start --home $HOME/.celestia-app/
+WorkingDirectory=$HOME/.celestia-app
+ExecStart=$(which celestia-appd) start --home $HOME/.celestia-app
 Restart=on-failure
-RestartSec=3
+RestartSec=5
 LimitNOFILE=65535
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -151,10 +111,10 @@ EOF
 
 ### Start
 ```
-sudo systemctl daemon-reload && \
-sudo systemctl enable celestia-appd && \
-sudo systemctl restart celestia-appd && \
-sudo journalctl -u celestia-appd -f -o cat
+sudo systemctl daemon-reload
+sudo systemctl enable celestia-appd
+sudo systemctl restart celestia-appd
+sudo journalctl -u celestia-appd -f
 ```
 
 ### Check Sync Log
