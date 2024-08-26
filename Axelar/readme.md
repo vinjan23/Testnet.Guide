@@ -1,12 +1,14 @@
 ```
 cd $HOME
-mkdir binaries && cd binaries
-wget https://github.com/axelarnetwork/axelar-core/releases/download/v1.0.2/axelard-linux-amd64-v1.0.2
-wget https://github.com/axelarnetwork/tofnd/releases/download/v1.0.1/tofnd-linux-amd64-v1.0.1
-mv axelard-linux-amd64-v1.0.2 axelard
-mv tofnd-linux-amd64-v1.0.1 tofnd
-chmod +x *
-sudo mv * /usr/bin/
+git clone https://github.com/axelarnetwork/axelar-core.git axelar
+cd axelar
+git checkout v1.0.0
+make build
+```
+```
+cd bin
+ls
+./axelard version
 ```
 ```
 wget https://github.com/CosmWasm/wasmvm/releases/download/v1.5.2/libwasmvm.x86_64.so -O /usr/local/lib/libwasmvm.x86_64.so
