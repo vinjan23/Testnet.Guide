@@ -129,9 +129,9 @@ symphonyd tx staking create-validator \
 symphonyd tx staking edit-validator \
 --new-moniker="" \
 --identity="" \
---details="" \
---website="" \
---chain-id=symphony-testnet-2 \
+--details="Staking Provider-IBC Relayer" \
+--website="https://service.vinjan.xyz/" \
+--chain-id=symphony-testnet-3 \
 --from=wallet \
 --fees=800note \
 -y
