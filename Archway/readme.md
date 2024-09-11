@@ -30,7 +30,7 @@ make install
 ```
 cd $HOME/archway
 git fetch --all
-git checkout v7.0.0-rc.3
+git checkout v9.0.0-rc1
 make install
 ```
 
