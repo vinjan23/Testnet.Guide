@@ -22,7 +22,7 @@ go version
 cd $HOME
 git clone https://github.com/archway-network/archway.git
 cd archway
-git checkout v7.0.0-rc.3
+git checkout v9.0.0-rc1
 make install
 ```
 
@@ -112,7 +112,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable archwayd
+```
+```
 sudo systemctl restart archwayd
+```
+```
 sudo journalctl -u archwayd -f -o cat
 ```
 ```
@@ -134,7 +138,7 @@ sudo systemctl restart archwayd && sudo journalctl -u archwayd -f -o cat
 
 ### Sync
 ```
-archwayd status 2>&1 | jq .SyncInfo
+archwayd status 2>&1 | jq .sync_info
 ```
 
 ### Log
