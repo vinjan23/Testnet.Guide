@@ -125,7 +125,7 @@ sudo journalctl -u sged -f -o cat
 ### Snapshot
 ```
 sudo apt install lz4 -y
-sudo systemctl stop sge
+sudo systemctl stop sged
 sged tendermint unsafe-reset-all --home $HOME/.sge --keep-addr-book
 curl -L https://snapshot.vinjan.xyz/sge/sge-snapshot-20231201.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.sge
 sudo systemctl restart sged
