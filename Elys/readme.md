@@ -55,7 +55,7 @@ cd elys
 git fetch
 git checkout v0.45.0
 make install
-cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.44.0/bin/elysd
+cp -a ~/go/bin/elysd ~/.elys/cosmovisor/upgrades/v0.45.0/bin/elysd
 ```
 ```
 elysd version --long | grep -e commit -e version
