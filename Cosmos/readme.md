@@ -6,6 +6,12 @@ git checkout v19.1.0
 make install
 ```
 ```
+cd $HOME/gaia
+git fetch --all
+git checkout v20.0.0-rc0
+make install
+
+```
 gaiad init vinjan --chain-id=theta-testnet-001
 ```
 ```
