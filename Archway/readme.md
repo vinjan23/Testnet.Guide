@@ -33,6 +33,14 @@ git fetch --all
 git checkout v9.0.0-rc1
 make install
 ```
+```
+cd $HOME || return
+rm -rf $HOME/archway
+git clone https://github.com/archway-network/archway.git
+cd $HOME/archway || return
+git checkout v8.0.0
+make install
+```
 
 ### Init
 ```
@@ -140,7 +148,9 @@ sudo systemctl restart archwayd && sudo journalctl -u archwayd -f -o cat
 ```
 archwayd status 2>&1 | jq .sync_info
 ```
-
+```
+archwayd status 2>&1 | jq .SyncInfo
+```
 ### Log
 ```
 sudo journalctl -u archwayd -f -o cat
