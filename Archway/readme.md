@@ -34,12 +34,9 @@ git checkout v9.0.0-rc1
 make install
 ```
 ```
-cd $HOME || return
-rm -rf $HOME/archway
-git clone https://github.com/archway-network/archway.git
-cd $HOME/archway || return
-git checkout v9.0.0-rc2
-make install
+wget https://github.com/archway-network/archway/releases/download/v9.0.0-rc2/archwayd_linux_amd64
+chmod +x archwayd_linux_amd64
+sudo mv archwayd_linux_amd64 $HOME/go/bin/archwayd
 ```
 
 ### Init
