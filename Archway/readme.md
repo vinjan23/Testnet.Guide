@@ -28,9 +28,11 @@ make install
 
 ### Update
 ```
-cd $HOME/archway
-git fetch --all
-git checkout v9.0.0-rc1
+cd $HOME || return
+rm -rf archway
+git clone https://github.com/archway-network/archway.git
+cd archway || return
+git checkout v9.0.0-rc3
 make install
 ```
 ```
