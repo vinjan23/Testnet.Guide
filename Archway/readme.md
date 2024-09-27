@@ -35,7 +35,7 @@ make install
 ```
 ```
 cd $HOME/archway
-wget https://github.com/archway-network/archway/releases/download/v9.0.0-rc2/archwayd_linux_amd64
+wget https://github.com/archway-network/archway/releases/download/v9.0.0-rc3/archwayd_linux_amd64
 chmod +x archwayd_linux_amd64
 sudo mv archwayd_linux_amd64 $HOME/go/bin/archwayd
 ```
