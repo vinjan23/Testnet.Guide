@@ -80,7 +80,7 @@ structsd q bank balances $(structsd keys show wallet -a)
 structsd comet show-validator
 ```
 ```
-nano $HOME/validator.json
+nano /root/.structs/validator.json
 ```
 ```
 {
@@ -98,12 +98,8 @@ nano $HOME/validator.json
 }
 ```
 ```
-structsd tx staking create-validator validator.json \
-    --from=wallet \
-    --chain-id=structstestnet-88 \
-    --gas auto
+structsd --home $HOME/.structs tx staking create-validator $HOME/.structs/validator.json --from wallet  --chain-id structstestnet-99 --gas auto
 ```
-
 ### Delete
 ```
 sudo systemctl stop structsd
