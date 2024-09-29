@@ -1,13 +1,18 @@
 ### Build
 ```
-git clone --branch v0.3.0-beta https://github.com/playstructs/structsd.git 
+cd $HOME
+rm -rf structsd
+git clone --branch v0.4.0-beta https://github.com/playstructs/structsd.git 
 cd structsd
 ignite chain build
+```
+```
+structsd init Vinjan.Inc --chain-id structstestnet-99
 ```
 
 ### Genesis
 ```
-wget -O $HOME/.structs/config/genesis.json https://raw.githubusercontent.com/playstructs/structs-networks/97b/genesis.json
+wget -O $HOME/.structs/config/genesis.json https://raw.githubusercontent.com/playstructs/structs-networks/refs/heads/99b/genesis.json
 ```
 ### Peers Gass
 ```
