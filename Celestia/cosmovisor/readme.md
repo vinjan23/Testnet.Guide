@@ -80,9 +80,36 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
-sudo systemctl start celestia-appd
+sudo systemctl restart celestia-appd
 sudo journalctl -u celestia-appd -f -o cat
 ```
+# sync
+```
+celestia-appd status 2>&1 | jq .SyncInfo
+```
+# wallet
+```
+celestia-appd keys add ibc-tia --recover
+```
+# balances
+```
+celestia-appd q bank balances $(celestia-appd keys show ibc-tia -a)
+```
+
+# delete
+```
+sudo systemctl stop celestia-appd
+sudo systemctl disable celestia-appd
+sudo rm -rf /etc/systemd/system/celestia-appd*
+sudo systemctl daemon-reload
+sudo rm $(which celestia-appd)
+sudo rm -rf $HOME/.celestia-app
+sudo rm -fr $HOME/celestia-app
+sed -i "/CELESTIA_/d" $HOME/.bash_profile
+```
+
+
+
 
 
 
