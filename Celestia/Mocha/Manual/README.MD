@@ -23,7 +23,7 @@ go version
 cd $HOME
 rm -rf celestia-app
 git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app/
+cd celestia-app
 git checkout v2.0.0
 make install
 ```
