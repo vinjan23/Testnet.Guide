@@ -73,7 +73,7 @@ nano /root/.prysm/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"4z8Xx+fpjFtO0RI9AY5aBnteKgMLu4ZsE0UpeBPwEtg="},
+  "pubkey": ,
   "amount": "2000000",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
@@ -89,12 +89,12 @@ nano /root/.prysm/validator.json
 ```
 prysmd tx staking create-validator $HOME/.prysm/validator.json \
     --from=wallet \
-    --chain-id=prysm-devnet-1 \
+    --chain-id=prysm-devnet-1
 ```
 
 ```
 echo $(prysmd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.prysm/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
-
+```
 
 
 
