@@ -62,7 +62,38 @@ sudo journalctl -u prysmd -f -o cat
 ```
 prysmd status 2>&1 | jq .sync_info
 ```
+```
+prysmd q bank balances $(prysmd keys show wallet -a)
+```
+```
+prysmd comet show-validator
+```
+```
+nano /root/.prysm/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"4z8Xx+fpjFtO0RI9AY5aBnteKgMLu4ZsE0UpeBPwEtg="},
+  "amount": "2000000",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+```
+prysmd tx staking create-validator $HOME/.prysm/validator.json \
+    --from=wallet \
+    --chain-id=prysm-devnet-1 \
+```
 
+```
+echo $(prysmd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.prysm/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 
 
 
