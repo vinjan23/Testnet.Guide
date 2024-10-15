@@ -117,5 +117,14 @@ echo $(prysmd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.p
 
 
 
-
+### Delete
+```
+sudo systemctl stop prysmd
+sudo systemctl disable prysmd
+sudo rm /etc/systemd/system/prysmd.service
+sudo systemctl daemon-reload
+rm -f $(which prysmd)
+rm -rf .prysm
+rm -rf prysm
+```
 
