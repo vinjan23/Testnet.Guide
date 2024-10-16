@@ -63,7 +63,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable gaiad
+```
+```
 sudo systemctl restart gaiad
+```
+```
 sudo journalctl -u gaiad -f -o cat
 ```
 ```
