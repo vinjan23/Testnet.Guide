@@ -8,7 +8,7 @@ make install
 ```
 cd $HOME/gaia
 git fetch --all
-git checkout v20.0.0-rc0
+git checkout v21.0.0-rc0
 make install
 ```
 ```
