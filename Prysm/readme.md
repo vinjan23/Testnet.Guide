@@ -28,7 +28,7 @@ wget -O $HOME/.prysm/config/addrbook.json "https://raw.githubusercontent.com/vin
 ```
 ### Peer & Gas
 ```
-peers="b377fd0b14816eef8e12644340845c127d1e7d93@dns.kleomed.es:26656"
+peers="b377fd0b14816eef8e12644340845c127d1e7d93@dns.kleomed.es:26656,271fe43e9a393cc47e288e80aa5b1ec1452fa0e7@88.99.149.170:29656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.prysm/config/config.toml
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uprysm\"/" $HOME/.prysm/config/app.toml
 ```
@@ -110,6 +110,31 @@ prysmd tx staking create-validator $HOME/.prysm/validator.json \
     --from=wallet \
     --chain-id=prysm-devnet-1
 ```
+### Edit Validator
+```
+prysmd tx staking edit-validator \
+--new-moniker="" \
+--identity="" \
+--details="" \
+--website="" \
+--chain-id=prysm-devnet-1 \
+--from=wallet \
+--fees 50uprysm
+```
+
+### WD Commission
+```
+prysmd tx distribution withdraw-rewards $(prysmd keys show wallet --bech val -a) --commission --from wallet --chain-id prysm-devnet-1 --fees 50uprysm
+```
+### Delegate
+```
+prysmd tx staking delegate $(prysmd keys show wallet --bech val -a) 1000000uprysm --from wallet --chain-id prysm-devnet-1 --fees 50uprysm
+```
+### Send
+```
+prysmd tx bank send wallet <TO_WALLET_ADDRESS> 1000000uprysm --from wallet ---chain-id prysm-devnet-1 --fees 50uprysm
+```
+
 ### Own Peer
 ```
 echo $(prysmd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.prysm/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
