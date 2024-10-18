@@ -139,7 +139,10 @@ prysmd tx bank send wallet <TO_WALLET_ADDRESS> 1000000uprysm --from wallet ---ch
 ```
 echo $(prysmd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.prysm/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
-
+### Vote
+```
+prysmd tx gov vote 2 yes --from wallet --chain-id prysm-devnet-1 --fees 50uprysm
+```
 
 
 ### Delete
