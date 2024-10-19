@@ -112,14 +112,7 @@ prysmd tx staking create-validator $HOME/.prysm/validator.json \
 ```
 ### Edit Validator
 ```
-prysmd tx staking edit-validator \
---new-moniker="" \
---identity="" \
---details="" \
---website="" \
---chain-id=prysm-devnet-1 \
---from=wallet \
---fees 50uprysm
+prysmd tx staking edit-validator --new-moniker Vinjan.Inc --identity 7C66E36EA2B71F68 --commission-rate 0.1 --from wallet --chain-id prysm-devnet-1 --fees 50uprysm
 ```
 
 ### WD Commission
