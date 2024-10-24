@@ -17,17 +17,19 @@ go version
 
 ```
 cd $HOME
-git clone https://github.com/warden-protocol/wardenprotocol.git
-cd wardenprotocol
-git checkout v0.3.2
-make install
+rm -rf bin
+mkdir bin && cd bin
+wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.2/wardend_Linux_x86_64.zip
+unzip wardend_Linux_x86_64.zip
+chmod +x wardend
+mv $HOME/bin/wardend $HOME/go/bin
 ```
 ```
 wardend version --long | grep -e commit -e version
 ```
 ### Init
 ```
-wardend init (Moniker) --chain-id buenavista-1
+wardend init (Moniker) 
 ```
 
 ### Port 24
@@ -41,20 +43,21 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 
 ### Genesis
 ```
-wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/warden-protocol/networks/main/testnets/buenavista/genesis.json"
+wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/warden-protocol/networks/refs/heads/main/testnets/chiado/genesis.json"
 ```
 ### Addrbook
 ```
-wget -O $HOME/.warden/config/addrbook.json.json "https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Warden/addrbook.json"
+wget -O $HOME/.warden/config/addrbook.json.json "
 ```
 ### Seed
 ```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.00uward\"/;" ~/.warden/config/app.toml
-peers="3ac30a74ec46e7a4984f0d52e850099720b05bda@95.217.161.226:26656,bda08962882048fea4331fcf96ad02789671700e@65.21.202.124:35656.ea8e0c3a936a9c5ea9b9dbbfb5542514d8ead33f@95.179.166.220:18656,ddb4d92ab6eba8363bab2f3a0d7fa7a970ae437f@sentry-1.buenavista.wardenprotocol.org:26656,c717995fd56dcf0056ed835e489788af4ffd8fe8@sentry-2.buenavista.wardenprotocol.org:26656,e1c61de5d437f35a715ac94b88ec62c482edc166@sentry-3.buenavista.wardenprotocol.org:26656,a63e119b629fa8d6e4be1c48e507bca6f1a05832@65.108.237.188:51656"
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"25000000award\"/;" ~/.warden/config/app.toml
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.warden/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.warden/config/config.toml
-sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.005uward\"|" $HOME/.warden/config/app.toml
+sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.warden/config/config.toml
+sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.warden/config/config.toml
 ```
 ### Pruning
 ```
