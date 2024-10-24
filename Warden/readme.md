@@ -153,7 +153,8 @@ nano /root/.warden/validator.json
 wardend tx staking create-validator $HOME/.warden/validator.json \
     --from=wallet \
     --chain-id=chiado_10010-1 \
-    --fees=250000000000000award
+    --gas auto --gas-adjustment 1.6 \
+    --fees 250000000000000award
 ```
 ### Delegate
 ```
