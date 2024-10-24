@@ -126,34 +126,34 @@ wardend q bank balances $(wardend keys show wallet -a)
 ### Create Validator
 - Check Your Pubkey
 ```
-wardend comet show-validator
+wardend tendermint show-validator
 ```
 - Make File validator.json
 ```
-nano $HOME/validator.json
+nano /root/.warden/validator.json
 ```
 ```
 {
-  "pubkey": {"#pubkey"},
-  "amount": "1000000uward",
-  "moniker": "",
-  "identity": "",
-  "website": "",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"q25B0cXtZprOLAqBVaBWKFHHjzmPqQUakZv08RbfQoo="},
+  "amount": "9990000000000000000uward",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
   "security": "",
-  "details": "",
+  "details": "Staking Provider-IBC Relayer",
   "commission-rate": "0.05",
   "commission-max-rate": "0.2",
-  "commission-max-change-rate": "0.2",
+  "commission-max-change-rate": "0.05",
   "min-self-delegation": "1"
 }
 ```
 - Crtl X + Y enter
 
 ```
-wardend tx staking create-validator validator.json \
+wardend tx staking create-validator $HOME/.warden/validator.json \
     --from=wallet \
-    --chain-id=buenavista-1 \
-    --fees=1000uward
+    --chain-id=chiado_10010-1 \
+    --fees=250000000000000award
 ```
 ### Delegate
 ```
