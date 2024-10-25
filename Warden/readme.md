@@ -173,7 +173,11 @@ wardend tx distribution withdraw-all-rewards --from wallet --chain-id chiado_100
 ```
 wardend tx distribution withdraw-rewards $(wardend keys show wallet --bech val -a) --commission --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
 ```
-
+### Transfer
+```
+wardend tx bank send wallet <TO_WALLET_ADDRESS> 9900000000000000000award --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
+```
+#### Connected Peer
 ```
 curl -sS http://localhost:24657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
