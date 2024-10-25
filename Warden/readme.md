@@ -107,17 +107,12 @@ wardend status 2>&1 | jq .sync_info
 ```
 ### Snapshot Update (Height 62200)
 ```
-sudo apt install lz4 -y
-sudo systemctl stop wardend
-wardend tendermint unsafe-reset-all --home $HOME/.warden --keep-addr-book
-curl -L https://snapshot.vinjan.xyz/warden/warden-snapshot-20240421.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.warden
-sudo systemctl restart wardend
-journalctl -fu wardend -o cat
+
 ```
 
 ### Add wallet
 ```
-wardend keys add wallet
+wardend keys add wallet --recover
 ```
 ### Balances
 ```
@@ -134,10 +129,10 @@ nano /root/.warden/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"q25B0cXtZprOLAqBVaBWKFHHjzmPqQUakZv08RbfQoo="},
-  "amount": "9990000000000000000uward",
-  "moniker": "Vinjan.Inc",
-  "identity": "7C66E36EA2B71F68",
+  "pubkey": ,
+  "amount": "9990000000000000000award",
+  "moniker": "",
+  "identity": "",
   "website": "https://service.vinjan.xyz",
   "security": "",
   "details": "Staking Provider-IBC Relayer",
@@ -156,21 +151,24 @@ wardend tx staking create-validator $HOME/.warden/validator.json \
     --gas auto --gas-adjustment 1.6 \
     --fees 250000000000000award
 ```
+### Unjail
+```
+wardend tx slashing unjail --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
+```
+
 ### Delegate
 ```
-wardend tx staking delegate $(wardend keys show wallet --bech val -a) 1000000uward --from wallet --chain-id buenavista-1 --fees 1000uward -y
+wardend tx staking delegate $(wardend keys show wallet --bech val -a) 1000000000000000000award --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
 ```
 ### WD
 ```
-wardend tx distribution withdraw-all-rewards --from wallet --chain-id buenavista-1 --fees 1000uward -y
+wardend tx distribution withdraw-all-rewards --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
 ```
 ### WD with commission
 ```
-wardend tx distribution withdraw-rewards $(wardend keys show wallet --bech val -a) --commission --from wallet --chain-id buenavista-1  --fees 1000uward -y
+wardend tx distribution withdraw-rewards $(wardend keys show wallet --bech val -a) --commission --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
 ```
-```
-wardend tx slashing unjail --from wallet --chain-id buenavista-1 --fees 1000uward -y
-```
+
 ```
 curl -sS http://localhost:51657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
