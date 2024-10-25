@@ -143,15 +143,15 @@ symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-3 --fees
 ```
 ### Delegate
 ```
-symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-3 --fees 800note -y
+symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-3 --fees 5000note -y
 ```
 ### WD 
 ```
-symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-3 --fees 800note -y
+symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-3 --fees 5000note -y
 ```
 ### Transfer
 ```
-symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-3 --fees 800note -y
+symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-3 --fees 5000note -y
 ```
 
 ### Check Connected Peer
