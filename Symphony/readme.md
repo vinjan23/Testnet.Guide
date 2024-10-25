@@ -158,6 +158,11 @@ symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --ch
 ```
 curl -sS http://localhost:21657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
+```
+peers="$(curl -sS https://rpc-symphony.vinjan.xyz:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.symphonyd/config/config.toml
+```
+
 ### Validator Info
 ```
 symphonyd status 2>&1 | jq .ValidatorInfo
