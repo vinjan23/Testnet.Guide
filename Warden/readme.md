@@ -221,7 +221,7 @@ journalctl -fu warden-slinky -o cat
 ```
 
 ```
-curl localhost:24080/slinky/oracle/v1/prices | jq
+curl localhost:8080/slinky/oracle/v1/prices | jq
 ```
 ### Delete Node
 ```
