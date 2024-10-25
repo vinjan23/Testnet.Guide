@@ -186,6 +186,43 @@ peers="$(curl -sS https://rpc-warden.vinjan.xyz:443/net_info | jq -r '.result.pe
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.warden/config/config.toml
 ```
 
+# ORACLE
+```
+cd $HOME
+rm -rf slinky
+git clone https://github.com/skip-mev/slinky.git
+cd slinky
+make build
+mv build/slinky /usr/local/bin/
+rm -rf build
+```
+```
+sudo tee /etc/systemd/system/warden-slinky.service > /dev/null <<EOF
+[Unit]
+Description=W Slinky Oracle
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which slinky) --market-map-endpoint localhost:24090
+Restart=on-failure
+RestartSec=30
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl enable warden-slinky.service
+sudo systemctl start warden-slinky.service
+journalctl -fu warden-slinky -o cat
+```
+
+```
+curl localhost:24080/slinky/oracle/v1/prices | jq
+```
 ### Delete Node
 ```
 sudo systemctl stop wardend
