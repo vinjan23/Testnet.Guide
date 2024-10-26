@@ -175,7 +175,7 @@ wardend tx distribution withdraw-rewards $(wardend keys show wallet --bech val -
 ```
 ### Transfer
 ```
-wardend tx bank send wallet <TO_WALLET_ADDRESS> 9900000000000000000award --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
+wardend tx bank send wallet1 warden1t2863ek5g6mdn0acyt55pa8zk4mpeg6p3dj785 10000000000000000000award --from wallet1 --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
 ```
 #### Connected Peer
 ```
