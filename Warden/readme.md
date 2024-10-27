@@ -163,7 +163,7 @@ wardend tx slashing unjail --from wallet --chain-id chiado_10010-1  --gas auto -
 
 ### Delegate
 ```
-wardend tx staking delegate $(wardend keys show wallet --bech val -a) 1000000000000000000award --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
+wardend tx staking delegate $(wardend keys show wallet --bech val -a) 10000000000000000000award --from wallet --chain-id chiado_10010-1  --gas auto --gas-adjustment 1.6 --fees 250000000000000award
 ```
 ### WD
 ```
