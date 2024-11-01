@@ -229,8 +229,6 @@ sudo systemctl stop wardend
 sudo systemctl disable wardend
 rm /etc/systemd/system/wardend.service
 sudo systemctl daemon-reload
-cd $HOME
-rm -rf wardenprotocol
 rm -rf .warden
 rm -rf $(which wardend)
 ```
