@@ -45,7 +45,7 @@ sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.symphonyd/config/app.toml
 ```
 ### Indexer Off
