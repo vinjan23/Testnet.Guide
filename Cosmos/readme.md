@@ -2,7 +2,7 @@
 cd $HOME
 git clone https://github.com/cosmos/gaia.git
 cd gaia
-git checkout v19.1.0
+git checkout v21.0.0-rc0
 make install
 ```
 ```
