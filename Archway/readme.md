@@ -22,7 +22,7 @@ go version
 cd $HOME
 git clone https://github.com/archway-network/archway.git
 cd archway
-git checkout v8.0.0
+git checkout v9.0.0-rc4
 make install
 ```
 
@@ -32,7 +32,7 @@ cd $HOME || return
 rm -rf archway
 git clone https://github.com/archway-network/archway.git
 cd archway || return
-git checkout v9.0.0-rc3
+git checkout v9.0.0-rc4
 make install
 ```
 ```
