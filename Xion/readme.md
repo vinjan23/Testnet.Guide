@@ -71,7 +71,7 @@ nano /root/.xiond/validator.json
 }
 ```
 ```
-xiond tx staking create-validator $HOME/.xiond/validator.json --from wallet  --chain-id xion-testnet-1 --gas auto
+xiond tx staking create-validator $HOME/.xiond/validator.json --from wallet  --chain-id xion-testnet-1 --gas auto --gas-adjustment 1.4 --gas-prices 0uxion -y
 ```
 
 
