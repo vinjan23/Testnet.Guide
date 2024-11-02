@@ -43,6 +43,41 @@ sudo systemctl enable xiond
 sudo systemctl restart xiond
 sudo journalctl -u xiond -f -o cat
 ```
+```
+xiond status 2>&1 | jq .sync_info
+```
+```
+xiond q bank balances $(xiond keys show wallet -a)
+```
+```
+xiond tendermint show-validator
+```
+```
+nano /root/.xiond/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"fungesq98nN9TaZi0zsTU1katfl4C3hdFoKUkQnrT5s="},
+  "amount": "1000000uxion",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.01",
+  "min-self-delegation": "1"
+}
+```
+```
+xiond tx staking create-validator $HOME/.xiond/validator.json --from wallet  --chain-id xion-testnet-1 --gas auto
+```
+
+
+
+
+
 
 
 
