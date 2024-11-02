@@ -79,14 +79,14 @@ structsd q bank balances $(structsd keys show wallet -a)
 ```
 ### Pubkey
 ```
-structsd comet show-validator
+structsd tendermint show-validator
 ```
 ```
 nano /root/.structs/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"EjBO6Jrc7CjGCHBG3KcniVaNHcsuVQKyWo8gm2qASTA="},
+  "pubkey": ,
   "amount": "100alpha",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
@@ -100,7 +100,8 @@ nano /root/.structs/validator.json
 }
 ```
 ```
-structsd --home $HOME/.structs tx staking create-validator $HOME/.structs/validator.json --from wallet  --chain-id structstestnet-99 --gas auto
+structsd tx staking create-validator $HOME/.structs/validator.json --from wallet  --chain-id structstestnet-100 --gas auto
+
 ```
 ### Delete
 ```
