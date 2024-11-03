@@ -34,7 +34,7 @@ wget -O $HOME/.xiond/config/genesis.json https://raw.githubusercontent.com/burnt
 ```
 ### Addrbook
 ```
-wget -O $HOME/.xiond/config/addrbook.json
+wget -O $HOME/.xiond/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/refs/heads/main/Xion/addrbook.json
 ```
 ### Seed Peer Gas
 ```
