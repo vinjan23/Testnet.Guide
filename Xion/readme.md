@@ -20,6 +20,10 @@ make install
 ```
 xiond version --long | grep -e commit -e version
 ```
+### Init
+```
+xiond init <Moniker> --chain-id xion-testnet-1
+```
 ### Port
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:34657\"%" $HOME/.xiond/config/client.toml
