@@ -138,6 +138,16 @@ xiond tx distribution withdraw-all-rewards --from wallet --chain-id xion-testnet
 xiond tx distribution withdraw-rewards $(xiond keys show wallet --bech val -a) --commission --from wallet --chain-id xion-testnet-1 --gas auto --gas-adjustment 1.4 --gas-prices 0uxion -y
 ```
 
+### Delete
+```
+sudo systemctl stop xiond
+sudo systemctl disable xiond
+sudo rm /etc/systemd/system/xiond.service
+sudo systemctl daemon-reload
+rm -f $(which xiond)
+rm -rf .xiond
+rm -rf xion
+```
 
 
 
