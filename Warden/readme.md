@@ -204,7 +204,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which slinky) --market-map-endpoint localhost:24090
+ExecStart=$(which slinky) --market-map-endpoint :24090
 Restart=on-failure
 RestartSec=30
 LimitNOFILE=65535
