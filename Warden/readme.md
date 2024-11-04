@@ -189,39 +189,37 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.w
 # ORACLE
 ```
 cd $HOME
-rm -rf slinky
-git clone https://github.com/skip-mev/slinky.git
-cd slinky
-make build
-mv build/slinky /usr/local/bin/
-rm -rf build
+rm -rf connect
+git clone https://github.com/skip-mev/connect.git
+cd connect
+git checkout v1.0.12
+make install
 ```
 ```
-sudo tee /etc/systemd/system/warden-slinky.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/warden-connect.service > /dev/null <<EOF
 [Unit]
-Description=W Slinky Oracle
+Description=Warden Oracle
 After=network-online.target
-
 [Service]
 User=$USER
-ExecStart=$(which slinky) --market-map-endpoint :24090
+WorkingDirectory=$HOME/connect
+ExecStart=$(which slinky) --market-map-endpoint 127.0.0.1:24090 --log-disable-file-rotation
 Restart=on-failure
-RestartSec=30
+RestartSec=5
 LimitNOFILE=65535
-
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable warden-slinky.service
-sudo systemctl start warden-slinky.service
-journalctl -fu warden-slinky -o cat
+sudo systemctl enable warden-connect
+sudo systemctl restart warden-connect
+sudo journalctl -u warden-connect -f
 ```
 
 ```
-curl localhost:8080/slinky/oracle/v1/prices | jq
+curl localhost:24080/connect/oracle/v1/prices | jq
 ```
 ### Delete Node
 ```
