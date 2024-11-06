@@ -192,19 +192,19 @@ cd $HOME
 rm -rf slinky
 git clone https://github.com/skip-mev/slinky.git
 cd slinky
-git checkout v1.0.12
+git checkout v1.0.5
 make build
 mv build/slinky /usr/local/bin/
 ```
 ```
 sudo tee /etc/systemd/system/slinkyd.service > /dev/null <<EOF
 [Unit]
-Description=Warden Oracle
+Description=slinky
 After=network-online.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/connect
-ExecStart=$(which slinky) --market-map-endpoint 127.0.0.1:24090
+ExecStart=$(which slinky) --market-map-endpoint 0.0.0.0:24090
 Restart=on-failure
 RestartSec=5
 LimitNOFILE=65535
