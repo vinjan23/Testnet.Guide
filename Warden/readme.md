@@ -202,7 +202,7 @@ rm -rf slinky
 git clone https://github.com/skip-mev/slinky.git
 cd slinky
 git checkout v1.0.5
-go build  . ;
+go mod tidy
 mv build/slinky /usr/local/bin/
 ```
 ```
