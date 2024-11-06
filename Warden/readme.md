@@ -197,6 +197,15 @@ make build
 mv build/slinky /usr/local/bin/
 ```
 ```
+cd $HOME
+rm -rf slinky
+git clone https://github.com/skip-mev/slinky.git
+cd slinky
+git checkout v1.0.5
+go build  . ;
+mv build/slinky /usr/local/bin/
+```
+```
 sudo tee /etc/systemd/system/slinkyd.service > /dev/null <<EOF
 [Unit]
 Description=W Slinky Oracle
