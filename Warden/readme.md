@@ -199,15 +199,16 @@ mv build/slinky /usr/local/bin/
 ```
 sudo tee /etc/systemd/system/slinkyd.service > /dev/null <<EOF
 [Unit]
-Description=slinky
+Description=W Slinky Oracle
 After=network-online.target
+
 [Service]
 User=$USER
-WorkingDirectory=$HOME/connect
-ExecStart=$(which slinky) --market-map-endpoint 0.0.0.0:24090
+ExecStart=$(which slinky) --market-map-endpoint 127.0.0.1:17890
 Restart=on-failure
-RestartSec=5
+RestartSec=30
 LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -215,7 +216,7 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable slinkyd
-sudo systemctl start slinkyd
+sudo systemctl restart slinkyd
 journalctl -fu slinkyd --no-hostname
 ```
 
@@ -230,4 +231,12 @@ rm /etc/systemd/system/wardend.service
 sudo systemctl daemon-reload
 rm -rf .warden
 rm -rf $(which wardend)
+```
+```
+sudo systemctl stop slinkyd
+sudo systemctl disable slinkyd
+rm /etc/systemd/system/slinkyd.service
+sudo systemctl daemon-reload
+rm -rf slinky
+rm -rf $(which slinky)
 ```
