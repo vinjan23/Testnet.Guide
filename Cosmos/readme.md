@@ -19,6 +19,19 @@ cd gaia
 git checkout v21.0.0-rc1
 make install
 ```
+### Update
+```
+cd $HOME || return
+rm -rf gaia
+git clone https://github.com/cosmos/gaia
+cd gaia || return
+git checkout v21.0.0-rc1
+make build
+```
+```
+mkdir -p $HOME/.gaia/cosmovisor/upgrades/v21.0.0-rc1/bin
+mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v21.0.0-rc1/bin/
+```
 ### Init
 ```
 gaiad init vinjan --chain-id=theta-testnet-001
