@@ -4,7 +4,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt install curl tar wget clang p
 ```
 ### GO
 ```
-ver="1.21.7"
+ver="1.22.5"
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
@@ -19,10 +19,44 @@ go version
 cd $HOME
 rm -rf bin
 mkdir bin && cd bin
-wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.2/wardend_Linux_x86_64.zip
+wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.4/wardend_Linux_x86_64.zip
 unzip wardend_Linux_x86_64.zip
 chmod +x wardend
 mv $HOME/bin/wardend $HOME/go/bin
+```
+### Cosmovisor
+```
+cd $HOME
+mkdir -p $HOME/.warden/cosmovisor/genesis/bin/
+wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.4/wardend_Linux_x86_64.zip
+unzip wardend_Linux_x86_64.zip
+chmod +x wardend
+rm -rf wardend_Linux_x86_64.zip
+cd $HOME
+```
+```
+mv $HOME/wardend $HOME/.warden/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.warden/cosmovisor/genesis $HOME/.warden/cosmovisor/current -f
+sudo ln -s $HOME/.warden/cosmovisor/current/bin/wardend /usr/local/bin/wardend -f
+```
+### Update Cosmovisor
+```
+sudo systemctl stop wardend
+cd $HOME
+wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.4/wardend_Linux_x86_64.zip
+unzip wardend_Linux_x86_64.zip
+chmod +x wardend
+rm -rf wardend_Linux_x86_64.zip
+```
+```
+mkdir -p $HOME/.warden/cosmovisor/upgrades/v0.5.4/bin
+mv $HOME/wardend $HOME/.warden/cosmovisor/upgrades/v0.5.4/bin
+```
+```
+sudo ln -sfn $HOME/.warden/cosmovisor/upgrades/v0.5.4 $HOME/.warden/cosmovisor/current
+sudo ln -sfn $HOME/.warden/cosmovisor/current/bin/wardend /usr/local/bin/wardend
 ```
 ```
 wardend version --long | grep -e commit -e version
