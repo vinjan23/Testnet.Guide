@@ -17,11 +17,24 @@ make install
 junod init YOUR_MONIKER --chain-id uni-6
 junod config chain-id uni-6
 ```
-###
+### Cosmovisor
 ```
 mkdir -p ~/.juno/cosmovisor/genesis/bin
 mkdir -p ~/.juno/cosmovisor/upgrades
 cp ~/go/bin/junod ~/.juno/cosmovisor/genesis/bin
+```
+### Update
+```
+cd $HOME || return
+rm -rf juno
+git clone https://github.com/CosmosContracts/juno.git
+cd juno || return
+git checkout v25.0.0
+make build
+```
+```
+mkdir -p $HOME/.juno/cosmovisor/upgrades/v25/bin
+mv bin/junod $HOME/.juno/cosmovisor/upgrades/v25/bin/
 ```
 
 ### Genesis
@@ -79,21 +92,19 @@ EOF
 ```
 sudo tee /etc/systemd/system/junod.service > /dev/null << EOF
 [Unit]
-Description=juno
+Description=Juno Node
 After=network-online.target
-
 [Service]
 User=$USER
 ExecStart=$(which cosmovisor) run start
-Restart=always
+Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=10000
 Environment="DAEMON_NAME=junod"
 Environment="DAEMON_HOME=$HOME/.juno"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
-
 [Install]
 WantedBy=multi-user.target
 EOF
