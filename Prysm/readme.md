@@ -6,6 +6,20 @@ cd prysm
 git checkout v0.1.0-devnet
 make install
 ```
+### Cosmovisor
+```
+cd $HOME
+git clone https://github.com/kleomedes/prysm
+cd prysm
+git checkout v0.1.0-devnet
+make install
+```
+```
+mkdir -p ~/.prysm/cosmovisor/genesis/bin
+mkdir -p ~/.prysm/cosmovisor/upgrades
+cp ~/go/bin/prysmd ~/.gaia/cosmovisor/genesis/bin
+```
+
 ### Init
 ```
 prysmd init Vinjan.Inc --chain-id prysm-devnet-1
