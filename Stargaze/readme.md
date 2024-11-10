@@ -84,6 +84,27 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+```
+sudo tee /etc/systemd/system/starsd.service > /dev/null <<EOF
+[Unit]
+Description=stargaze
+After=network-online.target
+
+[Service]
+User=USER
+ExecStart=/$(which cosmovisor) run start
+Restart=always
+RestartSec=3
+LimitNOFILE=4096
+Environment="DAEMON_NAME=starsd"
+Environment="DAEMON_HOME=$HOME/.starsd"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+
+[Install]
+WantedBy=multi-user.target
+EOF
 ### Start
 ```
 sudo systemctl daemon-reload
