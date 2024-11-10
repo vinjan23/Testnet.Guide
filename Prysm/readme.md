@@ -21,7 +21,7 @@ prysmd init Vinjan.Inc --chain-id prysm-devnet-1
 ```
 mkdir -p ~/.prysm/cosmovisor/genesis/bin
 mkdir -p ~/.prysm/cosmovisor/upgrades
-cp ~/go/bin/prysmd ~/.gaia/cosmovisor/genesis/bin
+cp ~/go/bin/prysmd ~/.prysm/cosmovisor/genesis/bin
 ```
 
 
