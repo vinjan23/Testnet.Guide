@@ -33,7 +33,11 @@ rm -rf archway
 git clone https://github.com/archway-network/archway.git
 cd archway || return
 git checkout v9.0.0-rc4
-make install
+make build
+```
+```
+mkdir -p $HOME/.archway/cosmovisor/upgrades/wasmd_50_amino_patch/bin
+mv build/archwayd $HOME/.archway/cosmovisor/upgrades/wasmd_50_amino_patch/bin/
 ```
 ```
 cd $HOME/archway
@@ -106,6 +110,26 @@ Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
 
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo tee /etc/systemd/system/archwayd.service > /dev/null << EOF
+[Unit]
+Description=Archway Node
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=10000
+Environment="DAEMON_NAME=archwayd"
+Environment="DAEMON_HOME=$HOME/.archway"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
 EOF
