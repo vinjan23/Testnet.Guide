@@ -12,6 +12,13 @@ symphonyd init $MONIKER --chain-id symphony-testnet-3
 symphonyd config chain-id symphony-testnet-3
 symphonyd config keyring-backend test
 ```
+### Cosmovisor
+```
+mkdir -p ~/.symphonyd/cosmovisor/genesis/bin
+mkdir -p ~/.symphonyd/cosmovisor/upgrades
+cp ~/go/bin/symphonyd ~/.symphonyd/cosmovisor/genesis/bin
+```
+
 ### Custom Port
 ```
 PORT=21
