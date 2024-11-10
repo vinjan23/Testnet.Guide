@@ -91,7 +91,7 @@ Description=stargaze
 After=network-online.target
 
 [Service]
-User=USER
+User=$USER
 ExecStart=/$(which cosmovisor) run start
 Restart=always
 RestartSec=3
