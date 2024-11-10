@@ -7,7 +7,7 @@ make install
 ```
 ```
 cd $HOME/gaia
-git fetch --all
+git pull
 git checkout v21.0.0-rc0
 make install
 ```
@@ -18,6 +18,13 @@ git clone https://github.com/cosmos/gaia
 cd gaia
 git checkout v21.0.0-rc1
 make install
+```
+### Cosmovisor
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
+mkdir -p ~/.gaia/cosmovisor/genesis/bin
+mkdir -p ~/.gaia/cosmovisor/upgrades
+cp ~/go/bin/gaiad ~/.gaia/cosmovisor/genesis/bin
 ```
 ### Update
 ```
@@ -31,6 +38,7 @@ make build
 ```
 mkdir -p $HOME/.gaia/cosmovisor/upgrades/v21.0.0-rc1/bin
 mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v21.0.0-rc1/bin/
+rm -rf build
 ```
 ### Init
 ```
@@ -62,13 +70,7 @@ gaiad config node tcp://localhost:${PORT}657
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.gaia/config/config.toml
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"localhost:9090\"%address = \"localhost:${PORT}090\"%; s%^address = \"localhost:9091\"%address = \"localhost:${PORT}091\"%" $HOME/.gaia/config/app.toml
 ```
-### Cosmovisor
-```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
-mkdir -p ~/.gaia/cosmovisor/genesis/bin
-mkdir -p ~/.gaia/cosmovisor/upgrades
-cp ~/go/bin/gaiad ~/.gaia/cosmovisor/genesis/bin
-```
+
 ### Seed
 ```
 seeds="639d50339d7045436c756a042906b9a69970913f@seed-01.theta-testnet.polypore.xyz:26656,3e506472683ceb7ed75c1578d092c79785c27857@seed-02.theta-testnet.polypore.xyz:26656"
