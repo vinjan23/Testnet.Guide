@@ -12,7 +12,7 @@ git checkout v14.0.0-rc.2
 make install
 ```
 ```
-starsd init YOUR_MONIKER --chain-id elgafar-1
+starsd init vinjan --chain-id elgafar-1
 starsd config chain-id elgafar-1
 ```
 ### Cosmovisor
@@ -22,16 +22,8 @@ mkdir -p ~/.starsd/cosmovisor/upgrades
 cp ~/go/bin/starsd ~/.starsd/cosmovisor/genesis/bin
 ```
 ```
-cd $HOME || return
-rm -rf stargaze
-git clone https://github.com/public-awesome/stargaze stargaze
-cd stargaze || return
-git checkout  v14.0.0-rc.2
-make build
-```
-```
-mkdir -p $HOME/.starsd/cosmovisor/upgrades/v14.0.0-rc.2/bin
-mv build/starsd $HOME/.starsd/cosmovisor/upgrades/ v14.0.0-rc.2/bin/
+mkdir -p ~/.starsd/cosmovisor/upgrades/v14.0.0-rc.2/bin
+cp -a ~/go/bin/starsd ~/.starsd/cosmovisor/upgrades/v14.0.0-rc.2/bin/starsd
 ```
 ### Port
 ```
