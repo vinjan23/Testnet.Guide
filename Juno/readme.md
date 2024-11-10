@@ -79,17 +79,17 @@ EOF
 ```
 sudo tee /etc/systemd/system/junod.service > /dev/null << EOF
 [Unit]
-Description="juno node"
+Description=juno
 After=network-online.target
 
 [Service]
-User=USER
+User=$USER
 ExecStart=$(which cosmovisor) run start
 Restart=always
 RestartSec=3
 LimitNOFILE=4096
 Environment="DAEMON_NAME=junod"
-Environment="DAEMON_HOME=$HOME/..juno"
+Environment="DAEMON_HOME=$HOME/.juno"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
