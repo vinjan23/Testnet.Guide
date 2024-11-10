@@ -17,6 +17,13 @@ make install
 junod init YOUR_MONIKER --chain-id uni-6
 junod config chain-id uni-6
 ```
+###
+```
+mkdir -p ~/.juno/cosmovisor/genesis/bin
+mkdir -p ~/.juno/cosmovisor/upgrades
+cp ~/go/bin/junod ~/.juno/cosmovisor/genesis/bin
+```
+
 ### Genesis
 ```
 wget -O genesis.json https://snapshots.polkachu.com/testnet-genesis/juno/genesis.json --inet4-only
@@ -69,6 +76,28 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+```
+sudo tee /etc/systemd/system/junod.service > /dev/null << EOF
+[Unit]
+Description="juno node"
+After=network-online.target
+
+[Service]
+User=USER
+ExecStart=$(which cosmovisor) run start
+Restart=always
+RestartSec=3
+LimitNOFILE=4096
+Environment="DAEMON_NAME=junod"
+Environment="DAEMON_HOME=$HOME/..juno"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+
+[Install]
+WantedBy=multi-user.target
+```
+
 ### Start
 ```
 sudo systemctl daemon-reload
