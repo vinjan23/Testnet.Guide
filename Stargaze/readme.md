@@ -11,18 +11,7 @@ git pull
 git checkout v14.0.0-rc.2
 make install
 ```
-```
-cd $HOME || return
-rm -rf stargaze
-git clone https://github.com/public-awesome/stargaze.git
-cd stargaze || return
-git checkout v14.0.0-rc.2
-make build
-```
-```
-mkdir -p $HOME/.starsd/cosmovisor/upgrades/v14/bin
-cp ~/go/bin/starsd ~/.starsd/cosmovisor/upgrades/v14/bin
-```
+
 ```
 starsd init vinjan --chain-id elgafar-1
 starsd config chain-id elgafar-1
@@ -66,6 +55,18 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_rec
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.starsd/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.starsd/config/app.toml
 ```
+```
+cd $HOME || return
+rm -rf stargaze
+git clone https://github.com/public-awesome/stargaze.git
+cd stargaze || return
+git checkout v14.0.0-rc.2
+make build
+```
+```
+mkdir -p $HOME/.starsd/cosmovisor/upgrades/v14/bin
+cp ~/go/bin/starsd ~/.starsd/cosmovisor/upgrades/v14/bin
+```
 ### Service
 ```
 sudo tee /etc/systemd/system/starsd.service > /dev/null <<EOF
@@ -92,7 +93,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=/$(which cosmovisor) run start
+ExecStart=$(which cosmovisor) run start
 Restart=always
 RestartSec=3
 LimitNOFILE=10000
