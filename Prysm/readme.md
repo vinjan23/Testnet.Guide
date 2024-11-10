@@ -6,7 +6,6 @@ cd prysm
 git checkout v0.1.0-devnet
 make install
 ```
-### Cosmovisor
 ```
 cd $HOME
 git clone https://github.com/kleomedes/prysm
@@ -14,16 +13,18 @@ cd prysm
 git checkout v0.1.0-devnet
 make install
 ```
+### Init
+```
+prysmd init Vinjan.Inc --chain-id prysm-devnet-1
+```
+### Cosmovisor
 ```
 mkdir -p ~/.prysm/cosmovisor/genesis/bin
 mkdir -p ~/.prysm/cosmovisor/upgrades
 cp ~/go/bin/prysmd ~/.gaia/cosmovisor/genesis/bin
 ```
 
-### Init
-```
-prysmd init Vinjan.Inc --chain-id prysm-devnet-1
-```
+
 ### Port
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:29657\"%" $HOME/.prysm/config/client.toml
