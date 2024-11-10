@@ -35,6 +35,7 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 wget -O genesis.json https://snapshots.polkachu.com/testnet-genesis/stargaze/genesis.json --inet4-only
 mv genesis.json ~/.starsd/config
 ```
+
 ### Peer
 ```
 sed -i 's/seeds = ""/seeds = "ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:13756"/' ~/.starsd/config/config.toml
