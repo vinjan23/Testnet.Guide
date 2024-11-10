@@ -120,9 +120,9 @@ User=$USER
 ExecStart=$(which cosmovisor) run start
 Restart=always
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=10000
 Environment="DAEMON_NAME=sged"
-Environment="DAEMON_HOME=/home/USER/.sge"
+Environment="DAEMON_HOME=$HOME/.sge"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
