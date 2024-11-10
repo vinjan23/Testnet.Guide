@@ -95,7 +95,7 @@ User=USER
 ExecStart=/$(which cosmovisor) run start
 Restart=always
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=10000
 Environment="DAEMON_NAME=starsd"
 Environment="DAEMON_HOME=$HOME/.starsd"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
