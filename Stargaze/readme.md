@@ -21,7 +21,7 @@ make build
 ```
 ```
 mkdir -p $HOME/.starsd/cosmovisor/upgrades/v14/bin
-mv $HOME/go/bin/starsd $HOME/.starsd/cosmovisor/upgrades/v14/bin/
+cp ~/go/bin/starsd ~/.starsd/cosmovisor/upgrades/v14/bin
 ```
 ```
 starsd init vinjan --chain-id elgafar-1
