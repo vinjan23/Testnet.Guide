@@ -15,16 +15,6 @@ make install
 starsd init vinjan --chain-id elgafar-1
 starsd config chain-id elgafar-1
 ```
-### Cosmovisor
-```
-mkdir -p ~/.starsd/cosmovisor/genesis/bin
-mkdir -p ~/.starsd/cosmovisor/upgrades
-cp ~/go/bin/starsd ~/.starsd/cosmovisor/genesis/bin
-```
-```
-mkdir -p ~/.starsd/cosmovisor/upgrades/v14.0.0-rc.2/bin
-cp -a ~/go/bin/starsd ~/.starsd/cosmovisor/upgrades/v14.0.0-rc.2/bin/starsd
-```
 ### Port
 ```
 PORT=54
@@ -72,27 +62,6 @@ Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
 
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-```
-sudo tee /etc/systemd/system/starsd.service > /dev/null << EOF
-[Unit]
-Description=stars
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=starsd"
-Environment="DAEMON_HOME=$HOME/.starsd"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
 EOF
