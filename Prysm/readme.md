@@ -53,7 +53,7 @@ sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.prysm/config/app.toml
 ```
 ### Indexer Off
@@ -79,6 +79,27 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+```
+sudo tee /etc/systemd/system/prysmd.service > /dev/null << EOF
+[Unit]
+Description=prysm
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=10000
+Environment="DAEMON_NAME=prysmd"
+Environment="DAEMON_HOME=$HOME/.prysm"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
 ### Start
 ```
 sudo systemctl daemon-reload
