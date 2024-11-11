@@ -38,7 +38,10 @@ mkdir -p ~/.empe-chain/cosmovisor/genesis/bin
 mkdir -p ~/.empe-chain/cosmovisor/upgrades
 cp ~/go/bin/emped ~/.empe-chain/cosmovisor/genesis/bin
 ```
-
+```
+mkdir -p $HOME/.empe-chain/cosmovisor/upgrades/v0.2.2/bin
+cp ~/go/bin/emped ~/.empe-chain/cosmovisor/upgrades/v0.2.2/bin
+```
 ### Custom Port
 ```
 PORT=20
