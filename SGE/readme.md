@@ -45,6 +45,10 @@ mkdir -p ~/.sge/cosmovisor/genesis/bin
 mkdir -p ~/.sge/cosmovisor/upgrades
 cp ~/go/bin/sged ~/.sge/cosmovisor/genesis/bin
 ```
+```
+mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.7.4/bin
+cp ~/go/bin/sged ~/.sge/cosmovisor/upgrades/v1.7.4/bin
+```
 ### Custom Port
 ```
 PORT=17
