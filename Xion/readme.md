@@ -24,6 +24,12 @@ xiond version --long | grep -e commit -e version
 ```
 xiond init <Moniker> --chain-id xion-testnet-1
 ```
+### Cosmo
+```
+mkdir -p ~/.xiond/cosmovisor/genesis/bin
+mkdir -p ~/.xiond/cosmovisor/upgrades
+cp ~/go/bin/xiond ~/.xiond/cosmovisor/genesis/bin
+```
 ### Port
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:12657\"%" $HOME/.xiond/config/client.toml
@@ -75,6 +81,28 @@ ExecStart=$(which xiond) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo tee /etc/systemd/system/xiond.service > /dev/null <<EOF
+[Unit]
+Description=xion
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=always
+RestartSec=3
+LimitNOFILE=10000
+Environment="DAEMON_NAME=xiond"
+Environment="DAEMON_HOME=$HOME/.xiond"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
 
 [Install]
 WantedBy=multi-user.target
