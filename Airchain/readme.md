@@ -15,6 +15,10 @@ mkdir -p ~/.junction/cosmovisor/genesis/bin
 mkdir -p ~/.junction/cosmovisor/upgrades
 cp ~/go/bin/junctiond ~/.junction/cosmovisor/genesis/bin
 ```
+```
+mkdir -p $HOME/.junction/cosmovisor/upgrades/jip-2/bin
+cp ~/go/bin/junctiond ~/.junction/cosmovisor/upgrades/jip-2/bin
+```
 ### Genesis
 ```
 wget -O $HOME/.junction/config/genesis.json https://raw.githubusercontent.com/airchains-network/junction-resources/main/testnet/genesis.json
