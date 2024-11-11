@@ -30,8 +30,10 @@ mkdir -p ~/.xiond/cosmovisor/genesis/bin
 mkdir -p ~/.xiond/cosmovisor/upgrades
 cp ~/go/bin/xiond ~/.xiond/cosmovisor/genesis/bin
 ```
+```
 mkdir -p $HOME/.xiond/cosmovisor/upgrades/v14/bin
 cp ~/go/bin/xiond ~/.xiond/cosmovisor/upgrades/v14/bin
+```
 ### Port
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:12657\"%" $HOME/.xiond/config/client.toml
