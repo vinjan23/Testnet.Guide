@@ -1,5 +1,9 @@
 ### Build
 ```
+sudo curl https://get.ignite.com/cli | sudo bash
+sudo mv ignite /usr/local/bin/
+```
+```
 cd $HOME
 rm -rf structsd
 git clone https://github.com/playstructs/structsd.git
