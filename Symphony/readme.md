@@ -34,7 +34,7 @@ wget -O $HOME/.symphonyd/config/genesis.json https://raw.githubusercontent.com/O
 ```
 ### Addrbook
 ```
-wget -O $HOME/.symphonyd/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/main/Symphony/addrbook.json
+wget -O $HOME/.symphonyd/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/refs/heads/main/Symphony/addrbook.json
 ```
 ### Peer & Gas
 ```
@@ -107,7 +107,7 @@ sudo journalctl -u symphonyd -f -o cat
 ```
 ### Sync
 ```
-symphonyd status 2>&1 | jq .SyncInfo
+symphonyd status 2>&1 | jq .sync_info
 ```
 ### Wallet
 ```
