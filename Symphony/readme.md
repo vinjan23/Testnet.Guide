@@ -137,6 +137,7 @@ nano /root/.symphonyd/validator.json
 symphonyd tx staking create-validator $HOME/.symphonyd/validator.json \
 --from=wallet \
 --chain-id=symphony-testnet-4 \
+--gas-adjustment 1.5 \
 --gas-prices 0.025note \
 --gas auto \
 --node https://rpc-symphonyd.vinjan.xyz:443
