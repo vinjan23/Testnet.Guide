@@ -44,7 +44,7 @@ peers="eea2dc7e9abfd18787d4cc2c728689ad658cd3a2@34.66.161.223:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.symphonyd/config/config.toml
 ```
 ```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0note\"/" $HOME/.symphonyd/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"800note\"/" $HOME/.symphonyd/config/app.toml
 ```
 ### Prunning
 ```
@@ -127,7 +127,20 @@ curl -L https://snapshot.vinjan.xyz./symphony/latest.tar.lz4 | lz4 -dc - | tar -
 sudo systemctl restart symphonyd
 sudo journalctl -u symphonyd -f -o cat
 ```
+```
+symphonyd tendermint show-validator
+```
+```
+nano /root/.symphonyd/validator.json
+```
+```
+symphonyd tx staking create-validator $HOME/.symphonyd/validator.json \
+--from=wallet \
+--chain-id=symphony-testnet-4 \
+--fees 350000note \
+--node https://rpc-symphonyd.vinjan.xyz:443
 
+```
 ### Create Validator
 ```
 symphonyd tx staking create-validator \
