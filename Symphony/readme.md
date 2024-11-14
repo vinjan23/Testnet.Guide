@@ -120,16 +120,6 @@ symphonyd keys add wallet
 ```
 symphonyd q bank balances $(symphonyd keys show wallet -a)
 ```
-### Snapshot (Height 348069)(4.5 GB)
-```
-sudo apt update
-sudo apt install lz4
-sudo systemctl stop symphonyd
-symphonyd tendermint unsafe-reset-all --home $HOME/.symphonyd --keep-addr-book
-curl -L https://snapshot.vinjan.xyz./symphony/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.symphonyd
-sudo systemctl restart symphonyd
-sudo journalctl -u symphonyd -f -o cat
-```
 ```
 symphonyd tendermint show-validator
 ```
@@ -144,30 +134,6 @@ symphonyd tx staking create-validator $HOME/.symphonyd/validator.json \
 --gas-prices 0.025note \
 --gas auto \
 --node https://rpc-symphonyd.vinjan.xyz:443
-
-```
-### Create Validator
-```
-symphonyd tx staking create-validator \
---amount=1000000note \
---moniker="$MONIKER" \
---identity="" \
---details="" \
---website="" \
---from $WALLET \
---commission-rate 0.05 \
---commission-max-rate 0.2 \
---commission-max-change-rate 0.05 \
---min-self-delegation 1 \
---pubkey $(symphonyd tendermint show-validator) \
---chain-id symphony-testnet-3 \
---fees=800note \
--y
-```
-```
---fees=800note \
---node https://rpc-symphony.vinjan.xyz:443 \
--y
 ```
 
 ### Edit
@@ -185,19 +151,19 @@ symphonyd tx staking edit-validator \
 
 ### Unjail
 ```
-symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-3 --fees=800note -y
+symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-4 --fees=800note -y
 ```
 ### Delegate
 ```
-symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-3 --fees 5000note -y
+symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-4 --fees 5000note -y
 ```
 ### WD 
 ```
-symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-3 --fees 5000note -y
+symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-4 --fees 5000note -y
 ```
 ### Transfer
 ```
-symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-3 --fees 5000note -y
+symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-4 --fees 5000note -y
 ```
 
 ### Check Connected Peer
