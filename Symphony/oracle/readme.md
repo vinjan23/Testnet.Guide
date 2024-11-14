@@ -28,16 +28,13 @@ After=network.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/symphony-oracle-voter
-ExecStart=$HOME/symphony-oracle-voter/venv/bin/python3 -u $HOME/symphony-oracle-voter/main.py \
---$VALIDATOR_ADDRESS \
---$VALIDATOR_ACC_ADDRESS \
+ExecStart=$HOME/symphony-oracle-voter/venv/bin/python3 -u $HOME/symphony-oracle-voter/main.py
 Restart=always
 RestartSec=3
 StandardOutput=journal
 StandardError=journal
 LimitNOFILE=65535
 Environment="SYMPHONYD_PATH=$HOME/symphony/build/symphonyd"
-Environment="ORACLE_OPERATOR=$HOME/symphony-oracle"
 Environment="PYTHON_ENV=production"
 Environment="LOG_LEVEL=INFO"
 Environment="DEBUG=false"
