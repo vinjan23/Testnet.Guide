@@ -20,6 +20,14 @@ echo "export VALIDATOR_ACC_ADDRESS=$VALIDATOR_ACC_ADDRESS >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 ```
+VALIDATOR_ADDRESS=$(symphonyd keys show wallet --bech val -a)
+VALIDATOR_ACC_ADDRESS=$(symphonyd keys show wallet -a)
+lcd_address=http://localhost:25317/
+SYMPHONYD_PATH=/root/symphony/build/symphonyd
+ORACLE_OPERATOR=symphony-oracle
+NODE_RPC=https://rpc-symphonyd.vinjan.xyz
+```
+```
 sudo tee /etc/systemd/system/oracle.service > /dev/null << EOF
 [Unit]
 Description=Symphony Oracle
