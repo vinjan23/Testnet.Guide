@@ -5,6 +5,16 @@ cd symphony-oracle-voter
 ```
 nano $HOME/symphony-oracle-voter/.env
 ```
+# save wallet and validator address
+```
+VALIDATOR_ADDRESS=symphonyvaloper1qklcckc2rrga6hzjg9kjyjvqlc4dl37xf6qdtm
+VALIDATOR_ACC_ADDRESS=symphony1qklcckc2rrga6hzjg9kjyjvqlc4dl37x6cg2ut
+KEY_PASSWORD=vinjan23
+lcd_address=http://localhost:21317/
+SYMPHONYD_PATH=/root/symphony/build/symphonyd
+ORACLE_OPERATOR=symphony-oracle
+NODE_RPC=https://rpc-symphonyd.vinjan.xyz
+```
 ```
 apt install python3-pip
 apt install python3.11-venv
@@ -14,22 +24,7 @@ pip install -r requirements.txt
 deactivate
 ```
 
-# save wallet and validator address
-```
-VALIDATOR_ADDRESS=$(symphonyd keys show wallet --bech val -a)
-VALIDATOR_ACC_ADDRESS=$(symphonyd keys show wallet -a)
-echo "export VALIDATOR_ADDRESS=$VALIDATOR_ADDRESS >> $HOME/.bash_profile
-echo "export VALIDATOR_ACC_ADDRESS=$VALIDATOR_ACC_ADDRESS >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-```
-VALIDATOR_ADDRESS=symphonyvaloper1qklcckc2rrga6hzjg9kjyjvqlc4dl37xf6qdtm
-VALIDATOR_ACC_ADDRESS=symphony1qklcckc2rrga6hzjg9kjyjvqlc4dl37x6cg2ut
-lcd_address=http://localhost:21317/
-SYMPHONYD_PATH=/root/symphony/build/symphonyd
-ORACLE_OPERATOR=symphony-oracle
-NODE_RPC=https://rpc-symphonyd.vinjan.xyz
-```
+
 ```
 sudo tee /etc/systemd/system/oracle.service > /dev/null << EOF
 [Unit]
