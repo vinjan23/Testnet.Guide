@@ -34,18 +34,22 @@ Description=Symphony Oracle
 After=network.target
 
 [Service]
-User=$USER
-WorkingDirectory=$HOME/symphony-oracle-voter
-ExecStart=$HOME/symphony-oracle-voter/venv/bin/python3 -u $HOME/symphony-oracle-voter/main.py
+# Environment variables
+Environment="SYMPHONYD_PATH=/root/go/bin/symphonyd"
+Environment="PYTHON_ENV=production"
+Environment="LOG_LEVEL=INFO"
+Environment="DEBUG=false"
+
+# Service configuration
+Type=simple
+User=root
+WorkingDirectory=/root/symphony-oracle-voter
+ExecStart=/root/symphony-oracle-voter/venv/bin/python3 -u /root/symphony-oracle-voter/main.py
 Restart=always
 RestartSec=3
 StandardOutput=journal
 StandardError=journal
-LimitNOFILE=65535
-Environment="SYMPHONYD_PATH=$HOME/symphony/build/symphonyd"
-Environment="PYTHON_ENV=production"
-Environment="LOG_LEVEL=INFO"
-Environment="DEBUG=false"
+
 [Install]
 WantedBy=multi-user.target
 EOF
