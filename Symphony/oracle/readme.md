@@ -48,3 +48,9 @@ sudo systemctl enable oracle.service
 sudo systemctl start oracle.service
 journalctl -u oracle.service -f
 ```
+```
+sudo systemctl stop oracle.service
+sudo systemctl disable oracle.service
+sudo rm /etc/systemd/system/oracle.service
+rm -rf symphony-oracle-voter
+```
