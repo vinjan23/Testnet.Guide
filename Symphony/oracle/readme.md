@@ -37,6 +37,7 @@ StandardOutput=journal
 StandardError=journal
 LimitNOFILE=65535
 Environment="SYMPHONYD_PATH=$HOME/symphony/build/symphonyd"
+Environment="ORACLE_OPERATOR=$HOME/symphony-oracle"
 Environment="PYTHON_ENV=production"
 Environment="LOG_LEVEL=INFO"
 Environment="DEBUG=false"
