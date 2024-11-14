@@ -23,9 +23,9 @@ echo "export VALIDATOR_ACC_ADDRESS=$VALIDATOR_ACC_ADDRESS >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 ```
-VALIDATOR_ADDRESS=$(symphonyd keys show wallet --bech val -a)
-VALIDATOR_ACC_ADDRESS=$(symphonyd keys show wallet -a)
-lcd_address=http://localhost:25317/
+VALIDATOR_ADDRESS=symphonyvaloper1qklcckc2rrga6hzjg9kjyjvqlc4dl37xf6qdtm
+VALIDATOR_ACC_ADDRESS=symphony1qklcckc2rrga6hzjg9kjyjvqlc4dl37x6cg2ut
+lcd_address=http://localhost:21317/
 SYMPHONYD_PATH=/root/symphony/build/symphonyd
 ORACLE_OPERATOR=symphony-oracle
 NODE_RPC=https://rpc-symphonyd.vinjan.xyz
