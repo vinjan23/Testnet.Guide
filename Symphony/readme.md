@@ -3,14 +3,17 @@
 cd $HOME
 git clone https://github.com/Orchestra-Labs/symphony
 cd symphony
-git checkout v0.3.0
+git checkout v0.4.1
 make install
 ```
+### Check Commit ``1cc0ecc1838e65d0cd1eaa6581b69c6237de9efc``
+```
+symphonyd version --long | grep -e commit -e version
+```
+
 ### Init
 ```
-symphonyd init $MONIKER --chain-id symphony-testnet-3
-symphonyd config chain-id symphony-testnet-3
-symphonyd config keyring-backend test
+symphonyd init $MONIKER --chain-id symphony-testnet-4
 ```
 ### Cosmovisor
 ```
