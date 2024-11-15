@@ -54,14 +54,17 @@ sudo tee /etc/systemd/system/fiammad.service > /dev/null <<EOF
 [Unit]
 Description=fiamma
 After=network-online.target
-
 [Service]
 User=$USER
-ExecStart=$(which fiammad) start
+ExecStart=$(which cosmovisor) run start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=65535
-
+LimitNOFILE=10000
+Environment="DAEMON_NAME=fiammad"
+Environment="DAEMON_HOME=$HOME/.fiamma"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
 EOF
