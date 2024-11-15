@@ -1,8 +1,9 @@
 ```
 cd $HOME
-git clone https://github.com/fiamma-chain/fiamma/
+rm -rf fiamma
+git clone https://github.com/fiamma-chain/fiamma.git
 cd fiamma
-git checkout v0.1.3
+git checkout v1.0.0
 make install
 ```
 ```
@@ -10,28 +11,35 @@ fiammad version --long | grep -e version -e commit
 ```
 
 ```
-fiammad	init Vinjan.Inc --chain-id=fiamma-testnet-1
+fiammad init Vinjan.Inc --chain-id fiamma-testnet-1
 ```
 ```
-wget -O $HOME/.fiamma/config/genesis.json "https://raw.githubusercontent.com/fiamma-chain/networks/main/fiamma-testnet-1/genesis.json"
+wget -O $HOME/.fiamma/config/genesis.json "https://raw.githubusercontent.com/fiamma-chain/networks/refs/heads/main/fiamma-testnet-1/genesis.json"
+```
+### Cosmo
+```
+mkdir -p ~/.fiamma/cosmovisor/genesis/bin
+mkdir -p ~/.fiamma/cosmovisor/upgrades
+cp ~/go/bin/fiammad ~/.fiamma/cosmovisor/genesis/bin
+```
+
+```
+sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:13657\"%" $HOME/.fiamma/config/client.toml
 ```
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:29657\"%" $HOME/.fiamma/config/client.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:13658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:13657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:13060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:13656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":13660\"%" $HOME/.fiamma/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:13317\"%; s%^address = \"localhost:9090\"%address = \"localhost:13090\"%" $HOME/.fiamma/config/app.toml
 ```
 ```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:29658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:29657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:29060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:29656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":29660\"%" $HOME/.fiamma/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:29317\"%; s%^address = \"localhost:9090\"%address = \"localhost:29090\"%" $HOME/.fiamma/config/app.toml
-```
-```
-peers="5d6828849a45cf027e035593d8790bc62aca9cef@18.182.20.173:26656,526d13f3ce3e0b56fa3ac26a48f231e559d4d60c@35.73.202.182:26656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.fiamma/config/config.toml
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ufia\"/;" ~/.fiamma/config/app.toml
+seeds="348c6ded992c44af63f6ffa564f33ecd40fbe587@18.182.20.173:26656,5aa6e9894f17f741f602c6fe83e74e2640a5cf3a@35.73.202.182:26656"
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.fiamma/config/config.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.00001ufia\"/;" ~/.fiamma/config/app.toml
 ```
 ```
 pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
-pruning_interval="10"
+pruning_interval="19"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.fiamma/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.fiamma/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.fiamma/config/app.toml
