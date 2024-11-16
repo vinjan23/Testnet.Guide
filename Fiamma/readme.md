@@ -1,3 +1,8 @@
+###
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt-get install -y make git bash gcc curl jq pkg-config openssl libssl-dev
+```
 ```
 cd $HOME
 rm -rf fiamma
