@@ -13,7 +13,7 @@ nano $HOME/symphony-oracle-voter/.env
 VALIDATOR_ADDRESS=symphonyvaloper1qklcckc2rrga6hzjg9kjyjvqlc4dl37xf6qdtm
 VALIDATOR_ACC_ADDRESS=symphony1qklcckc2rrga6hzjg9kjyjvqlc4dl37x6cg2ut
 KEY_PASSWORD=vinjan23
-lcd_address=http://localhost:21317/
+SYMPHONY_LCD = http://localhost:21317
 SYMPHONYD_PATH=/root/symphony/build/symphonyd
 ORACLE_OPERATOR=symphony-oracle
 NODE_RPC=https://rpc-symphonyd.vinjan.xyz
