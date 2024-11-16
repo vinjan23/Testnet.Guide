@@ -41,7 +41,7 @@ wget -O $HOME/.symphonyd/config/addrbook.json https://raw.githubusercontent.com/
 ```
 ### Peer & Gas
 ```
-seeds="748effb9aa965681ef481572d838bfeb33b531c7@94.130.143.184:21656,4660f4c136d4cf916d65b952a1ab67095fe1311f@65.21.234.111:25656"
+seeds="ed33b91ef0743a35206890044cbaac99c8241e26@94.130.143.184:21656,4660f4c136d4cf916d65b952a1ab67095fe1311f@65.21.234.111:25656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.symphonyd/config/config.toml
 peers="eea2dc7e9abfd18787d4cc2c728689ad658cd3a2@104.154.135.225:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.symphonyd/config/config.toml
@@ -169,6 +169,10 @@ symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --ch
 ### Check Connected Peer
 ```
 curl -sS http://localhost:21657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+### Own Peer
+```
+echo $(symphonyd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.symphonyd/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 ```
 peers="$(curl -sS https://rpc-symphony.vinjan.xyz:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
