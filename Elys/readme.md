@@ -177,7 +177,7 @@ sudo journalctl -u elysd -f -o cat
 
 ### Sync
 ```
-elysd status 2>&1 | jq .SyncInfo
+elysd status 2>&1 | jq .sync_info
 ```
 
 ### Log
