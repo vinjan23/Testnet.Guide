@@ -1,24 +1,14 @@
 ```
 cd $HOME
-git clone https://github.com/airchains-network/junction.git
-cd junction
-git checkout v0.1.0
-ignite chain build
+wget -O junctiond https://github.com/airchains-network/junction/releases/download/v0.2.0/junctiond-linux-amd64
+chmod +x junctiond
+mv junctiond $HOME/go/bin/
 ```
 
 ```
 junctiond init vinjan --chain-id junction
 ```
-### Cosmo
-```
-mkdir -p ~/.junction/cosmovisor/genesis/bin
-mkdir -p ~/.junction/cosmovisor/upgrades
-cp ~/go/bin/junctiond ~/.junction/cosmovisor/genesis/bin
-```
-```
-mkdir -p $HOME/.junction/cosmovisor/upgrades/jip-2/bin
-cp ~/go/bin/junctiond ~/.junction/cosmovisor/upgrades/jip-2/bin
-```
+
 ### Genesis
 ```
 wget -O $HOME/.junction/config/genesis.json https://raw.githubusercontent.com/airchains-network/junction-resources/main/testnet/genesis.json
@@ -64,26 +54,6 @@ Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
 
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-```
-sudo tee /etc/systemd/system/junctiond.service > /dev/null << EOF
-[Unit]
-Description=junction
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=junctiond"
-Environment="DAEMON_HOME=$HOME/.junction"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
 EOF
