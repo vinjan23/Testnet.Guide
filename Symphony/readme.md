@@ -41,9 +41,9 @@ wget -O $HOME/.symphonyd/config/addrbook.json https://raw.githubusercontent.com/
 ```
 ### Peer & Gas
 ```
-seeds="10838131d11f546751178df1e1045597aad6366d@34.41.169.77:26656"
+seeds="748effb9aa965681ef481572d838bfeb33b531c7@94.130.143.184:21656,4660f4c136d4cf916d65b952a1ab67095fe1311f@65.21.234.111:25656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.symphonyd/config/config.toml
-peers="eea2dc7e9abfd18787d4cc2c728689ad658cd3a2@34.66.161.223:26656"
+peers="eea2dc7e9abfd18787d4cc2c728689ad658cd3a2@104.154.135.225:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.symphonyd/config/config.toml
 ```
 ```
