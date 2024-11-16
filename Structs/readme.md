@@ -15,12 +15,6 @@ ignite chain build
 ```
 structsd init Vinjan.Inc --chain-id structstestnet-100
 ```
-### Cosmovisor
-```
-mkdir -p ~/.structs/cosmovisor/genesis/bin
-mkdir -p ~/.structs/cosmovisor/upgrades
-cp ~/go/bin/structsd ~/.structs/cosmovisor/genesis/bin
-```
 
 ### Genesis
 ```
@@ -68,26 +62,6 @@ Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
 
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-```
-sudo tee /etc/systemd/system/structsd.service > /dev/null <<EOF
-[Unit]
-Description=structs
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=structsd"
-Environment="DAEMON_HOME=$HOME/.structs"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
 EOF
