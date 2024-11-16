@@ -21,12 +21,7 @@ fiammad init Vinjan.Inc --chain-id fiamma-testnet-1
 ```
 wget -O $HOME/.fiamma/config/genesis.json "https://raw.githubusercontent.com/fiamma-chain/networks/refs/heads/main/fiamma-testnet-1/genesis.json"
 ```
-### Cosmo
-```
-mkdir -p ~/.fiamma/cosmovisor/genesis/bin
-mkdir -p ~/.fiamma/cosmovisor/upgrades
-cp ~/go/bin/fiammad ~/.fiamma/cosmovisor/genesis/bin
-```
+
 
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:13657\"%" $HOME/.fiamma/config/client.toml
@@ -57,19 +52,15 @@ sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.fiamma/config/config.
 ```
 sudo tee /etc/systemd/system/fiammad.service > /dev/null <<EOF
 [Unit]
-Description=fiamma
+Description=Fiamma
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
+WorkingDirectory=$HOME/.fiamma
+ExecStart=$(which fiammad) start --home $HOME/.fiamma
 Restart=on-failure
-RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=fiammad"
-Environment="DAEMON_HOME=$HOME/.fiamma"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
+RestartSec=5
+LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
