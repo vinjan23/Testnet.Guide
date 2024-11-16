@@ -32,16 +32,6 @@ emped init Vinjan.Inc --chain-id empe-testnet-2
 emped config chain-id empe-testnet-2
 emped config keyring-backend test
 ```
-### Cosmo
-```
-mkdir -p ~/.empe-chain/cosmovisor/genesis/bin
-mkdir -p ~/.empe-chain/cosmovisor/upgrades
-cp ~/go/bin/emped ~/.empe-chain/cosmovisor/genesis/bin
-```
-```
-mkdir -p $HOME/.empe-chain/cosmovisor/upgrades/v0.2.2/bin
-cp ~/go/bin/emped ~/.empe-chain/cosmovisor/upgrades/v0.2.2/bin
-```
 ### Custom Port
 ```
 PORT=20
@@ -96,26 +86,6 @@ Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
 
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-```
-sudo tee /etc/systemd/system/emped.service > /dev/null << EOF
-[Unit]
-Description=empe-chain
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=emped"
-Environment="DAEMON_HOME=$HOME/.empe-chain"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
 EOF
