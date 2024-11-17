@@ -194,6 +194,21 @@ symphonyd status 2>&1 | jq .NodeInfo
 ```
 [[ $(symphonyd q staking validator $(symphonyd keys show <Wallet_Name> --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(symphonyd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
+### Statesync
+```
+sudo systemctl stop symphonyd
+symphonyd tendermint unsafe-reset-all --home $HOME/.symphonyd --keep-addr-book
+SNAP_RPC="https://rpc-symphonyd.vinjan.xyz:443"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.symphonyd/config/config.toml
+sudo systemctl restart symphonyd
+sudo journalctl -u symphonyd -f -o cat
+
 ### Delete
 ```
 sudo systemctl stop symphonyd
