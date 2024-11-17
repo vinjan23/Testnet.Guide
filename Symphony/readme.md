@@ -143,27 +143,28 @@ symphonyd tx staking edit-validator \
 --identity="" \
 --details="Staking Provider-IBC Relayer" \
 --website="https://service.vinjan.xyz/" \
---chain-id=symphony-testnet-3 \
+--chain-id=symphony-testnet-4 \
 --from=wallet \
---fees=800note \
--y
+--gas-adjustment 1.5 \
+--gas-prices 0.025note \
+--gas auto
 ```
 
 ### Unjail
 ```
-symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-4 --fees=800note -y
+symphonyd  tx slashing unjail --from wallet --chain-id symphony-testnet-4 --gas-adjustment 1.5 --gas-prices 0.025note --gas auto
 ```
 ### Delegate
 ```
-symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 1000000note --from wallet --chain-id symphony-testnet-4 --fees 5000note -y
+symphonyd tx staking delegate $(symphonyd keys show wallet --bech val -a) 5000000note --from wallet --chain-id symphony-testnet-4 --gas-adjustment 1.5 --gas-prices 0.025note --gas auto
 ```
 ### WD 
 ```
-symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-4 --fees 5000note -y
+symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech val -a) --commission --from wallet --chain-id symphony-testnet-4 --gas-adjustment 1.5 --gas-prices 0.025note --gas auto
 ```
 ### Transfer
 ```
-symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-4 --fees 5000note -y
+symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-4 --gas-adjustment 1.5 --gas-prices 0.025note --gas auto
 ```
 
 ### Check Connected Peer
