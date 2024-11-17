@@ -36,7 +36,7 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 wget -O $HOME/.symphonyd/config/genesis.json https://raw.githubusercontent.com/Orchestra-Labs/symphony/refs/heads/main/networks/symphony-testnet-4/genesis.json
 ```
 ```
-curl -L https://snap-t.vinjan.xyz/symphony/genesis.json > $HOME/.symphonyd/config/addrbook.json
+curl -L https://snap-t.vinjan.xyz/symphony/genesis.json > $HOME/.symphonyd/config/genesis.json
 ```
 ### Addrbook
 ```
