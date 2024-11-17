@@ -208,7 +208,7 @@ s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.symphonyd/config/config.toml
 sudo systemctl restart symphonyd
 sudo journalctl -u symphonyd -f -o cat
-
+```
 ### Delete
 ```
 sudo systemctl stop symphonyd
