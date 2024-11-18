@@ -25,6 +25,11 @@ cd archway
 git checkout v9.0.0-rc4
 make install
 ```
+```
+mkdir -p ~/.archway/cosmovisor/genesis/bin
+mkdir -p ~/.archway/cosmovisor/upgrades
+cp ~/go/bin/archwayd ~/.archway/cosmovisor/genesis/bin
+```
 
 ### Update
 ```
