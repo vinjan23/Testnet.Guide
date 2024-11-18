@@ -34,7 +34,7 @@ make build
 ```
 ```
 mkdir -p $HOME/.juno/cosmovisor/upgrades/v25/bin
-mv bin/junod $HOME/.juno/cosmovisor/upgrades/v25/bin/
+cp ~/go/bin/junod $HOME/.juno/cosmovisor/upgrades/v25/bin/
 ```
 
 ### Genesis
