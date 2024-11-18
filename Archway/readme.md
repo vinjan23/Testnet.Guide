@@ -42,7 +42,7 @@ make build
 ```
 ```
 mkdir -p $HOME/.archway/cosmovisor/upgrades/wasmd_50_amino_patch/bin
-mv build/archwayd $HOME/.archway/cosmovisor/upgrades/wasmd_50_amino_patch/bin/
+cp ~/go/bin/archwayd $HOME/.archway/cosmovisor/upgrades/wasmd_50_amino_patch/bin/
 ```
 ```
 cd $HOME/archway
