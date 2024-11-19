@@ -1,10 +1,4 @@
-```
-cd $HOME
-git clone https://github.com/kopi-money/kopi.git
-cd kopi
-git checkout v0.6.4
-make install
-```
+
 ```
 cd $HOME
 rm -rf kopi
@@ -25,7 +19,7 @@ wget -q https://data.kopi.money/genesis-test-5.json -O ~/.kopid/config/genesis.j
 ````
 ### Addrbook
 ```
-curl -L https://snap-t.vinjan.xyz/kopi/addrbook.json > $HOME/.kopi/config/addrbook.json
+curl -L https://snap-t.vinjan.xyz/kopi/addrbook.json > $HOME/.kopid/config/addrbook.json
 ```
 ### Port
 ```
