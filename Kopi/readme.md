@@ -66,15 +66,11 @@ Description=kopi
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
+ExecStart=$(which kopid) start
+Restart=always
 RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=kopid"
-Environment="DAEMON_HOME=$HOME/.kopid"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
+LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
