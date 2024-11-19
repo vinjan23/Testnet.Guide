@@ -79,6 +79,43 @@ sudo journalctl -u kopid -f -o cat
 ```
 kopid status 2>&1 | jq .sync_info
 ```
+
+### Wallet
+```
+kopid  keys add wallet
+```
+### Balances
+```
+kopid  q bank balances $(kopid keys show wallet -a)
+```
+### Created Validator
+```
+kopid tendermint show-validator
+```
+```
+nano /root/.kopid/validator.json
+```
+```
+{
+  "pubkey": ,
+  "amount": "1000000ukopi",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+```
+kopid tx staking create-validator $HOME/.kopid/validator.json \
+--from wallet \
+--chain-id kopi-test-5
+```
+
 ### Delete
 ```
 sudo systemctl stop kopid
@@ -89,6 +126,8 @@ rm -f $(which kopid)
 rm -rf .kopid
 rm -rf kopi
 ```
+
+
 
 
 
