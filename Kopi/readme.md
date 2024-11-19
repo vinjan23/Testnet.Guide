@@ -23,7 +23,10 @@ kopid init Vinjan.Inc --chain-id kopi-test-5
 ```
 wget -q https://data.kopi.money/genesis-test-5.json -O ~/.kopid/config/genesis.json
 ````
-
+### Addrbook
+```
+curl -L https://snap-t.vinjan.xyz/kopi/addrbook.json > $HOME/.kopi/config/addrbook.json
+```
 ### Port
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:15657\"%" $HOME/.kopid/config/client.toml
