@@ -12,7 +12,10 @@ git clone --quiet --depth 1 --branch v0.6.4.1 https://github.com/kopi-money/kopi
 cd kopi
 make install
 ```
-
+```
+mkdir -p $HOME/.kopid/cosmovisor/upgrades/v0.6.4/bin
+cp ~/go/bin/kopid ~/.kopid/cosmovisor/upgrades/v0.6.4/bin
+```
 ### Init
 ```
 kopid init Vinjan.Inc --chain-id kopi-test-5
