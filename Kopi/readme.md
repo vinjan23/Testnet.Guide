@@ -2,7 +2,7 @@
 cd $HOME
 git clone https://github.com/kopi-money/kopi.git
 cd kopi
-git checkout v0.6.4.1
+git checkout v0.6.4
 make install
 ```
 ```
