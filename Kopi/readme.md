@@ -21,7 +21,7 @@ kopid init Vinjan.Inc --chain-id kopi-test-5
 
 ### Genesis
 ```
-curl -Ls https://data.kopi.money/genesis-test-5.json > $HOME/.gaia/config/genesis.json
+wget -q https://data.kopi.money/genesis-test-5.json -O ~/.kopid/config/genesis.json
 ````
 
 ### Port
