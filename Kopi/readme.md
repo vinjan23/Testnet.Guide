@@ -12,20 +12,13 @@ git clone --quiet --depth 1 --branch v0.6.4.1 https://github.com/kopi-money/kopi
 cd kopi
 make install
 ```
-```
-mkdir -p $HOME/.kopid/cosmovisor/upgrades/v0.6.4/bin
-cp ~/go/bin/kopid ~/.kopid/cosmovisor/upgrades/v0.6.4/bin
-```
+
+
 ### Init
 ```
 kopid init Vinjan.Inc --chain-id kopi-test-5
 ```
-### Cosmovisor
-```
-mkdir -p ~/.kopid/cosmovisor/genesis/bin
-mkdir -p ~/.kopid/cosmovisor/upgrades
-cp ~/go/bin/kopid ~/.kopid/cosmovisor/genesis/bin
-```
+
 ### Genesis
 ```
 curl -Ls https://data.kopi.money/genesis-test-5.json > $HOME/.gaia/config/genesis.json
@@ -75,7 +68,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-### star
+### start
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable kopid
