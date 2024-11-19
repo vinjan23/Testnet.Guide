@@ -87,7 +87,16 @@ sudo journalctl -u kopid -f -o cat
 ```
 kopid status 2>&1 | jq .sync_info
 ```
-
+### Delete
+```
+sudo systemctl stop kopid
+sudo systemctl disable kopid
+sudo rm /etc/systemd/system/kopid.service
+sudo systemctl daemon-reload
+rm -f $(which kopid)
+rm -rf .kopid
+rm -rf kopi
+```
 
 
 
