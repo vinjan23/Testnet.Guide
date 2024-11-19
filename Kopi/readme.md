@@ -97,8 +97,8 @@ nano /root/.kopid/validator.json
 ```
 ```
 {
-  "pubkey": ,
-  "amount": "1000000ukopi",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"="},
+  "amount": "1000000000ukopi",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
