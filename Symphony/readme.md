@@ -32,18 +32,14 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ### Genesis
 ```
-wget -O $HOME/.symphonyd/config/genesis.json https://raw.githubusercontent.com/Orchestra-Labs/symphony/refs/heads/main/networks/symphony-testnet-4/genesis.json
+wget -O $HOME/.symphonyd/config/genesis.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/refs/heads/main/Symphony/genesis.json
 ```
-```
-curl -Ls https://snaphot.vinjan.xyz/symphony/genesis.json > $HOME/.symphonyd/config/genesis.json
-```
+
 ### Addrbook
 ```
 wget -O $HOME/.symphonyd/config/addrbook.json https://raw.githubusercontent.com/vinjan23/Testnet.Guide/refs/heads/main/Symphony/addrbook.json
 ```
-```
-curl -Ls https://snaphot.vinjan.xyz/symphony/addrbook.json > $HOME/.symphonyd/config/addrbook.json
-```
+
 ### Peer & Gas
 ```
 seeds="ed33b91ef0743a35206890044cbaac99c8241e26@94.130.143.184:21656,4660f4c136d4cf916d65b952a1ab67095fe1311f@65.21.234.111:25656"
