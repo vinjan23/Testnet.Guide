@@ -21,7 +21,7 @@ go version
 cd $HOME
 git clone https://github.com/elys-network/elys
 cd elys
-git checkout v0.47.0
+git checkout v0.51.0
 make install
 ```
 ### Cosmovisor
