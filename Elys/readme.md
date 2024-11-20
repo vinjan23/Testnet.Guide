@@ -112,8 +112,8 @@ $HOME/.elys/config/app.toml
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = "2000"|' \
--e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.elys/config/app.toml
 ```
 
@@ -144,24 +144,23 @@ EOF
 ```
 sudo tee /etc/systemd/system/elysd.service > /dev/null << EOF
 [Unit]
-Description=Elys Node
+Description=elys
 After=network-online.target
-
 [Service]
 User=$USER
 ExecStart=$(which cosmovisor) run start
-Restart=on-always
+Restart=on-failure
 RestartSec=3
-LimitNOFILE=65535
+LimitNOFILE=10000
 Environment="DAEMON_NAME=elysd"
 Environment="DAEMON_HOME=$HOME/.elys"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 Environment="UNSAFE_SKIP_BACKUP=true"
-
 [Install]
 WantedBy=multi-user.target
 EOF
+
 ```
 
 ### Start
