@@ -16,51 +16,15 @@ go version
 ### Build
 
 ```
-cd $HOME
-rm -rf bin
-mkdir bin && cd bin
+cd $HOME && mkdir -p go/bin/
 wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.4/wardend_Linux_x86_64.zip
 unzip wardend_Linux_x86_64.zip
-chmod +x wardend
-mv $HOME/bin/wardend $HOME/go/bin
-```
-### Cosmovisor
-```
-cd $HOME
-mkdir -p $HOME/.warden/cosmovisor/genesis/bin/
-wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.4/wardend_Linux_x86_64.zip
-unzip wardend_Linux_x86_64.zip
-chmod +x wardend
 rm -rf wardend_Linux_x86_64.zip
-cd $HOME
-```
-```
-mv $HOME/wardend $HOME/.warden/cosmovisor/genesis/bin/
-```
-```
-sudo ln -s $HOME/.warden/cosmovisor/genesis $HOME/.warden/cosmovisor/current -f
-sudo ln -s $HOME/.warden/cosmovisor/current/bin/wardend /usr/local/bin/wardend -f
-```
-### Update Cosmovisor
-```
-sudo systemctl stop wardend
-cd $HOME
-wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.5.4/wardend_Linux_x86_64.zip
-unzip wardend_Linux_x86_64.zip
 chmod +x wardend
-rm -rf wardend_Linux_x86_64.zip
+mv wardend $HOME/go/bin/wardend
 ```
-```
-mkdir -p $HOME/.warden/cosmovisor/upgrades/v0.5.4/bin
-mv $HOME/wardend $HOME/.warden/cosmovisor/upgrades/v0.5.4/bin
-```
-```
-sudo ln -sfn $HOME/.warden/cosmovisor/upgrades/v0.5.4 $HOME/.warden/cosmovisor/current
-sudo ln -sfn $HOME/.warden/cosmovisor/current/bin/wardend /usr/local/bin/wardend
-```
-```
-wardend version --long | grep -e commit -e version
-```
+
+
 ### Init
 ```
 wardend init (Moniker) 
