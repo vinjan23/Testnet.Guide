@@ -94,8 +94,8 @@ nano /root/.kopid/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"="},
-  "amount": "1000000000ukopi",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"VOsQXip+FBd77T0qakk7HFJ0R4aUzEPne+y6O3y7vjQ="},
+  "amount": "100000000ukopi",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
@@ -110,7 +110,7 @@ nano /root/.kopid/validator.json
 ```
 kopid tx staking create-validator $HOME/.kopid/validator.json \
 --from wallet \
---chain-id kopi-test-5
+--chain-id luwak-1
 ```
 
 ### Delete
