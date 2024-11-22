@@ -22,7 +22,7 @@ go version
 cd $HOME
 git clone https://github.com/archway-network/archway.git
 cd archway
-git checkout v9.0.0-rc4
+git checkout v10.0.0-rc1
 make install
 ```
 ```
@@ -42,6 +42,9 @@ make build
 ```
 ```
 mkdir -p $HOME/.archway/cosmovisor/upgrades/v10.0.0/bin
+mv build/archwayd $HOME/.archway/cosmovisor/upgrades/v10.0.0/bin/
+```
+```
 cp ~/go/bin/archwayd $HOME/.archway/cosmovisor/upgrades/v10.0.0/bin/
 ```
 ```
