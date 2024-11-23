@@ -25,11 +25,6 @@ cd archway
 git checkout v10.0.0-rc1
 make install
 ```
-```
-mkdir -p ~/.archway/cosmovisor/genesis/bin
-mkdir -p ~/.archway/cosmovisor/upgrades
-cp ~/go/bin/archwayd ~/.archway/cosmovisor/genesis/bin
-```
 
 ### Update
 ```
@@ -38,26 +33,11 @@ rm -rf archway
 git clone https://github.com/archway-network/archway.git
 cd archway || return
 git checkout v10.0.0-rc1
-make build
-```
-```
-mkdir -p $HOME/.archway/cosmovisor/upgrades/v10.0.0/bin
-mv build/archwayd $HOME/.archway/cosmovisor/upgrades/v10.0.0/bin/
-```
-```
-cp ~/go/bin/archwayd $HOME/.archway/cosmovisor/upgrades/v10.0.0/bin/
-```
-```
-cd $HOME/archway
-wget https://github.com/archway-network/archway/releases/download/v9.0.0-rc3/archwayd_linux_amd64
-chmod +x archwayd_linux_amd64
-sudo mv archwayd_linux_amd64 $HOME/go/bin/archwayd
+make install
 ```
 
 ### Init
-```
-MONIKER=
-```
+
 ```
 archwayd init vinjan --chain-id constantine-3
 ```
@@ -86,7 +66,7 @@ wget -O $HOME/.archway/config/addrbook.json https://raw.githubusercontent.com/vi
 ```
 SEEDS=""
 sed -i -e "s|^seeds *=.*|seeds = \"$SEEDS\"|" $HOME/.archway/config/config.toml
-peers="05413d5814b6efbb1cddec9ae240b2c638a127f5@222.106.187.14:53100,c56bad24170d2a7fa4b6316cc08b2432cc0b0db1@5.78.80.25:26656,2854e7247155c5c0c418de40ed168850b4c73c60@85.232.252.19:26156"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.archway/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"1000000000000aconst\"|" $HOME/.archway/config/app.toml
 ```
@@ -122,26 +102,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-```
-sudo tee /etc/systemd/system/archwayd.service > /dev/null << EOF
-[Unit]
-Description=Archway Node
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=archwayd"
-Environment="DAEMON_HOME=$HOME/.archway"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="UNSAFE_SKIP_BACKUP=true"
-[Install]
-WantedBy=multi-user.target
-EOF
-```
+
 
 ### Start
 ```
