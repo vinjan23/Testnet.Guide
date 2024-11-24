@@ -3,7 +3,7 @@ cd $HOME
 rm -rf symphony-oracle-voter
 git clone https://github.com/cmancrypto/symphony-oracle-voter.git
 cd symphony-oracle-voter
-git checkout v0.0.2r4
+git checkout v0.0.4r1
 ```
 ```
 nano $HOME/symphony-oracle-voter/.env
