@@ -10,8 +10,8 @@ nano $HOME/symphony-oracle-voter/.env
 ```
 # save wallet and validator address
 ```
-VALIDATOR_ADDRESS=symphonyvaloper1qklcckc2rrga6hzjg9kjyjvqlc4dl37xf6qdtm
-VALIDATOR_ACC_ADDRESS=symphony1qklcckc2rrga6hzjg9kjyjvqlc4dl37x6cg2ut
+VALIDATOR_ADDRESS=symphonyvaloper1nhfhxk692c9svf0th9ktlpsfsr6askcr5tcd3u
+VALIDATOR_ACC_ADDRESS=symphony1nhfhxk692c9svf0th9ktlpsfsr6askcr8fs2xv
 KEY_PASSWORD=vinjan23
 SYMPHONY_LCD = http://api-symphonyd.vinjan.xyz
 TENDERMINT_RPC= https://rpc-symphonyd.vinjan.xyz
