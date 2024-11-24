@@ -13,10 +13,8 @@ nano $HOME/symphony-oracle-voter/.env
 VALIDATOR_ADDRESS=symphonyvaloper1qklcckc2rrga6hzjg9kjyjvqlc4dl37xf6qdtm
 VALIDATOR_ACC_ADDRESS=symphony1qklcckc2rrga6hzjg9kjyjvqlc4dl37x6cg2ut
 KEY_PASSWORD=vinjan23
-SYMPHONY_LCD = http://localhost:21317
-SYMPHONYD_PATH=/root/symphony/build/symphonyd
-ORACLE_OPERATOR=symphony-oracle
-NODE_RPC=https://rpc-symphonyd.vinjan.xyz
+SYMPHONY_LCD = http://api-symphonyd.vinjan.xyz
+TENDERMINT_RPC= https://rpc-symphonyd.vinjan.xyz
 ```
 ```
 apt install python3-pip
