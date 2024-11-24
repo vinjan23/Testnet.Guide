@@ -13,12 +13,12 @@ nano $HOME/symphony-oracle-voter/.env
 VALIDATOR_ADDRESS=symphonyvaloper1nhfhxk692c9svf0th9ktlpsfsr6askcr5tcd3u
 VALIDATOR_ACC_ADDRESS=symphony1nhfhxk692c9svf0th9ktlpsfsr6askcr8fs2xv
 KEY_PASSWORD=vinjan23
-SYMPHONY_LCD = http://api-symphonyd.vinjan.xyz
+SYMPHONY_LCD = https://api-symphonyd.vinjan.xyz
 TENDERMINT_RPC= https://rpc-symphonyd.vinjan.xyz
 ```
 ```
-apt install python3-pip
-apt install python3.11-venv
+sudo apt install python3.10
+sudo apt install python3.10-venv
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
