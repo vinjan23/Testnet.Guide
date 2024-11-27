@@ -2,13 +2,13 @@
 cd $HOME
 git clone https://github.com/cosmos/gaia.git
 cd gaia
-git checkout v21.0.0-rc0
+git checkout v21.0.1
 make install
 ```
 ```
 cd $HOME/gaia
 git pull
-git checkout v21.0.0-rc0
+git checkout v21.0.1
 make install
 ```
 ### Binary Provider
