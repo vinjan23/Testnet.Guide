@@ -110,7 +110,7 @@ nano /root/.kopid/validator.json
 ```
 kopid tx staking create-validator $HOME/.kopid/validator.json \
 --from wallet \
---chain-id luwak-1
+--chain-id kopi-test-6
 ```
 
 ### Delete
