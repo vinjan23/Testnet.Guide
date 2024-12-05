@@ -140,10 +140,9 @@ symphonyd tx staking create-validator $HOME/.symphonyd/validator.json \
 ### Edit
 ```
 symphonyd tx staking edit-validator \
---new-moniker="" \
---identity="" \
---details="Staking Provider-IBC Relayer" \
---website="https://service.vinjan.xyz/" \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--commission-rate=0.1 \
 --chain-id=symphony-testnet-4 \
 --from=wallet \
 --gas-adjustment 1.5 \
