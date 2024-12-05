@@ -150,7 +150,6 @@ sudo systemctl stop gaiad
 sudo systemctl disable gaiad
 rm /etc/systemd/system/gaiad.service
 sudo systemctl daemon-reload
-rm -rf wardenprotocol
 rm -rf .gaia
 rm -rf gaia
 rm -rf $(which gaiad)
