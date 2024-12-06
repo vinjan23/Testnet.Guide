@@ -112,6 +112,14 @@ kopid tx staking create-validator $HOME/.kopid/validator.json \
 --from wallet \
 --chain-id kopi-test-6
 ```
+### WD
+```
+kopid tx distribution withdraw-rewards $(kopid keys show wallet --bech val -a) --commission --from wallet --chain-id kopi-test-6 --gas auto -y
+```
+### Delegate
+```
+kopid tx staking delegate $(kopid keys show wallet --bech val -a) 1000000ukopi --from wallet --chain-id kopi-test-6 --gas auto -y
+```
 
 ### Delete
 ```
