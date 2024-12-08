@@ -209,37 +209,32 @@ elysd q bank balances $(elysd keys show wallet -a)
 
 ### Validator
 ```
-elysd tx staking create-validator \
---amount 1000000uelys \
---pubkey $(elysd tendermint show-validator) \
---moniker "YOUR_MONIKER_NAME" \
---identity "YOUR_KEYBASE_ID" \
---details "YOUR_DETAILS" \
---website "YOUR_WEBSITE_URL" \
---chain-id elystestnet-1 \
---commission-rate 0.05 \
---commission-max-rate 0.20 \
---commission-max-change-rate 0.01 \
---min-self-delegation 1 \
+nano /root/.elys/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"goixGoLM9tuUdJ3DV6zyEWX8RkAOJGhOCIDIhJdJpDw="},
+  "amount": "25000000uelys",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider",
+  "commission-rate": "0.1",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+###
+```
+elysd tx staking create-validator $HOME/.elys/validator.json \
 --from wallet \
---gas-adjustment 1.4 \
+--chain-id elysicstestnet-1 \
 --gas auto \
---gas-prices 0uelys \
--y
-```
-### Edit
-```
-elysd tx staking edit-validator \
---new-moniker="vinjan" \
---identity="7C66E36EA2B71F68" \
---details="🎉Stake & Relayer Operator 🎉" \
---website=https://service.vinjan.xyz \
---chain-id elystestnet-1 \
---from=wallet \
---gas-adjustment=1.4 \
---gas=auto \
---gas-prices=0.00025uelys \
--y
+--gas-adjustment 1.2 \
+--fees 250uelys \
+--node https://elys-testnet-rpc.itrocket.net
 ```
 ### Unjail
 ```
