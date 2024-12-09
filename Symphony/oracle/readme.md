@@ -8,7 +8,7 @@ git checkout v0.0.4r2
 ```
 cd $HOME/symphony-oracle-voter
 git pull 
-git checkout v0.0.4r2
+git checkout v0.0.4r3
 ```
 ```
 nano $HOME/symphony-oracle-voter/.env
