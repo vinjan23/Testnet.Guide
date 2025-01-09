@@ -149,7 +149,7 @@ sudo systemctl restart starsd && sudo journalctl -u starsd -f -o cat
 ```
 
 ```
-starsd status 2>&1 | jq .SyncInfo
+starsd status 2>&1 | jq .sync_info
 ```
 ```
 starsd keys add ibc-star
