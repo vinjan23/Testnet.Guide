@@ -6,7 +6,21 @@ git clone --quiet --depth 1 --branch v0.6.5.1 https://github.com/kopi-money/kopi
 cd kopi
 make install
 ```
-
+```
+rm /usr/lib/libwasmvm.x86_64.so
+wget -P /usr/lib https://github.com/CosmWasm/wasmvm/releases/download/v2.1.4/libwasmvm.x86_64.so
+sudo ldconfig
+```
+```
+cd $HOME
+rm -rf kopi
+git clone --quiet --depth 1 --branch v7-rc1 https://github.com/kopi-money/kopi.git
+cd kopi
+make install
+```
+```
+kopid version --long | grep -e commit -e version
+```
 
 ### Init
 ```
