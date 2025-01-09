@@ -14,7 +14,7 @@ make install
 ```
 cd $HOME || return
 rm -rf stargaze
-https://github.com/public-awesome/stargaze stargaze.git
+https://github.com/public-awesome/stargaze.git
 cd stargaze || return
 git checkout v15.0.0-beta.2-testnet
 make install
