@@ -1,4 +1,14 @@
 ```
+ver="1.22.0"
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+source ~/.bash_profile
+go version
+```
+```
 cd $HOME
 git clone https://github.com/public-awesome/stargaze stargaze
 cd stargaze
@@ -11,14 +21,7 @@ git pull
 git checkout v14.0.0-rc.2
 make install
 ```
-```
-cd $HOME || return
-rm -rf stargaze
-https://github.com/public-awesome/stargaze.git
-cd stargaze || return
-git checkout v15.0.0-beta.2-testnet
-make install
-```
+
 ```
 starsd init vinjan --chain-id elgafar-1
 starsd config chain-id elgafar-1
@@ -28,7 +31,18 @@ mkdir -p ~/.starsd/cosmovisor/genesis/bin
 mkdir -p ~/.starsd/cosmovisor/upgrades
 cp ~/go/bin/starsd ~/.starsd/cosmovisor/genesis/bin
 ```
-
+```
+cd $HOME || return
+rm -rf stargaze
+https://github.com/public-awesome/stargaze.git
+cd stargaze || return
+git checkout v15.0.0-beta.2-testnet
+make install
+```
+```
+mkdir -p $HOME/.starsd/cosmovisor/upgrades/v15/bin
+cp ~/go/bin/starsd ~/.starsd/cosmovisor/upgrades/v15/bin
+```
 ### Port
 ```
 PORT=54
@@ -70,10 +84,7 @@ cd stargaze || return
 git checkout v15.0.0-beta.2-testnet
 make build
 ```
-```
-mkdir -p $HOME/.starsd/cosmovisor/upgrades/v15b2/bin
-cp ~/go/bin/starsd ~/.starsd/cosmovisor/upgrades/v15b2/bin
-```
+
 ### Service
 ```
 sudo tee /etc/systemd/system/starsd.service > /dev/null <<EOF
