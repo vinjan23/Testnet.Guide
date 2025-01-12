@@ -134,6 +134,10 @@ kopid tx distribution withdraw-rewards $(kopid keys show wallet --bech val -a) -
 ```
 kopid tx staking delegate $(kopid keys show wallet --bech val -a) 1000000ukopi --from wallet --chain-id kopi-test-6 --gas auto -y
 ```
+### Vote
+```
+kopid tx gov vote 28 yes --from wallet --chain-id kopi-test-6 --gas auto -y
+```
 
 ### Delete
 ```
