@@ -40,6 +40,16 @@ mkdir -p $HOME/.gaia/cosmovisor/upgrades/v22/bin
 mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v22/bin/
 rm -rf build
 ```
+```
+mkdir -p $HOME/.gaia/cosmovisor/upgrades/v22/bin
+cd $HOME
+rm -rf gaia
+git clone https://github.com/cosmos/gaia.git
+cd gaia
+git checkout v22.0.0-rc0
+make install
+cp -a ~/go/bin/gaiad ~/.gaia/cosmovisor/upgrades/v22/bin/
+```
 ### Cek Version
 ```
 $HOME/.gaia/cosmovisor/upgrades/v22/bin/gaiad version --long | grep -e commit -e version
