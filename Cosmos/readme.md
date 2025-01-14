@@ -22,7 +22,17 @@ make install
 ### Cosmovisor
 ```
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
+```
+```
 mkdir -p ~/.gaia/cosmovisor/genesis/bin
+mv build/gaiad $HOME/.gaia/cosmovisor/genesis/bin/
+rm -rf build
+```
+```
+ln -s $HOME/.gaia/cosmovisor/genesis $HOME/.gaia/cosmovisor/current -f
+sudo ln -s $HOME/.gaia/cosmovisor/current/bin/gaiad /usr/local/bin/gaiad -f
+```
+```
 mkdir -p ~/.gaia/cosmovisor/upgrades
 cp ~/go/bin/gaiad ~/.gaia/cosmovisor/genesis/bin
 ```
@@ -136,12 +146,11 @@ User=$USER
 ExecStart=$(which cosmovisor) run start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=gaiad"
+LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.gaia"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="DAEMON_NAME=gaiad"
 Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.gaia/cosmovisor/current/bin"
 [Install]
 WantedBy=multi-user.target
 EOF
