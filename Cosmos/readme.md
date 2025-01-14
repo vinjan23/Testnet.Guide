@@ -28,10 +28,10 @@ cp ~/go/bin/gaiad ~/.gaia/cosmovisor/genesis/bin
 ```
 ### Update
 ```
-cd $HOME || return
+cd $HOME
 rm -rf gaia
-git clone https://github.com/cosmos/gaia
-cd gaia || return
+git clone https://github.com/cosmos/gaia.git
+cd gaia
 git checkout v22.0.0-rc0
 make build
 ```
