@@ -40,6 +40,11 @@ mkdir -p $HOME/.gaia/cosmovisor/upgrades/v22/bin
 mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v22/bin/
 rm -rf build
 ```
+### Cek Version
+```
+$HOME/.gaia/cosmovisor/upgrades/v22/bin/gaiad version --long | grep -e commit -e version
+```
+
 ### Init
 ```
 gaiad init vinjan --chain-id=theta-testnet-001
