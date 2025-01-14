@@ -32,12 +32,12 @@ cd $HOME || return
 rm -rf gaia
 git clone https://github.com/cosmos/gaia
 cd gaia || return
-git checkout v21.0.0-rc1
+git checkout v22.0.0-rc0
 make build
 ```
 ```
-mkdir -p $HOME/.gaia/cosmovisor/upgrades/v21.0.0-rc1/bin
-mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v21.0.0-rc1/bin/
+mkdir -p $HOME/.gaia/cosmovisor/upgrades/v22/bin
+mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v22/bin/
 rm -rf build
 ```
 ### Init
