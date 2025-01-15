@@ -1,30 +1,19 @@
-```
-cd $HOME
-git clone https://github.com/cosmos/gaia.git
-cd gaia
-git checkout v21.0.1
-make install
-```
-```
-cd $HOME/gaia
-git pull
-git checkout v21.0.1
-make install
-```
+
 ### Binary Provider
 ```
 cd $HOME
-git clone https://github.com/cosmos/gaia
+rm -rf gaia
+git clone https://github.com/cosmos/gaia.git
 cd gaia
-git checkout v21.0.0-rc1
-make install
+git checkout v22.0.0-rc0
+make build
 ```
 ### Cosmovisor
 ```
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 ```
 ```
-mkdir -p ~/.gaia/cosmovisor/genesis/bin
+mkdir -p $HOME/.gaia/cosmovisor/genesis/bin
 mv build/gaiad $HOME/.gaia/cosmovisor/genesis/bin/
 rm -rf build
 ```
@@ -32,6 +21,7 @@ rm -rf build
 ln -s $HOME/.gaia/cosmovisor/genesis $HOME/.gaia/cosmovisor/current -f
 sudo ln -s $HOME/.gaia/cosmovisor/current/bin/gaiad /usr/local/bin/gaiad -f
 ```
+
 ```
 mkdir -p ~/.gaia/cosmovisor/upgrades
 cp ~/go/bin/gaiad ~/.gaia/cosmovisor/genesis/bin
@@ -119,23 +109,6 @@ sed -i \
 $HOME/.gaia/config/app.toml
 ```
 ### Service
-```
-sudo tee /etc/systemd/system/gaiad.service > /dev/null <<EOF
-[Unit]
-Description=gaia
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$(which gaiad) start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
 ```
 sudo tee /etc/systemd/system/gaiad.service > /dev/null << EOF
 [Unit]
