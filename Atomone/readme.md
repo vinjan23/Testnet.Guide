@@ -39,7 +39,5 @@ atomoned genesis gentx wallet 1000000uatone \
 --website "https://service.vinjan.xyz" \
 --details "Stake Provider & IBC Relayer" \
 --identity "7C66E36EA2B71F68" \
---security-contact "vinjan@gmail.com" \
---gas-prices 0.001uatone \
---gas auto
+--security-contact "vinjan@gmail.com"
 ````
