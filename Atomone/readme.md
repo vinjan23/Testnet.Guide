@@ -16,7 +16,7 @@ PORT=15
 atomoned config node tcp://localhost:${PORT}657
 ```
 ```
-sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.atomone/config/config.toml
+sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.atomone/config/config.toml
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"localhost:9090\"%address = \"localhost:${PORT}090\"%; s%^address = \"localhost:9091\"%address = \"localhost:${PORT}091\"%" $HOME/.atomone/config/app.toml
 ```
 
@@ -28,7 +28,7 @@ atomoned genesis add-genesis-account wallet 10000000uatone
 ```
 
 ```
-atomoned genesis gentx your-key-name 1000000uatone \
+atomoned genesis gentx wallet 1000000uatone \
 --node-id $(atomoned tendermint show-node-id) \
 --chain-id atomone-testnet-1 \
 --commission-rate 0.05 \
@@ -40,6 +40,6 @@ atomoned genesis gentx your-key-name 1000000uatone \
 --details "Stake Provider & IBC Relayer" \
 --identity "7C66E36EA2B71F68" \
 --security-contact "security@foo.network" \
---gas-prices 0.001 \
+--gas-prices 0.001uatone \
 --gas auto
 ````
