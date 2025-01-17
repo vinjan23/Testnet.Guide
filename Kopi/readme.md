@@ -11,10 +11,11 @@ rm /usr/lib/libwasmvm.x86_64.so
 wget -P /usr/lib https://github.com/CosmWasm/wasmvm/releases/download/v2.1.4/libwasmvm.x86_64.so
 sudo ldconfig
 ```
+### Update
 ```
 cd $HOME
 rm -rf kopi
-git clone --quiet --depth 1 --branch v7-rc4 https://github.com/kopi-money/kopi.git
+git clone --quiet --depth 1 --branch v7-rc5 https://github.com/kopi-money/kopi.git
 cd kopi
 make install
 ```
@@ -137,6 +138,19 @@ kopid tx staking delegate $(kopid keys show wallet --bech val -a) 1000000ukopi -
 ### Vote
 ```
 kopid tx gov vote 28 yes --from wallet --chain-id kopi-test-6 --gas auto -y
+```
+### Snapshot
+```
+cd cosmos-pruner
+sudo systemctl stop kopid
+./build/cosmos-pruner prune ~/.kopid/data
+```
+```
+cd $HOME/.kopid
+tar cfv - data | lz4 -9 > /var/www/snap-t/kopi/latest.tar.lz4
+```
+```
+curl -L https://snap-t.vinjan.xyz./kopi/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.kopid
 ```
 
 ### Delete
