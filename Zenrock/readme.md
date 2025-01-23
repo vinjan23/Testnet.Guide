@@ -81,4 +81,60 @@ sudo systemctl enable zenrockd
 sudo systemctl restart zenrockd
 sudo journalctl -u zenrockd -f -o cat
 ```
+###
+```
+zenrockd status 2>&1 | jq .sync_info
+```
+### Wallet
+```
+zenrockd keys add wallet
+```
+### Ba;ance
+```
+zenrockd q bank balances $(zenrockd keys show wallet -a)
+```
+### Validator
+```
+zenrockd tendermint show-validator
+```
+```
+nano /root/.zrchain/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"BGkL5FbltKyWipHjnHL9gg2/0dx52p7f0fVv/v7L4Ic="},
+  "amount": "999999900000urock",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+```
+zenrockd tx validation create-validator $HOME/.zrchain/validator.json \
+--from=wallet \
+--chain-id=gardia-3 \
+--gas-adjustment 1.5 \
+--gas-prices 27urock \
+--gas auto    
+```
 
+### Sidecar
+```
+mkdir -p $HOME/.zrchain/sidecar/bin
+mkdir -p $HOME/.zrchain/sidecar/keys
+```
+```
+wget -O $HOME/.zrchain/sidecar/bin/zenrock-sidecar https://github.com/zenrocklabs/zrchain/releases/download/v5.8.7/validator_sidecar
+chmod +x $HOME/.zrchain/sidecar/bin/zenrock-sidecar
+```
+```
+cd $HOME
+git clone https://github.com/zenrocklabs/zenrock-validators
+```
+999993027601
