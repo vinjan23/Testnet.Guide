@@ -208,7 +208,6 @@ After=network-online.target
 [Service]
 User=$USER
 ExecStart=$HOME/.zrchain/sidecar/bin/validator_sidecar
-WorkingDirectory=$HOME/.zrchain/sidecar
 Restart=on-failure
 RestartSec=30
 LimitNOFILE=65535
