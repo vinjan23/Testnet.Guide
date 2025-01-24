@@ -130,8 +130,8 @@ mkdir -p $HOME/.zrchain/sidecar/bin
 mkdir -p $HOME/.zrchain/sidecar/keys
 ```
 ```
-wget -O $HOME/.zrchain/sidecar/bin/zenrock-sidecar https://github.com/zenrocklabs/zrchain/releases/download/v5.8.7/validator_sidecar
-chmod +x $HOME/.zrchain/sidecar/bin/zenrock-sidecar
+wget -O $HOME/.zrchain/sidecar/bin/validator_sidecar https://github.com/zenrocklabs/zrchain/releases/download/v5.8.7/validator_sidecar
+chmod +x $HOME/.zrchain/sidecar/bin/validator_sidecar
 ```
 ### Clone Repo Zenrock Validator
 ```
@@ -182,6 +182,49 @@ BLS_KEY_PATH=$bls_output_file
 cp $HOME/zenrock-validators/scaffold_setup/configs_testnet/eigen_operator_config.yaml $HOME/.zrchain/sidecar/
 cp $HOME/zenrock-validators/scaffold_setup/configs_testnet/config.yaml $HOME/.zrchain/sidecar/
 ```
+### Change Data Config Yaml
+```
+sed -i "s|EIGEN_OPERATOR_CONFIG|$EIGEN_OPERATOR_CONFIG|g" "$HOME/.zrchain/sidecar/config.yaml"
+sed -i "s|TESTNET_HOLESKY_ENDPOINT|$TESTNET_HOLESKY_ENDPOINT|g" "$HOME/.zrchain/sidecar/config.yaml"
+sed -i "s|MAINNET_ENDPOINT|$MAINNET_ENDPOINT|g" "$HOME/.zrchain/sidecar/config.yaml"
+sed -i "s|/root-data|$HOME/.zrchain|g" "$HOME/.zrchain/sidecar/config.yaml"
+```
+### Change Data Eigen Operator Config yaml
+```
+sed -i "s|OPERATOR_VALIDATOR_ADDRESS|$OPERATOR_VALIDATOR_ADDRESS|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+sed -i "s|OPERATOR_ADDRESS|$OPERATOR_ADDRESS|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+sed -i "s|ETH_RPC_URL|$ETH_RPC_URL|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+sed -i "s|ETH_WS_URL|$ETH_WS_URL|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+sed -i "s|ECDSA_KEY_PATH|$ECDSA_KEY_PATH|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+sed -i "s|BLS_KEY_PATH|$BLS_KEY_PATH|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+```
+### Service
+```
+sudo tee /etc/systemd/system/zenrock-sidecar.service > /dev/null <<EOF
+[Unit]
+Description=Validator Sidecar
+After=network-online.target
 
+[Service]
+User=$USER
+ExecStart=$HOME/.zrchain/sidecar/bin/validator_sidecar
+WorkingDirectory=$HOME/.zrchain/sidecar
+Restart=on-failure
+RestartSec=30
+LimitNOFILE=65535
+Environment="OPERATOR_BLS_KEY_PASSWORD=$key_pass"
+Environment="OPERATOR_ECDSA_KEY_PASSWORD=$key_pass"
+Environment="SIDECAR_CONFIG_FILE=$HOME/.zrchain/sidecar/config.yaml"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+### Start
+```
+systemctl daemon-reload
+systemctl enable zenrock-sidecar
+systemctl restart zenrock-sidecar && journalctl -u zenrock-sidecar -f -o cat
+```
 
 
