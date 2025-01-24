@@ -119,9 +119,18 @@ nano /root/.zrchain/validator.json
 zenrockd tx validation create-validator $HOME/.zrchain/validator.json \
 --from=wallet \
 --chain-id=gardia-3 \
---gas-adjustment 1.5 \
---gas-prices 27urock \
---gas auto    
+--gas-adjustment 1.4 \
+--gas-prices 2.5urock \
+--gas auto \
+-y    
+```
+### Delegate
+```
+zenrockd tx validation delegate $(zenrockd keys show wallet --bech val -a) 1000000000urock --from wallet --chain-id gardia-3 --gas-adjustment 1.4 --gas auto --gas-prices 2.5urock -y
+```
+### WD
+```
+zenrockd tx distribution withdraw-rewards $(zenrockd keys show wallet --bech val -a) --commission --from wallet --chain-id gardia-3 --gas-adjustment 1.4 --gas auto --gas-prices 2.5urock -y
 ```
 
 ### Sidecar Binary
