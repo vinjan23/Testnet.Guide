@@ -124,7 +124,7 @@ zenrockd tx validation create-validator $HOME/.zrchain/validator.json \
 --gas auto    
 ```
 
-### Sidecar
+### Sidecar Binary
 ```
 mkdir -p $HOME/.zrchain/sidecar/bin
 mkdir -p $HOME/.zrchain/sidecar/keys
@@ -133,8 +133,55 @@ mkdir -p $HOME/.zrchain/sidecar/keys
 wget -O $HOME/.zrchain/sidecar/bin/zenrock-sidecar https://github.com/zenrocklabs/zrchain/releases/download/v5.8.7/validator_sidecar
 chmod +x $HOME/.zrchain/sidecar/bin/zenrock-sidecar
 ```
+### Clone Repo Zenrock Validator
 ```
 cd $HOME
 git clone https://github.com/zenrocklabs/zenrock-validators
 ```
-999993027601
+### Set Pass
+```
+read -p "Enter password for the keys: " key_pass
+```
+### BLS Binary
+```
+cd $HOME/zenrock-validators/utils/keygen/bls && go build
+```
+### BLS Keys
+```
+bls_output_file=$HOME/.zrchain/sidecar/keys/bls.key.json
+$HOME/zenrock-validators/utils/keygen/bls/bls --password $key_pass -output-file $bls_output_file
+```
+### ECDSA Binary
+```
+cd $HOME/zenrock-validators/utils/keygen/ecdsa && go build
+```
+### ECDSA KEYS
+```
+ecdsa_output_file=$HOME/.zrchain/sidecar/keys/ecdsa.key.json
+ecdsa_creation=$($HOME/zenrock-validators/utils/keygen/ecdsa/ecdsa --password $key_pass -output-file $ecdsa_output_file)
+ecdsa_address=$(echo "$ecdsa_creation" | grep "Public address" | cut -d: -f2)
+```
+### Output Address EVM
+```
+echo "ecdsa address: $ecdsa_address"
+```
+### Set Variable
+```
+EIGEN_OPERATOR_CONFIG="$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+TESTNET_HOLESKY_ENDPOINT="https://holesky.infura.io/v3/4d6554fe2cd54b20a4d90e602ecca806"
+MAINNET_ENDPOINT="https://mainnet.infura.io/v3/4d6554fe2cd54b20a4d90e602ecca806"
+OPERATOR_VALIDATOR_ADDRESS=$(zenrockd keys show wallet --bech val -a)
+OPERATOR_ADDRESS=$ecdsa_address
+ETH_RPC_URL="https://holesky.infura.io/v3/4d6554fe2cd54b20a4d90e602ecca806"
+ETH_WS_URL="wss://holesky.infura.io/ws/v3/4d6554fe2cd54b20a4d90e602ecca806"
+ECDSA_KEY_PATH=$ecdsa_output_file
+BLS_KEY_PATH=$bls_output_file
+```
+### Copy
+```
+cp $HOME/zenrock-validators/scaffold_setup/configs_testnet/eigen_operator_config.yaml $HOME/.zrchain/sidecar/
+cp $HOME/zenrock-validators/scaffold_setup/configs_testnet/config.yaml $HOME/.zrchain/sidecar/
+```
+
+
+
