@@ -13,7 +13,7 @@ go version
 ```
 cd $HOME
 rm -rf kopi
-git clone --quiet --depth 1 --branch v0.6.5.1 https://github.com/kopi-money/kopi.git
+git clone --quiet --depth 1 --branch v11-rc1 https://github.com/kopi-money/kopi.git
 cd kopi
 make install
 ```
@@ -27,7 +27,7 @@ sudo ldconfig
 ```
 cd $HOME
 rm -rf kopi
-git clone --quiet --depth 1 --branch v7-rc5 https://github.com/kopi-money/kopi.git
+git clone --quiet --depth 1 --branch v11-rc1 https://github.com/kopi-money/kopi.git
 cd kopi
 make install
 ```
