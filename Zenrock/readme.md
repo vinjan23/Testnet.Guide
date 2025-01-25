@@ -218,6 +218,9 @@ sed -i "s|ETH_WS_URL|$ETH_WS_URL|g" "$HOME/.zrchain/sidecar/eigen_operator_confi
 sed -i "s|ECDSA_KEY_PATH|$ECDSA_KEY_PATH|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
 sed -i "s|BLS_KEY_PATH|$BLS_KEY_PATH|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
 ```
+```
+sed -i "s|localhost:9790|localhost:13090|g" "$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+```
 ### Service
 ```
 sudo tee /etc/systemd/system/zenrock-sidecar.service > /dev/null <<EOF
