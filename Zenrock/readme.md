@@ -186,6 +186,17 @@ ETH_WS_URL="wss://holesky.infura.io/ws/v3/4d6554fe2cd54b20a4d90e602ecca806"
 ECDSA_KEY_PATH=$ecdsa_output_file
 BLS_KEY_PATH=$bls_output_file
 ```
+```
+EIGEN_OPERATOR_CONFIG="$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
+TESTNET_HOLESKY_ENDPOINT="https://eth-holesky.g.alchemy.com/v2/OlXnWD_AOPxzIQnZGY_gzxWT4ZVCaYWr"
+MAINNET_ENDPOINT="https://eth-mainnet.g.alchemy.com/v2/OlXnWD_AOPxzIQnZGY_gzxWT4ZVCaYWr"
+OPERATOR_VALIDATOR_ADDRESS=$(zenrockd keys show wallet --bech val -a)
+OPERATOR_ADDRESS=$ecdsa_address
+ETH_RPC_URL="https://eth-holesky.g.alchemy.com/v2/OlXnWD_AOPxzIQnZGY_gzxWT4ZVCaYWr"
+ETH_WS_URL="wss://eth-holesky.g.alchemy.com/v2/OlXnWD_AOPxzIQnZGY_gzxWT4ZVCaYWr"
+ECDSA_KEY_PATH=$ecdsa_output_file
+BLS_KEY_PATH=$bls_output_file
+```
 ### Copy
 ```
 cp $HOME/zenrock-validators/scaffold_setup/configs_testnet/eigen_operator_config.yaml $HOME/.zrchain/sidecar/
@@ -234,5 +245,8 @@ systemctl daemon-reload
 systemctl enable zenrock-sidecar
 systemctl restart zenrock-sidecar && journalctl -u zenrock-sidecar -f -o cat
 ```
+
+
+
 
 
