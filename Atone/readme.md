@@ -87,7 +87,7 @@ atomoned q bank balances $(atomoned keys show wallet -a)
 ### Validator
 ```
 atomoned tx staking create-validator \
---amount=20000000uatone \
+--amount=19000000uatone \
 --pubkey=$(atomoned tendermint show-validator) \
 --moniker="Vinjan.Inc" \
 --identity="7C66E36EA2B71F68" \
@@ -99,7 +99,9 @@ atomoned tx staking create-validator \
 --commission-max-change-rate="0.05" \
 --min-self-delegation=1 \
 --from=wallet \
---gas=auto
+--gas-adjustment 1.5 \
+--gas-prices 0.025uatone \
+--gas auto
 ```
 
 ### Delegate
