@@ -104,11 +104,11 @@ atomoned tx staking create-validator \
 
 ### Delegate
 ```
-atomoned tx staking delegate $(atomoned keys show wallet --bech val -a) 1000000uatone --from wallet --chain-id atomone-1 --fees 5000uatone
+atomoned tx staking delegate $(atomoned keys show wallet --bech val -a) 1000000uatone --from wallet --chain-id atomone-testnet-1 --gas auto
 ```
 ### WD
 ```
-atomoned tx distribution withdraw-rewards $(atomoned keys show wallet --bech val -a) --commission --from wallet --chain-id atomone-1 --fees 5000uatone
+atomoned tx distribution withdraw-rewards $(atomoned keys show wallet --bech val -a) --commission --from wallet --chain-id atomone-testnet-1 --gas auto 
 ```
 
 ### Own Peer
