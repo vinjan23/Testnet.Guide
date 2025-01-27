@@ -87,14 +87,14 @@ atomoned q bank balances $(atomoned keys show wallet -a)
 ### Validator
 ```
 atomoned tx staking create-validator \
---amount=10000000uatone \
+--amount=20000000uatone \
 --pubkey=$(atomoned tendermint show-validator) \
 --moniker="Vinjan.Inc" \
 --identity="7C66E36EA2B71F68" \
 --website="https://service.vinjan.xyz" \
 --details="Stake Provider & IBC Relayer" \
 --chain-id=atomone-testnet-1 \
---commission-rate="0.05" \
+--commission-rate="0.1" \
 --commission-max-rate="0.20" \
 --commission-max-change-rate="0.05" \
 --min-self-delegation=1 \
