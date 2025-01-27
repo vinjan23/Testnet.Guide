@@ -119,6 +119,10 @@ echo $(atomoned tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/
 ```
 curl -sS http://localhost:15657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
+```
+atomoned tendermint unsafe-reset-all
+```
+
 ### Delete
 ```
 sudo systemctl stop atomoned
