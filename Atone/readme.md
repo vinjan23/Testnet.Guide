@@ -22,7 +22,10 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 ```
 ### Genesis
 ```
-curl -L s $HOME/.atomone/config/genesis.json https://atomone.fra1.digitaloceanspaces.com/atomone-testnet-1/genesis.json
+curl -Ls $HOME/.atomone/config/genesis.json https://atomone.fra1.digitaloceanspaces.com/atomone-testnet-1/genesis.json
+```
+```
+md5sum ~/.atomone/config/genesis.json
 ```
 ### Peer Gas
 ```
