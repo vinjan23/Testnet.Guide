@@ -22,7 +22,7 @@ sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:${P
 ```
 ### Genesis
 ```
-wget -O $HOME/.atomone/config/genesis.json https://atomone.fra1.digitaloceanspaces.com/atomone-testnet-1/genesis.json
+curl -L s $HOME/.atomone/config/genesis.json https://atomone.fra1.digitaloceanspaces.com/atomone-testnet-1/genesis.json
 ```
 ### Peer Gas
 ```
@@ -76,6 +76,11 @@ sudo journalctl -u atomoned -f -o cat
 ```
 atomoned status 2>&1 | jq .SyncInfo
 ```
+### Reset Data
+```
+atomoned tendermint unsafe-reset-all --home $HOME/.atomone --keep-addr-book
+```
+
 ### Wallet
 ```
 atomoned keys add wallet
