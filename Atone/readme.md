@@ -118,6 +118,10 @@ atomoned tx staking delegate $(atomoned keys show wallet --bech val -a) 1000000u
 ```
 atomoned tx distribution withdraw-rewards $(atomoned keys show wallet --bech val -a) --commission --from wallet --chain-id atomone-testnet-1 --gas auto 
 ```
+### Send
+```
+atomoned tx bank send wallet <TO_WALLET_ADDRESS> 1000000uatone --from wallet --chain-id atomone-testnet-1 --gas auto
+```
 
 ### Own Peer
 ```
