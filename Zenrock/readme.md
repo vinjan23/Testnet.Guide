@@ -6,10 +6,21 @@ wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.10.5/zen
 chmod +x zenrockd
 mv $HOME/zenrock/zenrockd $HOME/go/bin/
 ```
+
+### Update
+```
+cd $HOME/zenrock
+wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.11.4/zenrockd
+chmod +x zenrockd
+```
+```
+sudo systemctl stop zenrockd
+mv $HOME/zenrock/zenrockd $(which zenrockd)
+```
 ```
 zenrockd version --long | grep -e version -e commit
 ```
-# 30ff6dcae5e1279c338f948cd8754530cd05b452
+`05a1af3`
 
 ### Init
 ```
