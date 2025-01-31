@@ -14,6 +14,9 @@ wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.11.4/zen
 chmod +x zenrockd
 ```
 ```
+$HOME/zenrock/zenrockd version --long | grep -e version -e commit
+```
+```
 sudo systemctl stop zenrockd
 mv $HOME/zenrock/zenrockd $(which zenrockd)
 ```
