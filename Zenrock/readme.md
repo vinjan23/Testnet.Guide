@@ -24,7 +24,9 @@ mv $HOME/zenrock/zenrockd $(which zenrockd)
 zenrockd version --long | grep -e version -e commit
 ```
 `05a1af3`
-
+```
+sha256sum $HOME/zenrock/zenrockd
+```
 ### Init
 ```
 zenrockd init injan.Inc --chain-id gardia-3
@@ -33,9 +35,11 @@ zenrockd init injan.Inc --chain-id gardia-3
 ```
 curl -s https://rpc.gardia.zenrocklabs.io/genesis | jq .result.genesis > $HOME/.zrchain/config/genesis.json
 ```
-# check genesis
+### check genesis
+```
 sha256sum ~/.zrchain/config/genesis.json
-# 0a43001a0a55a5ce41d1faa31811394cf8dfdb9c0a6d4b21f677d88ec9bce783
+```
+`0a43001a0a55a5ce41d1faa31811394cf8dfdb9c0a6d4b21f677d88ec9bce783`
 
 ### Port
 ```
