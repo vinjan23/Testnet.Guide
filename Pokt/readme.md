@@ -77,6 +77,9 @@ poktrolld status 2>&1 | jq .sync_info
 poktrolld q bank balances $(poktrolld keys show wallet -a)
 ```
 
+```
+poktrolld tx slashing unjail --from wallet --chain-id pocket-beta --fees 10upokt
+```
 
 
 
