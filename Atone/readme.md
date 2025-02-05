@@ -6,6 +6,18 @@ cd atomone
 git checkout v1.0.0
 make install
 ```
+### Update
+```
+cd $HOME
+rm -rf atomone
+git clone https://github.com/atomone-hub/atomone.git
+cd atomone
+git checkout v1.0.0
+make install
+```
+```
+atomoned version --long | grep -e commit -e version
+```
 
 ### Init
 ```
