@@ -58,6 +58,40 @@ sudo systemctl enable uniond
 sudo systemctl restart uniond
 sudo journalctl -u uniond -f -o cat
 ```
+```
+uniond status 2>&1 | jq .sync_info
+```
+```
+uniond keys add wallet
+```
+```
+uniond q bank balances $(uniond keys show wallet -a)
+```
+```
+uniond tendermint show-validator
+```
+```
+nano /root/.union/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"VOsQXip+FBd77T0qakk7HFJ0R4aUzEPne+y6O3y7vjQ="},
+  "amount": "1000000muno",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+
+
+
+
 
 
 
