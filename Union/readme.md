@@ -65,7 +65,7 @@ uniond status 2>&1 | jq .sync_info
 uniond keys add wallet
 ```
 ```
-uniond q bank balances $(uniond keys show wallet -a)
+uniond q bank balances union1sh0s29750v5mn6j2slep4j0tyquafms26r6j7
 ```
 ```
 uniond tendermint show-validator
@@ -75,8 +75,8 @@ nano /root/.union/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"VOsQXip+FBd77T0qakk7HFJ0R4aUzEPne+y6O3y7vjQ="},
-  "amount": "1000000muno",
+  "pubkey": {"@type":"/cosmos.crypto.bn254.PubKey","key":"qvl6KnDPV3j1bnvaokOdoGapTWZgXWI56W6O+ucqJmA="},
+  "amount": "2000000muno",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
@@ -88,7 +88,11 @@ nano /root/.union/validator.json
   "min-self-delegation": "1"
 }
 ```
-
+```
+uniond union-staking create-union-validator $HOME/.union/validator.json $POSSESSION_PROOF \
+  --from wallet \
+  --chain-id union-testnet-9
+```
 
 
 
