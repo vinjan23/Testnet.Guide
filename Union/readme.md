@@ -93,6 +93,9 @@ uniond union-staking create-union-validator $HOME/.union/validator.json $POSSESS
   --from wallet \
   --chain-id union-testnet-9
 ```
+```
+uniond tx staking delegate $(uniond keys show wallet --bech val -a) 1000000muno --from wallet --chain-id union-testnet-9
+```
 
 
 
