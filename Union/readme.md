@@ -9,6 +9,9 @@ chmod u+x ~/go/bin/uniond
 ### Init
 ```
 uniond init Vinjan.Inc --chain-id union-testnet-9
+alias uniond='uniond --home=$HOME/.union/'
+uniond config set client keyring-backend test
+uniond config set client node tcp://localhost:35657
 ```
 ###
 ```
