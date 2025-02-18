@@ -52,7 +52,7 @@ cp -a ~/go/bin/gaiad ~/.gaia/cosmovisor/upgrades/v22.2.0/bin/
 ```
 ### Cek Version
 ```
-$HOME/.gaia/cosmovisor/upgrades/v22/bin/gaiad version --long | grep -e commit -e version
+$HOME/.gaia/cosmovisor/upgrades/v22.2.0/bin/gaiad version --long | grep -e commit -e version
 ```
 
 ### Init
