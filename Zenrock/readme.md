@@ -166,8 +166,8 @@ mkdir -p $HOME/.zrchain/sidecar/bin
 mkdir -p $HOME/.zrchain/sidecar/keys
 ```
 ```
-wget -O $HOME/.zrchain/sidecar/bin/validator_sidecar https://github.com/zenrocklabs/zrchain/releases/download/v5.8.7/validator_sidecar
-chmod +x $HOME/.zrchain/sidecar/bin/validator_sidecar
+wget -O $HOME/.zrchain/sidecar/bin/zenrock-sidecar https://github.com/zenrocklabs/zrchain/releases/download/v5.16.9/validator_sidecar
+chmod +x $HOME/.zrchain/sidecar/bin/zenrock-sidecar
 ```
 ### Clone Repo Zenrock Validator
 ```
@@ -204,12 +204,12 @@ echo "ecdsa address: $ecdsa_address"
 ### Set Variable
 ```
 EIGEN_OPERATOR_CONFIG="$HOME/.zrchain/sidecar/eigen_operator_config.yaml"
-TESTNET_HOLESKY_ENDPOINT="https://holesky.infura.io/v3/4d6554fe2cd54b20a4d90e602ecca806"
-MAINNET_ENDPOINT="https://mainnet.infura.io/v3/4d6554fe2cd54b20a4d90e602ecca806"
+TESTNET_HOLESKY_ENDPOINT="https://eth-holesky.g.alchemy.com/v2/FmklEBLpy4x-u9myuf6vDKryorO1LTAc"
+MAINNET_ENDPOINT="https://eth-mainnet.g.alchemy.com/v2/FmklEBLpy4x-u9myuf6vDKryorO1LTAc"
 OPERATOR_VALIDATOR_ADDRESS=$(zenrockd keys show wallet --bech val -a)
 OPERATOR_ADDRESS=$ecdsa_address
-ETH_RPC_URL="https://holesky.infura.io/v3/4d6554fe2cd54b20a4d90e602ecca806"
-ETH_WS_URL="wss://holesky.infura.io/ws/v3/4d6554fe2cd54b20a4d90e602ecca806"
+ETH_RPC_URL="https://eth-holesky.g.alchemy.com/v2/FmklEBLpy4x-u9myuf6vDKryorO1LTAc"
+ETH_WS_URL="wss://eth-holesky.g.alchemy.com/v2/FmklEBLpy4x-u9myuf6vDKryorO1LTAc"
 ECDSA_KEY_PATH=$ecdsa_output_file
 BLS_KEY_PATH=$bls_output_file
 ```
