@@ -10,7 +10,7 @@ mv $HOME/zenrock/zenrockd $HOME/go/bin/
 ### Update
 ```
 cd $HOME/zenrock
-wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.11.4/zenrockd
+wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.3.8/zenrockd
 chmod +x zenrockd
 ```
 ```
@@ -23,13 +23,22 @@ mv $HOME/zenrock/zenrockd $(which zenrockd)
 ```
 zenrockd version --long | grep -e version -e commit
 ```
-`05a1af3`
+
 ```
 sha256sum $HOME/zenrock/zenrockd
 ```
+```
+cd $HOME
+rm -rf zrchain
+git clone https://github.com/Zenrock-Foundation/zrchain
+cd zrchain
+git checkout v5.3.8
+make install
+```
+
 ### Init
 ```
-zenrockd init injan.Inc --chain-id gardia-3
+zenrockd init Vinjan.Inc --chain-id gardia-4
 ```
 ### 
 ```
@@ -267,7 +276,13 @@ systemctl enable zenrock-sidecar
 systemctl restart zenrock-sidecar && journalctl -u zenrock-sidecar -f -o cat
 ```
 
-
+sudo systemctl stop zenrockd
+sudo systemctl disable zenrockd
+sudo rm /etc/systemd/system/zenrockd.service
+sudo systemctl daemon-reload
+rm -f $(which zenrockd)
+rm -rf .zrchain
+rm -rf zrchain
 
 
 
