@@ -275,7 +275,7 @@ systemctl daemon-reload
 systemctl enable zenrock-sidecar
 systemctl restart zenrock-sidecar && journalctl -u zenrock-sidecar -f -o cat
 ```
-
+```
 sudo systemctl stop zenrockd
 sudo systemctl disable zenrockd
 sudo rm /etc/systemd/system/zenrockd.service
@@ -283,6 +283,6 @@ sudo systemctl daemon-reload
 rm -f $(which zenrockd)
 rm -rf .zrchain
 rm -rf zrchain
-
+```
 
 
