@@ -80,7 +80,7 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable kiichaind
-sudo journalctl -u kiichaind -f -o cat
+sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
 ```
 ###
@@ -95,6 +95,17 @@ s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.kiichain3/config/config.toml
 sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
+```
+```
+sudo systemctl stop kiichaind
+sudo systemctl disable kiichaind
+sudo rm /etc/systemd/system/kiichaind.service
+sudo systemctl daemon-reload
+rm -f $(which kiichaind)
+rm -rf .kiichain3
+rm -rf kiichain
+```
+
 
 
 
