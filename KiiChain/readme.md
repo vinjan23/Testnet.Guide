@@ -16,6 +16,9 @@ rm -rf build
 ln -s $HOME/.kiichain3/cosmovisor/genesis $HOME/.kiichain3/cosmovisor/current -f
 sudo ln -s $HOME/.kiichain3/cosmovisor/current/bin/kiichaind /usr/local/bin/kiichaind -f
 ```
+```
+kiichaind version --long | grep -e commit -e version
+```
 ### Init
 ```
 kiichaind init Vinjan.Inc --chain-id kiichain3
