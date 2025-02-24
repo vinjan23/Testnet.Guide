@@ -153,4 +153,6 @@ kiichaind tx staking create-validator \
 --from=wallet
 ```
 
-
+```
+kiichaind tx slashing unjail --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+```
