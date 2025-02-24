@@ -90,17 +90,7 @@ sudo systemctl enable kiichaind
 sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
 ```
-###
 
-```
-sudo systemctl stop kiichaind
-sudo systemctl disable kiichaind
-sudo rm /etc/systemd/system/kiichaind.service
-sudo systemctl daemon-reload
-rm -rf $(which kiichaind)
-rm -rf .kiichain3
-rm -rf kiichain
-```
 ### Statesync
 ```
 PERSISTENT_PEERS="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
@@ -124,7 +114,7 @@ sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
 ```
 
-###
+### Sync
 ```
 kiichaind status 2>&1 | jq .SyncInfo
 ```
@@ -154,7 +144,17 @@ kiichaind tx staking create-validator \
 --gas-prices="0.02ukii" \
 --from=wallet
 ```
-
+### Unjail
 ```
 kiichaind tx slashing unjail --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+```
+### Delete
+```
+sudo systemctl stop kiichaind
+sudo systemctl disable kiichaind
+sudo rm /etc/systemd/system/kiichaind.service
+sudo systemctl daemon-reload
+rm -rf $(which kiichaind)
+rm -rf .kiichain3
+rm -rf kiichain
 ```
