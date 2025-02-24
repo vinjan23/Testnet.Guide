@@ -87,7 +87,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable kiichaind
+```
+```
 sudo systemctl restart kiichaind
+```
+```
 sudo journalctl -u kiichaind -f -o cat
 ```
 
