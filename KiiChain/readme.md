@@ -119,9 +119,11 @@ sed -i.bak -e "s|^occ-enabled *=.*|occ-enabled = true|" $NODE_HOME/config/app.to
 sed -i.bak -e "s|^sc-enable *=.*|sc-enable = true|" $NODE_HOME/config/app.toml
 sed -i.bak -e "s|^ss-enable *=.*|ss-enable = true|" $NODE_HOME/config/app.toml
 sed -i.bak -e 's/^# concurrency-workers = 20$/concurrency-workers = 500/' $NODE_HOME/config/app.toml
+sed -i 's/mode = "full"/mode = "validator"/g' $NODE_HOME/config/config.toml
 sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
 ```
+
 ###
 ```
 kiichaind status 2>&1 | jq .SyncInfo
