@@ -101,7 +101,7 @@ sudo systemctl stop kiichaind
 sudo systemctl disable kiichaind
 sudo rm /etc/systemd/system/kiichaind.service
 sudo systemctl daemon-reload
-rm -f $(which kiichaind)
+rm -rf $(which kiichaind)
 rm -rf .kiichain3
 rm -rf kiichain
 ```
