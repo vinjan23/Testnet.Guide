@@ -97,7 +97,14 @@ uniond union-staking create-union-validator $HOME/.union/validator.json $POSSESS
 uniond tx staking delegate $(uniond keys show wallet --bech val -a) 1000000muno --from wallet --chain-id union-testnet-9
 ```
 
-
+```
+sudo systemctl stop uniond
+sudo systemctl disable uniond
+sudo rm /etc/systemd/system/uniond.service
+sudo systemctl daemon-reload
+rm -rf $(which uniond)
+rm -rf .union
+rm -rf union
 
 
 
