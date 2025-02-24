@@ -5,15 +5,14 @@ rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
 git checkout v1.3.0
-make build
+make install
 ```
 ```
 mkdir -p $HOME/.kiichain3/cosmovisor/genesis/bin
-mv build/.kiichaind $HOME/.kiichain3/cosmovisor/genesis/bin/
-rm -rf build
+cp $HOME/go/bin/kiichaind $HOME/.kiichain3/cosmovisor/genesis/bin/
 ```
 ```
-ln -s $HOME/.kiichain3/cosmovisor/genesis $HOME/.kiichain3/cosmovisor/current -f
+sudo ln -s $HOME/.kiichain3/cosmovisor/genesis $HOME/.kiichain3/cosmovisor/current -f
 sudo ln -s $HOME/.kiichain3/cosmovisor/current/bin/kiichaind /usr/local/bin/kiichaind -f
 ```
 ```
