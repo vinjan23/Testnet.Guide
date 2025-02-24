@@ -40,8 +40,9 @@ wget -O $HOME/.kiichain3/config/genesis.json https://raw.githubusercontent.com/K
 ```
 ### Peer
 ```
-PEERS="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.kiichain3/config/config.toml
+PERSISTENT_PEERS="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$persistent-peers\"/" $HOME/.kiichain3/config/config.toml
+
 ```
 ### Prunning
 ```
