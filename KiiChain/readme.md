@@ -85,18 +85,7 @@ sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
 ```
 ###
-```
-SNAP_RPC="https://rpc.uno.sentry.testnet.v3.kiivalidator.com:443"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.kiichain3/config/config.toml
-sudo systemctl restart kiichaind
-sudo journalctl -u kiichaind -f -o cat
-```
+
 ```
 sudo systemctl stop kiichaind
 sudo systemctl disable kiichaind
@@ -106,8 +95,6 @@ rm -rf $(which kiichaind)
 rm -rf .kiichain3
 rm -rf kiichain
 ```
-
-
 
 
 
