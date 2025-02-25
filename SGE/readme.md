@@ -32,10 +32,17 @@ sudo ln -s $HOME/.sge/cosmovisor/current/bin/sged /usr/local/bin/sged -f
 ```
 ### Update
 ```
-cd $HOME/sge
-git pull
+cd $HOME
+rm -rf sge
+git clone https://github.com/sge-network/sge
+cd sge
 git checkout v1.7.6
-make install
+make build
+```
+```
+mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.7.6/bin
+mv build/sged $HOME/.sge/cosmovisor/upgrades/v1.7.6/bin/
+rm -rf build
 ```
 ```
 mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.7.6/bin
@@ -47,9 +54,6 @@ sged version --long | grep -e commit -e version
 ```
 
 ### Init
-```
-MONIKER=
-```
 ```
 sged init Vinjan.Inc --chain-id sge-network-4
 sged config chain-id sge-network-4
@@ -76,15 +80,10 @@ wget -O $HOME/.sge/config/addrbook.json "https://raw.githubusercontent.com/vinja
 ### Seed & Peer
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0usge\"/" $HOME/.sge/config/app.toml
-sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.sge/config/config.toml
-external_address=$(wget -qO- eth0.me) 
-sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.sge/config/config.toml
-peers="6544694453634e97dbc47607f2e54031c80e1fc7@50.19.180.153:26656,31bda14eacbc1c1c537c4b7c2e8d338a06c8c5fd@57.128.37.47:26656,145d0f311ef1485f5b95eebecbc758fce01b4bb6@38.146.3.184:17756,c7545c27bd229b21056653cfc1c01b26add7656e@52.44.14.245:26656,51e4e7b04d2f669f5efa53e8d95891fa04e4c5b9@206.125.33.62:26656,a606813400988dc5176645d5e2a7dbc478e8e00b@34.87.20.73:26656,166a5f5d3377099d8d579f28fa8e4aa76eaa2084@52.44.14.245:26656,0b929c6a5c50c181c2e9385071fc9f89df3871b2@65.108.225.158:11756"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sge/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sge/config/config.toml
-sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.sge/config/config.toml
-sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.sge/config/config.toml
 ```
 ### Prunning
 ```
