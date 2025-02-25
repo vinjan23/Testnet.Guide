@@ -19,15 +19,26 @@ go version
 cd $HOME
 git clone https://github.com/sge-network/sge
 cd sge
-git checkout v1.7.4
+git checkout v1.7.6
 make install
+```
+```
+mkdir -p $HOME/.sge/cosmovisor/genesis/bin
+cp $HOME/go/bin/sged $HOME/.sge/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.sge/cosmovisor/genesis $HOME/.sge/cosmovisor/current -f
+sudo ln -s $HOME/.sge/cosmovisor/current/bin/sged /usr/local/bin/sged -f
 ```
 ### Update
 ```
 cd $HOME/sge
 git pull
-git checkout v1.7.4
+git checkout v1.7.6
 make install
+```
+```
+sged version --long | grep -e commit -e version
 ```
 
 ### Init
@@ -35,20 +46,11 @@ make install
 MONIKER=
 ```
 ```
-sged init $MONIKER --chain-id sge-network-4
+sged init Vinjan.Inc --chain-id sge-network-4
 sged config chain-id sge-network-4
 sged config keyring-backend test
 ```
-### Cosmo
-```
-mkdir -p ~/.sge/cosmovisor/genesis/bin
-mkdir -p ~/.sge/cosmovisor/upgrades
-cp ~/go/bin/sged ~/.sge/cosmovisor/genesis/bin
-```
-```
-mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.7.4/bin
-cp ~/go/bin/sged ~/.sge/cosmovisor/upgrades/v1.7.4/bin
-```
+
 ### Custom Port
 ```
 PORT=17
@@ -81,14 +83,12 @@ sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.sge/c
 ```
 ### Prunning
 ```
-pruning="custom" && \
-pruning_keep_recent="100" && \
-pruning_keep_every="0" && \
-pruning_interval="10" && \
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" ~/.sge/config/app.toml && \
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" ~/.sge/config/app.toml && \
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" ~/.sge/config/app.toml && \
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" ~/.sge/config/app.toml
+sed -i \
+-e 's|^pruning *=.*|pruning = "custom"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+$HOME/.sge/config/app.toml
 ```
 ### Indexer
 ```
@@ -97,44 +97,25 @@ sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.sge/config/config.tom
 ```
 ### Service
 ```
-sudo tee /etc/systemd/system/sged.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/sge.service > /dev/null << EOF
 [Unit]
-Description=sge
+Description=sge-testnet
 After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$(which sged) start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-```
-sudo tee /etc/systemd/system/sged.service > /dev/null <<EOF
-[Unit]
-Description=sge
-After=network-online.target
-
 [Service]
 User=$USER
 ExecStart=$(which cosmovisor) run start
-Restart=always
+Restart=on-failure
 RestartSec=3
-LimitNOFILE=10000
-Environment="DAEMON_NAME=sged"
+LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.sge"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="DAEMON_NAME=sged"
 Environment="UNSAFE_SKIP_BACKUP=true"
-
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.sge/cosmovisor/current/bin"
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
+
 ### Start
 ```
 sudo systemctl daemon-reload
