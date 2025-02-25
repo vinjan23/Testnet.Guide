@@ -5,7 +5,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ```
 ### GO
 ```
-ver="1.19.5" && \
+ver="1.23.4" && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
 sudo rm -rf /usr/local/go && \
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
