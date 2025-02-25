@@ -38,6 +38,11 @@ git checkout v1.7.6
 make install
 ```
 ```
+mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.7.6/bin
+cp ~/go/bin/sged ~/.sge/cosmovisor/upgrades/v1.7.6/bin
+```
+
+```
 sged version --long | grep -e commit -e version
 ```
 
