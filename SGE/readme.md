@@ -179,9 +179,20 @@ sged tx staking create-validator \
 --website="https://service.vinjan.xyz"
 -y
 ```
+```
+sged tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--details="Stake & Relayer" \
+--website="https://service.vinjan.xyz" \
+--from=wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+-y
+```
 ### Unjail
 ```
-sged tx slashing unjail --from wallet --chain-id sge-network-4 --gas auto --gas-adjustment 1.4 --gas auto -y
+sged tx slashing unjail --from wallet --chain-id sge-network-4 --gas-adjustment 1.4 --gas auto -y
 ```
 ### Reason Jail
 ```
