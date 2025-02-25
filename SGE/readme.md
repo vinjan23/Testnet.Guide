@@ -97,7 +97,7 @@ sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.sge/config/config.tom
 ```
 ### Service
 ```
-sudo tee /etc/systemd/system/sge.service > /dev/null << EOF
+sudo tee /etc/systemd/system/sged.service > /dev/null << EOF
 [Unit]
 Description=sge-testnet
 After=network-online.target
