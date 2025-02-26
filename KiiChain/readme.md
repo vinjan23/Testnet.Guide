@@ -152,6 +152,15 @@ kiichaind tx staking create-validator \
 ```
 kiichaind tx slashing unjail --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
 ```
+### Delegate
+```
+kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 10000000ukii --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+```
+### WD
+```
+kiichaind  tx distribution withdraw-rewards $(kiichaind keys show wallet --bech val -a) --commission --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+```
+
 ### Delete
 ```
 sudo systemctl stop kiichaind
