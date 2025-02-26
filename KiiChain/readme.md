@@ -16,6 +16,23 @@ sudo ln -s $HOME/.kiichain3/cosmovisor/genesis $HOME/.kiichain3/cosmovisor/curre
 sudo ln -s $HOME/.kiichain3/cosmovisor/current/bin/kiichaind /usr/local/bin/kiichaind -f
 ```
 ```
+mkdir -p $HOME/.kiichain3/cosmovisor/upgrades/v2.0.0/bin
+cd $HOME
+rm -rf kiichain
+git clone https://github.com/KiiChain/kiichain.git
+cd kiichain
+git checkout v2.0.0
+make install
+cp -a ~/go/bin/kiichaind ~/.kiichain3/cosmovisor/upgrades/v2.0.0/bin/kiichaind
+```
+```
+ls -l $HOME/.kiichain3/cosmovisor/current
+rm $HOME/.kiichain3/cosmovisor/current
+ln -s $HOME/.kiichain3/cosmovisor/upgrades/v2.0.0 $HOME/.kiichain3/cosmovisor/current
+```
+
+
+```
 kiichaind version --long | grep -e commit -e version
 ```
 ### Init
