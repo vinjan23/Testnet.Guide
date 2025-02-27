@@ -80,6 +80,11 @@ sed -i \
 -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
 $HOME/.kiichain3/config/app.toml
 ```
+```
+sed -i \
+-e 's|^pruning *=.*|pruning = "nothing"|' \
+$HOME/.kiichain3/config/app.toml
+```
 ### Indexer
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.kiichain3/config/config.toml
