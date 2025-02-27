@@ -131,7 +131,6 @@ SECONDARY_ENDPOINT=https://rpc.dos.sentry.testnet.v3.kiivalidator.com
 sed -i -e "/persistent-peers =/ s^= .*^= \"$PERSISTENT_PEERS\"^" $HOME/.kiichain3/config/config.toml
 TRUST_HEIGHT_DELTA=500
 LATEST_HEIGHT=$(curl -s "$PRIMARY_ENDPOINT"/block | jq -r ".block.header.height")
-if [[ "$LATEST_HEIGHT" -gt "$TRUST_HEIGHT_DELTA" ]]; then
 SYNC_BLOCK_HEIGHT=$(($LATEST_HEIGHT - $TRUST_HEIGHT_DELTA))
 SYNC_BLOCK_HEIGHT=$LATEST_HEIGHT
 SYNC_BLOCK_HASH=$(curl -s "$PRIMARY_ENDPOINT/block?height=$SYNC_BLOCK_HEIGHT" | jq -r ".block_id.hash")
