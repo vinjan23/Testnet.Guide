@@ -17,8 +17,8 @@ chmod u+x ~/go/bin/emped
 ### Update
 ```
 mkdir -p empe-chain && cd empe-chain
-curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.2.2/emped_v0.2.2_linux_amd64.tar.gz
-tar -xvf emped_v0.2.2_linux_amd64.tar.gz
+curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.3.0/emped_v0.3.0_linux_amd64.tar.gz
+tar -xvf emped_v0.3.0_linux_amd64.tar.gz
 rm -r emped_*
 chmod 744 $HOME/empe-chain/emped
 mv $HOME/empe-chain/emped $(which emped)
