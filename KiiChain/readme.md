@@ -83,8 +83,12 @@ $HOME/.kiichain3/config/app.toml
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "nothing"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "500"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
 $HOME/.kiichain3/config/app.toml
 ```
+
 ### Indexer
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.kiichain3/config/config.toml
