@@ -7,7 +7,8 @@ sudo mv poktrolld ~/go/bin
 chmod u+x ~/go/bin/poktrolld
 ```
 ```
-curl -LO https://github.com/pokt-network/poktroll/releases/download/v0.0.11/poktroll_linux_amd64.tar.gz
+cd poktroll
+curl -LO https://github.com/pokt-network/poktroll/releases/download/v0.0.13/poktroll_linux_amd64.tar.gz
 tar -xvf poktroll_linux_amd64.tar.gz
 sudo mv poktrolld ~/go/bin
 chmod u+x ~/go/bin/poktrolld
