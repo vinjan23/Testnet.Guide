@@ -159,6 +159,11 @@ kiichaind status 2>&1 | jq .SyncInfo
 ```
 kiichaind keys add wallet
 ```
+### Wallet EVM
+```
+kiichaind keys unsafe-export-eth-key wallet
+```
+### Balances
 ```
 kiichaind  q bank balances $(kiichaind keys show wallet -a)
 ```
