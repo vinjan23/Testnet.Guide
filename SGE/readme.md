@@ -19,7 +19,7 @@ go version
 cd $HOME
 git clone https://github.com/sge-network/sge
 cd sge
-git checkout v1.7.6
+git checkout v1.8.1
 make install
 ```
 ```
@@ -36,17 +36,20 @@ cd $HOME
 rm -rf sge
 git clone https://github.com/sge-network/sge
 cd sge
-git checkout v1.7.6
+git checkout v1.8.1
 make build
 ```
 ```
-mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.7.6/bin
-mv build/sged $HOME/.sge/cosmovisor/upgrades/v1.7.6/bin/
+mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.8.1/bin
+mv build/sged $HOME/.sge/cosmovisor/upgrades/v1.8.1/bin/
 rm -rf build
 ```
 ```
-mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.7.6/bin
-cp ~/go/bin/sged ~/.sge/cosmovisor/upgrades/v1.7.6/bin
+mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.8.1/bin
+cp ~/go/bin/sged ~/.sge/cosmovisor/upgrades/v1.8.1/bin
+```
+```
+$HOME/.sged/cosmovisor/upgrades/v1.8.1/bin/sged version --long | grep -e commit -e version
 ```
 
 ```
