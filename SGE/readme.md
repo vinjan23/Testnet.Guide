@@ -49,7 +49,7 @@ mkdir -p $HOME/.sge/cosmovisor/upgrades/v1.8.1/bin
 cp ~/go/bin/sged ~/.sge/cosmovisor/upgrades/v1.8.1/bin
 ```
 ```
-$HOME/.sged/cosmovisor/upgrades/v1.8.1/bin/sged version --long | grep -e commit -e version
+$HOME/.sge/cosmovisor/upgrades/v1.8.1/bin/sged version --long | grep -e commit -e version
 ```
 
 ```
