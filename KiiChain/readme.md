@@ -161,7 +161,10 @@ kiichaind keys add wallet
 ```
 ### Wallet EVM
 ```
-kiichaind keys unsafe-export-eth-key wallet
+kiichaind keys export wallet --unarmored-hex --unsafe
+```
+```
+kiichaind debug addr $(kiichaind keys show wallet -a)
 ```
 ### Balances
 ```
