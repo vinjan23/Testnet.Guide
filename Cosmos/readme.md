@@ -5,7 +5,7 @@ cd $HOME
 rm -rf gaia
 git clone https://github.com/cosmos/gaia.git
 cd gaia
-git checkout v22.0.0-rc0
+git checkout v23.0.0-rc2
 make build
 ```
 ### Cosmovisor
@@ -32,12 +32,12 @@ cd $HOME
 rm -rf gaia
 git clone https://github.com/cosmos/gaia.git
 cd gaia
-git checkout v22.2.0
+git checkout v23.0.0-rc2
 make build
 ```
 ```
-mkdir -p $HOME/.gaia/cosmovisor/upgrades/v22.2.0/bin
-mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v22.2.0/bin/
+mkdir -p $HOME/.gaia/cosmovisor/upgrades/v23/bin
+mv build/gaiad $HOME/.gaia/cosmovisor/upgrades/v23/bin/
 rm -rf build
 ```
 ```
@@ -154,6 +154,7 @@ gaiad status 2>&1 | jq .sync_info
 ```
 gaiad q bank balances $(gaiad keys show wallet -a)
 ```
+### Validator
 ```
 gaiad tendermint show-validator
 ```
@@ -183,6 +184,11 @@ gaiad tx staking create-validator $HOME/.gaia/validator.json \
 --gas-prices=0.025uatom \
 --gas=auto
 ```
+### Unjail
+```
+gaiad tx slashing unjail --from wallet --chain-id provider --gas-adjustment 1.2 --gas-prices 0.025uatom --gas auto
+```
+### Delete
 ```
 sudo systemctl stop gaiad
 sudo systemctl disable gaiad
