@@ -32,7 +32,7 @@ cd $HOME
 rm -rf zrchain
 git clone https://github.com/Zenrock-Foundation/zrchain
 cd zrchain
-git checkout v5.16.18
+git checkout v5.16.20
 make install
 ```
 
@@ -105,7 +105,11 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable zenrockd
+```
+```
 sudo systemctl restart zenrockd
+```
+```
 sudo journalctl -u zenrockd -f -o cat
 ```
 ###
