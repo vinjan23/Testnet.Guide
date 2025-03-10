@@ -94,7 +94,37 @@ sudo journalctl -u intentod -f -o cat
 intentod keys add wallet
 ```
 
-
+### Validator
+```
+gaiad tendermint show-validator
+```
+```
+nano /root/.gaia/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"YshM0gbyRGjvu4aWKhat4LFSYnmvnFtQL8LhvfqQxic="},
+  "amount": "50000000uatom",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+```
+gaiad tx staking create-validator $HOME/.gaia/validator.json \
+--from wallet \
+--chain-id provider \
+--gas-adjustment=1.2 \
+--gas-prices=0.025uatom \
+--gas=auto
+--node https://provider-test-rpc.intento.zone/
+```
 ### Delete
 ```
 sudo systemctl stop intentod
