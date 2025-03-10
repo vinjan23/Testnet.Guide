@@ -142,6 +142,10 @@ gaiad tx provider opt-in 0 --from wallet --chain-id GAIA --fees 5000uatom --gas 
 ```
 gaiad q provider consumer-opted-in-validators 0 --chain-id GAIA   --node https://provider-test-rpc.intento.zone/
 ```
+### Unjail
+```
+gaiad tx slashing unjail --from wallet --chain-id GAIA --gas-adjustment=1.2  --fees 20000uatom --gas auto --node https://provider-test-rpc.intento.zone/
+```
 ### Delete
 ```
 sudo systemctl stop intentod
