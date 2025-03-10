@@ -47,7 +47,18 @@ wget -O $HOME/.intento/config/genesis.json
 ### Gass
 ```
 sed -i -E "s|minimum-gas-prices = \".*\"|minimum-gas-prices = \"0.001uinto,0.001ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2\"|g" ~/.intento/config/app.toml
+seeds=
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.intento/config/config.toml
+peers=
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.intento/config/config.toml
+sed -i -E '/\[api\]/,/^enable = .*$/ s/^enable = .*$/enable = true/' $HOME/.intento/config/app.toml
+sed -i -E 's|swagger = .*|swagger = true|g' $HOME/.intento/config/app.toml
+sed -i -E "s|localhost|0.0.0.0|g" $HOME/.intento/config/app.toml
+sed -i -E 's|unsafe-cors = .*|unsafe-cors = true|g' $HOME/.intento/config/app.toml
+sed -i -E "s|chain-id = \".*\"|chain-id = \"intento-ics-test-1\"|g" $HOME/.intento/config/client.toml
+sed -i -E "s|keyring-backend = \"os\"|keyring-backend = \"test\"|g" $HOME/.intento/config/client.toml
 ```
+
 ### Prunning
 ```
 sed -i \
@@ -103,8 +114,8 @@ nano /root/.gaia/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"YshM0gbyRGjvu4aWKhat4LFSYnmvnFtQL8LhvfqQxic="},
-  "amount": "50000000uatom",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"qfo4PnbjToE7zyEFpAxUNrrJsYg2CF8uL303fcCF2ck="},
+  "amount": "1000000uatom",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
@@ -119,6 +130,12 @@ nano /root/.gaia/validator.json
 ```
 gaiad tx staking create-validator $HOME/.gaia/validator.json \
 --from wallet \
+--chain-id GAIA \
+--fees 20000uatom \
+--gas auto \
+--node https://provider-test-rpc.intento.zone
+```
+```
 --chain-id provider \
 --gas-adjustment=1.2 \
 --gas-prices=0.025uatom \
