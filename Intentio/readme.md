@@ -5,7 +5,16 @@ rm -rf intento
 git clone https://github.com/trstlabs/intento.git
 cd intento
 git checkout v0.9.0-beta2
-make install
+make build
+```
+```
+mkdir -p $HOME/.intento/cosmovisor/genesis/bin
+mv build/intentod $HOME/.intento/cosmovisor/genesis/bin/
+rm -rf build
+```
+```
+ln -s $HOME/.intento/cosmovisor/genesis $HOME/.intento/cosmovisor/current -f
+sudo ln -s $HOME/.intento/cosmovisor/current/bin/intentod /usr/local/bin/intentod -f
 ```
 ```
 mkdir -p $HOME/.intento/cosmovisor/genesis/bin
@@ -25,11 +34,11 @@ intentod init Vinjan.Inc --chain-id intento-ics-test-1
 
 ### Port
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:11657\"%" $HOME/.intento/config/client.toml
+sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:13657\"%" $HOME/.intento/config/client.toml
 ```
 ```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:11658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:11657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:11060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:11656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":11660\"%" $HOME/.intento/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:11317\"%; s%^address = \"localhost:9090\"%address = \"localhost:11090\"%" $HOME/.intento/config/app.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:13658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:13657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:13060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:13656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":13660\"%" $HOME/.intento/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:13317\"%; s%^address = \"localhost:9090\"%address = \"0.0.0.0:13090\"%" $HOME/.intento/config/app.toml
 ```
 ### Genesis
 ```
