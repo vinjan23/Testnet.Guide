@@ -137,10 +137,10 @@ gaiad tx staking create-validator $HOME/.gaia/validator.json \
 --node https://provider-test-rpc.intento.zone
 ```
 ```
-gaiad tx provider opt-in intento-ics-test-1 --from wallet --chain-id GAIA --fees 5000uatom --gas auto --gas-adjustment=1.2 --node https://provider-test-rpc.intento.zone/
+gaiad tx provider opt-in 0 --from wallet --chain-id GAIA --fees 5000uatom --gas auto --gas-adjustment=1.2 --node https://provider-test-rpc.intento.zone/
 ```
 ```
-gaiad q provider consumer-opt-in intento-ics-test-1 --chain-id GAIA  --node https://provider-test-rpc.intento.zone/
+gaiad q provider consumer-opt-in 0 --chain-id GAIA  --node https://provider-test-rpc.intento.zone/
 ```
 ### Delete
 ```
