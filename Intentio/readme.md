@@ -16,14 +16,7 @@ rm -rf build
 ln -s $HOME/.intento/cosmovisor/genesis $HOME/.intento/cosmovisor/current -f
 sudo ln -s $HOME/.intento/cosmovisor/current/bin/intentod /usr/local/bin/intentod -f
 ```
-```
-mkdir -p $HOME/.intento/cosmovisor/genesis/bin
-cp -a ~/go/bin/intentod ~/.intento/cosmovisor/genesis/bin/
-```
-```
-sudo ln -s $HOME/.intento/cosmovisor/genesis $HOME/.intento/cosmovisor/current -f
-sudo ln -s $HOME/.intento/cosmovisor/current/bin/intentod /usr/local/bin/intentod -f
-```
+
 ```
 intentod version --long | grep -e commit -e version
 ```
@@ -42,9 +35,9 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ### Genesis
 ```
-wget -O $HOME/.intento/config/genesis.json  
+curl -o $HOME/.intento/config/genesis.json https://raw.githubusercontent.com/trstlabs/networks/main/testnet/intento-ics-test-1/genesis.json
 ```
-### Gass
+### Set Confg
 ```
 sed -i -E "s|minimum-gas-prices = \".*\"|minimum-gas-prices = \"0.001uinto,0.001ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2\"|g" ~/.intento/config/app.toml
 seeds=
@@ -92,17 +85,18 @@ Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/
 WantedBy=multi-user.target
 EOF
 ```
-### Start
+### Download Gaia
 ```
-sudo systemctl daemon-reload
-sudo systemctl enable intentod
-sudo systemctl restart intentod
-sudo journalctl -u intentod -f -o cat
+cd $HOME
+rm -rf gaia
+git clone https://github.com/cosmos/gaia.git
+cd gaia
+git checkout v23.0.0-rc2
+make install
 ```
-
 ### Wallet
 ```
-intentod keys add wallet
+gaiad keys add wallet
 ```
 
 ### Validator
@@ -142,9 +136,17 @@ gaiad tx provider opt-in 0 --from wallet --chain-id GAIA --fees 5000uatom --gas 
 ```
 gaiad q provider consumer-opted-in-validators 0 --chain-id GAIA   --node https://provider-test-rpc.intento.zone/
 ```
+### Start
+```
+sudo systemctl daemon-reload
+sudo systemctl enable intentod
+sudo systemctl restart intentod
+sudo journalctl -u intentod -f -o cat
+```
+
 ### Unjail
 ```
-gaiad tx slashing unjail --from wallet --chain-id GAIA --gas-adjustment=1.2  --fees 20000uatom --gas auto --node https://provider-test-rpc.intento.zone/
+gaiad tx slashing unjail --from wallet --chain-id GAIA --gas-adjustment=1.2 --fees 20000uatom --gas auto --node https://provider-test-rpc.intento.zone/
 ```
 ### Delete
 ```
@@ -154,5 +156,7 @@ rm /etc/systemd/system/intentod.service
 sudo systemctl daemon-reload
 rm -rf .intento
 rm -rf intento
+rm -rf .gaia
+rm -rf gaia
 rm -rf $(which intentod)
 ```
