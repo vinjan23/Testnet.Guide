@@ -93,3 +93,15 @@ sudo journalctl -u intentod -f -o cat
 ```
 intentod keys add wallet
 ```
+
+
+### Delete
+```
+sudo systemctl stop intentod
+sudo systemctl disable intentod
+rm /etc/systemd/system/intentod.service
+sudo systemctl daemon-reload
+rm -rf .intento
+rm -rf intento
+rm -rf $(which intentod)
+```
