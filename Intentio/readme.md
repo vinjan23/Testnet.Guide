@@ -131,16 +131,16 @@ nano /root/.gaia/validator.json
 gaiad tx staking create-validator $HOME/.gaia/validator.json \
 --from wallet \
 --chain-id GAIA \
+--gas-adjustment=1.2 \
 --fees 20000uatom \
 --gas auto \
 --node https://provider-test-rpc.intento.zone
 ```
 ```
---chain-id provider \
---gas-adjustment=1.2 \
---gas-prices=0.025uatom \
---gas=auto
---node https://provider-test-rpc.intento.zone/
+gaiad tx provider opt-in intento-ics-test-1 --from wallet --chain-id GAIA --fees 5000uatom --gas auto --gas-adjustment=1.2 --node https://provider-test-rpc.intento.zone/
+```
+```
+gaiad q provider consumer-opt-in intento-ics-test-1 --chain-id GAIA  --node https://provider-test-rpc.intento.zone/
 ```
 ### Delete
 ```
