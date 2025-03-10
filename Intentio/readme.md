@@ -4,7 +4,7 @@ cd $HOME
 rm -rf intento
 git clone https://github.com/trstlabs/intento.git
 cd intento
-git checkout v0.9.0-beta2
+git checkout v0.9.1
 make build
 ```
 ```
