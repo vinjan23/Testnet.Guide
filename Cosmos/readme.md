@@ -50,17 +50,17 @@ git checkout v23.0.0-rc3
 make install
 ```
 ```
-mkdir -p $HOME/.gaia/cosmovisor/upgrades/v23.0.0-rc3/bin
-cp -a ~/go/bin/gaiad ~/.gaia/cosmovisor/upgrades/v23.0.0-rc3/bin/
+mkdir -p $HOME/.gaia/cosmovisor/upgrades/23.0.0-rc3/bin
+cp -a ~/go/bin/gaiad ~/.gaia/cosmovisor/upgrades/23.0.0-rc3/bin/
 ```
 ```
 ls -l $HOME/.gaia/cosmovisor/current
 rm $HOME/.gaia/cosmovisor/current
-ln -s $HOME/.gaia/cosmovisor/upgrades/v23.0.0-rc3 $HOME/.gaia/cosmovisor/current
+ln -s $HOME/.gaia/cosmovisor/upgrades/23.0.0-rc3 $HOME/.gaia/cosmovisor/current
 ```
 ### Cek Version
 ```
-$HOME/.gaia/cosmovisor/upgrades/v23/bin/gaiad version --long | grep -e commit -e version
+$HOME/.gaia/cosmovisor/upgrades/23.0.0-rc3/bin/gaiad version --long | grep -e commit -e version
 ```
 
 ### Init
