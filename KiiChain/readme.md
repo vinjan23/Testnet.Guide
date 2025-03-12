@@ -195,7 +195,7 @@ kiichaind tx slashing unjail --from wallet --chain-id kiichain3 --gas-adjustment
 ```
 ### Delegate
 ```
-kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 10000000ukii --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 9000000ukii --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
 ```
 ### WD
 ```
