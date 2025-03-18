@@ -16,12 +16,11 @@ rm -rf kopi
 git clone https://github.com/kopi-money/kopi.git
 cd kopi
 git checkout v19-rc5
-make build
+make install
 ```
 ```
 mkdir -p $HOME/.kopid/cosmovisor/genesis/bin
-mv build/kopid $HOME/.kopid/cosmovisor/genesis/bin/
-rm -rf build
+cp $HOME/go/bin/kopid $HOME/.kopid/cosmovisor/genesis/bin/
 ```
 ```
 ln -s $HOME/.kopid/cosmovisor/genesis $HOME/.kopid/cosmovisor/current -f
