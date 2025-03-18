@@ -58,7 +58,7 @@ curl -o $HOME/.intento/config/genesis.json https://raw.githubusercontent.com/trs
 sed -i -E "s|minimum-gas-prices = \".*\"|minimum-gas-prices = \"0.001uinto,0.001ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2\"|g" ~/.intento/config/app.toml
 seeds=
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.intento/config/config.toml
-peers="e4716092ee96fe0162e21c5cbabe74d6406ff304@65.108.127.239:7900"
+peers="e4716092ee96fe0162e25c5cbabe74d6406ff304@65.108.127.249:7900"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$peers\"|g" $HOME/.intento/config/config.toml
 
 sed -i -E '/\[api\]/,/^enable = .*$/ s/^enable = .*$/enable = true/' $HOME/.intento/config/app.toml
