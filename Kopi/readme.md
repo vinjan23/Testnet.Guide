@@ -13,10 +13,21 @@ go version
 ```
 cd $HOME
 rm -rf kopi
-git clone --quiet --depth 1 --branch v19-rc2 https://github.com/kopi-money/kopi.git
+git clone https://github.com/kopi-money/kopi.git
 cd kopi
-make install
+git checkout v19-rc5
+make build
 ```
+```
+mkdir -p $HOME/.kopid/cosmovisor/genesis/bin
+mv build/kopid $HOME/.kopid/cosmovisor/genesis/bin/
+rm -rf build
+```
+```
+ln -s $HOME/.kopid/cosmovisor/genesis $HOME/.kopid/cosmovisor/current -f
+sudo ln -s $HOME/.kopid/cosmovisor/current/bin/kopid /usr/local/bin/gaiad -f
+```
+
 ### Wasm
 ```
 rm /usr/lib/libwasmvm.x86_64.so
