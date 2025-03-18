@@ -18,15 +18,6 @@ cd kopi
 git checkout v19-rc3
 make install
 ```
-```
-mkdir -p $HOME/.kopid/cosmovisor/genesis/bin
-cp $HOME/go/bin/kopid $HOME/.kopid/cosmovisor/genesis/bin/
-```
-```
-ln -s $HOME/.kopid/cosmovisor/genesis $HOME/.kopid/cosmovisor/current -f
-sudo ln -s $HOME/.kopid/cosmovisor/current/bin/kopid /usr/local/bin/gaiad -f
-```
-
 ### Wasm
 ```
 rm /usr/lib/libwasmvm.x86_64.so
@@ -41,15 +32,6 @@ git clone https://github.com/kopi-money/kopi.git
 cd kopi
 git checkout v19-rc3
 make install
-```
-```
-mkdir -p $HOME/.kopid/cosmovisor/upgrades/v19-rc3/bin
-sudo cp $HOME/go/bin/kopid $HOME/.kopid/cosmovisor/upgrades/v19-rc3/bin/
-```
-```
-ls -l $HOME/.kopid/cosmovisor/current
-rm $HOME/.kopid/cosmovisor/current
-ln -s $HOME/.kopid/cosmovisor/upgrades/v19-rc3 $HOME/.kopid/cosmovisor/curren
 ```
 ```
 kopid version --long | grep -e commit -e version
@@ -99,18 +81,15 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.kopid/config/config.toml
 ```
 sudo tee /etc/systemd/system/kopid.service > /dev/null << EOF
 [Unit]
-Description=kopi-testnet
+Description=kopi
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
+ExecStart=$(which kopid) start
+Restart=always
 RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.kopid"
-Environment="DAEMON_NAME=kopid"
-Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.kopid/cosmovisor/current/bin"
+
 [Install]
 WantedBy=multi-user.target
 EOF
