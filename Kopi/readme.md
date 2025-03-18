@@ -15,7 +15,7 @@ cd $HOME
 rm -rf kopi
 git clone https://github.com/kopi-money/kopi.git
 cd kopi
-git checkout v19-rc5
+git checkout v19-rc3
 make install
 ```
 ```
@@ -39,8 +39,17 @@ cd $HOME
 rm -rf kopi
 git clone https://github.com/kopi-money/kopi.git
 cd kopi
-git checkout v19-rc5
+git checkout v19-rc3
 make install
+```
+```
+mkdir -p $HOME/.kopid/cosmovisor/upgrades/v19-rc3/bin
+sudo cp $HOME/go/bin/kopid $HOME/.kopid/cosmovisor/upgrades/v19-rc3/bin/
+```
+```
+ls -l $HOME/.kopid/cosmovisor/current
+rm $HOME/.kopid/cosmovisor/current
+ln -s $HOME/.kopid/cosmovisor/upgrades/v19-rc3 $HOME/.kopid/cosmovisor/curren
 ```
 ```
 kopid version --long | grep -e commit -e version
@@ -90,15 +99,18 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.kopid/config/config.toml
 ```
 sudo tee /etc/systemd/system/kopid.service > /dev/null << EOF
 [Unit]
-Description=kopi
+Description=kopi-testnet
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which kopid) start
-Restart=always
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
-
+Environment="DAEMON_HOME=$HOME/.kopid"
+Environment="DAEMON_NAME=kopid"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.kopid/cosmovisor/current/bin"
 [Install]
 WantedBy=multi-user.target
 EOF
