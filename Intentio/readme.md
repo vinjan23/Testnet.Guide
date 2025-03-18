@@ -160,7 +160,9 @@ sudo systemctl enable intentod
 sudo systemctl restart intentod
 sudo journalctl -u intentod -f -o cat
 ```
-
+```
+intentod status 2>&1 | jq .sync_info
+```
 ### Unjail
 ```
 gaiad tx slashing unjail --from wallet --chain-id GAIA --gas-adjustment=1.2 --fees 20000uatom --gas auto --node https://provider-test-rpc.intento.zone/
