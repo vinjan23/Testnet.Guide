@@ -16,9 +16,25 @@ rm -rf build
 ln -s $HOME/.intento/cosmovisor/genesis $HOME/.intento/cosmovisor/current -f
 sudo ln -s $HOME/.intento/cosmovisor/current/bin/intentod /usr/local/bin/intentod -f
 ```
-
 ```
-intentod version --long | grep -e commit -e version
+cd $HOME
+rm -rf intento
+git clone https://github.com/trstlabs/intento.git
+cd intento
+git checkout v0.9.2-r1
+make install
+```
+```
+mkdir -p $HOME/.intento/cosmovisor/upgrades/0.9.2-r1/bin
+cp -a ~/go/bin/intentod ~/.intento/cosmovisor/upgrades/0.9.2-r1/bin/
+```
+```
+ls -l $HOME/.intento/cosmovisor/current
+rm $HOME/.intento/cosmovisor/current
+ln -s $HOME/.intento/cosmovisor/upgrades/0.9.2-r1 $HOME/.intento/cosmovisor/current
+```
+```
+$HOME/.intento/cosmovisor/upgrades/0.9.2-r1/bin/intentod version --long | grep -e commit -e version
 ```
 ### Init
 ```
@@ -42,8 +58,9 @@ curl -o $HOME/.intento/config/genesis.json https://raw.githubusercontent.com/trs
 sed -i -E "s|minimum-gas-prices = \".*\"|minimum-gas-prices = \"0.001uinto,0.001ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2\"|g" ~/.intento/config/app.toml
 seeds=
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.intento/config/config.toml
-peers=
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.intento/config/config.toml
+peers="e4716092ee96fe0162e21c5cbabe74d6406ff304@65.108.127.239:7900"
+sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$peers\"|g" $HOME/.intento/config/config.toml
+
 sed -i -E '/\[api\]/,/^enable = .*$/ s/^enable = .*$/enable = true/' $HOME/.intento/config/app.toml
 sed -i -E 's|swagger = .*|swagger = true|g' $HOME/.intento/config/app.toml
 sed -i -E "s|localhost|0.0.0.0|g" $HOME/.intento/config/app.toml
@@ -131,7 +148,7 @@ gaiad tx staking create-validator $HOME/.gaia/validator.json \
 --node https://provider-test-rpc.intento.zone
 ```
 ```
-gaiad tx provider opt-in 0 --from wallet --chain-id GAIA --fees 5000uatom --gas auto --gas-adjustment=1.2 --node https://provider-test-rpc.intento.zone/
+gaiad tx provider opt-in 4 --from wallet --chain-id GAIA --fees 5000uatom --gas auto --gas-adjustment=1.2 --node https://provider-test-rpc.intento.zone/
 ```
 ```
 gaiad q provider consumer-opted-in-validators 0 --chain-id GAIA   --node https://provider-test-rpc.intento.zone/
