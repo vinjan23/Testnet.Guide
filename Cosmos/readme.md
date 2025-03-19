@@ -5,7 +5,7 @@ cd $HOME
 rm -rf gaia
 git clone https://github.com/cosmos/gaia.git
 cd gaia
-git checkout v23.0.0-rc2
+git checkout v23.0.0
 make build
 ```
 ### Cosmovisor
