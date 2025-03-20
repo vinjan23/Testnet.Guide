@@ -60,8 +60,8 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 #### Gas 
 ```
-seeds="db38ce21eb11a9d9d45cfac6fa7694e79e7336ca@95.217.154.60:26656"
-sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.kopid/config/config.toml
+peers="88ad66ab975d64498b6f0471393113c0d4dfcc78@2a13:13456,40c919be581696eb9d82abf3d9cf0ddf13dc6ec5@141.94.30.110:27656,efdcc478fa9234dace8ef199e5e59e4baf390a2d@135.181.178.120:11656,3ed25a0f1f15d08b80af9a517cee279551409057@2a01:13456,bdaeac540a633784c59d3d5842c9812b7fb4e5bd@2001:26686"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.kopid/config/config.toml
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ukopi\"/;" ~/.kopid/config/app.toml
 ```
 ### Prunning
