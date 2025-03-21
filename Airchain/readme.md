@@ -1,14 +1,22 @@
+### Binary
 ```
 cd $HOME
 wget -O junctiond https://github.com/airchains-network/junction/releases/download/v0.2.0/junctiond-linux-amd64
 chmod +x junctiond
 mv junctiond $HOME/go/bin/
 ```
-
 ```
-junctiond init vinjan --chain-id junction
+wget https://github.com/airchains-network/junction/releases/download/v0.3.1/junctiond-linux-amd64  
+chmod +x junctiond-linux-amd64  
+mv junctiond-linux-amd64 /usr/local/bin/junctiond
 ```
-
+```
+junctiond version --long | grep -e commit -e version
+```
+### Init
+```
+junctiond init Vinjan.Inc --chain-id varanasi-1 --default-denom uamf
+```
 ### Genesis
 ```
 wget -O $HOME/.junctiond/config/genesis.json https://raw.githubusercontent.com/airchains-network/junction-resources/refs/heads/main/varanasi-testnet/genesis/genesis.json
@@ -36,11 +44,12 @@ sed -i \
 -e 's|^pruning-interval *=.*|pruning-interval = "50"|' \
 $HOME/.junctiond/config/app.toml
 ```
+### Indexer Off
 ```
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.junctiond/config/config.toml
 ```
-
+### Service
 ```
 sudo tee /etc/systemd/system/junctiond.service > /dev/null <<EOF
 [Unit]
@@ -58,7 +67,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-
+### Start
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable junctiond
@@ -69,16 +78,19 @@ sudo systemctl restart junctiond
 ```
 sudo journalctl -u junctiond -f -o cat
 ```
+### Sync
 ```
 junctiond status 2>&1 | jq .sync_info
 ```
+### Wallet
 ```
 junctiond keys add wallet
 ```
+### Balances
 ```
 junctiond q bank balances $(junctiond keys show wallet -a)
 ```
-10000000
+
 ```
 junctiond comet show-validator
 ```
@@ -103,36 +115,41 @@ nano $HOME/validator.json
 ```
 junctiond tx staking create-validator $HOME/validator.json \
     --from=wallet \
-    --chain-id=junction \
+    --chain-id=varanasi-1 \
     --fees 2000amf
 ```
 ### Edit
 ```
-junctiond tx staking edit-validator --new-moniker="Vinjan.Inc" --identity="7C66E36EA2B71F68" --commission-rate "0.11" --chain-id=junction --from=wallet --fees=2000amf
+junctiond tx staking edit-validator --new-moniker="Vinjan.Inc" --identity="7C66E36EA2B71F68" --commission-rate "0.11" --chain-id=varanasi-1 --from=wallet --fees=2000amf
 ```
-
+### Unjail
 ```
-junctiond tx slashing unjail --from wallet --chain-id junction --fees 2000amf
+junctiond tx slashing unjail --from wallet --chain-id varanasi-1 --fees 2000amf
 ```
 ```
 junctiond query slashing signing-info $(junctiond tendermint show-validator)
 ```
+### WD
 ```
-junctiond tx distribution withdraw-rewards $(junctiond keys show wallet --bech val -a) --commission --from wallet --chain-id junction --fees 2000amf
+junctiond tx distribution withdraw-rewards $(junctiond keys show wallet --bech val -a) --commission --from wallet --chain-id varanasi-1 --fees 2000amf
 ```
+### Delegate
 ```
-junctiond tx staking delegate $(junctiond keys show wallet --bech val -a) 10000000amf --from wallet --chain-id junction --fees 2000amf
+junctiond tx staking delegate $(junctiond keys show wallet --bech val -a) 10000000amf --from wallet --chain-id varanasi-1 --fees 2000amf
 ```
+### Send
 ```
-junctiond tx bank send wallet2 air18a8u0yscy7xp4x684ujqsfhkrdm9lg344a2tjl 2000000amf --from wallet2 --chain-id junction --fees 2000amf
+junctiond tx bank send wallet2 air18a8u0yscy7xp4x684ujqsfhkrdm9lg344a2tjl 2000000amf --from wallet2 --chain-id varanasi-1 --fees 2000amf
 ```
+### Node ID
 ```
-echo $(junctiond tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.junction/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+echo $(junctiond tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.junctiond/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
+### Connected Peer
 ```
 curl -sS http://localhost:38657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
-
+### Statesync
 ```
 sudo systemctl stop junctiond
 junctiond tendermint unsafe-reset-all --home $HOME/.junction --keep-addr-book
@@ -148,6 +165,7 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.junction/
 sudo systemctl restart junctiond
 sudo journalctl -u junctiond -f -o cat
 ```
+### Snapshot
 ```
 sudo apt install lz4 -y
 sudo systemctl stop junctiond
@@ -156,6 +174,7 @@ curl -L https://snapshot.vinjan.xyz./airchain/airchain-snapshot-20240511.tar.lz4
 sudo systemctl restart junctiond
 journalctl -fu junctiond -o cat
 ```
+### Delete
 ```
 sudo systemctl stop junctiond
 sudo systemctl disable junctiond
