@@ -189,6 +189,19 @@ kiichaind tx staking create-validator \
 --gas-prices="0.02ukii" \
 --from=wallet
 ```
+```
+kiichaind tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--details="Staking Provider & IBC Relayer" \
+--website="https://service.vinjan.xyz" \
+--commission-rate=0.1 \
+--chain-id=kiichain3 \
+--gas="auto" \
+--gas-adjustment 1.3 \
+--gas-prices="0.02ukii" \
+--from=wallet
+```
 ### Unjail
 ```
 kiichaind tx slashing unjail --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
