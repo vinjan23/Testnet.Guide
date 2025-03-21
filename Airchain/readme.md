@@ -116,7 +116,7 @@ nano $HOME/validator.json
 junctiond tx staking create-validator $HOME/validator.json \
     --from=wallet \
     --chain-id=varanasi-1 \
-    --fees 2000amf
+    --fees 2000uamf
 ```
 ### Edit
 ```
