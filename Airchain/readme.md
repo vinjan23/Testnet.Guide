@@ -124,7 +124,7 @@ junctiond tx staking edit-validator --new-moniker="Vinjan.Inc" --identity="7C66E
 ```
 ### Unjail
 ```
-junctiond tx slashing unjail --from wallet --chain-id varanasi-1 --fees 2000amf
+junctiond tx slashing unjail --from wallet --chain-id varanasi-1 --fees 2000uamf
 ```
 ```
 junctiond query slashing signing-info $(junctiond tendermint show-validator)
