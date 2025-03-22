@@ -120,26 +120,33 @@ junctiond tx staking create-validator $HOME/validator.json \
 ```
 ### Edit
 ```
-junctiond tx staking edit-validator --new-moniker="Vinjan.Inc" --identity="7C66E36EA2B71F68" --commission-rate "0.11" --chain-id=varanasi-1 --from=wallet --fees=2000amf
+junctiond tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--website="https://service.vinjan.xyz" \
+--details="IBC Relayer" \
+--chain-id=varanasi-1 \
+--from=wallet \
+--fees=500uamf
 ```
 ### Unjail
 ```
-junctiond tx slashing unjail --from wallet --chain-id varanasi-1 --fees 2000uamf
+junctiond tx slashing unjail --from wallet --chain-id varanasi-1 --fees 500uamf
 ```
 ```
 junctiond query slashing signing-info $(junctiond tendermint show-validator)
 ```
 ### WD
 ```
-junctiond tx distribution withdraw-rewards $(junctiond keys show wallet --bech val -a) --commission --from wallet --chain-id varanasi-1 --fees 2000amf
+junctiond tx distribution withdraw-rewards $(junctiond keys show wallet --bech val -a) --commission --from wallet --chain-id varanasi-1 --fees 500uamf
 ```
 ### Delegate
 ```
-junctiond tx staking delegate $(junctiond keys show wallet --bech val -a) 10000000uamf --from wallet --chain-id varanasi-1 --fees 2000amf
+junctiond tx staking delegate $(junctiond keys show wallet --bech val -a) 10000000uamf --from wallet --chain-id varanasi-1 --fees 500uamf
 ```
 ### Send
 ```
-junctiond tx bank send wallet2 air18a8u0yscy7xp4x684ujqsfhkrdm9lg344a2tjl 2000000uamf --from wallet2 --chain-id varanasi-1 --fees 2000amf
+junctiond tx bank send wallet2 air18a8u0yscy7xp4x684ujqsfhkrdm9lg344a2tjl 2000000uamf --from wallet2 --chain-id varanasi-1 --fees 500uamf
 ```
 ### Node ID
 ```
