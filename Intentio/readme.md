@@ -68,7 +68,9 @@ sed -i -E 's|unsafe-cors = .*|unsafe-cors = true|g' $HOME/.intento/config/app.to
 sed -i -E "s|chain-id = \".*\"|chain-id = \"intento-ics-test-1\"|g" $HOME/.intento/config/client.toml
 sed -i -E "s|keyring-backend = \"os\"|keyring-backend = \"test\"|g" $HOME/.intento/config/client.toml
 ```
-
+```
+9b5597722409cc937e668dc8d51eff1dc5eac046@88.99.162.99:13656
+```
 ### Prunning
 ```
 sed -i \
