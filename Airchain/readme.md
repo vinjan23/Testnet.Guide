@@ -136,6 +136,16 @@ junctiond tx slashing unjail --from wallet --chain-id varanasi-1 --fees 500uamf
 ```
 junctiond query slashing signing-info $(junctiond tendermint show-validator)
 ```
+### Unjail
+```
+junctiond tx slashing unjail --from wallet --fees 500uamf --generate-only > unsigned.txt
+```
+```
+junctiond tx sign unsigned.txt --from wallet  > signed.txt
+```
+```
+junctiond tx broadcast signed.txt
+```
 ### WD
 ```
 junctiond tx distribution withdraw-rewards $(junctiond keys show wallet --bech val -a) --commission --from wallet --chain-id varanasi-1 --fees 500uamf
