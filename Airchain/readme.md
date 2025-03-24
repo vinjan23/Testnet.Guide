@@ -171,10 +171,10 @@ echo $(junctiond tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 curl -sS http://localhost:38657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 ### Statesync
-```
+``
 sudo systemctl stop junctiond
-junctiond tendermint unsafe-reset-all --home $HOME/.junction --keep-addr-book
-SNAP_RPC="https://testnet-airchains-rpc.genznodes.dev:443"
+junctiond tendermint unsafe-reset-all --home $HOME/.junctiond --keep-addr-book
+SNAP_RPC="https://rpc-airchain.vinjan.xyz:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -182,7 +182,7 @@ echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.junction/config/config.toml
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.junctiond/config/config.toml
 sudo systemctl restart junctiond
 sudo journalctl -u junctiond -f -o cat
 ```
@@ -190,8 +190,10 @@ sudo journalctl -u junctiond -f -o cat
 ```
 sudo apt install lz4 -y
 sudo systemctl stop junctiond
-junctiond tendermint unsafe-reset-all --home $HOME/.junction --keep-addr-book
-curl -L https://snapshot.vinjan.xyz./airchain/airchain-snapshot-20240511.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.junction
+cp $HOME/.junctiond/data/priv_validator_state.json $HOME/.junctiond/priv_validator_state.json.backup
+junctiond tendermint unsafe-reset-all --home $HOME/.junctiond --keep-addr-book
+curl -L https://snap-t.vinjan.xyz/junction/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.junctiond
+mv $HOME/.junctiond/priv_validator_state.json.backup $HOME/.junctiond/data/priv_validator_state.json
 sudo systemctl restart junctiond
 journalctl -fu junctiond -o cat
 ```
@@ -202,7 +204,7 @@ sudo systemctl disable junctiond
 sudo rm /etc/systemd/system/junctiond.service
 sudo systemctl daemon-reload
 rm -f $(which junctiond)
-rm -rf .junction
+rm -rf .junctiond
 rm -rf junction
 ```
 
