@@ -171,7 +171,7 @@ echo $(junctiond tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 curl -sS http://localhost:38657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 ### Statesync
-``
+```
 sudo systemctl stop junctiond
 junctiond tendermint unsafe-reset-all --home $HOME/.junctiond --keep-addr-book
 SNAP_RPC="https://rpc-airchain.vinjan.xyz:443"
