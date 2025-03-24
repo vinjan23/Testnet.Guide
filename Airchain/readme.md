@@ -31,8 +31,8 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ### Peer
 ```
-peers="7607a19cb1ab6ed1c9422e7282dd28af2c44e8c9@94.130.143.184:38656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.junctiond/config/config.toml
+peers="$(curl -sS https://rpc-airchain.vinjan.xyz:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.junctiond/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uamf\"/" $HOME/.junctiond/config/app.toml
 ```
 ### Prunning
