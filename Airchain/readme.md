@@ -170,6 +170,10 @@ echo $(junctiond tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 ```
 curl -sS http://localhost:38657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
+### Vote
+```
+junctiond tx gov vote 1 yes --from wallet --chain-id varanasi-1 --fees 500uamf
+```
 ### Statesync
 ```
 sudo systemctl stop junctiond
