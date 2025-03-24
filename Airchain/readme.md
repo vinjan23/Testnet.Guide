@@ -21,6 +21,10 @@ junctiond init Vinjan.Inc --chain-id varanasi-1 --default-denom uamf
 ```
 wget -O $HOME/.junctiond/config/genesis.json https://raw.githubusercontent.com/airchains-network/junction-resources/refs/heads/main/varanasi-testnet/genesis/genesis.json
 ```
+### Addrbook
+```
+curl -L https://snap-t.vinjan.xyz/junction/addrbook.json > $HOME/.junctiond/config/addrbook.json
+```
 ### Port
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:38657\"%" $HOME/.junctiond/config/client.toml
