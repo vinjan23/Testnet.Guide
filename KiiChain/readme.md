@@ -72,7 +72,7 @@ sed -i.bak -e 's/^# concurrency-workers = 20$/concurrency-workers = 500/' $HOME/
 sed -i 's/mode = "full"/mode = "validator"/g' $HOME/.kiichain3/config/config.toml
 ```
 ```
-sed -i '/^timeout-broadcast-tx-commit =/c timeout-broadcast-tx-commit = "2s"' ${HOME}/.kiichain3/config/config.toml
+sed -i '/^timeout-broadcast-tx-commit =/c timeout-broadcast-tx-commit = "1s"' ${HOME}/.kiichain3/config/config.toml
 ```
 
 ### Prunning
