@@ -130,6 +130,7 @@ junctiond tx staking edit-validator \
 --website="https://service.vinjan.xyz" \
 --details="IBC Relayer" \
 --chain-id=varanasi-1 \
+--commission-rate="0.12" \
 --from=wallet \
 --fees=500uamf
 ```
