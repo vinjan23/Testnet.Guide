@@ -155,6 +155,36 @@ gaiad tx provider opt-in 4 --from wallet --chain-id GAIA --fees 5000uatom --gas 
 ```
 gaiad q provider consumer-opted-in-validators 0 --chain-id GAIA   --node https://provider-test-rpc.intento.zone/
 ```
+### Validator
+```
+intentod tendermint show-validator
+```
+```
+nano /root/.intento/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"qfo4PnbjToE7zyEFpAxUNrrJsYg2CF8uL303fcCF2ck="},
+  "amount": "1000000uinto",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+```
+intentod tx staking create-validator $HOME/.intento/validator.json \
+--from wallet \
+--chain-id intento-ics-test-1 \
+--gas-adjustment=1.2 \
+--gas-prices=0.001uinto \
+--gas auto
+```
 ### Start
 ```
 sudo systemctl daemon-reload
