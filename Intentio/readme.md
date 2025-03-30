@@ -195,6 +195,15 @@ sudo journalctl -u intentod -f -o cat
 ```
 intentod status 2>&1 | jq .sync_info
 ```
+### WD
+```
+intentod tx distribution withdraw-rewards $(intentod keys show wallet --bech val -a) --commission --from wallet --chain-id intento-ics-test-1 --gas-adjustment=1.2 --gas-prices=0.001uinto --gas auto
+```
+### Stake
+```
+intentod tx staking delegate $(intentod keys show wallet --bech val -a) 1000000uinto --from wallet --chain-id intento-ics-test-1 --gas-adjustment=1.2 --gas-prices=0.001uinto --gas auto
+```
+
 ### Unjail
 ```
 gaiad tx slashing unjail --from wallet --chain-id GAIA --gas-adjustment=1.2 --fees 20000uatom --gas auto --node https://provider-test-rpc.intento.zone/
