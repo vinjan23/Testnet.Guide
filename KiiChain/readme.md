@@ -38,7 +38,9 @@ ls -l $HOME/.kiichain3/cosmovisor/current
 rm $HOME/.kiichain3/cosmovisor/current
 ln -s $HOME/.kiichain3/cosmovisor/upgrades/v2.0.0 $HOME/.kiichain3/cosmovisor/current
 ```
-
+```
+$HOME/.kiichain3/cosmovisor/upgrades/3.0.0/bin/kiichaind version --long | grep -e commit -e version
+```
 
 ```
 kiichaind version --long | grep -e commit -e version
