@@ -4,7 +4,7 @@ cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v2.0.0
+git checkout v3.0.0
 make build
 ```
 ```
@@ -20,7 +20,11 @@ mkdir -p $HOME/.kiichain3/cosmovisor/upgrades/v2.0.0/bin
 cp $HOME/.kiichain3/cosmovisor/current/bin/kiichaind $HOME/.kiichain3/cosmovisor/upgrades/v2.0.0/bin/
 ```
 ```
-mkdir -p $HOME/.kiichain3/cosmovisor/upgrades/v2.0.0/bin
+mkdir -p $HOME/.kiichain3/cosmovisor/upgrades/v3.0.0/bin
+mv build/kiichaind $HOME/.kiichain3/cosmovisor/upgrades/v3.0.0/bin/
+rm -rf build
+```
+```
 cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
