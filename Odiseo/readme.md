@@ -13,6 +13,9 @@ achillesd init Vinjan.Inc --chain-id ithaca-1
 ```
 curl -L https://files.nodeshub.online/testnet/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
 ```
+```
+curl -L https://files.nodeshub.online/testnet/odiseo/addrbook.json  > $HOME/.achilles/config/addrbook.json
+```
 ###
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:28657\"%" $HOME/.achilles/config/client.toml
