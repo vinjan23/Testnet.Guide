@@ -8,21 +8,25 @@ cd $HOME
 rm -rf structsd
 git clone https://github.com/playstructs/structsd.git
 cd structsd
-git checkout v0.5.0-beta
+git checkout v0.6.0-beta
 ignite chain build
 ```
 
 ```
-structsd init Vinjan.Inc --chain-id structstestnet-100
+structsd init Vinjan.Inc --chain-id structstestnet-101
 ```
 
 ### Genesis
 ```
-wget -O $HOME/.structs/config/genesis.json https://raw.githubusercontent.com/playstructs/structs-networks/refs/heads/100b/genesis.json
+wget -O $HOME/.structs/config/genesis.json https://raw.githubusercontent.com/playstructs/structs-networks/refs/heads/main/genesis.json
 ```
+```
+wget -O $HOME/.structs/config/addrbook.json https://raw.githubusercontent.com/playstructs/structs-networks/refs/heads/main/addrbook.json
+```
+
 ### Peers Gass
 ```
-peers="f9ff152e331904924c26a4f8b1f46e859d574342@155.138.142.145:26656"
+peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.structs/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0alpha\"/" $HOME/.structs/config/app.toml
 ```
@@ -91,8 +95,8 @@ nano /root/.structs/validator.json
 ```
 ```
 {
-  "pubkey": ,
-  "amount": "100alpha",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"0leqrNtseXOm++6MdSwd7IJE4IxogGomgu4BaCL2U8w="},
+  "amount": "100000000ualpha",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
@@ -105,7 +109,7 @@ nano /root/.structs/validator.json
 }
 ```
 ```
-structsd tx staking create-validator $HOME/.structs/validator.json --from wallet  --chain-id structstestnet-100 --gas auto
+structsd tx staking create-validator $HOME/.structs/validator.json --from wallet  --chain-id structstestnet-101 --gas auto
 
 ```
 ### Delete
