@@ -68,7 +68,12 @@ sudo systemctl restart achillesd
 sudo journalctl -u achillesd -f -o cat
 ```
 ```
+sudo systemctl stop achillesd
+achillesd tendermint unsafe-reset-all --home $HOME/.achilles --keep-addr-book
 curl -L https://files.nodeshub.online/testnet/odiseo/snapshot/odiseo-568817.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.achilles
+sudo systemctl restart achillesd
+sudo journalctl -u achillesd -f -o cat
 ```
+
 
 
