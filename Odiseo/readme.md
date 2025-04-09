@@ -14,7 +14,7 @@ achillesd init Vinjan.Inc --chain-id ithaca-1
 curl -L https://files.nodeshub.online/testnet/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
 ```
 ```
-curl -L https://files.nodeshub.online/testnet/odiseo/addrbook.json  > $HOME/.achilles/config/addrbook.json
+curl -L https://files.nodeshub.online/testnet/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
 ```
 ###
 ```
@@ -73,6 +73,48 @@ achillesd tendermint unsafe-reset-all --home $HOME/.achilles --keep-addr-book
 curl -L https://files.nodeshub.online/testnet/odiseo/snapshot/odiseo-568817.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.achilles
 sudo systemctl restart achillesd
 sudo journalctl -u achillesd -f -o cat
+```
+### 
+```
+achillesd status 2>&1 | jq .sync_info
+```
+###
+```
+achillesd q bank balances $(achillesd keys show wallet -a)
+```
+###
+```
+achillesd keys add wallet
+```
+###
+```
+achillesd tendermint show-validator
+```
+```
+achillesd nano /root/.achilles/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"kd1k2PdtUT3ckVoWrSygRXmUq7nyiZjq7p1zu0Lo60Q="},
+  "amount": "100000000uodis",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+```
+achillesd tx staking create-validator $HOME/.achilles/validator.json \
+--from wallet \
+--chain-id ithaca-1
+--gas-prices=0.25uodis \
+--gas-adjustment=1.5 \
+--gas=auto
 ```
 
 
