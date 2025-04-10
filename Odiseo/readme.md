@@ -84,7 +84,7 @@ achillesd keys add wallet
 achillesd tendermint show-validator
 ```
 ```
-achillesd nano /root/.achilles/validator.json
+nano /root/.achilles/validator.json
 ```
 ```
 {
