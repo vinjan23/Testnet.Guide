@@ -1,9 +1,6 @@
 ###
 ```
-cd $HOME
-wget https://snapshot-t.vinjan.xyz/odiseo/achillesd
-chmod +x achillesd
-mv achillesd /root/go/bin/
+
 ```
 ### 
 ```
@@ -12,9 +9,11 @@ achillesd init Vinjan.Inc --chain-id ithaca-1
 ### 
 ```
 curl -L https://files.nodeshub.online/testnet/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
+curl -L https://snapshot-t.vinjan.xyz/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
 ```
 ```
 curl -L https://files.nodeshub.online/testnet/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
+curl -L https://snapshot-t.vinjan.xyz/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
 ```
 ###
 ```
@@ -26,7 +25,9 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ###
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uodis\"/" $HOME/.achilles/config/app.toml
+seeds="abc8093da699c8f3c872b7dfcbb765ac8a751208@94.130.143.184:28656"
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.achilles/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.25uodis\"/" $HOME/.achilles/config/app.toml
 ```
 ###
 ```
@@ -115,6 +116,10 @@ achillesd tx staking create-validator $HOME/.achilles/validator.json \
 --gas-prices=0.25uodis \
 --gas-adjustment=1.5 \
 --gas=auto
+```
+###
+```
+sudo rm /var/www/snapshot-t/odiseo/addrbook.json && cp $HOME/.achilles/config/addrbook.json /var/www/snapshot-t/odiseo/addrbook.json
 ```
 
 
