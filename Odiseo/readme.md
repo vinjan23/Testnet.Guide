@@ -8,11 +8,9 @@ achillesd init Vinjan.Inc --chain-id ithaca-1
 ```
 ### 
 ```
-curl -L https://files.nodeshub.online/testnet/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
 curl -L https://snapshot-t.vinjan.xyz/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
 ```
 ```
-curl -L https://files.nodeshub.online/testnet/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
 curl -L https://snapshot-t.vinjan.xyz/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
 ```
 ###
@@ -68,13 +66,7 @@ sudo systemctl enable achillesd
 sudo systemctl restart achillesd
 sudo journalctl -u achillesd -f -o cat
 ```
-```
-sudo systemctl stop achillesd
-achillesd tendermint unsafe-reset-all --home $HOME/.achilles --keep-addr-book
-curl -L https://files.nodeshub.online/testnet/odiseo/snapshot/odiseo-568817.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.achilles
-sudo systemctl restart achillesd
-sudo journalctl -u achillesd -f -o cat
-```
+
 ### 
 ```
 achillesd status 2>&1 | jq .sync_info
@@ -117,6 +109,23 @@ achillesd tx staking create-validator $HOME/.achilles/validator.json \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
+###
+```
+achillesd tx slashing unjail --from wallet --chain-id ithaca-1 --gas-prices=0.25uodis --gas-adjustment=1.5 --gas=auto
+```
+###
+```
+achillesd tx staking delegate $(achillesd keys show wallet --bech val -a) 10000000uodis --from wallet --chain-id ithaca-1 --gas-prices=0.25uodis --gas-adjustment=1.5 --gas=auto
+```
+###
+```
+achillesd tx distribution withdraw-rewards $(achillesd keys show wallet --bech val -a) --commission --from wallet --chain-id ithaca-1 --gas-prices=0.25uodis --gas-adjustment=1.5 --gas=auto
+```
+###
+```
+achillesd tx bank send wallet .... 1000000uodis --from wallet --chain-id ithaca-1 --gas-prices=0.25uodis --gas-adjustment=1.5 --gas=auto
+```
+
 ###
 ```
 sudo rm /var/www/snapshot-t/odiseo/addrbook.json && cp $HOME/.achilles/config/addrbook.json /var/www/snapshot-t/odiseo/addrbook.json
