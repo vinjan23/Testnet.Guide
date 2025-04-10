@@ -121,6 +121,26 @@ achillesd tx staking create-validator $HOME/.achilles/validator.json \
 ```
 sudo rm /var/www/snapshot-t/odiseo/addrbook.json && cp $HOME/.achilles/config/addrbook.json /var/www/snapshot-t/odiseo/addrbook.json
 ```
+###
+```
+sudo apt install lz4 -y
+sudo systemctl stop achillesd
+achillesd tendermint unsafe-reset-all --home $HOME/.achilles --keep-addr-book
+curl -L https://snapshot-t.vinjan.xyz/odiseo/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.achilles
+sudo systemctl restart achillesd
+sudo journalctl -u achillesd -f -o cat
+```
+
+
+### 
+```
+sudo systemctl stop achillesd
+sudo systemctl disable achillesd
+sudo rm /etc/systemd/system/achillesd.service
+sudo systemctl daemon-reload
+rm -f $(which achillesd)
+rm -rf .achilles
+```
 
 
 
