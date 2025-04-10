@@ -153,7 +153,10 @@ curl -sS http://localhost:15657/net_info | jq -r '.result.peers[] | "\(.node_inf
 ```
 atomoned tendermint unsafe-reset-all
 ```
-
+### Vote
+```
+atomoned tx gov vote 5 yes --from wallet --chain-id atomone-testnet-1 --fees 50000uatone
+```
 ### Delete
 ```
 sudo systemctl stop atomoned
