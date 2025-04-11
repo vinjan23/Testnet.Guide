@@ -1,4 +1,4 @@
-``
+```
 cd $HOME
 rm -rf symphony-oracle-voter
 git clone https://github.com/cmancrypto/symphony-oracle-voter.git
