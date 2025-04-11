@@ -1,6 +1,9 @@
 ###
 ```
-
+cd $HOME
+wget https://snapshot-t.vinjan.xyz/odiseo/achillesd
+chmod +x achillesd
+mv achillesd /root/go/bin/
 ```
 ### 
 ```
