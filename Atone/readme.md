@@ -19,7 +19,7 @@ cd $HOME
 rm -rf atomone
 git clone https://github.com/atomone-hub/atomone.git
 cd atomone
-git checkout v1.1.2
+git checkout v2.0.0-rc1
 make install
 ```
 ```
@@ -48,11 +48,7 @@ md5sum ~/.atomone/config/genesis.json
 ```
 ### Peer Gas
 ```
-seeds=""
-sed -i -e "s|^seeds *=.*|seeds = \"$seeds\"|" $HOME/.atomone/config/config.toml
-peers=""
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.atomone/config/config.toml
-sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0uatone\"|" $HOME/.atomone/config/app.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.025uatone,0.025uphoton\"|" $HOME/.atomone/config/app.toml
 ```
 ### Prunning
 ```
