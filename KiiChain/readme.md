@@ -67,7 +67,7 @@ wget -O $HOME/.kiichain3/config/genesis.json https://raw.githubusercontent.com/K
 ```
 ### Peer
 ```
-persistent_peers="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
+persistent_peers="c541892972a552bdb6402ae6e2a4d9812021f39c@88.99.162.99:19656,5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$persistent_peers\"/" $HOME/.kiichain3/config/config.toml
 ```
 ```
@@ -84,22 +84,10 @@ sed -i '/^timeout-broadcast-tx-commit =/c timeout-broadcast-tx-commit = "1s"' ${
 ### Prunning
 ```
 sed -i \
--e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
--e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
-$HOME/.kiichain3/config/app.toml
-```
-```
-sed -i \
 -e 's|^pruning *=.*|pruning = "nothing"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "500"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
 $HOME/.kiichain3/config/app.toml
-```
-
 ### Indexer
+```
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.kiichain3/config/config.toml
 ```
