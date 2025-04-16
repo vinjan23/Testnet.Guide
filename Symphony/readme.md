@@ -1,12 +1,13 @@
 ### Binary
 ```
 cd $HOME
-git clone https://github.com/Orchestra-Labs/symphony
+rm -rf symphony
+git clone https://github.com/Orchestra-Labs/symphony.git
 cd symphony
-git checkout v0.4.1
+git checkout v0.5.0
 make install
 ```
-### Check Commit ``1cc0ecc1838e65d0cd1eaa6581b69c6237de9efc``
+### Check Commit `` 6a44064 ``
 ```
 symphonyd version --long | grep -e commit -e version
 ```
