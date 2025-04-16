@@ -25,6 +25,9 @@ make install
 ```
 atomoned version --long | grep -e commit -e version
 ```
+```
+commit: aa7aeb7fcbf0c627d53d408ad80562c70c084826
+```
 
 ### Init
 ```
