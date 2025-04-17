@@ -23,6 +23,19 @@ git checkout v2.0.0-rc1
 make install
 ```
 ```
+mkdir -p $HOME/.atomone/cosmovisor/genesis/bin
+cp $HOME/go/bin/atomoned $HOME/.atomone/cosmovisor/genesis/bin
+```
+```
+sudo ln -s $HOME/.atomone/cosmovisor/genesis $HOME/.atomone/cosmovisor/current -f
+sudo ln -s $HOME/.atomone/cosmovisor/current/bin/atomoned /usr/local/bin/atomoned -f
+```
+```
+mkdir -p $HOME/.atomone/cosmovisor/upgrades/v2/bin
+mv build/atomoned $HOME/.atomone/cosmovisor/upgrades/v2/bin/
+rm -rf build
+```
+```
 atomoned version --long | grep -e commit -e version
 ```
 ```
