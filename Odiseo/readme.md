@@ -108,7 +108,9 @@ nano $HOME/.achilles/validator.json
 ```
 achillesd tx staking create-validator $HOME/.achilles/validator.json \
 --from wallet \
---chain-id ithaca-1
+--chain-id ithaca-1 \
+--gas-prices=0.25uodis \
+--gas-adjustment=1.5 \
 --gas=auto
 ```
 ### Unjail
