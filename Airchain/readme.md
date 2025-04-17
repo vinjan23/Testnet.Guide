@@ -1,15 +1,24 @@
 ### Binary
 ```
 cd $HOME
-wget -O junctiond https://github.com/airchains-network/junction/releases/download/v0.2.0/junctiond-linux-amd64
+wget -O junctiond https://github.com/airchains-network/junction/releases/download/v0.3.1/junctiond-linux-amd64
 chmod +x junctiond
 mv junctiond $HOME/go/bin/
 ```
+### Update
 ```
-wget https://github.com/airchains-network/junction/releases/download/v0.3.1/junctiond-linux-amd64  
-chmod +x junctiond-linux-amd64  
-mv junctiond-linux-amd64 /usr/local/bin/junctiond
+mkdir -p $HOME/airchains && cd airchains
+wget -O junctiond https://github.com/airchains-network/junction/releases/download/v0.3.2/junctiond-linux-amd64
+chmod +x junctiond
 ```
+### After Network is stop on the require block
+```
+sudo systemctl stop junctiond
+```
+```
+mv $HOME/airchains/junctiond $(which junctiond)
+```
+
 ```
 junctiond version --long | grep -e commit -e version
 ```
