@@ -44,7 +44,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 seeds="abc8093da699c8f3c872b7dfcbb765ac8a751208@94.130.143.184:28656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.achilles/config/config.toml
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.25uodis\"/" $HOME/.achilles/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025uodis\"/" $HOME/.achilles/config/app.toml
 ```
 ### Prunning
 ```
@@ -144,7 +144,20 @@ nano $HOME/.achilles/validator.json
 achillesd tx staking create-validator $HOME/.achilles/validator.json \
 --from wallet \
 --chain-id ithaca-1 \
---gas-prices=0.25uodis \
+--gas-prices=0.025uodis \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+```
+achillesd tx staking edit-validator \
+--new-moniker Vinjan.Inc \
+--identity 7C66E36EA2B71F68 \
+--details Staking Provider-IBC-Relayer \
+--website https://service.vinjan.xyz \
+--from wallet \
+--chain-id ithaca-1 \
+--commission-rate 0.15 \
+--gas-prices=0.025uodis \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
