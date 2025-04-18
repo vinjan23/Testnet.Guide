@@ -8,11 +8,21 @@ eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 ### Binary
 ```
 cd $HOME
+rm -rf atomone
 git clone https://github.com/atomone-hub/atomone.git
 cd atomone
-git checkout v1.0.0
+git checkout v1.1.1
 make install
 ```
+```
+mkdir -p $HOME/.atomone/cosmovisor/genesis/bin
+cp $HOME/go/bin/atomoned $HOME/.atomone/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.atomone/cosmovisor/genesis $HOME/.atomone/cosmovisor/current -f
+sudo ln -s $HOME/.atomone/cosmovisor/current/bin/atomoned /usr/local/bin/atomoned -f
+```
+
 ### Update
 ```
 cd $HOME
@@ -94,6 +104,26 @@ ExecStart=$(which atomoned) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo tee /etc/systemd/system/atomoned.service > /dev/null << EOF
+[Unit]
+Description=atomone-testnet
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.atomone"
+Environment="DAEMON_NAME=atomoned"
+Environment="UNSAFE_SKIP_BACKUP=true"
 
 [Install]
 WantedBy=multi-user.target
