@@ -5,6 +5,21 @@ wget https://snapshot-t.vinjan.xyz/odiseo/achillesd
 chmod +x achillesd
 mv achillesd /root/go/bin/
 ```
+```
+cd $HOME
+rm -rf Achilles
+git clone https://github.com/daodiseomoney/Achilles.git
+cd Achilles/achilles
+make install
+```
+```
+mkdir -p $HOME/.achilles/cosmovisor/genesis/bin
+cp $HOME/go/bin/achillesd $HOME/.achilles/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.achilles/cosmovisor/genesis $HOME/.achilles/cosmovisor/current -f
+sudo ln -s $HOME/.achilles/cosmovisor/current/bin/achillesd /usr/local/bin/achillesd -f
+```
 ### Init
 ```
 achillesd init Vinjan.Inc --chain-id ithaca-1
@@ -58,6 +73,26 @@ ExecStart=$(which achillesd) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo tee /etc/systemd/system/achillesd.service > /dev/null << EOF
+[Unit]
+Description=achilles
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.achilles"
+Environment="DAEMON_NAME=achillesd"
+Environment="UNSAFE_SKIP_BACKUP=true"
 
 [Install]
 WantedBy=multi-user.target
