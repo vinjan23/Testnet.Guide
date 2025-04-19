@@ -64,6 +64,15 @@ peers="88ad66ab975d64498b6f0471393113c0d4dfcc78@2a13:13456,40c919be581696eb9d82a
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.kopid/config/config.toml
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ukopi\"/;" ~/.kopid/config/app.toml
 ```
+```
+sed -i '/^timeout_propose =/c timeout_propose = "300ms"' ${HOME}/.kopid/config/config.toml
+sed -i '/^timeout_propose_delta =/c timeout_propose_delta = "50ms"' ${HOME}/.kopid/config/config.toml
+sed -i '/^timeout_prevote =/c timeout_prevote = "100ms"' ${HOME}/.kopid/config/config.toml
+sed -i '/^timeout_prevote_delta =/c timeout_prevote_delta = "50ms"' ${HOME}/.kopid/config/config.toml
+sed -i '/^timeout_precommit =/c timeout_precommit = "100ms"' ${HOME}/.kopid/config/config.toml
+sed -i '/^timeout_precommit_delta =/c timeout_precommit_delta = "50ms"' ${HOME}/.kopid/config/config.toml
+sed -i '/^timeout_commit =/c timeout_commit = "500ms"' ${HOME}/.kopid/config/config.toml
+```
 ### Prunning
 ```
 sed -i \
