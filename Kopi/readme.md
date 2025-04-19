@@ -52,11 +52,11 @@ curl -L https://snap-t.vinjan.xyz/kopi/addrbook.json > $HOME/.kopid/config/addrb
 ```
 ### Port
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:15657\"%" $HOME/.kopid/config/client.toml
+sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:45657\"%" $HOME/.kopid/config/client.toml
 ```
 ```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:15658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:15657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:15060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:15656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":15660\"%" $HOME/.kopid/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:15317\"%; s%^address = \"localhost:9090\"%address = \"localhost:15090\"%" $HOME/.kopid/config/app.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:45658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:45657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:45060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:45656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":45660\"%" $HOME/.kopid/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:45317\"%; s%^address = \"localhost:9090\"%address = \"localhost:45090\"%" $HOME/.kopid/config/app.toml
 ```
 #### Gas 
 ```
