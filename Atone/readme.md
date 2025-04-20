@@ -30,7 +30,7 @@ rm -rf atomone
 git clone https://github.com/atomone-hub/atomone.git
 cd atomone
 git checkout v2.0.0-rc1
-make install
+make build
 ```
 ```
 mkdir -p $HOME/.atomone/cosmovisor/genesis/bin
@@ -51,7 +51,9 @@ atomoned version --long | grep -e commit -e version
 ```
 commit: aa7aeb7fcbf0c627d53d408ad80562c70c084826
 ```
-
+```
+$HOME/.atomone/cosmovisor/upgrades/v2/bin/atomoned version --long | grep -e commit -e version
+```
 ### Init
 ```
 atomoned init your-moniker --chain-id atomone-testnet-1
@@ -124,6 +126,7 @@ LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.atomone"
 Environment="DAEMON_NAME=atomoned"
 Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.atomone/cosmovisor/current/bin"
 
 [Install]
 WantedBy=multi-user.target
