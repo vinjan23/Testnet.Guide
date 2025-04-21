@@ -67,7 +67,7 @@ wget -O $HOME/.kiichain3/config/genesis.json https://raw.githubusercontent.com/K
 ```
 ### Peer
 ```
-persistent_peers="c541892972a552bdb6402ae6e2a4d9812021f39c@88.99.162.99:19656,5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
+persistent_peers="408ede05d42c077c7e6f069e9dede07074f40911@94.130.143.184:19656,5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$persistent_peers\"/" $HOME/.kiichain3/config/config.toml
 ```
 ```
@@ -86,8 +86,8 @@ sed -i '/^timeout-broadcast-tx-commit =/c timeout-broadcast-tx-commit = "1s"' ${
 sed -i \
 -e 's|^pruning *=.*|pruning = "nothing"|' \
 $HOME/.kiichain3/config/app.toml
-### Indexer
 ```
+### Indexer
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.kiichain3/config/config.toml
 ```
@@ -125,11 +125,9 @@ sudo journalctl -u kiichaind -f -o cat
 
 ### Statesync
 ```
-PERSISTENT_PEERS="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
-PRIMARY_ENDPOINT=https://rpc.uno.sentry.testnet.v3.kiivalidator.com
-SECONDARY_ENDPOINT=https://rpc.dos.sentry.testnet.v3.kiivalidator.com
-```
-```
+PERSISTENT_PEERS="408ede05d42c077c7e6f069e9dede07074f40911@94.130.143.184:19656,5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656"
+PRIMARY_ENDPOINT=https://rpc-kiichain.vinjan.xyz
+SECONDARY_ENDPOINT=https://rpc.uno.sentry.testnet.v3.kiivalidator.com
 sed -i -e "/persistent-peers =/ s^= .*^= \"$PERSISTENT_PEERS\"^" $HOME/.kiichain3/config/config.toml
 TRUST_HEIGHT_DELTA=500
 LATEST_HEIGHT=$(curl -s "$PRIMARY_ENDPOINT"/block | jq -r ".block.header.height")
@@ -208,7 +206,10 @@ kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 900000
 ```
 kiichaind  tx distribution withdraw-rewards $(kiichaind keys show wallet --bech val -a) --commission --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
 ```
-
+### Own Peer
+```
+echo $(kiichaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.kiichain3/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
 ### Delete
 ```
 sudo systemctl stop kiichaind
