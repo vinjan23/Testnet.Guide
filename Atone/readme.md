@@ -205,6 +205,10 @@ atomoned tendermint unsafe-reset-all
 ```
 atomoned tx gov vote 5 yes --from wallet --chain-id atomone-testnet-1 --fees 50000uatone
 ```
+### Mint Poton
+```
+atomoned tx photon mint 1000000uatone --from wallet --chain-id atomone-testnet-1 --fees 5000uatone
+```
 ### Delete
 ```
 sudo systemctl stop atomoned
