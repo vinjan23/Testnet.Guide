@@ -9,7 +9,7 @@ mv achillesd /root/go/bin/
 cd $HOME
 rm -rf Achilles
 git clone https://github.com/daodiseomoney/Achilles.git
-cd achilles
+cd Achilles/achilles
 make install
 ```
 ```
