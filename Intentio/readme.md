@@ -16,25 +16,26 @@ rm -rf build
 ln -s $HOME/.intento/cosmovisor/genesis $HOME/.intento/cosmovisor/current -f
 sudo ln -s $HOME/.intento/cosmovisor/current/bin/intentod /usr/local/bin/intentod -f
 ```
+### Update
 ```
 cd $HOME
 rm -rf intento
 git clone https://github.com/trstlabs/intento.git
 cd intento
-git checkout v0.9.2-r1
+git checkout v0.9.3
 make install
 ```
 ```
-mkdir -p $HOME/.intento/cosmovisor/upgrades/0.9.2-r1/bin
-cp -a ~/go/bin/intentod ~/.intento/cosmovisor/upgrades/0.9.2-r1/bin/
+mkdir -p $HOME/.intento/cosmovisor/upgrades/0.9.3/bin
+cp -a ~/go/bin/intentod ~/.intento/cosmovisor/upgrades/0.9.3/bin/
 ```
 ```
 ls -l $HOME/.intento/cosmovisor/current
 rm $HOME/.intento/cosmovisor/current
-ln -s $HOME/.intento/cosmovisor/upgrades/0.9.2-r1 $HOME/.intento/cosmovisor/current
+ln -s $HOME/.intento/cosmovisor/upgrades/0.9.3 $HOME/.intento/cosmovisor/current
 ```
 ```
-$HOME/.intento/cosmovisor/upgrades/0.9.2-r1/bin/intentod version --long | grep -e commit -e version
+$HOME/.intento/cosmovisor/upgrades/0.9.3/bin/intentod version --long | grep -e commit -e version
 ```
 ### Init
 ```
