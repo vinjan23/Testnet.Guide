@@ -26,11 +26,11 @@ achillesd init Vinjan.Inc --chain-id ithaca-1
 ```
 ### Genesis
 ```
-curl -L https://snap-test.vinjan.xyz/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
+curl -L https://snapshot-t.vinjan.xyz/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
 ```
 ### Addrbook
 ```
-curl -L https://snap-test.vinjan.xyz/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
+curl -L https://snapshot-t.vinjan.xyz/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
 ```
 ### Port
 ```
@@ -183,12 +183,17 @@ achillesd tx bank send wallet .... 1000000uodis --from wallet --chain-id ithaca-
 ```
 sudo rm /var/www/snap-test/odiseo/addrbook.json && cp $HOME/.achilles/config/addrbook.json /var/www/snap-test/odiseo/addrbook.json
 ```
+### Seed
+```
+echo $(achillesd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.achilles/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+
 ###
 ```
 sudo apt install lz4 -y
 sudo systemctl stop achillesd
 achillesd tendermint unsafe-reset-all --home $HOME/.achilles --keep-addr-book
-curl -L https://snap-test.vinjan.xyz/odiseo/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.achilles
+curl -L https://snapshot-t.vinjan.xyz/odiseo/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.achilles
 sudo systemctl restart achillesd
 sudo journalctl -u achillesd -f -o cat
 ```
