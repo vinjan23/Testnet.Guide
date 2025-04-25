@@ -200,7 +200,12 @@ selfchaind status 2>&1 | jq .NodeInfo
 ```
 sudo systemctl restart selfchaind
 ```
-
+```
+[[ $(selfchaind q staking validator $(selfchaind keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(selfchaind status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+```
+[[ $(selfchaind q staking validator $(selfchaind keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $($(selfchaind status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\nYou win\n" || echo -e "\nYou lose\n"
+```
 ### Delete Node
 ```
 sudo systemctl stop selfchaind
