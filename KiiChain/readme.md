@@ -234,6 +234,10 @@ SERVICE_NAME=kiichain
 ```
 sudo systemctl stop kiichaind
 ```
+### Node ID
+```
+kiichaind status 2>&1 | jq .NodeInfo
+```
 
 ### Backup the current node home
 ```
