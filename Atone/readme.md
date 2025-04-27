@@ -179,15 +179,15 @@ atomoned tx staking create-validator \
 
 ### Delegate
 ```
-atomoned tx staking delegate $(atomoned keys show wallet --bech val -a) 1000000uatone --from wallet --chain-id atomone-testnet-1 --gas auto
+atomoned tx staking delegate $(atomoned keys show wallet --bech val -a) 1000000uatone --from wallet --chain-id atomone-testnet-1 --gas-adjustment=1.2 --gas-prices=0.025uphoton --gas auto
 ```
 ### WD
 ```
-atomoned tx distribution withdraw-rewards $(atomoned keys show wallet --bech val -a) --commission --from wallet --chain-id atomone-testnet-1 --gas auto 
+atomoned tx distribution withdraw-rewards $(atomoned keys show wallet --bech val -a) --commission --from wallet --chain-id atomone-testnet-1 --gas-adjustment=1.2 --gas-prices=0.025uphoton --gas auto 
 ```
 ### Send
 ```
-atomoned tx bank send wallet <TO_WALLET_ADDRESS> 1000000uatone --from wallet --chain-id atomone-testnet-1 --gas auto
+atomoned tx bank send wallet <TO_WALLET_ADDRESS> 1000000uatone --from wallet --chain-id atomone-testnet-1 ---gas-adjustment=1.2 --gas-prices=0.025uphoton -gas auto
 ```
 
 ### Own Peer
@@ -203,7 +203,7 @@ atomoned tendermint unsafe-reset-all
 ```
 ### Vote
 ```
-atomoned tx gov vote 5 yes --from wallet --chain-id atomone-testnet-1 --fees 50000uatone
+atomoned tx gov vote 5 yes --from wallet --chain-id atomone-testnet-1 --fees 50000uphoton
 ```
 ### Mint Poton
 ```
