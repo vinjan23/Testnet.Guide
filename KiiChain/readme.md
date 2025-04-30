@@ -184,20 +184,24 @@ kiichaind tx staking edit-validator \
 ```
 ### Unjail
 ```
-kiichaind tx slashing unjail --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+kiichaind tx slashing unjail --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 1000000000akii --gas auto
 ```
 ### Delegate
 ```
-kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 9000000ukii --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 9000000akii --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 1000000000akii --gas auto
 ```
 ### WD
 ```
-kiichaind  tx distribution withdraw-rewards $(kiichaind keys show wallet --bech val -a) --commission --from wallet --chain-id kiichain3 --gas-adjustment=1.3 --gas-prices 0.02ukii --gas auto
+kiichaind  tx distribution withdraw-rewards $(kiichaind keys show wallet --bech val -a) --commission --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 1000000000akii --gas auto
 ```
 ### Own Peer
 ```
-echo $(kiichaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.kiichain3/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+echo $(kiichaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.kiichain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
+### Vote
+```
+ kiichaind tx gov vote 1 yes --from kii1gwmvg74s8x7cj0qfm9n0uhjmzcn3zvlcf6nm4y --chain-id oro_1336-1 --gas auto --gas-adjustment 1.3 --gas-prices=1000000000akii
+ ```
 ### Delete
 ```
 sudo systemctl stop kiichaind
