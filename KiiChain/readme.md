@@ -60,7 +60,6 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 
 ### Genesis
 ```
-curl -L https://github.com/KiiChain/testnets/blob/main/testnet_oro/genesis.json > $HOME/.kiichain/config/genesis.json
 wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/KiiChain/testnets/refs/heads/main/testnet_oro/genesis.json
 ```
 ### Peer
@@ -68,16 +67,6 @@ wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/Ki
 persistent_peers="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$persistent_peers\"/" $HOME/.kiichain/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"1000000000akii\"/" $HOME/.kiichain/config/app.toml
-```
-```
-sed -i.bak -e "s|^occ-enabled *=.*|occ-enabled = true|" $HOME/.kiichain/config/app.toml
-sed -i.bak -e "s|^sc-enable *=.*|sc-enable = true|" $HOME/.kiichain/config/app.toml
-sed -i.bak -e "s|^ss-enable *=.*|ss-enable = true|" $HOME/.kiichain/config/app.toml
-sed -i.bak -e 's/^# concurrency-workers = 20$/concurrency-workers = 500/' $HOME/.kiichain/config/app.toml
-sed -i 's/mode = "full"/mode = "validator"/g' $HOME/.kiichain/config/config.toml
-```
-```
-sed -i '/^timeout-broadcast-tx-commit =/c timeout-broadcast-tx-commit = "1s"' $HOME/.kiichain/config/config.toml
 ```
 
 ### Prunning
