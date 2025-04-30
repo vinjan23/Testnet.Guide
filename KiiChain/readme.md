@@ -4,7 +4,7 @@ cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v1.0.0
+git checkout v1.2.0
 make build
 ```
 ```
@@ -16,12 +16,12 @@ sudo ln -s $HOME/.kiichain/cosmovisor/genesis $HOME/.kiichain/cosmovisor/current
 sudo ln -s $HOME/.kiichain/cosmovisor/current/bin/kiichaind /usr/local/bin/kiichaind -f
 ```
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.0.0/bin
-cp $HOME/.kiichain/cosmovisor/current/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v1.0.0/bin/
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.2.0/bin
+cp $HOME/.kiichain/cosmovisor/current/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v1.2.0/bin/
 ```
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.0.0/bin
-mv build/kiichaind $HOME/.kiichain3/cosmovisor/upgrades/v1.0.0/bin/
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.2.0/bin
+mv build/kiichaind $HOME/.kiichain3/cosmovisor/upgrades/v1.2.0/bin/
 rm -rf build
 ```
 ```
@@ -29,17 +29,17 @@ cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v1.0.0
+git checkout v1.2.0
 make install
-cp -a ~/go/bin/kiichaind ~/.kiichain/cosmovisor/upgrades/v1.0.0/bin/kiichaind
+cp -a ~/go/bin/kiichaind ~/.kiichain/cosmovisor/upgrades/v1.2.0/bin/kiichaind
 ```
 ```
 ls -l $HOME/.kiichain/cosmovisor/current
 rm $HOME/.kiichain/cosmovisor/current
-ln -s $HOME/.kiichain/cosmovisor/upgrades/v1.0.0 $HOME/.kiichain/cosmovisor/current
+ln -s $HOME/.kiichain/cosmovisor/upgrades/v1.2.0 $HOME/.kiichain/cosmovisor/current
 ```
 ```
-$HOME/.kiichain/cosmovisor/upgrades/v1.0.0/bin/kiichaind version --long | grep -e commit -e version
+$HOME/.kiichain/cosmovisor/upgrades/v1.2.0/bin/kiichaind version --long | grep -e commit -e version
 ```
 
 ```
