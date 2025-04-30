@@ -53,17 +53,16 @@ kiichaind config keyring-backend test
 ```
 ### Port
 ```
-PORT=19
-kiichaind config node tcp://localhost:${PORT}657
+sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:19657\"%" $HOME/.kiichain/config/client.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:19658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:19657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:19060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:19656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":19660\"%" $HOME/.kiichain/config/config.toml
 ```
 ```
-sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.kiichain/config/config.toml
-sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%" $HOME/.kiichain/config/app.toml
+sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:19317\"%; s%^address = \"localhost:9090\"%address = \"localhost:19090\"%" $HOME/.kiichain/config/app.toml
 ```
 
 ### Genesis
 ```
-wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/KiiChain/testnets/refs/heads/main/testnet_oro/genesis.json
+curl -L https://github.com/KiiChain/testnets/blob/main/testnet_oro/genesis.json > $HOME/.kiichain/config/genesis.json
 ```
 ### Peer
 ```
