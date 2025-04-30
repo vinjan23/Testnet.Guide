@@ -48,8 +48,6 @@ kiichaind version --long | grep -e commit -e version
 ### Init
 ```
 kiichaind init Vinjan.Inc --chain-id oro_1336-1
-kiichaind config chain-id oro_1336-1
-kiichaind config keyring-backend test
 ```
 ### Port
 ```
@@ -63,6 +61,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ### Genesis
 ```
 curl -L https://github.com/KiiChain/testnets/blob/main/testnet_oro/genesis.json > $HOME/.kiichain/config/genesis.json
+wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/KiiChain/testnets/refs/heads/main/testnet_oro/genesis.json
 ```
 ### Peer
 ```
@@ -103,10 +102,10 @@ ExecStart=$(which cosmovisor) run start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.kiichain3"
+Environment="DAEMON_HOME=$HOME/.kiichain"
 Environment="DAEMON_NAME=kiichaind"
 Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.kiichain3/cosmovisor/current/bin"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.kiichain/cosmovisor/current/bin"
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -128,24 +127,21 @@ sudo journalctl -u kiichaind -f -o cat
 PERSISTENT_PEERS="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
 PRIMARY_ENDPOINT=https://rpc.uno.sentry.testnet.v3.kiivalidator.com
 SECONDARY_ENDPOINT=https://rpc.dos.sentry.testnet.v3.kiivalidator.com
-sed -i -e "/persistent-peers =/ s^= .*^= \"$PERSISTENT_PEERS\"^" $HOME/.kiichain/config/config.toml
 TRUST_HEIGHT_DELTA=500
-LATEST_HEIGHT=$(curl -s "$PRIMARY_ENDPOINT"/block | jq -r ".block.header.height")
+LATEST_HEIGHT=$(curl -s "$PRIMARY_ENDPOINT"/block | jq -r ".result.block.header.height")
 SYNC_BLOCK_HEIGHT=$(($LATEST_HEIGHT - $TRUST_HEIGHT_DELTA))
 SYNC_BLOCK_HEIGHT=$LATEST_HEIGHT
-SYNC_BLOCK_HASH=$(curl -s "$PRIMARY_ENDPOINT/block?height=$SYNC_BLOCK_HEIGHT" | jq -r ".block_id.hash")
+SYNC_BLOCK_HASH=$(curl -s "$PRIMARY_ENDPOINT/block?height=$SYNC_BLOCK_HEIGHT" | jq -r ".result.block_id.hash")
 sed -i.bak -e "s|^enable *=.*|enable = true|" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s|^rpc-servers *=.*|rpc-servers = \"$PRIMARY_ENDPOINT,$SECONDARY_ENDPOINT\"|" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s|^db-sync-enable *=.*|db-sync-enable = false|" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s|^trust-height *=.*|trust-height = $SYNC_BLOCK_HEIGHT|" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s|^trust-hash *=.*|trust-hash = \"$SYNC_BLOCK_HASH\"|" $HOME/.kiichain/config/config.toml
+sed -i.bak -e "s|^rpc_servers *=.*|rpc_servers = \"$PRIMARY_ENDPOINT,$SECONDARY_ENDPOINT\"|" $HOME/.kiichain/config/config.toml
+sed -i.bak -e "s|^trust_height *=.*|trust_height = $SYNC_BLOCK_HEIGHT|" $HOME/.kiichain/config/config.toml
+sed -i.bak -e "s|^trust_hash *=.*|trust_hash = \"$SYNC_BLOCK_HASH\"|" $HOME/.kiichain/config/config.toml
 sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
 ```
-
 ### Sync
 ```
-kiichaind status 2>&1 | jq .SyncInfo
+kiichaind status 2>&1 | jq .sync_info
 ```
 ### Wallet
 ```
