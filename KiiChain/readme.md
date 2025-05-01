@@ -63,11 +63,11 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/KiiChain/testnets/refs/heads/main/testnet_oro/genesis.json
 ```
 ```
-curl -L https://snapshot-t.vinjan.xyz/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
+curl -L https://snapshot-t.vinjan.xyz/kiichain/genesis.json > $HOME/.kiichain/config/genesis.json
 ```
 ### Addrbook
 ```
-curl -L https://snapshot-t.vinjan.xyz/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
+curl -L https://snapshot-t.vinjan.xyz/kiichain/addrbook.json > $HOME/.kiichain/config/addrbook.json
 ```
 ### Peer
 ```
