@@ -62,8 +62,17 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/KiiChain/testnets/refs/heads/main/testnet_oro/genesis.json
 ```
+```
+curl -L https://snapshot-t.vinjan.xyz/odiseo/genesis.json > $HOME/.achilles/config/genesis.json
+```
+### Addrbook
+```
+curl -L https://snapshot-t.vinjan.xyz/odiseo/addrbook.json > $HOME/.achilles/config/addrbook.json
+```
 ### Peer
 ```
+seeds="408ede05d42c077c7e6f069e9dede07074f40911@94.130.143.184:19656"
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.kiichain/config/config.toml
 persistent_peers="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$persistent_peers\"/" $HOME/.kiichain/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"1000000000akii\"/" $HOME/.kiichain/config/app.toml
@@ -72,7 +81,10 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"1000000000akii\"/" 
 ### Prunning
 ```
 sed -i \
--e 's|^pruning *=.*|pruning = "nothing"|' \
+-e 's|^pruning *=.*|pruning = "custom"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "11"|' \
 $HOME/.kiichain/config/app.toml
 ```
 ### Indexer
@@ -213,27 +225,5 @@ rm -rf .kiichain
 rm -rf kiichain
 ```
 ```
-NODE_HOME=$HOME/.kiichain3
-NODE_HOME_BACKUP=$HOME/.kiichain3-bk
-CHAIN_BINARY='kiichaind'
-KIICHAIN_REPO_PATH=$HOME/kiichain
-SERVICE_NAME=kiichain
-```
-```
-sudo systemctl stop kiichaind
-```
-### Node ID
-```
-kiichaind status 2>&1 | jq .NodeInfo
-```
-
-### Backup the current node home
-```
-mv $HOME/.kiichain3 $HOME/.kiichain3-bk
-```
-### Remove old configuration
-```
-rm -rf $HOME/kiichain
-rm -rf $(which kiichaind)
-sudo rm /etc/systemd/system/kiichaind.service
+cp $HOME/.kiichain/config/addrbook.json /var/www/snapshot-t/kiichain/addrbook.json
 ```
