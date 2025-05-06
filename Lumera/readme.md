@@ -104,7 +104,7 @@ nano $HOME/.lumera/validator.json
 ```
 ```
 {
-  "pubkey":  ,
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"j3tNZMPKR3agBkg5Z/048sF1kAidDIcTRuQFekAolOQ="},
   "amount": "1000000ulume",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
@@ -121,6 +121,8 @@ nano $HOME/.lumera/validator.json
 lumerad tx staking create-validator $HOME/.lumera/validator.json \
 --from wallet \
 --chain-id lumera-testnet-1 \
+--gas-prices=0.025ulume \
+--gas-adjustment=1.5 \
 --gas=auto
 ```
 ### Unjail
