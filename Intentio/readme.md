@@ -22,17 +22,17 @@ cd $HOME
 rm -rf intento
 git clone https://github.com/trstlabs/intento.git
 cd intento
-git checkout v0.9.3
+git checkout v0.9.4
 make install
 ```
 ```
-mkdir -p $HOME/.intento/cosmovisor/upgrades/0.9.3/bin
-cp -a ~/go/bin/intentod ~/.intento/cosmovisor/upgrades/0.9.3/bin/
+mkdir -p $HOME/.intento/cosmovisor/upgrades/0.9.4/bin
+cp -a ~/go/bin/intentod ~/.intento/cosmovisor/upgrades/0.9.4/bin/
 ```
 ```
 ls -l $HOME/.intento/cosmovisor/current
 rm $HOME/.intento/cosmovisor/current
-ln -s $HOME/.intento/cosmovisor/upgrades/0.9.3 $HOME/.intento/cosmovisor/current
+ln -s $HOME/.intento/cosmovisor/upgrades/0.9.4 $HOME/.intento/cosmovisor/current
 ```
 ```
 $HOME/.intento/cosmovisor/upgrades/0.9.3/bin/intentod version --long | grep -e commit -e version
