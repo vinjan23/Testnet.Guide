@@ -212,8 +212,8 @@ echo $(kiichaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 ```
 ### Vote
 ```
- kiichaind tx gov vote 1 yes --from kii1gwmvg74s8x7cj0qfm9n0uhjmzcn3zvlcf6nm4y --chain-id oro_1336-1 --gas auto --gas-adjustment 1.3 --gas-prices=1000000000akii
- ```
+ kiichaind tx gov vote 2 yes --from $(kiichaind keys show wallet -a) --chain-id oro_1336-1 --gas-adjustment 1.3 --gas-prices=1500000000akii
+  ```
 ### Delete
 ```
 sudo systemctl stop kiichaind
