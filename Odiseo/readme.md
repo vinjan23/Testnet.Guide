@@ -178,7 +178,10 @@ achillesd tx distribution withdraw-rewards $(achillesd keys show wallet --bech v
 ```
 achillesd tx bank send wallet .... 1000000uodis --from wallet --chain-id ithaca-1 --gas-prices=0.25uodis --gas-adjustment=1.5 --gas=auto
 ```
-
+### Vote
+```
+achillesd tx gov vote 1 yes --from wallet --chain-id ithaca-1 --gas-prices=0.025uodis --gas-adjustment=1.5 --gas=auto
+ ```
 ###
 ```
 sudo rm /var/www/snap-test/odiseo/addrbook.json && cp $HOME/.achilles/config/addrbook.json /var/www/snap-test/odiseo/addrbook.json
