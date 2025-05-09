@@ -2,7 +2,7 @@
 ```
 mkdir -p zenrock
 cd $HOME/zenrock
-wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.10.5/zenrockd
+wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.5.0/zenrockd
 chmod +x zenrockd
 mv $HOME/zenrock/zenrockd $HOME/go/bin/
 ```
@@ -38,11 +38,11 @@ make install
 
 ### Init
 ```
-zenrockd init Vinjan.Inc --chain-id gardia-4
+zenrockd init Vinjan.Inc --chain-id gardia-5
 ```
 ### 
 ```
-curl -s https://rpc.gardia.zenrocklabs.io/genesis | jq .result.genesis > $HOME/.zrchain/config/genesis.json
+curl -L https://rpc.gardia.zenrocklabs.io/genesis | jq .result.genesis > $HOME/.zrchain/config/genesis.json
 ```
 ### check genesis
 ```
@@ -60,8 +60,8 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ###
 ```
-sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0urock"|g' $HOME/.zrchain/config/app.toml
-peers=""6ef43e8d5be8d0499b6c57eb15d3dd6dee809c1e@sentry-1.gardia.zenrocklabs.io:26656,1dfbd854bab6ca95be652e8db078ab7a069eae6f@sentry-2.gardia.zenrocklabs.io:36656,63014f89cf325d3dc12cc8075c07b5f4ee666d64@sentry-3.gardia.zenrocklabs.io:46656,12f0463250bf004107195ff2c885be9b480e70e2@sentry-4.gardia.zenrocklabs.io:56656""
+sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.01urock"|g' $HOME/.zrchain/config/app.toml
+peers="6ef43e8d5be8d0499b6c57eb15d3dd6dee809c1e@sentry-1.gardia.zenrocklabs.io:26656,1dfbd854bab6ca95be652e8db078ab7a069eae6f@sentry-2.gardia.zenrocklabs.io:36656,63014f89cf325d3dc12cc8075c07b5f4ee666d64@sentry-3.gardia.zenrocklabs.io:46656,12f0463250bf004107195ff2c885be9b480e70e2@sentry-4.gardia.zenrocklabs.io:56656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.zrchain/config/config.toml
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.zrchain/config/config.toml
