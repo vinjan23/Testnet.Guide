@@ -180,7 +180,7 @@ achillesd tx bank send wallet .... 1000000uodis --from wallet --chain-id ithaca-
 ```
 ### Vote
 ```
-achillesd tx gov vote 1 yes --from wallet --chain-id ithaca-1 --gas-prices=0.025uodis --gas-adjustment=1.5 --gas=auto
+achillesd tx gov vote 2 yes --from wallet --chain-id ithaca-1 --gas-prices=0.025uodis --gas-adjustment=1.5 --gas=auto
  ```
 ###
 ```
