@@ -126,7 +126,7 @@ nano /root/.zrchain/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"GhChCn3hTr0c7ltz38DDYCanZ38xFnZQ1vIP7vIZ1tQ="},
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"pwbNGjHrmwfLsStZPAkqIMolB27Q+TNfEK+0MnBNt/s="},
   "amount": "1000000000000urock",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
@@ -142,7 +142,7 @@ nano /root/.zrchain/validator.json
 ```
 zenrockd tx validation create-validator $HOME/.zrchain/validator.json \
 --from=wallet \
---chain-id=gardia-4 \
+--chain-id=gardia-5 \
 --gas-adjustment 1.4 \
 --gas-prices 2.5urock \
 --gas auto \
@@ -150,11 +150,11 @@ zenrockd tx validation create-validator $HOME/.zrchain/validator.json \
 ```
 ### Delegate
 ```
-zenrockd tx validation delegate $(zenrockd keys show wallet --bech val -a) 1000000000urock --from wallet --chain-id gardia-3 --gas-adjustment 1.4 --gas auto --gas-prices 2.5urock -y
+zenrockd tx validation delegate $(zenrockd keys show wallet --bech val -a) 1000000000urock --from wallet --chain-id gardia-5 --gas-adjustment 1.4 --gas auto --gas-prices 2.5urock -y
 ```
 ### WD
 ```
-zenrockd tx distribution withdraw-rewards $(zenrockd keys show wallet --bech val -a) --commission --from wallet --chain-id gardia-3 --gas-adjustment 1.4 --gas auto --gas-prices 2.5urock -y
+zenrockd tx distribution withdraw-rewards $(zenrockd keys show wallet --bech val -a) --commission --from wallet --chain-id gardia-5 --gas-adjustment 1.4 --gas auto --gas-prices 2.5urock -y
 ```
 
 ### Sidecar Binary
