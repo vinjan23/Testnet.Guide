@@ -1,32 +1,29 @@
 ###
 ```
-mkdir -p zenrock
-cd $HOME/zenrock
-wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.5.0/zenrockd
-chmod +x zenrockd
-mv $HOME/zenrock/zenrockd $HOME/go/bin/
-```
-
-### Update
-```
-cd $HOME/zenrock
+cd $HOME
+mkdir -p zrchain
+cd $HOME/zrchain
 wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v5.3.8/zenrockd
 chmod +x zenrockd
+mv $HOME/zrchain/zenrockd $HOME/go/bin/
+```
+### Update
+```
+cd $HOME/zrchain
+wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v6.3.3/zenrockd
+chmod +x zenrockd
 ```
 ```
-$HOME/zenrock/zenrockd version --long | grep -e version -e commit
+mv $HOME/zrchain/zenrockd $(which zenrockd)
 ```
+
 ```
-sudo systemctl stop zenrockd
-mv $HOME/zenrock/zenrockd $(which zenrockd)
+$HOME/zrchain/zenrockd version --long | grep -e version -e commit
 ```
 ```
 zenrockd version --long | grep -e version -e commit
 ```
 
-```
-sha256sum $HOME/zenrock/zenrockd
-```
 ```
 cd $HOME
 rm -rf zrchain
@@ -42,13 +39,8 @@ zenrockd init Vinjan.Inc --chain-id gardia-5
 ```
 ### 
 ```
-curl -L https://rpc.gardia.zenrocklabs.io/genesis | jq .result.genesis > $HOME/.zrchain/config/genesis.json
+curl -s https://rpc.gardia.zenrocklabs.io/genesis | jq .result.genesis > $HOME/.zrchain/config/genesis.json
 ```
-### check genesis
-```
-sha256sum ~/.zrchain/config/genesis.json
-```
-`0a43001a0a55a5ce41d1faa31811394cf8dfdb9c0a6d4b21f677d88ec9bce783`
 
 ### Port
 ```
@@ -60,6 +52,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ###
 ```
+zenrockd config set client chain-id gardia-5
 sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.01urock"|g' $HOME/.zrchain/config/app.toml
 peers="6ef43e8d5be8d0499b6c57eb15d3dd6dee809c1e@sentry-1.gardia.zenrocklabs.io:26656,1dfbd854bab6ca95be652e8db078ab7a069eae6f@sentry-2.gardia.zenrocklabs.io:36656,63014f89cf325d3dc12cc8075c07b5f4ee666d64@sentry-3.gardia.zenrocklabs.io:46656,12f0463250bf004107195ff2c885be9b480e70e2@sentry-4.gardia.zenrocklabs.io:56656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.zrchain/config/config.toml
