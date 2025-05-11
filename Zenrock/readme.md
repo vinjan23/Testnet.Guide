@@ -272,6 +272,10 @@ systemctl daemon-reload
 systemctl enable zenrock-sidecar
 systemctl restart zenrock-sidecar && journalctl -u zenrock-sidecar -f -o cat
 ```
+### Delete
+```
+zenrockd tendermint unsafe-reset-all --home $HOME/.zrchain --keep-addr-book
+```
 ```
 sudo systemctl stop zenrockd
 sudo systemctl disable zenrockd
