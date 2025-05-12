@@ -20,6 +20,21 @@ cp $HOME/go/bin/achillesd $HOME/.achilles/cosmovisor/genesis/bin/
 sudo ln -s $HOME/.achilles/cosmovisor/genesis $HOME/.achilles/cosmovisor/current -f
 sudo ln -s $HOME/.achilles/cosmovisor/current/bin/achillesd /usr/local/bin/achillesd -f
 ```
+### Update
+```
+cd $HOME
+rm -rf Achilles
+git clone https://github.com/daodiseomoney/Achilles.git
+cd Achilles/achilles
+git checkout v1.0.1
+make build
+```
+```
+mkdir -p $HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin
+mv build/achillesd $HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin/
+rm -rf build
+```
+
 ### Init
 ```
 achillesd init Vinjan.Inc --chain-id ithaca-1
