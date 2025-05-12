@@ -34,7 +34,9 @@ mkdir -p $HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin
 mv build/achillesd $HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin/
 rm -rf build
 ```
-
+```
+$HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin/achillesd version --long | grep -e commit -e version
+```
 ### Init
 ```
 achillesd init Vinjan.Inc --chain-id ithaca-1
