@@ -141,7 +141,10 @@ lumerad tx staking delegate $(lumerad keys show wallet --bech val -a) 1000000ulu
 ```
 echo $(lumerad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.lumera/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
-
+### Vote
+```
+lumerad tx gov vote 2 yes --from wallet --chain-id lumera-testnet-1 --fees 40000ulume
+``~
 ### Delete
 ```
 sudo systemctl stop lumerad
