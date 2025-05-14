@@ -32,6 +32,9 @@ mv lumerad $HOME/.lumera/cosmovisor/upgrades/v1.0.0/bin/
 ```
 lumerad version  --long | grep -e version -e commit
 ```
+```
+$HOME/.lumera/cosmovisor/upgrades/v1.0.0/bin/lumerad version --long | grep -e commit -e version
+```
 ### Init
 ```
 lumerad init Vinjan.Inc --chain-id lumera-testnet-1
