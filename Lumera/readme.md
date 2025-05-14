@@ -144,13 +144,13 @@ lumerad tx staking create-validator $HOME/.lumera/validator.json \
 ```
 lumerad tx staking edit-validator \
 --new-moniker Vinjan.Inc \
---identity: 7C66E36EA2B71F68 \
+--identity 7C66E36EA2B71F68 \
 --from wallet \
 --chain-id lumera-testnet-1 \
 --commission-rate 0.1 \
+--gas auto \
 --gas-prices=0.025ulume \
---gas-adjustment=1.5 \ 
---gas auto
+--gas-adjustment=1.5
 ```
 
 ### Unjail
@@ -163,7 +163,7 @@ lumerad tx distribution withdraw-rewards $(lumerad keys show wallet --bech val -
 ```
 ### Stake
 ```
-lumerad tx staking delegate $(lumerad keys show wallet --bech val -a) 1000000ulume --from wallet --chain-id lumera-testnet-1 --gas=auto
+lumerad tx staking delegate $(lumerad keys show wallet --bech val -a) 200000000ulume --from wallet --chain-id lumera-testnet-1 --gas-adjustment=1.5 --gas=auto --gas-prices=0.025ulume
 ```
 ### Own
 ```
@@ -172,7 +172,7 @@ echo $(lumerad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.
 ### Vote
 ```
 lumerad tx gov vote 2 yes --from wallet --chain-id lumera-testnet-1 --fees 40000ulume
-``~
+```
 ### Delete
 ```
 sudo systemctl stop lumerad
