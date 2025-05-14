@@ -35,7 +35,7 @@ make install
 
 ### Init
 ```
-zenrockd init Vinjan.Inc --chain-id gardia-5
+zenrockd init Vinjan.Inc --chain-id gardia-6
 ```
 ### 
 ```
