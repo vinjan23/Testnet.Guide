@@ -49,7 +49,7 @@ zenrockd version --long | grep -e version -e commit
 
 ### Init
 ```
-zenrockd init Vinjan.Inc --chain-id gardia-6
+zenrockd init Vinjan.Inc --chain-id gardia-7
 ```
 ### 
 ```
