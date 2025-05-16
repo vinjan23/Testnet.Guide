@@ -173,6 +173,25 @@ echo $(lumerad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.
 ```
 lumerad tx gov vote 2 yes --from wallet --chain-id lumera-testnet-1 --fees 40000ulume
 ```
+### Statesync
+```
+sudo systemctl stop lumerad
+lumerad tendermint unsafe-reset-all --home $HOME/.lumera --keep-addr-book
+SYNC_RPC="https://rpc-test.lumera.vinjan.xyz"
+SYNC_PEER="49e22975a1d6c5204072f25eb71c01faf54b4b92@88.99.149.170:17656"
+LATEST_HEIGHT=$(curl -s $SYNC_RPC/block | jq -r .result.block.header.height)
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000))
+TRUST_HASH=$(curl -s "$SYNC_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i \
+-e "s|^enable *=.*|enable = true|" \
+-e "s|^rpc_servers *=.*|rpc_servers = \"$SYNC_RPC,$SYNC_RPC\"|" \
+-e "s|^trust_height *=.*|trust_height = $BLOCK_HEIGHT|" \
+-e "s|^trust_hash *=.*|trust_hash = \"$TRUST_HASH\"|" \
+-e "s|^persistent_peers *=.*|persistent_peers = \"$SYNC_PEER\"|" \
+$HOME/.lumera/config/config.toml
+sudo systemctl restart lumerad
+sudo journalctl -u lumerad -f -o cat  
+```  
 ### Delete
 ```
 sudo systemctl stop lumerad
