@@ -39,7 +39,10 @@ chmod +x zenrockd
 ```
 mv $HOME/zrchain/zenrockd $HOME/go/bin/
 ```
-
+```
+sudo systemctl restart zenrockd
+sudo journalctl -u zenrockd -f -o cat
+```
 ```
 $HOME/zrchain/zenrockd version --long | grep -e version -e commit
 ```
