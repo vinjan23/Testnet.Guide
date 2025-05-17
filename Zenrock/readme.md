@@ -49,7 +49,7 @@ zenrockd version --long | grep -e version -e commit
 
 ### Init
 ```
-zenrockd init Vinjan.Inc --chain-id gardia-7
+zenrockd init Vinjan.Inc --chain-id gardia-8
 ```
 ### 
 ```
@@ -66,7 +66,7 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 ```
 ###
 ```
-zenrockd config set client chain-id gardia-6
+zenrockd config set client chain-id gardia-8
 sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.01urock"|g' $HOME/.zrchain/config/app.toml
 peers="6ef43e8d5be8d0499b6c57eb15d3dd6dee809c1e@sentry-1.gardia.zenrocklabs.io:26656,1dfbd854bab6ca95be652e8db078ab7a069eae6f@sentry-2.gardia.zenrocklabs.io:36656,63014f89cf325d3dc12cc8075c07b5f4ee666d64@sentry-3.gardia.zenrocklabs.io:46656,12f0463250bf004107195ff2c885be9b480e70e2@sentry-4.gardia.zenrocklabs.io:56656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.zrchain/config/config.toml
