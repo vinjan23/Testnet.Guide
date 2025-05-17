@@ -29,7 +29,7 @@ wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v6.1.16/zen
 chmod +x zenrockd
 ```
 ```
-wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v6.3.8/zenrockd
+wget https://github.com/Zenrock-Foundation/zrchain/releases/download/v6.3.10/zenrockd
 chmod +x zenrockd
 ```
 ```
