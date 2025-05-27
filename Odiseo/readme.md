@@ -1,10 +1,5 @@
 ### Binary
-```
-cd $HOME
-wget https://snapshot-t.vinjan.xyz/odiseo/achillesd
-chmod +x achillesd
-mv achillesd /root/go/bin/
-```
+
 ```
 cd $HOME
 rm -rf Achilles
@@ -26,16 +21,16 @@ cd $HOME
 rm -rf Achilles
 git clone https://github.com/daodiseomoney/Achilles.git
 cd Achilles/achilles
-git checkout v1.0.1
+git checkout v1.0.2
 make build
 ```
 ```
-mkdir -p $HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin
-mv build/achillesd $HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin/
+mkdir -p $HOME/.achilles/cosmovisor/upgrades/v1.0.2/bin
+mv build/achillesd $HOME/.achilles/cosmovisor/upgrades/v1.0.2/bin/
 rm -rf build
 ```
 ```
-$HOME/.achilles/cosmovisor/upgrades/v1.0.1/bin/achillesd version --long | grep -e commit -e version
+$HOME/.achilles/cosmovisor/upgrades/v1.0.2/bin/achillesd version --long | grep -e commit -e version
 ```
 ### Init
 ```
