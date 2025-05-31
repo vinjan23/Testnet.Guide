@@ -30,12 +30,11 @@ sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost
 
 ### Genesis
 ```
-  curl https://raw.githubusercontent.com/TacBuild/tacchain/refs/heads/main/networks/tacchain_2391-1/genesis.json > .testnet/config/genesis.json
+curl -L https://snapshot-t.vinjan.xyz/tacchain/genesis.json > $HOME/.tacchaind/config/genesis.json 
 ```
 ### Addrbook
 ```
-wget -O addrbook.json https://snapshots.polkachu.com/testnet-addrbook/tacchain/addrbook.json --inet4-only
-mv addrbook.json ~/.tacchaind/config
+curl -L https://snapshot-t.vinjan.xyz/tacchain/addrbook.json > $HOME/.tacchaind/config/addrbook.json 
 ```
 ### Set
 ```
