@@ -120,6 +120,10 @@ nano $HOME/.tacchaind/validator.json
 }
 ```
 
+### Delegate
+```
+tacchaind tx staking delegate $(tacchaind keys show wallet --bech val -a) 9000000000000000000utac --from wallet --chain-id tacchain_2391-1 --gas-prices=4000000000000utac --gas-adjustment=1.2 --gas=auto
+```
 
 
 
