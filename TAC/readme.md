@@ -1,0 +1,128 @@
+### Binary
+```
+cd $HOME
+rm -rf tacchain
+git clone https://github.com/TacBuild/tacchain.git
+cd tacchain
+git checkout v0.0.10
+make install
+```
+```
+mkdir -p $HOME/.tacchaind/cosmovisor/genesis/bin
+cp $HOME/go/bin/tacchaind $HOME/.tacchaind/cosmovisor/genesis/bin/
+```
+```
+ln -s $HOME/.tacchaind/cosmovisor/genesis $HOME/.tacchaind/cosmovisor/current -f
+sudo ln -s $HOME/.tacchaind/cosmovisor/current/bin/tacchaind /usr/local/bin/tacchaind -f
+```
+### Init
+```
+tacchaind init Vinjan.Inc --chain-id tacchain_2391-1
+```
+### Port
+```
+sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:31657\"%" $HOME/.tacchaind/config/client.toml
+```
+```
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:31658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:31657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:31060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:31656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":31660\"%" $HOME/.tacchaind/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:31317\"%; s%^address = \"localhost:9090\"%address = \"localhost:31090\"%" $HOME/.tacchaind/config/app.toml
+```
+
+### Genesis
+```
+  curl https://raw.githubusercontent.com/TacBuild/tacchain/refs/heads/main/networks/tacchain_2391-1/genesis.json > .testnet/config/genesis.json
+```
+### Addrbook
+```
+wget -O addrbook.json https://snapshots.polkachu.com/testnet-addrbook/tacchain/addrbook.json --inet4-only
+mv addrbook.json ~/.tacchaind/config
+```
+### Set
+```
+seeds=""
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.achilles/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025uodis\"/" $HOME/.tacchaind/config/app.toml
+```
+### Prunning
+```
+sed -i \
+-e 's|^pruning *=.*|pruning = "custom"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "11"|' \
+$HOME/.tacchaind/config/app.toml
+```
+### Indexer
+```
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.tacchaind/config/config.toml
+```
+### Service
+```
+sudo tee /etc/systemd/system/tacchaind.service > /dev/null << EOF
+[Unit]
+Description=tacchainb
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.tacchaind"
+Environment="DAEMON_NAME=tacchaind"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.tacchaind/cosmovisor/current/bin"
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+### Start
+```
+sudo systemctl daemon-reload
+sudo systemctl enable tacchaind
+sudo systemctl restart tacchaind
+sudo journalctl -u tacchaind -f -o cat
+```
+### Sync
+```
+tacchaind  status 2>&1 | jq .sync_info
+```
+### Wallet
+```
+tacchaind keys add wallet
+```
+```
+tacchaind  keys export wallet --unarmored-hex --unsafe
+```
+### Balance
+```
+tacchaind q bank balances $(tacchaind keys show wallet -a)
+```
+
+### Validator
+```
+tacchaind  tendermint show-validator
+```
+```
+nano $HOME/.tacchaind/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"kd1k2PdtUT3ckVoWrSygRXmUq7nyiZjq7p1zu0Lo60Q="},
+  "amount": "100000000uodis",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+
+
+
+
