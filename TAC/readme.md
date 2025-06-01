@@ -120,10 +120,37 @@ nano $HOME/.tacchaind/validator.json
 }
 ```
 
+```
+tacchaind tx staking create-validator $HOME/.tacchaind/validator.json \
+--from wallet \
+--chain-id tacchain_2391-1 \
+--gas-prices=4000000000000utac \
+--gas-adjustment=1.2 \
+--gas=auto
+```
+
 ### Delegate
 ```
 tacchaind tx staking delegate $(tacchaind keys show wallet --bech val -a) 9000000000000000000utac --from wallet --chain-id tacchain_2391-1 --gas-prices=4000000000000utac --gas-adjustment=1.2 --gas=auto
 ```
+### WD
+```
+tacchaind tx distribution withdraw-rewards $(tacchaind keys show wallet --bech val -a) --commission --from wallet --chain-id tacchain_2391-1 --gas-prices=4000000000000utac --gas-adjustment=1.2 --gas=auto
+```
 
+### Own 
+```
+echo $(tacchaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.tacchaind/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
 
+### Delete
+```
+sudo systemctl stop tacchainbd
+sudo systemctl disable tacchaind
+sudo rm /etc/systemd/system/tacchaind.service
+sudo systemctl daemon-reload
+rm -f $(which tacchaind)
+rm -rf .tacchaind
+rm -rf tacchain
+```
 
