@@ -1,30 +1,37 @@
 ### Binary
 ```
-mkdir -p ~/go/bin
-mkdir -p empe-chain && cd empe-chain
-curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.1.0/emped_linux_amd64.tar.gz
-tar -xvf emped_linux_amd64.tar.gz
-sudo mv emped ~/go/bin
-chmod u+x ~/go/bin/emped
-```
-```
 mkdir -p empe-chain && cd empe-chain
 curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.3.0/emped_v0.3.0_linux_amd64.tar.gz
 tar -xvf emped_v0.3.0_linux_amd64.tar.gz
 sudo mv emped ~/go/bin
 chmod u+x ~/go/bin/emped
 ```
+```
+mkdir -p $HOME/.empe-chain/cosmovisor/genesis/bin
+cp $HOME/go/bin/emped $HOME/.empe-chain/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.empe-chain/cosmovisor/genesis $HOME/.empe-chain/cosmovisor/current -f
+sudo ln -s $HOME/.empe-chain/cosmovisor/current/bin/emped /usr/local/bin/emped -f
+```
+
 ### Update
 ```
 cd $HOME/empe-chain
-curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.3.0/emped_v0.3.0_linux_amd64.tar.gz
-tar -xvf emped_v0.3.0_linux_amd64.tar.gz
-rm -r emped_*
-chmod 744 $HOME/empe-chain/emped
-mv $HOME/empe-chain/emped $(which emped)
+curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.4.0/emped_v0.4.0_linux_amd64.tar.gz
+tar -xvf emped_v0.4.0_linux_amd64.tar.gz
+mv emped ~/go/bin
+chmod u+x ~/go/bin/emped 
+```
+```
+mkdir -p $HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin
+mv emped $HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin/
 ```
 ```
 emped version --long | grep -e version -e commit
+```
+```
+$HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin/emped version --long | grep -e commit -e version
 ```
 ### Init
 ```
@@ -90,7 +97,27 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+```
+sudo tee /etc/systemd/system/emped.service > /dev/null << EOF
+[Unit]
+Description=empe
+After=network-online.target
 
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.empe-chain"
+Environment="DAEMON_NAME=emped"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.empe-chain/cosmovisor/current/bin"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
 ### Start
 ```
 sudo systemctl daemon-reload
