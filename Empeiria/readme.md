@@ -1,10 +1,10 @@
 ### Binary
 ```
-mkdir -p empe-chain && cd empe-chain
-curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.3.0/emped_v0.3.0_linux_amd64.tar.gz
-tar -xvf emped_v0.3.0_linux_amd64.tar.gz
-sudo mv emped ~/go/bin
-chmod u+x ~/go/bin/emped
+curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.3.0/emped_v0.4.0_linux_amd64.tar.gz
+tar -xvf emped_v0.4.0_linux_amd64.tar.gz
+chmod +x emped
+mv emped ~/go/bin
+rm -rf emped_v0.4.0_linux_amd64.tar.gz
 ```
 ```
 mkdir -p $HOME/.empe-chain/cosmovisor/genesis/bin
@@ -20,6 +20,7 @@ sudo ln -s $HOME/.empe-chain/cosmovisor/current/bin/emped /usr/local/bin/emped -
 curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.4.0/emped_v0.4.0_linux_amd64.tar.gz
 tar -xvf emped_v0.4.0_linux_amd64.tar.gz
 chmod +x emped
+rm -rf emped_v0.4.0_linux_amd64.tar.gz
 ```
 ```
 mkdir -p $HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin
