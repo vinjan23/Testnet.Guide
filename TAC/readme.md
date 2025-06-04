@@ -38,7 +38,7 @@ curl -L https://snapshot-t.vinjan.xyz/tacchain/addrbook.json > $HOME/.tacchaind/
 ```
 ### Set
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"4000000000000utac"/" $HOME/.tacchaind/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"4000000000000utac\"/" $HOME/.tacchaind/config/app.toml
 ```
 ### Prunning
 ```
