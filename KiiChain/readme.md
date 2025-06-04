@@ -15,13 +15,10 @@ mv build/kiichaind $HOME/.kiichain/cosmovisor/genesis/bin/
 sudo ln -s $HOME/.kiichain/cosmovisor/genesis $HOME/.kiichain/cosmovisor/current -f
 sudo ln -s $HOME/.kiichain/cosmovisor/current/bin/kiichaind /usr/local/bin/kiichaind -f
 ```
-```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.2.0/bin
-cp $HOME/.kiichain/cosmovisor/current/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v1.2.0/bin/
-```
+
 ```
 mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin
-mv build/kiichaind $HOME/.kiichain3/cosmovisor/upgrades/v1.3.0/bin/
+mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin/
 rm -rf build
 ```
 ```
@@ -37,7 +34,7 @@ mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin
 mv $HOME/go/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin/
 ```
 ```
-$HOME/.kiichain/cosmovisor/upgrades/v1.2.0/bin/kiichaind version --long | grep -e commit -e version
+$HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin/kiichaind version --long | grep -e commit -e version
 ```
 
 ```
