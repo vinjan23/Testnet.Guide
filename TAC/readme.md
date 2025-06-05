@@ -4,7 +4,7 @@ cd $HOME
 rm -rf tacchain
 git clone https://github.com/TacBuild/tacchain.git
 cd tacchain
-git checkout v0.0.10
+git checkout v0.0.11
 make install
 ```
 ```
@@ -15,6 +15,26 @@ cp $HOME/go/bin/tacchaind $HOME/.tacchaind/cosmovisor/genesis/bin/
 ln -s $HOME/.tacchaind/cosmovisor/genesis $HOME/.tacchaind/cosmovisor/current -f
 sudo ln -s $HOME/.tacchaind/cosmovisor/current/bin/tacchaind /usr/local/bin/tacchaind -f
 ```
+### Upgrade
+```
+cd $HOME
+rm -rf tacchain
+git clone https://github.com/TacBuild/tacchain.git
+cd tacchain
+git checkout v0.0.11
+make install
+```
+```
+mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin
+mv tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/
+```
+```
+tacchaind  version  --long | grep -e version -e commit
+```
+```
+$HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/tacchaind version --long | grep -e commit -e version
+```
+
 ### Init
 ```
 tacchaind init Vinjan.Inc --chain-id tacchain_2391-1
@@ -78,6 +98,8 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable tacchaind
+```
+```
 sudo systemctl restart tacchaind
 sudo journalctl -u tacchaind -f -o cat
 ```
