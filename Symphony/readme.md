@@ -197,7 +197,7 @@ symphonyd status 2>&1 | jq .NodeInfo
 symphonyd tx gov submit-legacy-proposal param-change proposal.json --from wallet --chain-id symphony-testnet-4 --gas auto --gas-adjustment 1.5 --gas-prices 0.025note
 ```
 ```
-symphonyd tx gov submit-legacy-proposal param-change update_prop.json proposal.json --from wallet --chain-id symphony-testnet-4 --gas auto --gas-adjustment 1.5 --gas-prices 0.025note
+symphonyd tx gov submit-legacy-proposal param-change update_prop.json --from wallet --chain-id symphony-testnet-4 --gas auto --gas-adjustment 1.5 --gas-prices 0.025note
 ```
 ### Delete
 ```
