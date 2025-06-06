@@ -167,6 +167,10 @@ symphonyd tx distribution withdraw-rewards $(symphonyd keys show wallet --bech v
 ```
 symphonyd tx bank send wallet <TO_WALLET_ADDRESS> 1000000note --from wallet --chain-id symphony-testnet-4 --gas-adjustment 1.5 --gas-prices 0.025note --gas auto
 ```
+### Vote
+```
+symphonyd tx gov vote 6 yes --from wallet --chain-id symphony-testnet-4 --gas-adjustment 1.5 --gas-prices 0.025note --gas auto
+```
 
 ### Check Connected Peer
 ```
