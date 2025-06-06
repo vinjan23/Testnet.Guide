@@ -209,5 +209,19 @@ rm -f $(which symphonyd)
 rm -rf .symphonyd
 rm -rf symphony
 ```
-
+```
+{
+    "@type": "/cosmos.params.v1beta1.ParameterChangeProposal",
+    "title": "Add min_stability_spread",
+    "description": "Add default min_stability_spread",
+    "deposit": "2500000000note",
+    "changes": [
+      {
+        "subspace": "market",
+        "key": "MinStabilitySpread",
+        "value": "0.0025"
+      }
+    ]
+  }
+```
 
