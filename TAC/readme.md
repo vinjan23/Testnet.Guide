@@ -21,12 +21,12 @@ cd $HOME
 rm -rf tacchain
 git clone https://github.com/TacBuild/tacchain.git
 cd tacchain
-git checkout v0.0.11
+git checkout v0.0.12
 make install
 ```
 ```
-mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin
-mv tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/
+mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.12/bin
+mv tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.12/bin/
 ```
 ```
 tacchaind  version  --long | grep -e version -e commit
