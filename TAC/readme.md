@@ -29,10 +29,13 @@ mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.12/bin
 mv tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.12/bin/
 ```
 ```
+cp $HOME/go/bin/tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.12/bin/
+```
+```
 tacchaind  version  --long | grep -e version -e commit
 ```
 ```
-$HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/tacchaind version --long | grep -e commit -e version
+$HOME/.tacchaind/cosmovisor/upgrades/v0.0.12/bin/tacchaind version --long | grep -e commit -e version
 ```
 
 ### Init
