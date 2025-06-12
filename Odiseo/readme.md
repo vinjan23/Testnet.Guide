@@ -167,7 +167,7 @@ achillesd tx staking edit-validator \
 --identity 7C66E36EA2B71F68 \
 --from wallet \
 --chain-id ithaca-1 \
---commission-rate 0.2 \
+--commission-rate 0.05 \
 --gas-prices=0.025uodis \
 --gas-adjustment=1.5 \
 --gas=auto
