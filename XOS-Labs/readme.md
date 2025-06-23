@@ -8,12 +8,22 @@ git checkout v0.5.2
 make install
 ```
 ```
+wget https://github.com/xos-labs/node/releases/download/v0.5.2/node_0.5.2_Linux_amd64.tar.gz
+tar -xzf node_0.5.2_Linux_amd64.tar.gz
+sudo mv ./bin/xosd $HOME/go/bin
+chmod +x $HOME/go/bin/xosd
+rm -rf node_0.5.2_Linux_amd64.tar.gz
+```
+```
 mkdir -p $HOME/.xosd/cosmovisor/genesis/bin
 cp $HOME/go/bin/xosd $HOME/.xosd/cosmovisor/genesis/bin/
 ```
 ```
 sudo ln -s $HOME/.xosd/cosmovisor/genesis $HOME/.xosd/cosmovisor/current -f
 sudo ln -s $HOME/.xosd/cosmovisor/current/bin/xosd /usr/local/bin/xosd -f
+```
+```
+xosd version --long | grep -e version -e commit 
 ```
 ### Init
 ```
@@ -81,5 +91,16 @@ sudo systemctl daemon-reload
 sudo systemctl enable xosd
 sudo systemctl restart xosd
 sudo journalctl -u xosd -f -o cat
+```
+
+### Delete
+```
+sudo systemctl stop xosd
+sudo systemctl disable xosd
+sudo rm /etc/systemd/system/xosd.service
+sudo systemctl daemon-reload
+rm -f $(which xosd)
+rm -rf .xosd
+rm -rf node
 ```
 
