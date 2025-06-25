@@ -26,15 +26,15 @@ cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v1.3.0
+git checkout v2.0.0
 make install
 ```
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin
-mv $HOME/go/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin/
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v2.0.0/bin
+mv $HOME/go/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v2.0.0/bin/
 ```
 ```
-$HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin/kiichaind version --long | grep -e commit -e version
+$HOME/.kiichain/cosmovisor/upgrades/v2.0.0/bin/kiichaind version --long | grep -e commit -e version
 ```
 
 ```
