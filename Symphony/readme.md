@@ -1,10 +1,10 @@
 ### Binary
 ```
-cd $HOME
-rm -rf symphony
+cd $HOME 
+rm -rf symphony 
 git clone https://github.com/Orchestra-Labs/symphony.git
 cd symphony
-git checkout v0.5.0
+git checkout fix/change-upgrade-name-to-fix-testnet-migration
 make install
 ```
 ### Check Commit `` 6a44064 ``
@@ -22,7 +22,10 @@ mkdir -p ~/.symphonyd/cosmovisor/genesis/bin
 mkdir -p ~/.symphonyd/cosmovisor/upgrades
 cp ~/go/bin/symphonyd ~/.symphonyd/cosmovisor/genesis/bin
 ```
-
+```
+mkdir -p $HOME/.symphonyd/cosmovisor/upgrades/v5testnet/bin
+cp $HOME/go/bin/symphonyd $HOME/.symphonyd/cosmovisor/upgrades/v5testnet/bin/
+```
 ### Custom Port
 ```
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:21657\"%" $HOME/.symphonyd/config/client.toml
