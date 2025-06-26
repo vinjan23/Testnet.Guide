@@ -29,8 +29,11 @@ xosd version --long | grep -e version -e commit
 ```
 xosd init <moniker> --chain-id xos_1267-1
 ```
+sudo rm $HOME/.xosd/config/genesis.json
+
 ### Genesis
 ```
+sudo rm $HOME/.xosd/config/genesis.json
 wget -O $HOME/.xosd/config/genesis.json https://raw.githubusercontent.com/xos-labs/networks/refs/heads/main/testnet/genesis.json
 ```
 ### Port
@@ -92,6 +95,64 @@ sudo systemctl enable xosd
 sudo systemctl restart xosd
 sudo journalctl -u xosd -f -o cat
 ```
+### Sync
+```
+xosd status 2>&1 | jq .sync_info
+```
+### Wallet
+```
+xosd keys add wallet
+```
+### Balance
+```
+xosd q bank balances $(xosd keys show wallet -a)
+```
+### Validator
+```
+xosd tendermint show-validator
+```
+```
+nano $HOME/.xosd/validator.json
+```
+```
+{
+  "pubkey": ,
+  "amount": "1000000axos",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.05",
+  "min-self-delegation": "1"
+}
+```
+```
+xosd tx staking create-validator $HOME/.xosd/validator.json \
+--from wallet \
+--chain-id xos_1267-1 \
+--fees 80000000000axos 
+--gas-prices=80000000000axos \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+### Unjail
+```
+xosd tx slashing unjail --from wallet --chain-id xos_1267-1 --fees 80000000000axos
+```
+### WD
+```
+xosd tx distribution withdraw-rewards $(xosd keys show wallet --bech val -a) --commission --from wallet --chain-id xos_1267-1 --fees 80000000000axos
+```
+### Stake
+```
+xosd tx staking delegate $(xosd keys show wallet --bech val -a) 1000000000000000000axos --from wallet --chain-id xos_1267-1 --fees 80000000000axos
+```
+### ID
+```
+echo $(xosd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.xosd/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 
 ### Delete
 ```
