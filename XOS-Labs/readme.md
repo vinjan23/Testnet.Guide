@@ -31,7 +31,7 @@ xosd init <moniker> --chain-id xos_1267-1
 ```
 ### Genesis
 ```
-wget -O $HOME/.xosd/config/genesis.json.json https://raw.githubusercontent.com/xos-labs/networks/refs/heads/main/testnet/genesis.json
+wget -O $HOME/.xosd/config/genesis.json https://raw.githubusercontent.com/xos-labs/networks/refs/heads/main/testnet/genesis.json
 ```
 ### Port
 ```
