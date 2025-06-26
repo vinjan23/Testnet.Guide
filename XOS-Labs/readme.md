@@ -156,6 +156,8 @@ xosd tx staking delegate $(xosd keys show wallet --bech val -a) 1000000000000000
 ### ID
 ```
 echo $(xosd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.xosd/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+
 
 ### Delete
 ```
