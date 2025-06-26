@@ -103,6 +103,9 @@ xosd status 2>&1 | jq .sync_info
 ```
 xosd keys add wallet
 ```
+```
+xosd keys export wallet --unarmored-hex --unsafe
+```
 ### Balance
 ```
 xosd q bank balances $(xosd keys show wallet -a)
