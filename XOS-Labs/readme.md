@@ -47,10 +47,10 @@ sed -i -e "s%:1317%:35317%; s%:9090%:35090%; s%:8545%:35545%; s%:8546%:35546%; s
 ### Set Config
 ```
 peers="c8297e8fcff832fbe2c2c5a53709480c11240332@199.85.209.4:26656,32badb9649620b3fc87b469ed124551dd0d7ec9d@199.85.208.177:26656,6835f9864136b7dc1e21e4e50c89516a112722d7@203.161.32.223:26656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.xosd/config/config.toml
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.xosd/config/config.toml
 ```
 ```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"80000000000axos\"/" $HOME/.xosd/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"80000000000axos\"/" $HOME/.xosd/config/app.toml
 ```
 ### Prunning
 ```
