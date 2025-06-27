@@ -44,13 +44,10 @@ tacchaind init Vinjan.Inc --chain-id tacchain_2391-1
 ```
 ### Port
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:31657\"%" $HOME/.tacchaind/config/client.toml
+sed -i -e "s%:26657%:31657%" $HOME/.tacchaind/config/client.toml
+sed -i -e "s%:26658%:31658%; s%:26657%:31657%; s%:6060%:31060%; s%:26656%:31656%; s%:26660%:31660%" $HOME/.tacchaind/config/config.toml
+sed -i -e "s%:1317%:31317%; s%:9090%:31090%" $HOME/.tacchaind/config/app.toml
 ```
-```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:31658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:31657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:31060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:31656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":31660\"%" $HOME/.tacchaind/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:31317\"%; s%^address = \"localhost:9090\"%address = \"localhost:31090\"%" $HOME/.tacchaind/config/app.toml
-```
-
 ### Genesis
 ```
 curl -L https://snapshot-t.vinjan.xyz/tacchain/genesis.json > $HOME/.tacchaind/config/genesis.json 
