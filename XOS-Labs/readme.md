@@ -38,20 +38,14 @@ wget -O $HOME/.xosd/config/genesis.json https://raw.githubusercontent.com/xos-la
 ```
 ### Port
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:35657\"%" $HOME/.xosd/config/client.toml
-```
-```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:35658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:35657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:35060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:35656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":35660\"%" $HOME/.xosd/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:35317\"%; s%^address = \"localhost:9090\"%address = \"localhost:35090\"%; s%:8545%:35545%; s%:8546%:35546%; s%:6065%:35065%" $HOME/.xosd/config/app.toml
-```
-```
+sed -i -e "s|chain-id = \".*\"|chain-id = \"xos_1267-1\"|g" $HOME/.xosd/config/client.toml
+sed -i -e "s%:26657%:35657%" $HOME/.xosd/config/client.toml
 sed -i -e "s%:26658%:35658%; s%:26657%:35657%; s%:6060%:35060%; s%:26656%:35656%; s%:26660%:35660%" $HOME/.xosd/config/config.toml
 sed -i -e "s%:1317%:35317%; s%:9090%:35090%; s%:8545%:35545%; s%:8546%:35546%; s%:6065%:35065%" $HOME/.xosd/config/app.toml
 ```
 
 ### Set Config
 ```
-sed -i -E "s|chain-id = \".*\"|chain-id = \"xos_1267-1\"|g" $HOME/.xosd/config/client.toml
 peers="c8297e8fcff832fbe2c2c5a53709480c11240332@199.85.209.4:26656,32badb9649620b3fc87b469ed124551dd0d7ec9d@199.85.208.177:26656,6835f9864136b7dc1e21e4e50c89516a112722d7@203.161.32.223:26656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.xosd/config/config.toml
 ```
