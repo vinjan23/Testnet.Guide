@@ -190,11 +190,11 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.s
 
 ### Validator Info
 ```
-symphonyd status 2>&1 | jq .ValidatorInfo
+symphonyd status 2>&1 | jq .validator_info
 ```
 ### Node Info
 ```
-symphonyd status 2>&1 | jq .NodeInfo
+symphonyd status 2>&1 | jq .node_info
 ```
 ```
 [[ $(symphonyd q staking validator $(symphonyd keys show <Wallet_Name> --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(symphonyd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
@@ -206,6 +206,11 @@ symphonyd tx gov submit-legacy-proposal param-change proposal.json --from wallet
 ```
 symphonyd tx gov submit-legacy-proposal param-change update_prop.json --from wallet --chain-id symphony-testnet-4 --gas auto --gas-adjustment 1.5 --gas-prices 0.025note
 ```
+### Cek Snapshot
+```
+du -h /var/www/snapshot-t/symphony/latest.tar.lz4|cut -f1
+```
+
 ### Delete
 ```
 sudo systemctl stop symphonyd
