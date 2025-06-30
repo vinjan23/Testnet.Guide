@@ -156,6 +156,13 @@ xosd tx staking delegate $(xosd keys show wallet --bech val -a) 1000000000000000
 ```
 echo $(xosd tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.xosd/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
+
+sudo systemctl stop xosd
+xosd tendermint unsafe-reset-all --home $HOME/.xosd --keep-addr-book
+curl -L https://snapshot-t.vinjan.xyz/xos/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.xosd
+sudo systemctl restart xosd
+sudo journalctl -u xosd -f -o cat
+
 ```
 cd cosmos-pruner
 sudo systemctl stop xosd
