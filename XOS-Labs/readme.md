@@ -165,7 +165,9 @@ sudo systemctl stop xosd
 cd $HOME/.xosd
 tar cfv - data | lz4 -9 > /var/www/snapshot-t/xos/latest.tar.lz4
 ```
-
+```
+du -h /var/www/snapshot-t/xos/latest.tar.lz4|cut -f1
+```
 ### Delete
 ```
 sudo systemctl stop xosd
