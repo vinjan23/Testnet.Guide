@@ -1,13 +1,38 @@
-### Binary
+### Binary Testnet-2
 ```
-curl -LO https://github.com/LumeraProtocol/lumera/releases/download/v0.4.1/lumera_v0.4.1_linux_amd64.tar.gz
-tar -xvf lumera_v0.4.1_linux_amd64.tar.gz
-rm lumera_v0.4.1_linux_amd64.tar.gz
+curl -LO https://github.com/LumeraProtocol/lumera/releases/download/v1.6.0/lumera_v1.6.0_linux_amd64.tar.gz
+tar -xvf lumera_v1.6.0_linux_amd64.tar.gz
+rm lumera_v1.6.0_linux_amd64.tar.gz
 rm install.sh
 chmod +x lumerad
 mv lumerad $HOME/go/bin/
 mv libwasmvm.x86_64.so /usr/lib/
 ```
+```
+sudo systemctl stop lumerad
+```
+```
+lumerad tendermint unsafe-reset-all
+rm -rf $HOME/.lumera/wasm
+```
+```
+cp $HOME/go/bin/lumerad $HOME/.lumera/cosmovisor/genesis/bin/
+rm $HOME/.lumera/cosmovisor/current
+ln -s $HOME/.lumera/cosmovisor/genesis $HOME/.lumera/cosmovisor/current
+```
+### New Genesis
+```
+sudo rm $HOME/.lumera/config/genesis.json
+curl -L https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/genesis.json > $HOME/.lumera/config/genesis.json
+```
+### CSV
+```
+curl -L https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/claims.csv > $HOME/.lumera/config/claims.csv
+```
+```
+sudo systemctl start lumerad
+```
+### Cosmovisor
 ```
 mkdir -p $HOME/.lumera/cosmovisor/genesis/bin
 cp $HOME/go/bin/lumerad $HOME/.lumera/cosmovisor/genesis/bin/
@@ -37,7 +62,7 @@ $HOME/.lumera/cosmovisor/upgrades/v1.0.0/bin/lumerad version --long | grep -e co
 ```
 ### Init
 ```
-lumerad init Vinjan.Inc --chain-id lumera-testnet-1
+lumerad init Vinjan.Inc --chain-id lumera-testnet-2
 ```
 ### Port
 ```
