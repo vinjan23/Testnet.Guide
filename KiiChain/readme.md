@@ -49,10 +49,10 @@ kiichaind init Vinjan.Inc --chain-id oro_1336-1
 sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:19657\"%" $HOME/.kiichain/config/client.toml
 ```
 ```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:19658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:19657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:19060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:19656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":19660\"%" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:19317\"%; s%^address = \"localhost:9090\"%address = \"localhost:19090\"%" $HOME/.kiichain/config/app.toml
+sed -i -e "s%:26657%:19657%" $HOME/.kiichain/config/client.toml
+sed -i -e "s%:26658%:19658%; s%:26657%:19657%; s%:6060%:19060%; s%:26656%:19656%; s%:26660%:19660%" $HOME/.kiichain/config/config.toml
+sed -i -e "s%:1317%:19317%; s%:9090%:19090%" $HOME/.kiichain/config/app.toml
 ```
-
 ### Genesis
 ```
 wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/KiiChain/testnets/refs/heads/main/testnet_oro/genesis.json
@@ -115,24 +115,6 @@ sudo systemctl enable kiichaind
 sudo systemctl restart kiichaind
 ```
 ```
-sudo journalctl -u kiichaind -f -o cat
-```
-
-### Statesync
-```
-PERSISTENT_PEERS="5b6aa55124c0fd28e47d7da091a69973964a9fe1@uno.sentry.testnet.v3.kiivalidator.com:26656,5e6b283c8879e8d1b0866bda20949f9886aff967@dos.sentry.testnet.v3.kiivalidator.com:26656"
-PRIMARY_ENDPOINT=https://rpc.uno.sentry.testnet.v3.kiivalidator.com
-SECONDARY_ENDPOINT=https://rpc.dos.sentry.testnet.v3.kiivalidator.com
-TRUST_HEIGHT_DELTA=500
-LATEST_HEIGHT=$(curl -s "$PRIMARY_ENDPOINT"/block | jq -r ".result.block.header.height")
-SYNC_BLOCK_HEIGHT=$(($LATEST_HEIGHT - $TRUST_HEIGHT_DELTA))
-SYNC_BLOCK_HEIGHT=$LATEST_HEIGHT
-SYNC_BLOCK_HASH=$(curl -s "$PRIMARY_ENDPOINT/block?height=$SYNC_BLOCK_HEIGHT" | jq -r ".result.block_id.hash")
-sed -i.bak -e "s|^enable *=.*|enable = true|" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s|^rpc_servers *=.*|rpc_servers = \"$PRIMARY_ENDPOINT,$SECONDARY_ENDPOINT\"|" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s|^trust_height *=.*|trust_height = $SYNC_BLOCK_HEIGHT|" $HOME/.kiichain/config/config.toml
-sed -i.bak -e "s|^trust_hash *=.*|trust_hash = \"$SYNC_BLOCK_HASH\"|" $HOME/.kiichain/config/config.toml
-sudo systemctl restart kiichaind
 sudo journalctl -u kiichaind -f -o cat
 ```
 ### Sync
