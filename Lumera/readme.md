@@ -30,6 +30,7 @@ curl -L https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/
 ```
 wget -O $HOME/.lumera/config/claims.csv > https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/claims.csv
 curl -Ls https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/claims.csv > $HOME/.lumera/config/claims.csv
+wget -O $HOME/.lumera/config/claims.csv > https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/claims.csv
 ```
 ```
 sudo systemctl start lumerad
