@@ -68,11 +68,9 @@ lumerad init Vinjan.Inc --chain-id lumera-testnet-2
 ```
 ### Port
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:17657\"%" $HOME/.lumera/config/client.toml
-```
-```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:17658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:17657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:17060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:17656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":17660\"%" $HOME/.lumera/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:17317\"%; s%^address = \"localhost:9090\"%address = \"localhost:17090\"%" $HOME/.lumera/config/app.toml
+sed -i -e "s%:26657%:17657%" $HOME/.lumera/config/client.toml
+sed -i -e "s%:26658%:17658%; s%:26657%:17657%; s%:6060%:17060%; s%:26656%:17656%; s%:26660%:17660%" $HOME/.lumera/config/config.toml
+sed -i -e "s%:1317%:17317%; s%:9090%:17090%" $HOME/.lumera/config/app.toml
 ```
 ### Genesis
 ```
@@ -92,9 +90,9 @@ sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0ulume\"/" $H
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "11"|' \
 $HOME/.lumera/config/app.toml
 ```
 ### Indexer Off
