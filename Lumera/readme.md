@@ -146,15 +146,15 @@ nano $HOME/.lumera/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"j3tNZMPKR3agBkg5Z/048sF1kAidDIcTRuQFekAolOQ="},
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"/vG0XdUYfEaJOHm13FmtAdBe/jbNPBTg3E4OVhWGLmk="},
   "amount": "1000000ulume",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
   "security": "",
   "details": "Staking Provider-IBC Relayer",
-  "commission-rate": "0.05",
-  "commission-max-rate": "0.2",
+  "commission-rate": "0.10",
+  "commission-max-rate": "0.3",
   "commission-max-change-rate": "0.05",
   "min-self-delegation": "1"
 }
@@ -162,7 +162,7 @@ nano $HOME/.lumera/validator.json
 ```
 lumerad tx staking create-validator $HOME/.lumera/validator.json \
 --from wallet \
---chain-id lumera-testnet-1 \
+--chain-id lumera-testnet-2 \
 --gas-prices=0.025ulume \
 --gas-adjustment=1.5 \
 --gas=auto
