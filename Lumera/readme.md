@@ -23,11 +23,13 @@ ln -s $HOME/.lumera/cosmovisor/genesis $HOME/.lumera/cosmovisor/current
 ### New Genesis
 ```
 sudo rm $HOME/.lumera/config/genesis.json
+wget -O $HOME/.lumera/config/genesis.json https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/genesis.json
 curl -L https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/genesis.json > $HOME/.lumera/config/genesis.json
 ```
 ### CSV
 ```
-curl -L https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/claims.csv > $HOME/.lumera/config/claims.csv
+wget -O $HOME/.lumera/config/claims.csv > https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/claims.csv
+curl -Ls https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/claims.csv > $HOME/.lumera/config/claims.csv
 ```
 ```
 sudo systemctl start lumerad
