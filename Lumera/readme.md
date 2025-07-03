@@ -174,7 +174,7 @@ lumerad tx distribution withdraw-all-rewards --from wallet --chain-id lumera-tes
 ```
 ### Stake
 ```
-lumerad tx staking delegate $(lumerad keys show wallet --bech val -a) 200000000ulume --from wallet --chain-id lumera-testnet-2 --gas-adjustment=1.5 --gas=auto --gas-prices=0.025ulume
+lumerad tx staking delegate $(lumerad keys show wallet --bech val -a) 10000000ulume --from wallet --chain-id lumera-testnet-2 --gas-adjustment=1.5 --gas=auto --gas-prices=0.025ulume
 ```
 ### Own
 ```
