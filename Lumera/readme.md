@@ -8,33 +8,14 @@ chmod +x lumerad
 mv lumerad $HOME/go/bin/
 mv libwasmvm.x86_64.so /usr/lib/
 ```
-```
-sudo systemctl stop lumerad
-```
-```
-lumerad tendermint unsafe-reset-all
-rm -rf $HOME/.lumera/wasm
-```
-```
-cp $HOME/go/bin/lumerad $HOME/.lumera/cosmovisor/genesis/bin/
-rm $HOME/.lumera/cosmovisor/current
-ln -s $HOME/.lumera/cosmovisor/genesis $HOME/.lumera/cosmovisor/current
-```
+
 ### New Genesis
 ```
 sudo rm $HOME/.lumera/config/genesis.json
 wget -O $HOME/.lumera/config/genesis.json https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/genesis.json
 curl -L https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/genesis.json > $HOME/.lumera/config/genesis.json
 ```
-### CSV
-```
-wget -O $HOME/.lumera/config/claims.csv > https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/claims.csv
-curl -Ls https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/claims.csv > $HOME/.lumera/config/claims.csv
-wget -O $HOME/.lumera/config/claims.csv > https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/claims.csv
-```
-```
-sudo systemctl start lumerad
-```
+
 ### Cosmovisor
 ```
 mkdir -p $HOME/.lumera/cosmovisor/genesis/bin
@@ -181,12 +162,13 @@ lumerad tx staking edit-validator \
 
 ### Unjail
 ```
-lumerad tx slashing unjail --from wallet --chain-id lumera-testnet-1 --gas=auto
+lumerad tx slashing unjail --from wallet --chain-id lumera-testnet-2 --gas=auto
 ```
 ### WD Commission
 ```
 lumerad tx distribution withdraw-rewards $(lumerad keys show wallet --bech val -a) --commission --from wallet --chain-id lumera-testnet-2 --gas-adjustment=1.5 --gas=auto --gas-prices=0.025ulume
 ```
+### WD
 ```
 lumerad tx distribution withdraw-all-rewards --from wallet --chain-id lumera-testnet-2 --gas-prices=0.025ulume --gas-adjustment=1.5 --gas=auto
 ```
@@ -200,7 +182,7 @@ echo $(lumerad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.
 ```
 ### Vote
 ```
-lumerad tx gov vote 2 yes --from wallet --chain-id lumera-testnet-1 --fees 40000ulume
+lumerad tx gov vote 2 yes --from wallet --chain-id lumera-testnet-2 --fees 40000ulume
 ```
 ### Statesync
 ```
