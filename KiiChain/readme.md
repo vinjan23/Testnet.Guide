@@ -34,7 +34,7 @@ mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v3.0.0/bin
 mv $HOME/go/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v3.0.0/bin/
 ```
 ```
-$HOME/.kiichain/cosmovisor/upgrades/v2.0.0/bin/kiichaind version --long | grep -e commit -e version
+$HOME/.kiichain/cosmovisor/upgrades/v3.0.0/bin/kiichaind version --long | grep -e commit -e version
 ```
 
 ```
