@@ -4,6 +4,7 @@ cd $HOME
 rm -rf safrochain-node
 git clone https://github.com/Safrochain-Org/safrochain-node.git
 cd safrochain-node
+git checkout v0.1.0
 make install
 ```
 ```
@@ -16,7 +17,7 @@ sudo ln -s $HOME/.safrochain/cosmovisor/current/bin/safrochaind /usr/local/bin/s
 ```
 ### Init
 ```
-safrochaind init Vinjan.Inc --chain-id safrochain-testnet
+safrochaind init Vinjan.Inc --chain-id safro-testnet-1	
 ```
 ```
 safrochaind version  --long | grep -e version -e commit
@@ -34,11 +35,9 @@ curl -L https://snapshot-t.vinjan.xyz/safrochain/addrbook.json > $HOME/.safrocha
 ```
 ### Port
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:12657\"%" $HOME/.safrochain/config/client.toml
-```
-```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:12658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:12657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:12060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:12656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":12660\"%" $HOME/.safrochain/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:12317\"%; s%^address = \"localhost:9090\"%address = \"0.0.0.0:12090\"%" $HOME/.safrochain/config/app.toml
+sed -i -e "s%:26657%:12657%" $HOME/.safrochain/config/client.toml
+sed -i -e "s%:26658%:12658%; s%:26657%:12657%; s%:6060%:12060%; s%:26656%:12656%; s%:26660%:12660%" $HOME/.safrochain/config/config.toml
+sed -i -e "s%:1317%:12317%; s%:9090%:12090%" $HOME/.safrochain/config/app.toml
 ```
 ### Config
 ```
