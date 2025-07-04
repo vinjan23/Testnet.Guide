@@ -41,9 +41,10 @@ sed -i -e "s%:1317%:12317%; s%:9090%:12090%" $HOME/.safrochain/config/app.toml
 ```
 ### Config
 ```
-seeds="68c1f7e9df7513d8f707bf5d312333a2e6992075@88.99.211.113:26656"
-sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.safrochain/config/config.toml
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001saf\"/" $HOME/.safrochain/config/app.toml
+peers="642dfd491b8bfc0b842c71c01a12ee1122f3dafe@46.62.140.103:26656"
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.safrochain/config/config.toml
+sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.safrochain/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001usaf\"/" $HOME/.safrochain/config/app.toml
 ```
 ### Pruning
 ```
@@ -112,7 +113,7 @@ nano $HOME/.safrochain/validator.json
 ```
 {
   "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"OsRtveWQb7hgyB11gupjwOcSkfzJ5R1cxtgK9CtCnIo="},
-  "amount": "40000000saf",
+  "amount": "40000000usaf",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
@@ -128,23 +129,23 @@ nano $HOME/.safrochain/validator.json
 safrochaind tx staking create-validator $HOME/.safrochain/validator.json \
 --from wallet \
 --chain-id safro-testnet-1 \
---fees 5000saf
+--fees 5000usaf
 ```
 ### Unjail
 ```
-safrochaind tx slashing unjail --from wallet --chain-id safro-testnet-1 --fees 5000saf
+safrochaind tx slashing unjail --from wallet --chain-id safro-testnet-1 --fees 5000usaf
 ```
 ### WD
 ```
-safrochaind tx distribution withdraw-all-rewards --from wallet --chain-id safro-testnet-1 --fees 5000saf
+safrochaind tx distribution withdraw-all-rewards --from wallet --chain-id safro-testnet-1 --fees 5000usaf
 ```
 ### WD Commission
 ```
-safrochaind tx distribution withdraw-rewards $(safrochaind keys show wallet --bech val -a) --commission --from wallet --chain-id safro-testnet-1 --fees 5000saf
+safrochaind tx distribution withdraw-rewards $(safrochaind keys show wallet --bech val -a) --commission --from wallet --chain-id safro-testnet-1 --fees 5000usaf
 ```
 ### Delegate
 ```
-safrochaind tx staking delegate $(safrochaind keys show wallet --bech val -a) 1440000000saf --from wallet --chain-id safro-testnet-1 --fees 5000saf
+safrochaind tx staking delegate $(safrochaind keys show wallet --bech val -a) 1000000000usaf --from wallet --chain-id safro-testnet-1 --fees 5000usaf
 ```
 
 ### Delete
