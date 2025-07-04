@@ -112,39 +112,39 @@ nano $HOME/.safrochain/validator.json
 ```
 {
   "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"OsRtveWQb7hgyB11gupjwOcSkfzJ5R1cxtgK9CtCnIo="},
-  "amount": "70000000saf",
+  "amount": "40000000saf",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
   "security": "",
   "details": "Staking Provider-IBC Relayer",
-  "commission-rate": "0.05",
-  "commission-max-rate": "0.2",
-  "commission-max-change-rate": "0.05",
+  "commission-rate": "0.1",
+  "commission-max-rate": "0.5",
+  "commission-max-change-rate": "0.5",
   "min-self-delegation": "1"
 }
 ```
 ```
 safrochaind tx staking create-validator $HOME/.safrochain/validator.json \
 --from wallet \
---chain-id safrochain-testnet \
+--chain-id safro-testnet-1 \
 --fees 5000saf
 ```
 ### Unjail
 ```
-safrochaind tx slashing unjail --from wallet --chain-id safrochain-testnet --fees 5000saf
+safrochaind tx slashing unjail --from wallet --chain-id safro-testnet-1 --fees 5000saf
 ```
 ### WD
 ```
-safrochaind tx distribution withdraw-all-rewards --from wallet --chain-id safrochain-testnet --fees 5000saf
+safrochaind tx distribution withdraw-all-rewards --from wallet --chain-id safro-testnet-1 --fees 5000saf
 ```
 ### WD Commission
 ```
-safrochaind tx distribution withdraw-rewards $(safrochaind keys show wallet --bech val -a) --commission --from wallet --chain-id safrochain-testnet --fees 5000saf
+safrochaind tx distribution withdraw-rewards $(safrochaind keys show wallet --bech val -a) --commission --from wallet --chain-id safro-testnet-1 --fees 5000saf
 ```
 ### Delegate
 ```
-safrochaind tx staking delegate $(safrochaind keys show wallet --bech val -a) 1440000000saf --from wallet --chain-id safrochain-testnet --fees 5000saf
+safrochaind tx staking delegate $(safrochaind keys show wallet --bech val -a) 1440000000saf --from wallet --chain-id safro-testnet-1 --fees 5000saf
 ```
 
 ### Delete
