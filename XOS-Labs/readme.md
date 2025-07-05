@@ -56,9 +56,9 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"80000000000axos\"/"
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "5000"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "11"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "100"|' \
 $HOME/.xosd/config/app.toml
 ```
 ### Indexer
