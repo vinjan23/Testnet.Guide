@@ -135,10 +135,9 @@ nano $HOME/.xosd/validator.json
 xosd tx staking create-validator $HOME/.xosd/validator.json \
 --from wallet \
 --chain-id xos_1267-1 \
---fees 80000000000axos 
+--gas=auto \
 --gas-prices=80000000000axos \
---gas-adjustment=1.5 \
---gas=auto
+--gas-adjustment=1.4
 ```
 ### Unjail
 ```
