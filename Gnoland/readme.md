@@ -64,6 +64,26 @@ gnoland secrets get validator_key
 ```
 gnokey list
 ```
+### Get Validator profile registeration Command At
+`https://test6.testnets.gno.land/r/gnoland/valopers$help`
+`https://test6.testnets.gno.land/r/gnoland/valopers$help#func-Register`
+
+### Input your Validator Details
+##### Get Account Number and Sequence Sequence - Needs to be done everytime before making an transaction
+```
+gnokey query -remote "https://rpc.test6.testnets.gno.land" auth/accounts/<wallet_address>
+```
+##### Replace the Value of $ACCOUNTNUMBER and $SEQUENCENUMBER  got from the above steps in the below command. 
+
+```
+gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register"  -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 5000000 -send "" <wallet_address> > call.tx
+```
+```
+gnokey sign -tx-path call.tx -chainid "test6" -account-number $ACCOUNTNUMBER -account-sequence $SEQUENCENUMBER <wallet_address>
+```
+```
+gnokey broadcast -remote "https://rpc.test6.testnets.gno.land" call.tx
+```
 
 ### Stop
 ```
