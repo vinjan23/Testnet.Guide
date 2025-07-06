@@ -56,6 +56,14 @@ curl -s localhost:26657/status | jq .result.sync_info.latest_block_height
 ```
 curl -s localhost:26657/status
 ```
+### Get Key
+```
+gnoland secrets get validator_key
+```
+### Key
+```
+gnokey list
+```
 
 ### Stop
 ```
