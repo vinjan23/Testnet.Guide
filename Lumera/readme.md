@@ -50,9 +50,10 @@ lumerad init Vinjan.Inc --chain-id lumera-testnet-2
 ```
 ### Port
 ```
-sed -i -e "s%:26657%:17657%" $HOME/.lumera/config/client.toml
-sed -i -e "s%:26658%:17658%; s%:26657%:17657%; s%:6060%:17060%; s%:26656%:17656%; s%:26660%:17660%" $HOME/.lumera/config/config.toml
-sed -i -e "s%:1317%:17317%; s%:9090%:17090%" $HOME/.lumera/config/app.toml
+PORT=17
+sed -i -e "s%:26657%:${PORT}657%" $HOME/.lumera/config/client.toml
+sed -i -e "s%:26658%:${PORT}658%; s%:26657%:${PORT}657%; s%:6060%:${PORT}060%; s%:26656%:${PORT}656%; s%:26660%:${PORT}660%" $HOME/.lumera/config/config.toml
+sed -i -e "s%:1317%:${PORT}317%; s%:9090%:${PORT}090%" $HOME/.lumera/config/app.toml
 ```
 ### Genesis
 ```
