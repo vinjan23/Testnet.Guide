@@ -35,9 +35,10 @@ curl -L https://snapshot-t.vinjan.xyz/safrochain/addrbook.json > $HOME/.safrocha
 ```
 ### Port
 ```
-sed -i -e "s%:26657%:12657%" $HOME/.safrochain/config/client.toml
-sed -i -e "s%:26658%:12658%; s%:26657%:12657%; s%:6060%:12060%; s%:26656%:12656%; s%:26660%:12660%" $HOME/.safrochain/config/config.toml
-sed -i -e "s%:1317%:12317%; s%:9090%:12090%" $HOME/.safrochain/config/app.toml
+PORT=12
+sed -i -e "s%:26657%:${PORT}657%" $HOME/.safrochain/config/client.toml
+sed -i -e "s%:26658%:${PORT}658%; s%:26657%:${PORT}657%; s%:6060%:${PORT}060%; s%:26656%:${PORT}656%; s%:26660%:${PORT}660%" $HOME/.safrochain/config/config.toml
+sed -i -e "s%:1317%:${PORT}317%; s%:9090%:${PORT}090%" $HOME/.safrochain/config/app.toml
 ```
 ### Config
 ```
