@@ -8,16 +8,16 @@ make install
 ```
 price-feeder version
 ```
+```
+wget https://raw.githubusercontent.com/KiiChain/testnets/main/testnet_oro/run_price_feeder.sh
+chmod +x run_price_feeder.sh
+./run_price_feeder.sh
+```
 ### Add Wallet
 ```
-kiichaind keys add feeder
+kiichaind keys add feed
 ```
-# Set the variables for the transaction
-```
-FEEDER_ADDR=kii1zvsrqetr25gfkk6xqd63zmrh65k5yttpzq26af
-FROM_KEY_NAME=wallet --keyring-backend test
-export PRICE_FEEDER_PASS=vinjan23
-```
+
 ### Fund feeder account
 ```
 kiichaind tx bank send wallet $FEEDER_ADDR --from wallet 10000000000000000000akii --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto
