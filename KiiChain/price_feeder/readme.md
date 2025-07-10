@@ -2,7 +2,7 @@
 ```
 git clone https://github.com/KiiChain/price-feeder.git
 cd price-feeder
-git checkout v1.3.0
+git checkout v1.3.3
 make install
 ```
 ```
@@ -14,16 +14,23 @@ kiichaind keys add feeder
 ```
 # Set the variables for the transaction
 ```
-FEEDER_ADDR=kii1... 
+FEEDER_ADDR=kii1zvsrqetr25gfkk6xqd63zmrh65k5yttpzq26af
 FROM_KEY_NAME=wallet
-export PRICE_FEEDER_PASS=<my_keyring_pass>
+export PRICE_FEEDER_PASS=vinjan23
+```
+```
+kiichaind tx bank send wallet $FEEDER_ADDR --from wallet 10000000000000000000akii --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto
 ```
 # Create the feeder
 ```
 kiichaind tx oracle set-feeder $FEEDER_ADDR \
---from wallet --keyring-backend test \
---gas auto --gas-adjustment 1.5 --gas-prices 100000000000akii \
---node https://rpc.uno.sentry.testnet.v3.kiivalidator.com --chain-id oro_1336-1
+--from wallet \
+--chain-id oro_1336-1 \
+--gas-adjustment 1.5 \
+--gas-prices 100000000000akii \
+--gas auto
+
+--node https://rpc.uno.sentry.testnet.v3.kiivalidator.com 
 ```    
 # Fund feeder account
 ```
@@ -74,3 +81,8 @@ sudo systemctl enable price_feeder.service
 sudo systemctl start price_feeder.service
 journalctl -fu price_feeder.service
 ```
+
+
+
+
+
