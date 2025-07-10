@@ -15,7 +15,7 @@ kiichaind keys add feeder
 # Set the variables for the transaction
 ```
 FEEDER_ADDR=kii1zvsrqetr25gfkk6xqd63zmrh65k5yttpzq26af
-FROM_KEY_NAME=wallet
+FROM_KEY_NAME=kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h
 export PRICE_FEEDER_PASS=vinjan23
 ```
 ```
@@ -24,7 +24,7 @@ kiichaind tx bank send wallet $FEEDER_ADDR --from wallet 10000000000000000000aki
 # Create the feeder
 ```
 kiichaind tx oracle set-feeder $FEEDER_ADDR \
---from wallet \
+--from kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h \
 --chain-id oro_1336-1 \
 --gas-adjustment 1.5 \
 --gas-prices 100000000000akii \
