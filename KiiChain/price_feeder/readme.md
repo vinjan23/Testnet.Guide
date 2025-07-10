@@ -15,35 +15,30 @@ kiichaind keys add feeder
 # Set the variables for the transaction
 ```
 FEEDER_ADDR=kii1zvsrqetr25gfkk6xqd63zmrh65k5yttpzq26af
-FROM_KEY_NAME=kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h
+FROM_KEY_NAME=wallet --keyring-backend test
 export PRICE_FEEDER_PASS=vinjan23
 ```
+### Fund feeder account
 ```
 kiichaind tx bank send wallet $FEEDER_ADDR --from wallet 10000000000000000000akii --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto
 ```
 # Create the feeder
 ```
 kiichaind tx oracle set-feeder $FEEDER_ADDR \
---from kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h \
+--from wallet --keyring-backend test \
 --chain-id oro_1336-1 \
 --gas-adjustment 1.5 \
 --gas-prices 100000000000akii \
 --gas auto
-
---node https://rpc.uno.sentry.testnet.v3.kiivalidator.com 
 ```    
-# Fund feeder account
-```
-kiichaind tx bank send $(kiichaind keys show wallet -a) $FEEDER_ADDR 1000000000000000000akii \
---from wallet --keyring-backend test \
---gas auto --gas-adjustment 1.5 --gas-prices 100000000000akii \
---node https://rpc.uno.sentry.testnet.v3.kiivalidator.com --chain-id oro_1336-1
-```
+
+
 ### Config
 ```
 wget https://raw.githubusercontent.com/KiiChain/price-feeder/refs/heads/main/config.example.toml
-mv config.example.toml price-feeder.config
+mv $HOME/price-feeder/config.example.toml $HOME/price-feeder/config
 ```
+
 ### Edit
 ```
 nano $HOME/price-feeder/config.example.toml
