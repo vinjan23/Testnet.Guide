@@ -22,29 +22,10 @@ export PRICE_FEEDER_PASS=vinjan23
 ```
 kiichaind tx bank send wallet $FEEDER_ADDR --from wallet 10000000000000000000akii --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto
 ```
-
-
-
 # Create the feeder
 ```
 kiichaind tx oracle set-feeder kii1wk76wq6c0wdm53qydcmv7t593gz7g3f240t6au --from kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h --gas auto --gas-adjustment 2.0 --gas-prices 100000000000akii --keyring-backend test -y
 ```    
-
-
-### Config
-```
-cp $HOME/price-feeder/config.example.toml $HOME/price-feeder/config
-```
-
-### Edit
-```
-nano $HOME/price-feeder/config.example.toml
-```
-```
-[account] Validator
-address = "kii1..."
-validator = "kiivaloper1..."
-```
 
 ### System
 ```
@@ -71,6 +52,8 @@ sudo systemctl enable price-feeder.service
 ```
 ```
 sudo systemctl restart price-feeder.service
+```
+```
 journalctl -fu price-feeder.service
 ```
 
