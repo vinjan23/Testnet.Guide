@@ -35,6 +35,9 @@ RestartSec=3
 LimitNOFILE=65535
 StandardOutput=append:/var/log/gnoland.log
 StandardError=append:/var/log/gnoland.log
+StandardOutput=null
+StandardError=null
+
 [Install]
 WantedBy=multi-user.target
 EOF
