@@ -167,7 +167,7 @@ echo $(tacchaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 
 ### Delete
 ```
-sudo systemctl stop tacchainbd
+sudo systemctl stop tacchaind
 sudo systemctl disable tacchaind
 sudo rm /etc/systemd/system/tacchaind.service
 sudo systemctl daemon-reload
