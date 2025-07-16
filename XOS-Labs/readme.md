@@ -37,12 +37,12 @@ sudo rm $HOME/.xosd/config/genesis.json
 wget -O $HOME/.xosd/config/genesis.json https://raw.githubusercontent.com/xos-labs/networks/refs/heads/main/testnet/genesis.json
 ```
 ### Port
-```
+``
 PORT=35
 sed -i -e "s|chain-id = \".*\"|chain-id = \"xos_1267-1\"|g" $HOME/.xosd/config/client.toml
 sed -i -e "s%:26657%:${PORT}657%" $HOME/.xosd/config/client.toml
-sed -i -e "s%:26658%:3${PORT}658%; s%:26657%:${PORT}657%; s%:6060%:${PORT}060%; s%:26656%:${PORT}656%; s%:26660%:${PORT}660%" $HOME/.xosd/config/config.toml
-sed -i -e "s%:1317%:${PORT}317%; s%:9090%:${PORT}090%; s%:8545%:3${PORT}545%; s%:8546%:${PORT}546%; s%:6065%:${PORT}065%" $HOME/.xosd/config/app.toml
+sed -i -e "s%:26658%:${PORT}658%; s%:26657%:${PORT}657%; s%:6060%:${PORT}060%; s%:26656%:${PORT}656%; s%:26660%:${PORT}660%" $HOME/.xosd/config/config.toml
+sed -i -e "s%:1317%:${PORT}317%; s%:9090%:${PORT}090%; s%:8545%:${PORT}545%; s%:8546%:${PORT}546%; s%:6065%:${PORT}065%" $HOME/.xosd/config/app.toml
 ```
 
 ### Set Config
