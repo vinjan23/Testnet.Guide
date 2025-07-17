@@ -37,7 +37,7 @@ sudo rm $HOME/.xosd/config/genesis.json
 wget -O $HOME/.xosd/config/genesis.json https://raw.githubusercontent.com/xos-labs/networks/refs/heads/main/testnet/genesis.json
 ```
 ### Port
-``
+```
 PORT=35
 sed -i -e "s|chain-id = \".*\"|chain-id = \"xos_1267-1\"|g" $HOME/.xosd/config/client.toml
 sed -i -e "s%:26657%:${PORT}657%" $HOME/.xosd/config/client.toml
