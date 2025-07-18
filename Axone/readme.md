@@ -86,8 +86,8 @@ nano $HOME/.axoned/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"qhhiuXA+Mhnykopb3RGUpqPON9UEZYS3oAoHt6oGs4o="},
-  "amount": "4990000uaxone",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"MSaQWk9NWtrN8lgvWnAUYDLFIV+BZqUDjnoVk4dMO0s="},
+  "amount": "27000000uaxone",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
@@ -102,7 +102,7 @@ nano $HOME/.axoned/validator.json
 ```
 axoned tx staking create-validator $HOME/.axoned/validator.json \
 --from wallet \
---chain-id axone-1 \
+--chain-id axone-dentrite-1 \
 --gas-prices=0.01uaxone \
 --gas-adjustment=1.5 \
 --gas=auto
