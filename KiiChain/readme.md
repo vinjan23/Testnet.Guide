@@ -139,6 +139,10 @@ kiichaind debug addr $(kiichaind keys show wallet -a)
 ```
 kiichaind  q bank balances $(kiichaind keys show wallet -a)
 ```
+```
+kiichaind  q bank balances kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h --keyring-backend test
+```
+
 ### Validator
 ```
 kiichaind tx staking create-validator \
@@ -182,6 +186,9 @@ kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 900000
 ### WD
 ```
 kiichaind  tx distribution withdraw-rewards $(kiichaind keys show wallet --bech val -a) --commission --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 1000000000akii --gas auto
+```
+```
+kiichaind  tx distribution withdraw-rewards  kiivaloper1s9uuamt582pn38ptq2chduawd2fzgzewtycasr  --commission --from wallet --chain-id oro_1336-1 --gas-adjustment=2 --gas-prices 100000000000akii --gas auto --keyring-backend test
 ```
 ### Own Peer
 ```
