@@ -107,6 +107,7 @@ axoned tx staking create-validator $HOME/.axoned/validator.json \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
-
-
+```
+axoned tx staking delegate $(axoned keys show wallet --bech val -a) 12000000uaxone --from wallet --chain-id axone-dentrite-1 --gas-adjustment=1.5 --gas=auto --gas-prices="0.01uaxone"
+```
 
