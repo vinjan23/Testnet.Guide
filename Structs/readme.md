@@ -110,7 +110,7 @@ nano /root/.structs/validator.json
 }
 ```
 ```
-structsd tx staking create-validator $HOME/.structs/validator.json --from wallet  --chain-id structstestnet-101 --gas auto
+structsd tx staking create-validator $HOME/.structs/validator.json --from wallet  --chain-id structstestnet-102 --gas auto
 
 ```
 ### Delete
