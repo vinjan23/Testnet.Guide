@@ -8,12 +8,12 @@ cd $HOME
 rm -rf structsd
 git clone https://github.com/playstructs/structsd.git
 cd structsd
-git checkout v0.6.0-beta
+git checkout v0.7.0-beta
 ignite chain build
 ```
 
 ```
-structsd init Vinjan.Inc --chain-id structstestnet-101
+structsd init Vinjan.Inc --chain-id structstestnet-102
 ```
 
 ### Genesis
