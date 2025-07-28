@@ -196,7 +196,7 @@ echo $(kiichaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 ```
 ### Vote
 ```
- kiichaind tx gov vote 2 yes --from $(kiichaind keys show wallet -a) --chain-id oro_1336-1 --gas-adjustment 1.3 --gas-prices=1500000000akii
+kiichaind tx gov vote 10 yes --from kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h --chain-id oro_1336-1 --gas-adjustment 1.3 --gas-prices=100000000000akii --keyring-backend test
   ```
 ### Delete
 ```
