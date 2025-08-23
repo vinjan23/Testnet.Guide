@@ -29,8 +29,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 deactivate
 ```
-
-
+```
+symphonyd tx oracle set-feeder symphony1h6897uqcuuv08p8qr55ql8y0j3zap8a2gjtsyu --from wallet --chain-id symphony-1 --fees 2500note
+```
 ```
 sudo tee /etc/systemd/system/oracle.service > /dev/null << EOF
 [Unit]
