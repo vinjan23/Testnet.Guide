@@ -3,7 +3,7 @@ cd $HOME
 rm -rf symphony-oracle-voter
 git clone https://github.com/cmancrypto/symphony-oracle-voter.git
 cd symphony-oracle-voter
-git checkout v0.0.5r1
+git checkout v1.0.0
 ```
 ```
 cd $HOME/symphony-oracle-voter
@@ -18,12 +18,12 @@ nano $HOME/symphony-oracle-voter/.env
 VALIDATOR_ADDRESS=symphonyvaloper1nhfhxk692c9svf0th9ktlpsfsr6askcr5tcd3u
 VALIDATOR_ACC_ADDRESS=symphony1nhfhxk692c9svf0th9ktlpsfsr6askcr8fs2xv
 KEY_PASSWORD=vinjan23
-SYMPHONY_LCD = https://api-symphonyd.vinjan.xyz
-TENDERMINT_RPC= https://rpc-symphonyd.vinjan.xyz
+SYMPHONY_LCD = https://api-symphony.vinjan.xyz
+TENDERMINT_RPC= https://rpc-symphony.vinjan.xyz
 ```
 ```
-sudo apt install python3.10
-sudo apt install python3.10-venv
+sudo apt install python3.11
+sudo apt install python3.11-venv
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -40,7 +40,7 @@ After=network.target
 
 [Service]
 # Environment variables
-Environment="SYMPHONYD_PATH=/root/go/bin/symphonyd"
+Environment="SYMPHONYD_PATH=/root/symphony/build/symphonyd"
 Environment="PYTHON_ENV=production"
 Environment="LOG_LEVEL=INFO"
 Environment="DEBUG=false"
@@ -95,7 +95,7 @@ FEEDER_ADDRESS=symphony1h6897uqcuuv08p8qr55ql8y0j3zap8a2gjtsyu
 
 # Feeder seed phrase - only required if using a separate feeder account
 # This will be cleared from memory after key setup for security
-FEEDER_SEED="replace curious traffic bubble series chicken kid grant park float diamond produce kidney debate neck idea sentence staff lottery diesel prevent protect swim control"
+FEEDER_SEED=""
 
 # =============================================================================
 # BLOCKCHAIN CONFIGURATION
