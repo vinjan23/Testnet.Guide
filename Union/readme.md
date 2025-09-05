@@ -1,52 +1,59 @@
 ###
 ```
-wget https://github.com/unionlabs/union/releases/download/uniond%2Fv0.25.0/uniond.x86_64-linux.tar.gz
-tar -xvf uniond.x86_64-linux.tar.gz
-mv $HOME/result/bin/uniond ~/go/bin
-chmod u+x ~/go/bin/uniond
+cd $HOME
+wget https://github.com/unionlabs/union/releases/download/uniond%2Fv1.2.2-rc2.alpha1/uniond-release-x86_64-linux
+mv uniond-release-x86_64-linux uniond
+chmod +x uniond
+mv uniond $HOME/go/bin/
 ```
-
+```
+mkdir -p $HOME/.union/cosmovisor/genesis/bin
+cp $HOME/go/bin/uniond $HOME/.union/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.union/cosmovisor/genesis $HOME/.union/cosmovisor/current -f
+sudo ln -s $HOME/.union/cosmovisor/current/bin/uniond /usr/local/bin/uniond -f
+```
 ### Init
 ```
-uniond init Vinjan.Inc --chain-id union-testnet-9
-alias uniond='uniond --home=$HOME/.union/'
-uniond config set client keyring-backend test
-uniond config set client node tcp://localhost:35657
+uniond init Vinjan.Inc --chain-id union-1
 ```
 ###
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:35657\"%" $HOME/.union/config/client.toml
+PORT=179
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.union/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}61%" $HOME/.union/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.union/config/app.toml
 ```
 ```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:35658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:35657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:35060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:35656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":35660\"%" $HOME/.union/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://localhost:35317\"%; s%^address = \"localhost:9090\"%address = \"localhost:35090\"%" $HOME/.union/config/app.toml
-```
-```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0muno\"/" $HOME/.union/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0au\"/" $HOME/.union/config/app.toml
 ```
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
 $HOME/.union/config/app.toml
 ```
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.union/config/config.toml
 ```
 ```
-sudo tee /etc/systemd/system/uniond.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/uniond.service > /dev/null << EOF
 [Unit]
 Description=union
 After=network-online.target
-
 [Service]
 User=$USER
-ExecStart=$(which uniond) start
-Restart=always
-RestartSec=3
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
 LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.union"
+Environment="DAEMON_NAME=uniond"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.union/cosmovisor/current/bin"
 
 [Install]
 WantedBy=multi-user.target
