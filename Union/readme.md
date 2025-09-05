@@ -6,6 +6,7 @@ mv uniond-release-x86_64-linux uniond
 chmod +x uniond
 mv uniond $HOME/go/bin/
 ```
+
 ```
 mkdir -p $HOME/.union/cosmovisor/genesis/bin
 cp $HOME/go/bin/uniond $HOME/.union/cosmovisor/genesis/bin/
@@ -15,12 +16,15 @@ sudo ln -s $HOME/.union/cosmovisor/genesis $HOME/.union/cosmovisor/current -f
 sudo ln -s $HOME/.union/cosmovisor/current/bin/uniond /usr/local/bin/uniond -f
 ```
 ```
-mkdir -p $HOME/.union/cosmovisor/upgrades/v1.2.0/bin
-cp $HOME/go/bin/uniond $HOME/.union/cosmovisor/upgrades/v1.2.0/bin/
+mkdir -p $HOME/.union/cosmovisor/upgrades/v1.2.2/bin
+cp $HOME/.union/cosmovisor/genesis/bin/uniond $HOME/.union/cosmovisor/upgrades/v1.2.2/bin/
 ```
 ### Init
 ```
 uniond init Vinjan.Inc --chain-id union-1
+```
+```
+$HOME/.union/cosmovisor/upgrades/v1.2.2/bin/uniond version --long | grep -e commit -e version
 ```
 ###
 ```
@@ -76,8 +80,9 @@ uniond status 2>&1 | jq .sync_info
 uniond keys add wallet
 ```
 ```
-uniond q bank balances union1sh0s29750v5mn6j2slep4j0tyquafms26r6j7
+uniond q bank balances $(uniond keys show wallet -a)
 ```
+
 ```
 uniond tendermint show-validator
 ```
@@ -85,24 +90,30 @@ uniond tendermint show-validator
 nano /root/.union/validator.json
 ```
 ```
+export PRIV_KEY=$(jq -r '.priv_key.value' ~/.union/config/priv_validator_key.json)
+export POSSESSION_PROOF=$(uniond prove-possession "$PRIV_KEY")
+```
+```
 {
-  "pubkey": {"@type":"/cosmos.crypto.bn254.PubKey","key":"qvl6KnDPV3j1bnvaokOdoGapTWZgXWI56W6O+ucqJmA="},
-  "amount": "2000000muno",
+  "pubkey": {"@type":"/cosmos.crypto.bn254.PubKey","key":"rzDLkmapNyk7gZH3OrUdJvNzTT4z/x01n7Q4ehtOg54="},
+  "amount": "40000000000000000000au",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://service.vinjan.xyz",
   "security": "",
   "details": "Staking Provider-IBC Relayer",
-  "commission-rate": "0.05",
+  "commission-rate": "0.01",
   "commission-max-rate": "0.2",
-  "commission-max-change-rate": "0.05",
+  "commission-max-change-rate": "0.2",
   "min-self-delegation": "1"
 }
 ```
 ```
-uniond union-staking create-union-validator $HOME/.union/validator.json $POSSESSION_PROOF \
-  --from wallet \
-  --chain-id union-testnet-9
+uniond tx union-staking create-union-validator $HOME/.union/validator.json $POSSESSION_PROOF \
+--from wallet \
+--chain-id union-1 \
+--fees 30000000000000au \
+--gas 300000
 ```
 ```
 uniond tx staking delegate $(uniond keys show wallet --bech val -a) 1000000muno --from wallet --chain-id union-testnet-9
