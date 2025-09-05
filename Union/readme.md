@@ -14,6 +14,10 @@ cp $HOME/go/bin/uniond $HOME/.union/cosmovisor/genesis/bin/
 sudo ln -s $HOME/.union/cosmovisor/genesis $HOME/.union/cosmovisor/current -f
 sudo ln -s $HOME/.union/cosmovisor/current/bin/uniond /usr/local/bin/uniond -f
 ```
+```
+mkdir -p $HOME/.union/cosmovisor/upgrades/v1.2.0/bin
+cp $HOME/go/bin/uniond $HOME/.union/cosmovisor/upgrades/v1.2.0/bin/
+```
 ### Init
 ```
 uniond init Vinjan.Inc --chain-id union-1
