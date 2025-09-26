@@ -4,7 +4,7 @@ cd $HOME
 rm -rf axone
 git clone https://github.com/axone-protocol/axoned.git
 cd axoned
-git checkout v10.0.0
+git checkout v12.0.0
 make install
 ```
 ```
@@ -20,7 +20,7 @@ axoned version --long | grep -e commit -e version
 ```
 ### 
 ```
-axoned init Vinjan.Inc --chain-id axone-dentrite-1
+axoned init Vinjan.Inc --chain-id axone-dentrite-2
 ```
 ###
 ```
@@ -35,7 +35,7 @@ sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
--e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
 $HOME/.axoned/config/app.toml
 ```
 ###
