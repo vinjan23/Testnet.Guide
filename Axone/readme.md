@@ -110,4 +110,46 @@ axoned tx staking create-validator $HOME/.axoned/validator.json \
 ```
 axoned tx staking delegate $(axoned keys show wallet --bech val -a) 12000000uaxone --from wallet --chain-id axone-dendrite-1 --gas-adjustment=1.5 --gas=auto --gas-prices="0.01uaxone"
 ```
+### WD
+```
+axoned tx distribution withdraw-rewards $(axoned keys show wallet --bech val -a) --from wallet --chain-id axone-dendrite-1 --gas-adjustment=1.5 --gas=auto --gas-prices="0.01uaxone"
+```
+### Peer
+```
+echo $(axoned tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.axoned/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+
+### Addrbook
+```
+cp $HOME/.axoned/config/addrbook.json /var/www/snapshot-t/axone/addrbook.json
+```
+### Snapshot
+```
+cd cosmprund
+sudo systemctl stop axoned
+./build/cosmprund prune ~/.axoned/data
+```
+```
+cd $HOME/.axoned
+tar cfv - data | lz4 -9 > /var/www/snapshot-t/axone/latest.tar.lz4
+```
+```
+curl -L https://snapshot-t.vinjan.xyz/axone/addrbook.json > $HOME/.axoned/config/addrbook.json
+```
+```
+curl -L https://snapshot-t.vinjan.xyz/axone/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.axoned
+```
+92423
+
+
+### Delete
+```
+sudo systemctl stop axoned
+sudo systemctl disable axoned
+sudo rm /etc/systemd/system/axoned.service
+sudo systemctl daemon-reload
+rm -f $(which axoned)
+rm -rf .axoned
+rm -rf axone
+```
 
