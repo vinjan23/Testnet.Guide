@@ -20,7 +20,7 @@ axoned version --long | grep -e commit -e version
 ```
 ### 
 ```
-axoned init Vinjan.Inc --chain-id axone-dentrite-2
+axoned init Vinjan.Inc --chain-id axone-dendrite-2
 ```
 ###
 ```
@@ -102,12 +102,12 @@ nano $HOME/.axoned/validator.json
 ```
 axoned tx staking create-validator $HOME/.axoned/validator.json \
 --from wallet \
---chain-id axone-dentrite-1 \
+--chain-id axone-dendrite-2 \
 --gas-prices=0.01uaxone \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
 ```
-axoned tx staking delegate $(axoned keys show wallet --bech val -a) 12000000uaxone --from wallet --chain-id axone-dentrite-1 --gas-adjustment=1.5 --gas=auto --gas-prices="0.01uaxone"
+axoned tx staking delegate $(axoned keys show wallet --bech val -a) 12000000uaxone --from wallet --chain-id axone-dendrite-1 --gas-adjustment=1.5 --gas=auto --gas-prices="0.01uaxone"
 ```
 
