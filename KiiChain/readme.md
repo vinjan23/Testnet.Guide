@@ -30,7 +30,7 @@ mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v5.0.0/bin/
 rm -rf build
 ```
 ```
-$HOME/.kiichain/cosmovisor/upgrades/v4.0.0/bin/kiichaind version --long | grep -e commit -e version
+$HOME/.kiichain/cosmovisor/upgrades/v5.0.0/bin/kiichaind version --long | grep -e commit -e version
 ```
 
 ```
