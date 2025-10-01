@@ -17,21 +17,16 @@ sudo ln -s $HOME/.kiichain/cosmovisor/current/bin/kiichaind /usr/local/bin/kiich
 ```
 
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin
-mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v1.3.0/bin/
-rm -rf build
-```
-```
 cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v4.0.0
+git checkout v5.0.0
 make build
 ```
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v4.0.0/bin
-mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v4.0.0/bin/
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v5.0.0/bin
+mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v5.0.0/bin/
 rm -rf build
 ```
 ```
