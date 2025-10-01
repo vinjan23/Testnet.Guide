@@ -1,7 +1,7 @@
 ###
 ```
 cd $HOME
-rm -rf axone
+rm -rf axoned
 git clone https://github.com/axone-protocol/axoned.git
 cd axoned
 git checkout v12.0.0
