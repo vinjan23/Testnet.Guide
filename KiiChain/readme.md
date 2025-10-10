@@ -155,7 +155,7 @@ kiichaind tx staking create-validator \
 --min-self-delegation=1 \
 --gas="auto" \
 --gas-adjustment 1.3 \
---gas-prices="0.02ukii" \
+--gas-prices="100000000000akii" \
 --from=wallet
 ```
 ```
@@ -168,16 +168,16 @@ kiichaind tx staking edit-validator \
 --chain-id=kiichain3 \
 --gas="auto" \
 --gas-adjustment 1.3 \
---gas-prices="0.02ukii" \
+--gas-prices="100000000000akii" \
 --from=wallet
 ```
 ### Unjail
 ```
-kiichaind tx slashing unjail --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 1000000000akii --gas auto
+kiichaind tx slashing unjail --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto
 ```
 ### Delegate
 ```
-kiichaind tx staking delegate $(kiichaind keys show wallet --bech val -a) 9000000akii --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 1000000000akii --gas auto
+kiichaind tx staking delegate kiivaloper1s9uuamt582pn38ptq2chduawd2fzgzewtycasr 1000000000000000000akii --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto --keyring-backend test
 ```
 ### WD
 ```
