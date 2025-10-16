@@ -51,9 +51,9 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001usaf\"/" $HOME
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "11"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
 $HOME/.safrochain/config/app.toml
 ```
 ### Indexer
