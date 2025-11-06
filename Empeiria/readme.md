@@ -56,19 +56,9 @@ wget -O $HOME/.empe-chain/config/genesis.json https://raw.githubusercontent.com/
 ```
 curl -L https://snapshot-t.vinjan.xyz/empe/addrbook.json > $HOME/.empe-chain/config/addrbook.json
 ```
-### Peer & Gas
-```
-peers=""
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.empe-chain/config/config.toml
-seeds="af920dc9fad86dd893162b0dd01a45bf778d6edc@94.130.143.184:20656"
-sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.empe-chain/config/config.toml
-```
+###  Gas
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0025uempe\"/" $HOME/.empe-chain/config/app.toml
-```
-```
-peers="$(curl -sS https://rpc-empe.vinjan.xyz:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.empe-chain/config/config.toml
 ```
 ### Prunning
 ```
@@ -131,15 +121,6 @@ sudo journalctl -u emped -f -o cat
 ```
 emped status 2>&1 | jq .SyncInfo
 ```
-### Snapshot (848735)( 11 GB)
-```
-sudo apt install lz4 -y
-sudo systemctl stop emped
-emped tendermint unsafe-reset-all --home $HOME/.empe-chain --keep-addr-book
-curl -L https://snapshot.vinjan.xyz/empeiria/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.empe-chain
-sudo systemctl restart emped
-sudo journalctl -u emped -f -o cat
-```
 ### Statesync
 ```
 sudo systemctl stop emped
@@ -197,7 +178,7 @@ emped tx staking edit-validator \
 ```
 ### Unjail
 ```
-emped  tx slashing unjail --from wallet --chain-id empe-testnet-2 --gas=auto --fees=20000uempe -y
+ emped tx slashing unjail --from wallet --chain-id empe-testnet-2 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025uempe
 ```
 ### Jail Info
 ```
@@ -206,15 +187,15 @@ emped query slashing signing-info $(emped tendermint show-validator)
 
 ### Delegate
 ```
-emped tx staking delegate $(emped keys show wallet --bech val -a) 10000000uempe --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
+emped tx staking delegate $(emped keys show wallet --bech val -a) 10000000uempe --from wallet --chain-id empe-testnet-2 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025uempe
 ```
 ### Withdraw
 ```
-emped tx distribution withdraw-rewards $(emped keys show wallet --bech val -a) --commission --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
+emped tx distribution withdraw-rewards $(emped keys show wallet --bech val -a) --commission --from wallet --chain-id empe-testnet-2 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025uempe
 ```
 ### Vote
 ```
-emped tx gov vote 7 yes --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
+emped tx gov vote 7 yes --from wallet --chain-id empe-testnet-2 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025uempe
 ```
 ### Validator Info
 ```
@@ -226,7 +207,7 @@ emped status 2>&1 | jq .NodeInfo
 ```
 ### Transfer
 ```
-emped tx bank send wallet <TO_WALLET_ADDRESS> 1000000uempe --from wallet --chain-id empe-testnet-2 --fees=20000uempe -y
+emped tx bank send wallet <TO_WALLET_ADDRESS> 1000000uempe --from wallet --chain-id empe-testnet-2 --gas auto --gas-adjustment 1.5 --gas-prices 0.0025uempe
 ```
 
 ### Connected Peer
