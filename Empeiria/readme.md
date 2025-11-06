@@ -1,6 +1,6 @@
 ### Binary
 ```
-curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.3.0/emped_v0.4.0_linux_amd64.tar.gz
+curl -LO https://github.com/empe-io/empe-chain-releases/raw/master/v0.4.0/emped_v0.4.0_linux_amd64.tar.gz
 tar -xvf emped_v0.4.0_linux_amd64.tar.gz
 chmod +x emped
 mv emped ~/go/bin
@@ -26,6 +26,7 @@ rm -rf emped_v0.4.0_linux_amd64.tar.gz
 mkdir -p $HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin
 mv emped $HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin/
 ```
+
 ```
 emped version --long | grep -e version -e commit
 ```
@@ -63,7 +64,7 @@ seeds="af920dc9fad86dd893162b0dd01a45bf778d6edc@94.130.143.184:20656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.empe-chain/config/config.toml
 ```
 ```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0uempe\"/" $HOME/.empe-chain/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0025uempe\"/" $HOME/.empe-chain/config/app.toml
 ```
 ```
 peers="$(curl -sS https://rpc-empe.vinjan.xyz:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
@@ -74,8 +75,8 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.e
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = "2000"|' \
--e 's|^pruning-interval *=.*|pruning-interval = "50"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
 $HOME/.empe-chain/config/app.toml
 ```
 ### Indexer Off
@@ -88,14 +89,12 @@ sudo tee /etc/systemd/system/emped.service > /dev/null <<EOF
 [Unit]
 Description=empe
 After=network-online.target
-
 [Service]
 User=$USER
 ExecStart=$(which emped) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -105,7 +104,6 @@ sudo tee /etc/systemd/system/emped.service > /dev/null << EOF
 [Unit]
 Description=empe
 After=network-online.target
-
 [Service]
 User=$USER
 ExecStart=$(which cosmovisor) run start
@@ -116,7 +114,6 @@ Environment="DAEMON_HOME=$HOME/.empe-chain"
 Environment="DAEMON_NAME=emped"
 Environment="UNSAFE_SKIP_BACKUP=true"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.empe-chain/cosmovisor/current/bin"
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -128,8 +125,6 @@ sudo systemctl enable emped
 ```
 ```
 sudo systemctl restart emped
-```
-```
 sudo journalctl -u emped -f -o cat
 ```
 ### Sync
