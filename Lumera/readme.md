@@ -27,16 +27,16 @@ sudo ln -s $HOME/.lumera/cosmovisor/current/bin/lumerad /usr/local/bin/lumerad -
 ```
 ### Upgrade
 ```
-curl -LO https://github.com/LumeraProtocol/lumera/releases/download/v1.7.2/lumera_v1.7.2_linux_amd64.tar.gz
-tar -xzvf lumera_v1.7.2_linux_amd64.tar.gz
+curl -LO https://github.com/LumeraProtocol/lumera/releases/download/v1.8.4/lumera_v1.8.4_linux_amd64.tar.gz
+tar -xzvf lumera_v1.8.4_linux_amd64.tar.gz
 chmod +x lumerad
-rm lumera_v1.7.2_linux_amd64.tar.gz
+rm lumera_v1.8.4_linux_amd64.tar.gz
 rm install.sh
 mv libwasmvm.x86_64.so /usr/lib/
 ```
 ```
-mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.7.2/bin
-mv lumerad $HOME/.lumera/cosmovisor/upgrades/v1.7.2/bin/
+mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.8.4/bin
+cp lumerad $HOME/.lumera/cosmovisor/upgrades/v1.8.4/bin/
 ```
 ```
 lumerad version  --long | grep -e version -e commit
