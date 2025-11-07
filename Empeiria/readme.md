@@ -7,6 +7,11 @@ mv emped ~/go/bin
 rm -rf emped_v0.4.0_linux_amd64.tar.gz
 ```
 ```
+wget https://github.com/CosmWasm/wasmvm/releases/download/v1.5.2/libwasmvm.x86_64.so
+sudo mv libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
+sudo ldconfig
+```
+```
 mkdir -p $HOME/.empe-chain/cosmovisor/genesis/bin
 cp $HOME/go/bin/emped $HOME/.empe-chain/cosmovisor/genesis/bin/
 ```
