@@ -154,6 +154,10 @@ safrochaind tx distribution withdraw-rewards $(safrochaind keys show wallet --be
 ```
 safrochaind tx staking delegate $(safrochaind keys show wallet --bech val -a) 50000000000usaf --from wallet --chain-id safro-testnet-1 --fees 5000usaf
 ```
+### Check
+```
+[[ $(safrochaind q staking validator $(safrochaind keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(safrochaind status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
 
 ### Delete
 ```
