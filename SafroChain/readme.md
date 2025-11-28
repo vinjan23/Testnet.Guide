@@ -132,12 +132,13 @@ safrochaind tx staking create-validator $HOME/.safrochain/validator.json \
 --chain-id safro-testnet-1 \
 --fees 5000usaf
 ```
+```
 safrochaind tx staking edit-validator \
 --from wallet \
 --chain-id safro-testnet-1 \
 --commission-rate 0.15 \
 --fees 5000usaf
-
+```
 ### Unjail
 ```
 safrochaind tx slashing unjail --from wallet --chain-id safro-testnet-1 --fees 5000usaf
@@ -157,6 +158,9 @@ safrochaind tx staking delegate $(safrochaind keys show wallet --bech val -a) 50
 ### Check
 ```
 [[ $(safrochaind q staking validator $(safrochaind keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(safrochaind status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+```
+echo $(safrochaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.safrochain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 
 ### Delete
