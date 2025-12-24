@@ -12,6 +12,12 @@ sudo mv libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
 sudo ldconfig
 ```
 ```
+mkdir ~/.empe-chain/lib
+wget https://github.com/CosmWasm/wasmvm/releases/download/v1.5.2/libwasmvm.x86_64.so -P $HOME/.empe-chain/lib
+echo 'export LD_LIBRARY_PATH=/root/.empe-chain/lib:$LD_LIBRARY_PATH' >> ~/.profile
+source ~/.profile
+```
+```
 mkdir -p $HOME/.empe-chain/cosmovisor/genesis/bin
 cp $HOME/go/bin/emped $HOME/.empe-chain/cosmovisor/genesis/bin/
 ```
