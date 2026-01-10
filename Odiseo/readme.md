@@ -165,9 +165,10 @@ achillesd tx staking create-validator $HOME/.achilles/validator.json \
 achillesd tx staking edit-validator \
 --new-moniker Vinjan.Inc \
 --identity 7C66E36EA2B71F68 \
+--website="https://vinjan-inc.com" \
+--details="Staking Provider-IBC Relayer" \
 --from wallet \
 --chain-id ithaca-1 \
---commission-rate 0.05 \
 --gas-prices=0.025uodis \
 --gas-adjustment=1.5 \
 --gas=auto
