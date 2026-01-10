@@ -153,9 +153,9 @@ lumerad tx staking create-validator $HOME/.lumera/validator.json \
 lumerad tx staking edit-validator \
 --new-moniker Vinjan.Inc \
 --identity 7C66E36EA2B71F68 \
+--website="https://vinjan-inc.com" \
 --from wallet \
 --chain-id lumera-testnet-2 \
---commission-rate 0.25 \
 --gas auto \
 --gas-prices=0.025ulume \
 --gas-adjustment=1.5
