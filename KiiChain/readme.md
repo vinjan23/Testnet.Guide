@@ -163,13 +163,14 @@ kiichaind tx staking edit-validator \
 --new-moniker="Vinjan.Inc" \
 --identity="7C66E36EA2B71F68" \
 --details="Staking Provider & IBC Relayer" \
---website="https://service.vinjan.xyz" \
---commission-rate=0.1 \
---chain-id=kiichain3 \
+--website="https://vinjan-inc.com" \
+--commission-rate=0.2 \
+--chain-id oro_1336-1 \
 --gas="auto" \
---gas-adjustment 1.3 \
+--gas-adjustment 1.5 \
 --gas-prices="100000000000akii" \
---from=wallet
+--from=wallet \
+--keyring-backend test
 ```
 ### Unjail
 ```
@@ -177,11 +178,11 @@ kiichaind tx slashing unjail --from wallet --chain-id oro_1336-1 --gas-adjustmen
 ```
 ### Delegate
 ```
-kiichaind tx staking delegate kiivaloper1s9uuamt582pn38ptq2chduawd2fzgzewtycasr 1000000000000000000akii --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto --keyring-backend test
+kiichaind tx staking delegate kiivaloper1s9uuamt582pn38ptq2chduawd2fzgzewtycasr 1000000000000000000akii --from wallet --chain-id oro_1336-1 --gas-adjustment=1.5 --gas-prices 100000000000akii --gas auto --keyring-backend test
 ```
 ### WD
 ```
-kiichaind  tx distribution withdraw-rewards kiivaloper1s9uuamt582pn38ptq2chduawd2fzgzewtycasr --commission --from kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto --keyring-backend test
+kiichaind  tx distribution withdraw-rewards kiivaloper1s9uuamt582pn38ptq2chduawd2fzgzewtycasr --commission --from kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h --chain-id oro_1336-1 --gas-adjustment=1.5 --gas-prices 100000000000akii --gas auto --keyring-backend test
 ```
 ```
 kiichaind  tx distribution withdraw-rewards  kiivaloper1s9uuamt582pn38ptq2chduawd2fzgzewtycasr  --commission --from wallet --chain-id oro_1336-1 --gas-adjustment=2 --gas-prices 100000000000akii --gas auto --keyring-backend test
