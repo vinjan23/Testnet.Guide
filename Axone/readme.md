@@ -108,6 +108,18 @@ axoned tx staking create-validator $HOME/.axoned/validator.json \
 --gas=auto
 ```
 ```
+axoned tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--website="https://vinjan-inc.com" \
+--details="Staking Provider-IBC Relayer" \
+--from=wallet \
+--chain-id axone-dendrite-2 \
+--gas-prices=0.01uaxone \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+```
 axoned tx staking delegate $(axoned keys show wallet --bech val -a) 12000000uaxone --from wallet --chain-id axone-dendrite-1 --gas-adjustment=1.5 --gas=auto --gas-prices="0.01uaxone"
 ```
 ### WD
