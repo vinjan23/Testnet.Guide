@@ -178,14 +178,13 @@ emped tx staking create-validator \
 ### Edit Validator
 ```
 emped tx staking edit-validator \
---new-moniker ""  \
---identity="" \
---details="" \
---website="" \
+--new-moniker "Vinjan.Inc"  \
+--identity="7C66E36EA2B71F68" \
+--details="Staking Provider-IBC Relayer" \
+--website="https://vinjan-inc.com" \
 --chain-id=empe-testnet-2 \
 --from=wallet \
---fees=20000uempe \
--y
+--fees=20000uempe
 ```
 ### Unjail
 ```
