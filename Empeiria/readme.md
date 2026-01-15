@@ -34,6 +34,14 @@ chmod +x emped
 rm -rf emped_v0.4.0_linux_amd64.tar.gz
 ```
 ```
+rm -rf $HOME/bin && mkdir $HOME/bin && 
+cd $HOME/bin
+wget https://github.com/empe-io/empe-chain-releases/raw/master/v0.4.0/emped_v0.4.0_linux_amd64.tar.gz
+tar -xvf emped_v0.4.0_linux_amd64.tar.gz
+chmod +x emped
+mv $HOME/bin/emped ~/go/bin
+```
+```
 mkdir -p $HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin
 mv emped $HOME/.empe-chain/cosmovisor/upgrades/v0.4.0/bin/
 ```
