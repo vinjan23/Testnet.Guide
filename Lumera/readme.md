@@ -9,13 +9,6 @@ mv lumerad $HOME/go/bin/
 mv libwasmvm.x86_64.so /usr/lib/
 ```
 
-### New Genesis
-```
-sudo rm $HOME/.lumera/config/genesis.json
-wget -O $HOME/.lumera/config/genesis.json https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/testnet-2/genesis.json
-curl -L https://github.com/LumeraProtocol/lumera-networks/blob/master/testnet-2/genesis.json > $HOME/.lumera/config/genesis.json
-```
-
 ### Cosmovisor
 ```
 mkdir -p $HOME/.lumera/cosmovisor/genesis/bin
@@ -24,6 +17,11 @@ cp $HOME/go/bin/lumerad $HOME/.lumera/cosmovisor/genesis/bin/
 ```
 sudo ln -s $HOME/.lumera/cosmovisor/genesis $HOME/.lumera/cosmovisor/current -f
 sudo ln -s $HOME/.lumera/cosmovisor/current/bin/lumerad /usr/local/bin/lumerad -f
+```
+```1
+wget https://github.com/CosmWasm/wasmvm/releases/download/v3.0.0-ibc2.0/libwasmvm.x86_64.so
+sudo mv libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
+sudo ldconfig
 ```
 ### Upgrade
 ```
