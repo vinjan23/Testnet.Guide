@@ -1,5 +1,5 @@
 # 1. Install republicd 
-``
+```
 cd $HOME
 mkdir -p $HOME/.republicd
 curl -L "https://media.githubusercontent.com/media/RepublicAI/networks/main/testnet/releases/v0.1.0/republicd-linux-amd64" -O /usr/local/bin/republicd
