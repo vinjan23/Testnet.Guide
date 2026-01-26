@@ -68,17 +68,15 @@ curl -L https://snapshot-t.vinjan.xyz/lumera/addrbook.json > $HOME/.lumera/confi
 ```
 ### Gas & Seed
 ```
-seeds="49e22975a1d6c5204072f25eb71c01faf54b4b92@88.99.149.170:17656"
-sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.lumera/config/config.toml
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0ulume\"/" $HOME/.lumera/config/app.toml
 ```
 ### Prunning
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "11"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
 $HOME/.lumera/config/app.toml
 ```
 ### Indexer Off
