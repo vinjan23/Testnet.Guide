@@ -2,10 +2,14 @@
 ```
 cd $HOME
 mkdir -p $HOME/.republicd
-curl -L "https://media.githubusercontent.com/media/RepublicAI/networks/main/testnet/releases/v0.1.0/republicd-linux-amd64" -o /usr/local/bin/republicd
-chmod +x /tmp/republicd
-sudo mv /tmp/republicd /usr/local/bin/republicd
-
+wget https://github.com/RepublicAI/networks/blob/main/testnet/releases/v0.1.0/republicd-linux-amd64 -O /usr/local/bin/republicd
+chmod +x /usr/local/bin/republicd
+```
+```
+republicd init Vinjan.Inc --chain-id raitestnet_77701-2
+```
+```
+republicd keys add wallet
 ```
 
 # 2. Initialize node
