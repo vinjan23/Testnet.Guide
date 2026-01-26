@@ -1,8 +1,8 @@
 ### Binary Testnet-2
 ```
-curl -LO https://github.com/LumeraProtocol/lumera/releases/download/v1.8.5/lumera_v1.8.5_linux_amd64.tar.gz
-tar -xvf lumera_v1.8.5_linux_amd64.tar.gz
-rm lumera_v1.8.5_linux_amd64.tar.gz
+curl -LO https://github.com/LumeraProtocol/lumera/releases/download/v1.9.1/lumera_v1.9.1_linux_amd64.tar.gz
+tar -xvf lumera_v1.9.1_linux_amd64.tar.gz
+rm lumera_v1.9.1_linux_amd64.tar.gz
 rm install.sh
 chmod +x lumerad
 mv lumerad $HOME/go/bin/
