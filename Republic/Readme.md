@@ -54,7 +54,7 @@ ExecStart=$(which cosmovisor) run start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.republicd"
+Environment="DAEMON_HOME=$HOME/.republic"
 Environment="DAEMON_NAME=republicd"
 Environment="UNSAFE_SKIP_BACKUP=true"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.republic/cosmovisor/current/bin"
@@ -86,6 +86,10 @@ sudo systemctl restart republicd
 sudo journalctl -u republicd -f -o cat
 ```
 ```
+peers="$(curl -sS https://statesync.republicai.io:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.republic/config/config.toml
+```
+```
 republicd tx staking create-validator \
 --amount=1000000000000000000000arai \
 --pubkey=$(republicd comet show-validator) \
@@ -103,4 +107,12 @@ republicd tx staking create-validator \
 --gas-prices="250000000arai" \
 --gas=auto  
 ```
-  
+```
+sudo systemctl stop republicd
+sudo systemctl disable republicd
+sudo rm /etc/systemd/system/republicd.service
+sudo systemctl daemon-reload
+rm -f $(which republicd)
+rm -rf .republic
+```
+
