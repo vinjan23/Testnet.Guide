@@ -2,8 +2,9 @@
 ```
 cd $HOME
 mkdir -p $HOME/.republicd
-wget https://github.com/RepublicAI/networks/blob/main/testnet/releases/v0.1.0/republicd-linux-amd64 -O /usr/local/bin/republicd
-chmod +x /usr/local/bin/republicd
+wget https://github.com/RepublicAI/networks/raw/refs/heads/main/testnet/releases/v0.1.0/republicd-linux-amd64 -O republicd
+chmod +x republicd
+mv republicd $HOME/go/bin/
 ```
 ```
 republicd init Vinjan.Inc --chain-id raitestnet_77701-2
