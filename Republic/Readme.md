@@ -122,7 +122,7 @@ republicd nano $HOME/.republic/validator.json
 republicd tx staking create-validator $HOME/.republic/validator.json \
 --from wallet \
 --chain-id raitestnet_77701-1 \
---gas-prices=250000000arai \
+--gas-prices=2500000000arai \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
