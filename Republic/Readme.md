@@ -1,7 +1,5 @@
 ###
 ```
-cd $HOME
-mkdir -p $HOME/.republicd
 wget https://github.com/RepublicAI/networks/raw/refs/heads/main/testnet/releases/v0.1.0/republicd-linux-amd64 -O republicd
 chmod +x republicd
 mv republicd $HOME/go/bin/
@@ -18,7 +16,7 @@ sudo ln -s $HOME/.republic/cosmovisor/current/bin/republicd /usr/local/bin/repub
 republicd version --long | grep -e commit -e version
 ```
 ```
-republicd init Vinjan.Inc --chain-id raitestnet_77701-2
+republicd init Vinjan.Inc --chain-id raitestnet_77701-1
 ```
 ```
 curl -s https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/genesis.json > $HOME/.republic/config/genesis.json
