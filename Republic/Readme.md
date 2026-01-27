@@ -82,3 +82,22 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" "$HOME/.
 sudo systemctl restart republicd
 sudo journalctl -u republicd -f -o cat
 ```
+```
+republicd tx staking create-validator \
+--amount=1000000000000000000000arai \
+--pubkey=$(republicd comet show-validator) \
+--moniker="Vinjan.Inc" \
+--identity:"7C66E36EA2B71F68" \
+--website:"https://vinjan-inc.com" \
+--details:"Staking Provider-IBC Relayer" \  
+--chain-id=raitestnet_77701-2 \
+--from=wallet \
+--commission-rate="0.10" \
+--commission-max-rate="1" \
+--commission-max-change-rate="1" \
+--min-self-delegation="1" \
+--gas-adjustment=1.5 \
+--gas-prices="250000000arai" \
+--gas=auto  
+```
+  
