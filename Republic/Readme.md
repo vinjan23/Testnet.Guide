@@ -7,12 +7,12 @@ chmod +x republicd
 mv republicd $HOME/go/bin/
 ```
 ```
-mkdir -p $HOME/.republicd/cosmovisor/genesis/bin
-cp $HOME/go/bin/republicd $HOME/.republicd/cosmovisor/genesis/bin/
+mkdir -p $HOME/.republic/cosmovisor/genesis/bin
+cp $HOME/go/bin/republicd $HOME/.republic/cosmovisor/genesis/bin/
 ```
 ```
-sudo ln -s $HOME/.republicd/cosmovisor/genesis $HOME/.republicd/cosmovisor/current -f
-sudo ln -s $HOME/.republicd/cosmovisor/current/bin/republicd /usr/local/bin/republicd -f
+sudo ln -s $HOME/.republic/cosmovisor/genesis $HOME/.republic/cosmovisor/current -f
+sudo ln -s $HOME/.republic/cosmovisor/current/bin/republicd /usr/local/bin/republicd -f
 ```
 ```
 republicd version --long | grep -e commit -e version
@@ -21,13 +21,16 @@ republicd version --long | grep -e commit -e version
 republicd init Vinjan.Inc --chain-id raitestnet_77701-2
 ```
 ```
+curl -s https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/genesis.json > $HOME/.republic/config/genesis.json
+```
+```
 PORT=133
-sed -i -e "s%:26657%:${PORT}57%" $HOME/.republicd/config/client.toml
-sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.republicd/config/config.toml
-sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.republicd/config/app.toml
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.republic/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.republic/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.republic/config/app.toml
 ```
 ```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"250000000arai\"/" $HOME/.republicd/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"250000000arai\"/" $HOME/.republic/config/app.toml
 ```
 ```
 sed -i \
@@ -35,10 +38,10 @@ sed -i \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
 -e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
-$HOME/.republicd/config/app.toml
+$HOME/.republic/config/app.toml
 ```
 ```
-sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.republicd/config/config.toml
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.republic/config/config.toml
 ```
 ```
 sudo tee /etc/systemd/system/republicd.service > /dev/null << EOF
@@ -54,7 +57,7 @@ LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.republicd"
 Environment="DAEMON_NAME=republicd"
 Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.republicd/cosmovisor/current/bin"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.republic/cosmovisor/current/bin"
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -78,7 +81,7 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" "$HOME/.republicd/config/config.toml"
 PEERS="517759f225c44c64fdc2fd5f4576778da4810fa5@44.199.194.212:26656,655b4c80d267633a6609d7030517a4043ffc419b@54.152.212.109:26656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" "$HOME/.republicd/config/config.toml"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" "$HOME/.republic/config/config.toml"
 sudo systemctl restart republicd
 sudo journalctl -u republicd -f -o cat
 ```
