@@ -1,4 +1,4 @@
-# 1. Install republicd 
+###
 ```
 cd $HOME
 mkdir -p $HOME/.republicd
@@ -7,33 +7,78 @@ chmod +x republicd
 mv republicd $HOME/go/bin/
 ```
 ```
+mkdir -p $HOME/.republicd/cosmovisor/genesis/bin
+cp $HOME/go/bin/republicd $HOME/.republicd/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.republicd/cosmovisor/genesis $HOME/.republicd/cosmovisor/current -f
+sudo ln -s $HOME/.republicd/cosmovisor/current/bin/republicd /usr/local/bin/republicd -f
+```
+```
+republicd version --long | grep -e commit -e version
+```
+```
 republicd init Vinjan.Inc --chain-id raitestnet_77701-2
+```
+```
+PORT=133
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.republicd/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.republicd/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.republicd/config/app.toml
+```
+```
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"250000000arai\"/" $HOME/.republicd/config/app.toml
+```
+```
+sed -i \
+-e 's|^pruning *=.*|pruning = "custom"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
+$HOME/.republicd/config/app.toml
+```
+```
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.republicd/config/config.toml
+```
+```
+sudo tee /etc/systemd/system/republicd.service > /dev/null << EOF
+[Unit]
+Description=republic
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.republicd"
+Environment="DAEMON_NAME=republicd"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.republicd/cosmovisor/current/bin"
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl enable republicd
+sudo systemctl restart republicd
+sudo journalctl -u republicd -f -o cat
 ```
 ```
 republicd keys add wallet
 ```
-
-# 2. Initialize node
-REPUBLIC_HOME="$HOME/.republicd"
-republicd init <your-moniker> --chain-id raitestnet_77701-2 --home "$REPUBLIC_HOME"
-
-# 3. Download genesis
-curl -s https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/genesis.json > "$REPUBLIC_HOME/config/genesis.json"
-
-# 4. Configure state sync
+```
 SNAP_RPC="https://statesync.republicai.io"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height)
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000))
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-
 sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" "$REPUBLIC_HOME/config/config.toml"
-
-# 5. Configure persistent peers
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" "$HOME/.republicd/config/config.toml"
 PEERS="517759f225c44c64fdc2fd5f4576778da4810fa5@44.199.194.212:26656,655b4c80d267633a6609d7030517a4043ffc419b@54.152.212.109:26656"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" "$REPUBLIC_HOME/config/config.toml"
-
-# 6. Start node
-republicd start --home "$REPUBLIC_HOME" --chain-id raitestnet_77701-2
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" "$HOME/.republicd/config/config.toml"
+sudo systemctl restart republicd
+sudo journalctl -u republicd -f -o cat
+```
