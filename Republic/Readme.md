@@ -112,7 +112,7 @@ sudo systemctl stop republicd
 sudo systemctl disable republicd
 sudo rm /etc/systemd/system/republicd.service
 sudo systemctl daemon-reload
-rm -f $(which republicd)
+rm -rf $(which republicd)
 rm -rf .republic
 ```
 
