@@ -145,6 +145,12 @@ republicd tx staking create-validator \
 --gas=auto  
 ```
 ```
+echo $(republicd comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.republic/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+```
+a5d2fe7d932c3b6f7c9633164f102315d1f575c6@195.201.160.23:13356
+```
+```
 sudo systemctl stop republicd
 sudo systemctl disable republicd
 sudo rm /etc/systemd/system/republicd.service
