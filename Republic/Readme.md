@@ -19,6 +19,9 @@ republicd version --long | grep -e commit -e version
 republicd init Vinjan.Inc --chain-id raitestnet_77701-1
 ```
 ```
+wget -O $HOME/.republic/config/genesis.json https://raw.githubusercontent.com/RepublicAI/networks/refs/heads/main/testnet/genesis.json
+```
+```
 curl -s https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/genesis.json > $HOME/.republic/config/genesis.json
 ```
 ```
