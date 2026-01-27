@@ -69,9 +69,7 @@ sudo systemctl enable republicd
 sudo systemctl restart republicd
 sudo journalctl -u republicd -f -o cat
 ```
-```
-republicd keys add wallet
-```
+ 
 ```
 SNAP_RPC="https://statesync.republicai.io"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height)
@@ -91,6 +89,44 @@ peers="$(curl -sS https://statesync.republicai.io:443/net_info | jq -r '.result.
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.republic/config/config.toml
 ```
 ```
+republicd status 2>&1 | jq .sync_info
+```
+```
+republicd keys add wallet --recover
+```
+```
+republicd q bank balances $(republicd keys show wallet -a)
+```
+```
+republicd comet show-validator
+```
+```
+republicd nano $HOME/.republic/validator.json
+```
+```
+{
+  "pubkey": ,
+  "amount": "1000000000000000000000arai",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "1",
+  "commission-max-change-rate": "1",
+  "min-self-delegation": "1"
+}
+```
+```
+republicd tx staking create-validator $HOME/.republic/validator.json \
+--from wallet \
+--chain-id raitestnet_77701-1 \
+--gas-prices=250000000arai \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+```
 republicd tx staking create-validator \
 --amount=1000000000000000000000arai \
 --pubkey=$(republicd comet show-validator) \
@@ -98,7 +134,7 @@ republicd tx staking create-validator \
 --identity:"7C66E36EA2B71F68" \
 --website:"https://vinjan-inc.com" \
 --details:"Staking Provider-IBC Relayer" \  
---chain-id=raitestnet_77701-2 \
+--chain-id=raitestnet_77701-1 \
 --from=wallet \
 --commission-rate="0.10" \
 --commission-max-rate="1" \
