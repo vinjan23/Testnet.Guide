@@ -129,6 +129,18 @@ republicd tx staking create-validator $HOME/.republic/validator.json \
 --gas=auto
 ```
 ```
+republicd tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--website="https://vinjan-inc.com" \
+--details="Staking Provider-IBC Relayer" \
+--from=wallet \
+--chain-id raitestnet_77701-1 \
+--gas-prices=2500000000arai \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+```
 republicd tx staking create-validator \
 --amount=1000000000000000000000arai \
 --pubkey=$(republicd comet show-validator) \
