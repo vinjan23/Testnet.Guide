@@ -93,5 +93,35 @@ pchaind keys unsafe-export-eth-key wallet
 pchaind q bank balances $(pchaind keys show wallet -a)
 ```
 ```
+pchaind comet show-validator
+```
+```
+nano $HOME/.pchain/validator.json
+```
+```
+{
+  "pubkey": ,
+  "amount": "5000000000000000000upc",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "1",
+  "commission-max-change-rate": "1",
+  "min-self-delegation": "1"
+}
+```
+```
+pchaind tx staking create-validator $HOME/.pchain/validator.json \
+--from wallet \
+--chain-id push_42101-1 \
+--gas-prices=2500000000upc \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+
+```
 curl -L https://snapshot-t.vinjan-inc.com/pushchain/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.pchain
 ```
