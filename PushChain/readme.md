@@ -92,5 +92,6 @@ pchaind keys unsafe-export-eth-key wallet
 ```
 pchaind q bank balances $(pchaind keys show wallet -a)
 ```
-
-
+```
+curl -L https://snapshot-t.vinjan-inc.com/pushchain/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.pchain
+```
