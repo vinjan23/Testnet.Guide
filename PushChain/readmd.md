@@ -26,11 +26,11 @@ pchaind version  --long | grep -e version -e commit
 ```
 ### Genesis
 ```
-wget -O $HOME/.pchain/config/genesis.json https://files.nodeshub.online/testnet/push/genesis.json
+wget -O $HOME/.pchain/config/genesis.json https://snapshot-t.vinjan-inc.com/pushchain/genesis.json
 ```
 ### Addrbook
 ```
-wget -O $HOME/.pchain/config/addrbook.json https://files.nodeshub.online/testnet/push/addrbook.json
+wget -O $HOME/.pchain/config/addrbook.json https://snapshot-t.vinjan-inc.com/pushchain/addrbook.json
 ```
 ### Port
 ```
@@ -83,10 +83,14 @@ sudo journalctl -u pchaind -f -o cat
 ```
 pchaind status 2>&1 | jq .sync_info
 ```
+```
+pchaind keys add wallet
+```
+```
+pchaind keys unsafe-export-eth-key wallet
+```
+```
+pchaind q bank balances $(pchaind keys show wallet -a)
+```
 
 
-
-
-
-
-pchaind status 2>&1 | jq .sync_info
