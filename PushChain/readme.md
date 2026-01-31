@@ -121,7 +121,9 @@ pchaind tx staking create-validator $HOME/.pchain/validator.json \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
-
+```
+pchaind tx bank send wallet push13gl6kz3g7dgadapk3scdzsy30zc9w3trr68zrk 5000000000000000000upc --from wallet --chain-id push_42101-1 --gas-prices=2500000000upc --gas-adjustment=1.5 --gas=auto
+```
 ```
 curl -L https://snapshot-t.vinjan-inc.com/pushchain/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.pchain
 ```
