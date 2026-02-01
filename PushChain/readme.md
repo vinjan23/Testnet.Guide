@@ -122,8 +122,38 @@ pchaind tx staking create-validator $HOME/.pchain/validator.json \
 --gas=auto
 ```
 ```
+pchaind tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--website="https://vinjan-inc.com" \
+--details="Staking Provider-IBC Relayer" \
+--from wallet \
+--chain-id push_42101-1 \
+--gas-prices=2500000000upc \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+```
+pchaind tx slashing unjail --from wallet --chain-id push_42101-1 --gas-prices=2500000000upc --gas-adjustment=1.5 --gas=auto
+```
+```
+pchaind tx distribution withdraw-rewards $(pchaind keys show wallet --bech val -a) --commission --from wallet --chain-id push_42101-1 --gas-prices=2500000000upc --gas-adjustment=1.5 --gas=auto
+```
+```
+pchaind tx staking delegate $(pchaind keys show wallet --bech val -a) 1000000000000000000upc --from wallet --chain-id push_42101-1 --gas-prices=2500000000upc --gas-adjustment=1.5 --gas=auto
+```
+```
 pchaind tx bank send wallet push13gl6kz3g7dgadapk3scdzsy30zc9w3trr68zrk 5000000000000000000upc --from wallet --chain-id push_42101-1 --gas-prices=2500000000upc --gas-adjustment=1.5 --gas=auto
 ```
+```
+sudo systemctl stop pchaind
+sudo systemctl disable pchaind
+sudo rm /etc/systemd/system/pchaind.service
+sudo systemctl daemon-reload
+rm -rf $(which pchaind)
+rm -rf .pchain
+```
+
 ```
 curl -L https://snapshot-t.vinjan-inc.com/pushchain/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.pchain
 ```
