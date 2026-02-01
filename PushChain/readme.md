@@ -150,10 +150,8 @@ sudo systemctl stop pchaind
 sudo systemctl disable pchaind
 sudo rm /etc/systemd/system/pchaind.service
 sudo systemctl daemon-reload
-rm -rf $(which pchaind)
+rm -rf $HOME/go/bin/pchaind
 rm -rf .pchain
 ```
 
-```
-curl -L https://snapshot-t.vinjan-inc.com/pushchain/latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.pchain
-```
+
