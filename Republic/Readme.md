@@ -136,27 +136,16 @@ republicd tx staking edit-validator \
 --details="Staking Provider-IBC Relayer" \
 --from=wallet \
 --chain-id raitestnet_77701-1 \
+--commission-rate="0.25" \
 --gas-prices=2500000000arai \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
 ```
-republicd tx staking create-validator \
---amount=1000000000000000000000arai \
---pubkey=$(republicd comet show-validator) \
---moniker="Vinjan.Inc" \
---identity:"7C66E36EA2B71F68" \
---website:"https://vinjan-inc.com" \
---details:"Staking Provider-IBC Relayer" \  
---chain-id=raitestnet_77701-1 \
---from=wallet \
---commission-rate="0.10" \
---commission-max-rate="1" \
---commission-max-change-rate="1" \
---min-self-delegation="1" \
---gas-adjustment=1.5 \
---gas-prices="250000000arai" \
---gas=auto  
+republicd tx distribution withdraw-rewards $(republicd keys show wallet --bech val -a) --commission --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
+```
+```
+republicd tx staking delegate $(republicd keys show wallet --bech val -a) 1000000000000000000arai --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
 ```
 ```
 echo $(republicd comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.republic/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
