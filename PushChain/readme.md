@@ -13,7 +13,7 @@ cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/genesis/bin/
 sudo systemctl stop pchaind
 ```
 ```
-mb $HOME/bin/pchaind $HOME/go/bin/
+mv $HOME/bin/pchaind $HOME/go/bin/
 ```
 ```
 mkdir -p $HOME/.pchain/cosmovisor/upgrades/outbound/bin
