@@ -1,6 +1,6 @@
 ### Binary
 ```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.12/push-chain_0.0.14_linux_amd64.tar.gz
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.14/push-chain_0.0.14_linux_amd64.tar.gz
 tar -xzvf push-chain_0.0.14_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
 ```
