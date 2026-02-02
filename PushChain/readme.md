@@ -3,11 +3,17 @@
 wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.12/push-chain_0.0.14_linux_amd64.tar.gz
 tar -xzvf push-chain_0.0.14_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
-mv $HOME/bin/pchaind $HOME/go/bin/
 ```
 ```
 mkdir -p $HOME/.pchain/cosmovisor/genesis/bin
 cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/genesis/bin/
+```
+### updste
+```
+sudo systemctl stop pchaind
+```
+```
+$HOME/bin/pchaind $HOME/go/bin/
 ```
 ```
 mkdir -p $HOME/.pchain/cosmovisor/upgrades/outbound/bin
