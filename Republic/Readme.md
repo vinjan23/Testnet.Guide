@@ -71,6 +71,12 @@ sudo systemctl enable republicd
 sudo systemctl restart republicd
 sudo journalctl -u republicd -f -o cat
 ```
+```
+republicd status 2>&1 | jq .sync_info
+```
+```
+republicd tx slashing unjail --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
+```
  
 ```
 SNAP_RPC="https://statesync.republicai.io"
@@ -90,9 +96,7 @@ sudo journalctl -u republicd -f -o cat
 peers="$(curl -sS https://statesync.republicai.io:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.republic/config/config.toml
 ```
-```
-republicd status 2>&1 | jq .sync_info
-```
+
 ```
 republicd keys add wallet --recover
 ```
