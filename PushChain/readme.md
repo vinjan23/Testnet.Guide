@@ -8,11 +8,18 @@ chmod +x $HOME/bin/pchaind
 mkdir -p $HOME/.pchain/cosmovisor/genesis/bin
 cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/genesis/bin/
 ```
+```
+sudo ln -s $HOME/.pchain/cosmovisor/genesis $HOME/.pchain/cosmovisor/current -f
+sudo ln -s $HOME/.pchain/cosmovisor/current/bin/pchaind /usr/local/bin/pchaind -f
+```
 ### updste
 ```
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.14/push-chain_0.0.14_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.14_linux_amd64.tar.gz
+chmod +x $HOME/bin/pchaind
+```
+```
 sudo systemctl stop pchaind
-```
-```
 mv $HOME/bin/pchaind $HOME/go/bin/
 ```
 ```
@@ -20,8 +27,8 @@ mkdir -p $HOME/.pchain/cosmovisor/upgrades/outbound/bin
 cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/upgrades/outbound/bin/
 ```
 ```
-sudo ln -s $HOME/.pchain/cosmovisor/genesis $HOME/.pchain/cosmovisor/current -f
-sudo ln -s $HOME/.pchain/cosmovisor/current/bin/pchaind /usr/local/bin/pchaind -f
+sudo systemctl restart pchaind
+sudo journalctl -u pchaind -f -o cat
 ```
 ### Init
 ```
