@@ -14,8 +14,8 @@ sudo ln -s $HOME/.pchain/cosmovisor/current/bin/pchaind /usr/local/bin/pchaind -
 ```
 ### updste
 ```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.14/push-chain_0.0.14_linux_amd64.tar.gz
-tar -xzvf push-chain_0.0.14_linux_amd64.tar.gz
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.15/push-chain_0.0.15_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.15_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
 ```
 ```
@@ -23,8 +23,8 @@ sudo systemctl stop pchaind
 mv $HOME/bin/pchaind $HOME/go/bin/
 ```
 ```
-mkdir -p $HOME/.pchain/cosmovisor/upgrades/outbound/bin
-cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/upgrades/outbound/bin/
+mkdir -p $HOME/.pchain/cosmovisor/upgrades/universal-tx-v1/bin
+cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/upgrades/universal-tx-v1/bin/
 ```
 ```
 sudo systemctl restart pchaind
