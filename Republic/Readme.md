@@ -13,6 +13,17 @@ sudo ln -s $HOME/.republic/cosmovisor/genesis $HOME/.republic/cosmovisor/current
 sudo ln -s $HOME/.republic/cosmovisor/current/bin/republicd /usr/local/bin/republicd -f
 ```
 ```
+wget https://snapshot-t.vinjan-inc.com/republic/republicd
+chmod +x republicd
+```
+```
+sudo systemctl stop republicd
+```
+```
+mv republicd $HOME/go/bin/
+cp $HOME/go/bin/republicd $HOME/.republic/cosmovisor/genesis/bin/
+```
+```
 republicd version --long | grep -e commit -e version
 ```
 ```
