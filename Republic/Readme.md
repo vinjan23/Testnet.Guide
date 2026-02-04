@@ -13,6 +13,10 @@ sudo ln -s $HOME/.republic/cosmovisor/genesis $HOME/.republic/cosmovisor/current
 sudo ln -s $HOME/.republic/cosmovisor/current/bin/republicd /usr/local/bin/republicd -f
 ```
 ```
+wget https://github.com/RepublicAI/networks/releases/download/v0.2.1/republicd-linux-amd64 -O republicd
+chmod +x republicd
+```
+```
 wget https://snapshot-t.vinjan-inc.com/republic/republicd
 chmod +x republicd
 ```
