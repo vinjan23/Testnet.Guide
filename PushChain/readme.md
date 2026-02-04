@@ -144,6 +144,25 @@ pchaind tx staking delegate $(pchaind keys show wallet --bech val -a) 1000000000
 ```
 pchaind tx bank send wallet push13gl6kz3g7dgadapk3scdzsy30zc9w3trr68zrk 5000000000000000000upc --from wallet --chain-id push_42101-1 --gas-prices=2500000000upc --gas-adjustment=1.5 --gas=auto
 ```
+### Snapshot
+```
+sudo apt update && sudo apt install -y zstd
+sudo systemctl stop pchaind
+cp $HOME/.pchain/data/priv_validator_state.json $HOME/.pchain/priv_validator_state.json.backup
+rm -rf $HOME/.pchain/data
+curl https://files.nodeshub.online/testnet/push/snapshot/push-9020638.tar.zst | zstd -dc - | tar -xf - -C $HOME/.pchain
+mv $HOME/.pchain/priv_validator_state.json.backup $HOME/.pchain/data/priv_validator_state.json
+sudo systemctl restart pchaind
+sudo journalctl -u pchaind -f -o cat
+```
+```
+https://services.nodeshub.online/testnet/push/snapshot
+```
+### Faucet
+```
+https://faucet.push.org/
+```
+
 ```
 sudo systemctl stop pchaind
 sudo systemctl disable pchaind
