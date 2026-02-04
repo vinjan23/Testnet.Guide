@@ -1,18 +1,12 @@
 ### Binary
 ```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.14/push-chain_0.0.14_linux_amd64.tar.gz
-tar -xzvf push-chain_0.0.14_linux_amd64.tar.gz
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.15/push-chain_0.0.15_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.15_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
+mv $HOME/bin/pchaind $HOME/go/bin/
 ```
-```
-mkdir -p $HOME/.pchain/cosmovisor/genesis/bin
-cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/genesis/bin/
-```
-```
-sudo ln -s $HOME/.pchain/cosmovisor/genesis $HOME/.pchain/cosmovisor/current -f
-sudo ln -s $HOME/.pchain/cosmovisor/current/bin/pchaind /usr/local/bin/pchaind -f
-```
-### updste
+
+### update
 ```
 wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.15/push-chain_0.0.15_linux_amd64.tar.gz
 tar -xzvf push-chain_0.0.15_linux_amd64.tar.gz
@@ -21,10 +15,6 @@ chmod +x $HOME/bin/pchaind
 ```
 sudo systemctl stop pchaind
 mv $HOME/bin/pchaind $HOME/go/bin/
-```
-```
-mkdir -p $HOME/.pchain/cosmovisor/upgrades/universal-tx-v1/bin
-cp $HOME/go/bin/pchaind $HOME/.pchain/cosmovisor/upgrades/universal-tx-v1/bin/
 ```
 ```
 sudo systemctl restart pchaind
@@ -67,20 +57,16 @@ sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.pchain/config/config.toml
 ```
 ### Service
 ```
-sudo tee /etc/systemd/system/pchaind.service > /dev/null << EOF
+sudo tee /etc/systemd/system/pchaind.service > /dev/null <<EOF
 [Unit]
 Description=push-chain
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
+ExecStart=$(which pchaind) start
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.pchain"
-Environment="DAEMON_NAME=pchaind"
-Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.pchain/cosmovisor/current/bin"
 [Install]
 WantedBy=multi-user.target
 EOF
