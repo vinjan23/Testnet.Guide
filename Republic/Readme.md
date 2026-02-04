@@ -21,6 +21,8 @@ sudo systemctl stop republicd
 ```
 ```
 mv republicd $HOME/go/bin/
+```
+```
 cp $HOME/go/bin/republicd $HOME/.republic/cosmovisor/genesis/bin/
 ```
 ```
