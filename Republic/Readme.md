@@ -162,11 +162,16 @@ republicd tx staking edit-validator \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
+### WD
 ```
 republicd tx distribution withdraw-rewards $(republicd keys show wallet --bech val -a) --commission --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
 ```
+### Delegate
 ```
 republicd tx staking delegate $(republicd keys show wallet --bech val -a) 1000000000000000000arai --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
+```
+```
+republicd tx staking delegate    1000000000000000000arai --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
 ```
 ```
 echo $(republicd comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.republic/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
