@@ -1,6 +1,6 @@
 ###
 ```
-wget https://github.com/RepublicAI/networks/raw/refs/heads/main/testnet/releases/v0.1.0/republicd-linux-amd64 -O republicd
+wget https://github.com/RepublicAI/networks/releases/download/v0.2.1/republicd-linux-amd64 -O republicd
 chmod +x republicd
 mv republicd $HOME/go/bin/
 ```
@@ -48,7 +48,7 @@ sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:2
 sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:8546%:${PORT}46%; s%:6065%:${PORT}65%" $HOME/.republic/config/app.toml
 ```
 ```
-peers="a5d2fe7d932c3b6f7c9633164f102315d1f575c6@195.201.160.23:13356"
+peers="a840530175d59707309fe00bb6eb0369459e5127@172.31.19.73:26656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.republic/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"2500000000arai\"/" $HOME/.republic/config/app.toml
 ```
