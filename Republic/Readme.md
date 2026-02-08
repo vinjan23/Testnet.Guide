@@ -1,4 +1,9 @@
-###
+
+```
+wget https://github.com/RepublicAI/networks/releases/download/v0.1.0/republicd-linux-amd64 -O republicd
+chmod +x republicd
+mv republicd $HOME/go/bin/
+```
 ```
 wget https://github.com/RepublicAI/networks/releases/download/v0.2.1/republicd-linux-amd64 -O republicd
 chmod +x republicd
@@ -187,4 +192,5 @@ sudo systemctl daemon-reload
 rm -rf $(which republicd)
 rm -rf .republic
 ```
+
 
