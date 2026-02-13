@@ -19,6 +19,7 @@ sudo ln -s $HOME/.republic/cosmovisor/current/bin/republicd /usr/local/bin/repub
 ```
 ```
 wget https://github.com/RepublicAI/networks/releases/download/v0.2.1/republicd-linux-amd64 -O republicd
+wget https://github.com/RepublicAI/networks/releases/download/v0.2.2/republicd-linux-amd64 -O republicd
 chmod +x republicd
 ```
 ```
