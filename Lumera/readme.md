@@ -1,14 +1,14 @@
 ### Binary Testnet-2
 ```
-curl -LO https://github.com/LumeraProtocol/lumera/releases/download/v1.9.1/lumera_v1.9.1_linux_amd64.tar.gz
-tar -xvf lumera_v1.9.1_linux_amd64.tar.gz
+wget https://github.com/LumeraProtocol/lumera/releases/download/v1.9.1/lumera_v1.9.1_linux_amd64.tar.gz && \
+tar -xzvf lumera_v1.9.1_linux_amd64.tar.gz && \
 rm lumera_v1.9.1_linux_amd64.tar.gz
 rm install.sh
 chmod +x lumerad
 mv lumerad $HOME/go/bin/
-mv libwasmvm.x86_64.so /usr/lib/
+sudo mv libwasmvm.x86_64.so /usr/lib/
+sudo ldconfig
 ```
-
 ### Cosmovisor
 ```
 mkdir -p $HOME/.lumera/cosmovisor/genesis/bin
@@ -18,34 +18,30 @@ cp $HOME/go/bin/lumerad $HOME/.lumera/cosmovisor/genesis/bin/
 sudo ln -s $HOME/.lumera/cosmovisor/genesis $HOME/.lumera/cosmovisor/current -f
 sudo ln -s $HOME/.lumera/cosmovisor/current/bin/lumerad /usr/local/bin/lumerad -f
 ```
-```1
-wget https://github.com/CosmWasm/wasmvm/releases/download/v3.0.0-ibc2.0/libwasmvm.x86_64.so
+```
+wget https://github.com/CosmWasm/wasmvm/releases/download/v3.0.2/libwasmvm.x86_64.so
 sudo mv libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
 sudo ldconfig
 ```
 ### Upgrade
 ```
-cd "$HOME" && rm -rf bin && mkdir bin && cd bin && \
-wget https://github.com/LumeraProtocol/lumera/releases/download/v1.9.1/lumera_v1.9.1_linux_amd64.tar.gz && \
-tar -xzvf lumera_v1.9.1_linux_amd64.tar.gz && \
-chmod +x lumerad && \
-sudo mv libwasmvm.x86_64.so /usr/lib/ && \
+wget https://github.com/LumeraProtocol/lumera/releases/download/v1.10.1/lumera_v1.10.1_linux_amd64.tar.gz
+tar -xzvf lumera_v1.10.1_linux_amd64.tar.gz
+chmod +x lumerad 
+sudo mv libwasmvm.x86_64.so /usr/lib/
 sudo ldconfig
 ```
 ```
-mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.9.1/bin && \
-mv lumerad $HOME/.lumera/cosmovisor/upgrades/v1.9.1/bin/ && \
-rm lumera_v1.9.1_linux_amd64.tar.gz
-```
-```
-mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.9.1/bin
-cp $HOME/go/bin/lumerad $HOME/.lumera/cosmovisor/upgrades/v1.9.1/bin/
+mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.10.1/bin
+mv lumerad $HOME/.lumera/cosmovisor/upgrades/v1.10.1/bin/
+rm lumera_v1.10.1_linux_amd64.tar.gz
+rm install.sh
 ```
 ```
 lumerad version  --long | grep -e version -e commit
 ```
 ```
-$HOME/.lumera/cosmovisor/upgrades/v1.9.1/bin/lumerad version --long | grep -e commit -e version
+$HOME/.lumera/cosmovisor/upgrades/v1.10.1/bin/lumerad version --long | grep -e commit -e version
 ```
 ### Init
 ```
@@ -53,10 +49,10 @@ lumerad init Vinjan.Inc --chain-id lumera-testnet-2
 ```
 ### Port
 ```
-PORT=17
-sed -i -e "s%:26657%:${PORT}657%" $HOME/.lumera/config/client.toml
-sed -i -e "s%:26658%:${PORT}658%; s%:26657%:${PORT}657%; s%:6060%:${PORT}060%; s%:26656%:${PORT}656%; s%:26660%:${PORT}660%" $HOME/.lumera/config/config.toml
-sed -i -e "s%:1317%:${PORT}317%; s%:9090%:${PORT}090%" $HOME/.lumera/config/app.toml
+PORT=174
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.lumera/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.lumera/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.lumera/config/app.toml
 ```
 ### Genesis
 ```
@@ -100,7 +96,7 @@ Environment="DAEMON_HOME=$HOME/.lumera"
 Environment="DAEMON_NAME=lumerad"
 Environment="UNSAFE_SKIP_BACKUP=true"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.lumera/cosmovisor/current/bin"
-
+Environment="LD_LIBRARY_PATH=$HOME/.lumera/cosmovisor/current/bin/"
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -211,7 +207,7 @@ sudo systemctl stop lumerad
 sudo systemctl disable lumerad
 sudo rm /etc/systemd/system/lumerad.service
 sudo systemctl daemon-reload
-rm -f $(which lumerad)
+rm -rf $(which lumerad)
 rm -rf .lumera
 ```
 
