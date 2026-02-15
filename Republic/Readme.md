@@ -9,6 +9,7 @@ wget https://github.com/RepublicAI/networks/releases/download/v0.2.1/republicd-l
 chmod +x republicd
 mv republicd $HOME/go/bin/
 ```
+
 ```
 mkdir -p $HOME/.republic/cosmovisor/genesis/bin
 cp $HOME/go/bin/republicd $HOME/.republic/cosmovisor/genesis/bin/
@@ -23,9 +24,20 @@ wget https://github.com/RepublicAI/networks/releases/download/v0.2.2/republicd-l
 chmod +x republicd
 ```
 ```
-wget https://snapshot-t.vinjan-inc.com/republic/republicd
+wget https://github.com/RepublicAI/networks/releases/download/v0.3.0/republicd-linux-amd64 -O republicd
 chmod +x republicd
 ```
+```
+mkdir -p $HOME/.republic/cosmovisor/upgrades/v0.3.0/bin
+mv republicd $HOME/.republic/cosmovisor/upgrades/v0.3.0/bin/
+```
+```
+$HOME/.republic/cosmovisor/upgrades/v0.3.0/bin/republicd version --long | grep -e commit -e version
+```
+```
+mv republicd $HOME/go/bin/
+```
+
 ```
 sudo systemctl stop republicd
 ```
