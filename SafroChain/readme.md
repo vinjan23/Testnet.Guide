@@ -149,7 +149,7 @@ safrochaind tx slashing unjail --from wallet --chain-id safro-testnet-1 --fees 5
 ```
 ### WD
 ```
-safrochaind tx distribution withdraw-all-rewards --from wallet --chain-id safro-testnet-1 --fees 5000usaf
+safrochaind tx distribution withdraw-all-rewards --from wallet --chain-id safro-testnet-1 --gas-adjustment 1.5 --gas-prices 0.05usaf --gas auto
 ```
 ### WD Commission
 ```
