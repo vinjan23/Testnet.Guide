@@ -203,6 +203,9 @@ echo $(republicd comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.rep
 a5d2fe7d932c3b6f7c9633164f102315d1f575c6@195.201.160.23:13356
 ```
 ```
+republicd tx gov vote 3 yes --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
+```
+```
 sudo systemctl stop republicd
 sudo systemctl disable republicd
 sudo rm /etc/systemd/system/republicd.service
