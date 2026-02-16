@@ -123,6 +123,7 @@ Environment="DAEMON_HOME=$HOME/.empe-chain"
 Environment="DAEMON_NAME=emped"
 Environment="UNSAFE_SKIP_BACKUP=true"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.empe-chain/cosmovisor/current/bin"
+Environment="LD_LIBRARY_PATH=/root/.empe-chain/lib:$LD_LIBRARY_PATH"
 [Install]
 WantedBy=multi-user.target
 EOF
