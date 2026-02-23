@@ -79,7 +79,7 @@ sed -i "/\[statesync\]/, /^enable =/ s/=.*/= true/;\
 /^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" $HOME/.lumiwave-protocol/config/config.toml
 ```
 ```
-SNAP_RPC="https://lwp-testnet.lumiwavelab.com/tendermint:443"
+SNAP_RPC="https://lwp-testnet.lumiwavelab.com/tendermint"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
