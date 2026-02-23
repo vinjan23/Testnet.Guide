@@ -25,7 +25,7 @@ sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:2
 sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.lumiwave-protocol/config/app.toml
 ```
 ```
-seeds="43aa28394f4bb43d4680834d125f487f5e18ad85@192.168.1.76:26656
+seeds="43aa28394f4bb43d4680834d125f487f5e18ad85@192.168.1.76:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$seeds\"|" $HOME/.lumiwave-protocol/config/config.toml
 peers=""
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.lumiwave-protocol/config/config.toml
