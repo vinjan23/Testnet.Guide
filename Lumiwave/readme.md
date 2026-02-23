@@ -76,9 +76,20 @@ TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.bloc
 sed -i "/\[statesync\]/, /^enable =/ s/=.*/= true/;\
 /^rpc_servers =/ s|=.*|= \"$SNAP_RPC,$SNAP_RPC\"|;\
 /^trust_height =/ s/=.*/= $BLOCK_HEIGHT/;\
-/^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" ~/.lumiwave-protocol/config/config.toml
+/^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" $HOME/.lumiwave-protocol/config/config.toml
 ```
-
+```
+SNAP_RPC="https://lwp-testnet.lumiwavelab.com/tendermint:443"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.lumiwave-protocol/config/config.toml
+sudo systemctl restart lumiwave-protocold
+sudo journalctl -u lumiwave-protocold -f -o cat
+```
 ```
 sudo systemctl stop lumiwave-protocold
 sudo systemctl disable lumiwave-protocold
