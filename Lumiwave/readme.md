@@ -3,6 +3,7 @@ wget https://github.com/LumiWave/lumiwave-protocol/releases/download/v0.0.10-tes
 tar -xzvf lumiwave-protocold_v0.0.10-testnet_Linux_x86_64.tar.gz
 chmod +x lumiwave-protocold
 mv lumiwave-protocold $HOME/go/bin/
+rm lumiwave-protocold_v0.0.10-testnet_Linux_x86_64.tar.gz
 ```
 ```
 mkdir -p $HOME/.lumiwave-protocol/cosmovisor/genesis/bin
@@ -11,6 +12,9 @@ cp $HOME/go/bin/lumiwave-protocold $HOME/.lumiwave-protocol/cosmovisor/genesis/b
 ```
 sudo ln -s $HOME/.lumiwave-protocol/cosmovisor/genesis $HOME/.lumiwave-protocol/cosmovisor/current -f
 sudo ln -s $HOME/.lumiwave-protocol/cosmovisor/current/bin/lumiwave-protocold /usr/local/bin/lumiwave-protocold -f
+```
+```
+lumiwave-protocold version --long | grep -e commit -e version
 ```
 ```
 lumiwave-protocold init Vinjan.Inc --chain-id lumiwaveprotocol
@@ -27,7 +31,7 @@ sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.lumiwave-protocol/co
 ```
 seeds="43aa28394f4bb43d4680834d125f487f5e18ad85@192.168.1.76:26656"
 sed -i -e "s|^seeds *=.*|seeds = \"$seeds\"|" $HOME/.lumiwave-protocol/config/config.toml
-peers=""
+peers="43aa28394f4bb43d4680834d125f487f5e18ad85@192.168.1.76:26656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.lumiwave-protocol/config/config.toml
 ```
 
@@ -80,18 +84,7 @@ sed -i "/\[statesync\]/, /^enable =/ s/=.*/= true/;\
 /^trust_height =/ s/=.*/= $BLOCK_HEIGHT/;\
 /^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" $HOME/.lumiwave-protocol/config/config.toml
 ```
-```
-SNAP_RPC="https://lwp-testnet.lumiwavelab.com/tendermint"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.lumiwave-protocol/config/config.toml
-sudo systemctl restart lumiwave-protocold
-sudo journalctl -u lumiwave-protocold -f -o cat
-```
+
 ```
 sudo systemctl stop lumiwave-protocold
 sudo systemctl disable lumiwave-protocold
