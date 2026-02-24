@@ -75,7 +75,7 @@ sudo systemctl restart lumiwave-protocold
 sudo journalctl -u lumiwave-protocold -f -o cat
 ```
 ```
-SNAP_RPC="https://lwp-testnet.lumiwavelab.com/tendermint:443"
+SNAP_RPC="https://lwp-testnet.lumiwavelab.com:443/tendermint"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -83,6 +83,8 @@ sed -i "/\[statesync\]/, /^enable =/ s/=.*/= true/;\
 /^rpc_servers =/ s|=.*|= \"$SNAP_RPC,$SNAP_RPC\"|;\
 /^trust_height =/ s/=.*/= $BLOCK_HEIGHT/;\
 /^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" $HOME/.lumiwave-protocol/config/config.toml
+sudo systemctl restart lumiwave-protocold
+sudo journalctl -u lumiwave-protocold -f -o cat
 ```
 
 ```
