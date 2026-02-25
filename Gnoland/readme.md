@@ -2,10 +2,16 @@
 ```
 cd $HOME
 rm -rf gno
-git clone https://github.com/gnolang/gno/
+git clone https://github.com/gnolang/gno.git
 cd gno
 git checkout chain/test6.3
 make -C gno.land install.gnoland
+```
+```
+git checkout chain/test11
+cd gno
+make install_gnokey
+make -C gno.land install.gnoland && make -C contribs/gnogenesis install
 ```
 ### Init
 ```
@@ -15,8 +21,10 @@ gnoland secrets init
 ```
 ### Genesis
 ```
-wget -O $HOME/gnoland-data/config/genesis.json https://gno-testnets-genesis.s3.eu-central-1.amazonaws.com/test6/genesis.json
+wget -O $HOME/gnoland-data/config/genesis.json https://gno-testnets-genesis.s3.eu-central-1.amazonaws.com/test9/genesis.json
 ```
+gnoland config set moniker Vinjan.Inc
+
 #### Create service
 ```
 sudo tee /etc/systemd/system/gnoland.service > /dev/null <<EOF
