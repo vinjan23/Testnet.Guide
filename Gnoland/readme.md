@@ -3,11 +3,6 @@
 cd $HOME
 rm -rf gno
 git clone https://github.com/gnolang/gno.git
-cd gno
-git checkout chain/test6.3
-make -C gno.land install.gnoland
-```
-```
 git checkout chain/test11
 cd gno
 make install_gnokey
@@ -18,34 +13,36 @@ make -C gno.land install.gnoland && make -C contribs/gnogenesis install
 cd $HOME
 gnoland config init
 gnoland secrets init
+gnoland config set moniker Vinjan.Inc
+gnoland config set rpc.laddr tcp://0.0.0.0:${GNOLAND_PORT}657
+gnoland config set p2p.laddr tcp://0.0.0.0:${GNOLAND_PORT}656
+gnoland config set proxy_app tcp://127.0.0.1:${GNOLAND_PORT}658
+gnoland config set consensus.peer_gossip_sleep_duration 10ms
+gnoland config set consensus.timeout_commit 3s
+gnoland config set mempool.size 10000
+gnoland config set p2p.flush_throttle_timeout 10ms
+gnoland config set p2p.max_num_outbound_peers 40
+gnoland config set p2p.persistent_peers g1werw2qvzcn59948l5cqafdvz27rpj0ncacttaa@65.109.36.231:54656,g1e7hvdafap9xay4jkwletel2s9r4cjv4x4j8873@52.20.155.237:26656,g1zjfdjywwryrpqx33ng0n3hy5xk5nlq2ww8scnh@54.144.26.54:26656
 ```
 ### Genesis
 ```
 wget -O $HOME/gnoland-data/config/genesis.json https://gno-testnets-genesis.s3.eu-central-1.amazonaws.com/test9/genesis.json
 ```
-gnoland config set moniker Vinjan.Inc
+
 
 #### Create service
 ```
 sudo tee /etc/systemd/system/gnoland.service > /dev/null <<EOF
 [Unit]
-Description=gnoland
+Description=Gnoland node
 After=network-online.target
 [Service]
 User=$USER
-WorkingDirectory=$HOME/gnoland-data
-ExecStart=$HOME/go/bin/gnoland start \
---chainid test6 \
---data-dir $HOME/gnoland-data \
---genesis $HOME/gnoland-data/config/genesis.json
-Restart=always
-RestartSec=3
+WorkingDirectory=$HOME
+ExecStart=$(which gnoland) start --genesis  $HOME/gnoland-data/config/genesis.json --data-dir $HOME/gnoland-data/ --skip-genesis-sig-verification
+Restart=on-failure
+RestartSec=5
 LimitNOFILE=65535
-StandardOutput=append:/var/log/gnoland.log
-StandardError=append:/var/log/gnoland.log
-StandardOutput=null
-StandardError=null
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -73,18 +70,15 @@ curl -s localhost:26657/status
 ```
 gnoland secrets get validator_key
 ```
-### Key
-```
-gnokey list
-```
+
 ### Get Validator profile registeration Command At
-`https://test6.testnets.gno.land/r/gnoland/valopers$help`
-`https://test6.testnets.gno.land/r/gnoland/valopers$help#func-Register`
+`https://test11.testnets.gno.land/r/gnoland/valopers$help`
+`https://test11.testnets.gno.land/r/gnoland/valopers$help#func-Register`
 
 ### Input your Validator Details
 ##### Get Account Number and Sequence Sequence - Needs to be done everytime before making an transaction
 ```
-gnokey query -remote "https://rpc.test6.testnets.gno.land" auth/accounts/<wallet_address>
+gnokey query -remote "https://rpc.test11.testnets.gno.land" auth/accounts/<wallet_address>
 ```
 ##### Replace the Value of $ACCOUNTNUMBER and $SEQUENCENUMBER  got from the above steps in the below command. 
 
@@ -92,10 +86,10 @@ gnokey query -remote "https://rpc.test6.testnets.gno.land" auth/accounts/<wallet
 gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register"  -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 5000000 -send "" <wallet_address> > call.tx
 ```
 ```
-gnokey sign -tx-path call.tx -chainid "test6" -account-number $ACCOUNTNUMBER -account-sequence $SEQUENCENUMBER <wallet_address>
+gnokey sign -tx-path call.tx -chainid "test11" -account-number $ACCOUNTNUMBER -account-sequence $SEQUENCENUMBER <wallet_address>
 ```
 ```
-gnokey broadcast -remote "https://rpc.test6.testnets.gno.land" call.tx
+gnokey broadcast -remote "https://rpc.test11.testnets.gno.land" call.tx
 ```
 
 ### Stop
