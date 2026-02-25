@@ -71,7 +71,7 @@ sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.repub
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"2500000000arai\"/" $HOME/.republic/config/app.toml
 ```
 ```
-peers="6313f892ee50ca0b2d6cc6411ac5207dbf2d164b@95.216.102.220:13356"
+peers="a840530175d59707309fe00bb6eb0369459e5127@172.31.19.73:26656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.republic/config/config.toml
 ```
 ```
