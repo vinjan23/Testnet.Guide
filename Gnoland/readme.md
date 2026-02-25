@@ -82,7 +82,7 @@ gnoland secrets get validator_key | jq -r '.pub_key
 
 ### Register
 ```
-gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register"  -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 5000000 -send "" <wallet_address> > call.tx
+gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register"  -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 30000000 -send "" <wallet_address> > call.tx
 ```
 - Example
 ```
