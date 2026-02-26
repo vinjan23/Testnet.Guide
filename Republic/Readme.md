@@ -200,6 +200,9 @@ republicd tx staking delegate    1000000000000000000arai --from wallet --chain-i
 echo $(republicd comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.republic/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 ```
+republicd status 2>&1 | jq .node_info
+```
+```
 6313f892ee50ca0b2d6cc6411ac5207dbf2d164b@peers-t.republic.vinjan-inc.com:13356
 a5d2fe7d932c3b6f7c9633164f102315d1f575c6@195.201.160.23:13356
 ```
