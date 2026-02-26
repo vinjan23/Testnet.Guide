@@ -71,7 +71,7 @@ sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.repub
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"2500000000arai\"/" $HOME/.republic/config/app.toml
 ```
 ```
-peers="1fc361b76cb5d3190027e18299a22e3dcb689dd9@54.159.96.158:26656,7fef6e3bb5c254c777449e09e9cf0ee40f4cdee3@195.201.160.23:13356"
+peers="6313f892ee50ca0b2d6cc6411ac5207dbf2d164b@peers-t.republic.vinjan-inc.com:13356,1fc361b76cb5d3190027e18299a22e3dcb689dd9@54.159.96.158:26656,7fef6e3bb5c254c777449e09e9cf0ee40f4cdee3@195.201.160.23:13356"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.republic/config/config.toml
 ```
 
