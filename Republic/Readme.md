@@ -74,6 +74,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"2500000000arai\"/" 
 peers="1fc361b76cb5d3190027e18299a22e3dcb689dd9@172.31.30.32:26656,a840530175d59707309fe00bb6eb0369459e5127@172.31.19.73:26656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.republic/config/config.toml
 ```
+@54.159.96.158
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
