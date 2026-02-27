@@ -29,8 +29,8 @@ cd $HOME
 rm -rf atomone
 git clone https://github.com/atomone-hub/atomone.git
 cd atomone
-git checkout v2.0.0-rc1
-make build
+git checkout v3.3.0
+make install
 ```
 ```
 mkdir -p $HOME/.atomone/cosmovisor/genesis/bin
@@ -41,21 +41,20 @@ sudo ln -s $HOME/.atomone/cosmovisor/genesis $HOME/.atomone/cosmovisor/current -
 sudo ln -s $HOME/.atomone/cosmovisor/current/bin/atomoned /usr/local/bin/atomoned -f
 ```
 ```
-mkdir -p $HOME/.atomone/cosmovisor/upgrades/v2/bin
-mv build/atomoned $HOME/.atomone/cosmovisor/upgrades/v2/bin/
+mkdir -p $HOME/.atomone/cosmovisor/upgrades/v3/bin
+mv build/atomoned $HOME/.atomone/cosmovisor/upgrades/v3/bin/
 rm -rf build
 ```
 ```
-cp -a ~/go/bin/atomoned ~/.atomone/cosmovisor/upgrades/v2/bin/
+mkdir -p $HOME/.atomone/cosmovisor/upgrades/v3.3.0/bin
+cp -a ~/go/bin/atomoned $HOME/.atomone/cosmovisor/upgrades/v3/bin/
 ```
 ```
 atomoned version --long | grep -e commit -e version
 ```
+
 ```
-commit: aa7aeb7fcbf0c627d53d408ad80562c70c084826
-```
-```
-$HOME/.atomone/cosmovisor/upgrades/v2/bin/atomoned version --long | grep -e commit -e version
+$HOME/.atomone/cosmovisor/upgrades/v3/bin/atomoned version --long | grep -e commit -e version
 ```
 ### Init
 ```
