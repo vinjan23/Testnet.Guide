@@ -1,7 +1,7 @@
 ### Binary
-```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.15/push-chain_0.0.15_linux_amd64.tar.gz
-tar -xzvf push-chain_0.0.15_linux_amd64.tar.gz
+``
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.17/push-chain_0.0.17_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.17_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
 mv $HOME/bin/pchaind $HOME/go/bin/
 ```
