@@ -191,7 +191,7 @@ republicd tx distribution withdraw-rewards $(republicd keys show wallet --bech v
 ```
 ### Delegate
 ```
-republicd tx staking delegate $(republicd keys show wallet --bech val -a) 1000000000000000000arai --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
+republicd tx staking delegate $(republicd keys show wallet --bech val -a) 10000000000000000000000arai --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
 ```
 ```
 republicd tx staking delegate    1000000000000000000arai --from wallet --chain-id raitestnet_77701-1 --gas-prices=2500000000arai --gas-adjustment=1.5 --gas=auto
