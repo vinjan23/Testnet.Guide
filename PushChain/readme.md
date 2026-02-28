@@ -8,9 +8,9 @@ mv $HOME/bin/pchaind $HOME/go/bin/
 
 ### update
 ```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.16/push-chain_0.0.16_linux_amd64.tar.gz
-tar -xzvf push-chain_0.0.16_linux_amd64.tar.gz
-rm push-chain_0.0.16_linux_amd64.tar.gz
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.17/push-chain_0.0.17_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.17_linux_amd64.tar.gz
+rm push-chain_0.0.17_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
 ```
 ```
