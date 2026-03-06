@@ -25,23 +25,23 @@ sudo ldconfig
 ```
 ### Upgrade
 ```
-wget https://github.com/LumeraProtocol/lumera/releases/download/v1.10.1/lumera_v1.10.1_linux_amd64.tar.gz
-tar -xzvf lumera_v1.10.1_linux_amd64.tar.gz
+wget https://github.com/LumeraProtocol/lumera/releases/download/v1.11.0/lumera_v1.11.0_linux_amd64.tar.gz
+tar -xzvf lumera_v1.11.0_linux_amd64.tar.gz
 chmod +x lumerad 
 sudo mv libwasmvm.x86_64.so /usr/lib/
 sudo ldconfig
 ```
 ```
-mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.10.1/bin
-mv lumerad $HOME/.lumera/cosmovisor/upgrades/v1.10.1/bin/
-rm lumera_v1.10.1_linux_amd64.tar.gz
+mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.11.0/bin
+mv lumerad $HOME/.lumera/cosmovisor/upgrades/v1.11.0/bin/
+rm lumera_v1.11.0_linux_amd64.tar.gz
 rm install.sh
 ```
 ```
 lumerad version  --long | grep -e version -e commit
 ```
 ```
-$HOME/.lumera/cosmovisor/upgrades/v1.10.1/bin/lumerad version --long | grep -e commit -e version
+$HOME/.lumera/cosmovisor/upgrades/v1.11.0/bin/lumerad version --long | grep -e commit -e version
 ```
 ### Init
 ```
