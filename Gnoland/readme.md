@@ -74,7 +74,7 @@ gnokey add wallet
 gnoland secrets get validator_key | jq -r '.address'
 ```
 ```
-gnoland secrets get validator_key | jq -r '.pub_key
+gnoland secrets get validator_key | jq -r '.pub_key'
 ```
 
 ### Input your Validator Details
