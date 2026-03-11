@@ -8,6 +8,11 @@ cd gno
 make install_gnokey
 make -C gno.land install.gnoland && make -C contribs/gnogenesis install
 ```
+```
+cd ~/gno && git fetch --all --tags && git checkout tags/chain/test11.0
+cd gno.land && GOTOOLCHAIN=auto make install.gnoland
+```
+
 ### Init
 ```
 cd $HOME
