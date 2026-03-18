@@ -15,6 +15,20 @@ cp $HOME/go/bin/axoned $HOME/.axoned/cosmovisor/genesis/bin/
 sudo ln -s $HOME/.axoned/cosmovisor/genesis $HOME/.axoned/cosmovisor/current -f
 sudo ln -s $HOME/.axoned/cosmovisor/current/bin/axoned /usr/local/bin/axoned -f
 ```
+### Update
+```
+cd $HOME
+rm -rf axoned
+git clone https://github.com/axone-protocol/axoned.git
+cd axoned
+git checkout v14.0.0
+make install
+```
+```
+mkdir -p $HOME/.axoned/cosmovisor/upgrades/v14.0.0/bin
+cp -a ~/go/bin/axoned $HOME/.axoned/cosmovisor/upgrades/v14.0.0/bin/
+```
+
 ```
 axoned version --long | grep -e commit -e version
 ```
