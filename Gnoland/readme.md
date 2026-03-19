@@ -45,7 +45,7 @@ After=network-online.target
 User=$USER
 WorkingDirectory=$HOME
 ExecStart=$(which gnoland) start --genesis  $HOME/gnoland-data/config/genesis.json --data-dir $HOME/gnoland-data/ --skip-genesis-sig-verification
-Restart=on-failure
+Restart=always
 RestartSec=5
 LimitNOFILE=65535
 [Install]
