@@ -46,7 +46,7 @@ User=$USER
 WorkingDirectory=$HOME
 ExecStart=$(which gnoland) start --genesis  $HOME/gnoland-data/config/genesis.json --data-dir $HOME/gnoland-data/ --skip-genesis-sig-verification
 Restart=always
-RestartSec=5
+RestartSec=3
 LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
