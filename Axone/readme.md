@@ -26,9 +26,11 @@ make install
 ```
 ```
 mkdir -p $HOME/.axoned/cosmovisor/upgrades/v14.0.0/bin
-cp -a ~/go/bin/axoned $HOME/.axoned/cosmovisor/upgrades/v14.0.0/bin/
+cp ~/go/bin/axoned $HOME/.axoned/cosmovisor/upgrades/v14.0.0/bin/
 ```
-
+```
+$HOME/.axoned/cosmovisor/upgrades/v14.0.0/bin/axoned version --long | grep -e commit -e version
+```
 ```
 axoned version --long | grep -e commit -e version
 ```
