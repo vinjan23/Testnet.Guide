@@ -42,8 +42,10 @@ sed -i -e "s%:1317%:${PORT}317%; s%:9090%:${PORT}090%" $HOME/.safrochain/config/
 ```
 ### Config
 ```
-peers="642dfd491b8bfc0b842c71c01a12ee1122f3dafe@46.62.140.103:26656,d5944634c5d9b3f00a84a4640df3764b82f5a36b@94.130.143.184:12656"
+peers="fe71717889a8a2ee528ada4558dd9b03f578157c@88.99.211.113:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.safrochain/config/config.toml
+```
+```
 sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.safrochain/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001usaf\"/" $HOME/.safrochain/config/app.toml
 ```
