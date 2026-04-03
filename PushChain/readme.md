@@ -8,9 +8,9 @@ mv $HOME/bin/pchaind $HOME/go/bin/
 
 ### update
 ```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.24/push-chain_0.0.24_linux_amd64.tar.gz
-tar -xzvf push-chain_0.0.24_linux_amd64.tar.gz
-rm push-chain_0.0.24_linux_amd64.tar.gz
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.30/push-chain_0.0.30_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.30_linux_amd64.tar.gz
+rm push-chain_0.0.30_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
 ```
 ```
@@ -18,9 +18,9 @@ sudo systemctl stop pchaind
 mv $HOME/bin/pchaind $HOME/go/bin/
 ```
 ```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.29/push-chain_0.0.29_linux_amd64.tar.gz
-tar -xzvf push-chain_0.0.29_linux_amd64.tar.gz
-rm push-chain_0.0.29_linux_amd64.tar.gz
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.31/push-chain_0.0.31_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.31_linux_amd64.tar.gz
+rm push-chain_0.0.31_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
 ```
 ```
