@@ -37,6 +37,10 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"10000000000alyth\"/
 ```
 evm-chain-id = 6940
 ```
+```
+sed -i 's/^evm-chain-id = .*/evm-chain-id = 6940/' ~/.mono/config/app.toml
+```
+
 ### Port
 ```
 PORT=197
@@ -96,7 +100,49 @@ monod keys unsafe-export-eth-key wallet
 ```
 monod q bank balances $(monod keys show wallet -a)
 ```
+monod tx validator register-validator \
+  --burn 100000000000000000000000alyth \
+  --create-validator '{"pubkey":{"@type":"/cosmos.crypto.ed25519.PubKey","key":"nUAG0YnuE77GOJKkPz1yZWCxcWBsozn9U9z7B6LdKi0="},"amount":"100000000000000000000000alyth","moniker":"PRO
+  Delegators","identity":"44771D06A00DD695","website":"https://pro-delegators.com","security":"contact@pro-delegators.com","details":"Advanced Node Services for Professional
+  Delegators","commission-rate":"0.10","commission-max-rate":"0.2","commission-max-change-rate":"0.01","min-self-delegation":"100000000000000000000000"}' \
+  --from node \
+  --gas auto \
+  --gas-adjustment 1.5 \
+  --chain-id mono_6940-1 
 
+monod tx validator register-validator $HOME/.mono/validator.json \                                                                                                                       --burn 100000000000000000000000alyth \                                                                                                                                                  ---create-validator "$(cat valo.json)" \                                                                                                                                                 ---from wallet \                                                                                                                                                                          --gas auto \
+--gas-adjustment 1.5 \                                                                                                                                                                   --chain-id mono_6940-1  
+
+monod comet show-validator
+
+nano $HOME/.mono/validator.json
+
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"4FKleU0N3FQK37UMFb+0JZWFbDUiLbeOylYbIr44ZCE="},
+  "amount": "100000000000000000000000alyth",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://service.vinjan.xyz",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.05",
+  "commission-max-rate": "1",
+  "commission-max-change-rate": "1",
+  "min-self-delegation": "1"
+}
+
+monod tx staking create-validator $HOME/.mono/validator.json \
+monod tx validator register-validator $HOME/.mono/validator.json \
+--from wallet \
+--chain-id mono_6940-1 \
+--burn 100000000000000000000000alyth \ 
+--gas auto \
+--gas-adjustment 1.5
+--gas-prices=10000000000alyth \
+```
+monod tx validator register-validator $HOME/.mono/validator.json \                                                                                                                       --burn 100000000000000000000000alyth \                                                                                                                                                  ---from wallet \                                                                                                                                                                          --gas auto \
+--gas-adjustment 1.5 \                                                                                                                                                                   --chain-id mono_6940-1
+```
 ```
 sudo systemctl stop monod
 sudo systemctl disable monod
