@@ -32,15 +32,14 @@ monod init Vinjan.Inc --chain-id mono_6940-1
 wget -O $HOME/.mono/config/genesis.json https://raw.githubusercontent.com/monolythium/networks/prod/testnet/genesis.json
 ```
 ```
-seeds="dfb589cf9b9e5b87500185f2d34438e9a5c61669@159.69.176.32:26656,d22ddc4299c6ec67b3dfdd05e70d01cd756ab7b4@46.224.162.79:26656,24de1ae8fe913ef5b0f90614d7f2fe40510f2ace@178.104.124.114:26656"
-sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.mono/config/config.toml
+sed -i -e "s|evm-chain-id = \".*\"|evm-chain-id = \"6940\"|g" $HOME/.mono/config/client.toml
 ```
 ```
 peers=$(curl -s https://ss-t.mono.nodestake.org/peers.txt)
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.mono/config/config.toml
 ```
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0alyth\"/" $HOME/.mono/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"10000000000alyth\"/" $HOME/.mono/config/app.toml
 ```
 ```
 ### Port
