@@ -31,19 +31,14 @@ monod init Vinjan.Inc --chain-id mono_6940-1
 ```
 wget -O $HOME/.mono/config/genesis.json https://raw.githubusercontent.com/monolythium/networks/prod/testnet/genesis.json
 ```
-
-```
-peers=$(curl -s https://ss-t.mono.nodestake.org/peers.txt)
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.mono/config/config.toml
-```
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"10000000000alyth\"/" $HOME/.mono/config/app.toml
 ```
 ```
 evm-chain-id = 6940
 ```
-```
 ### Port
+```
 PORT=197
 sed -i -e "s%:26657%:${PORT}57%" $HOME/.mono/config/client.toml
 sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.mono/config/config.toml
@@ -101,20 +96,7 @@ monod keys unsafe-export-eth-key wallet
 ```
 monod q bank balances $(monod keys show wallet -a)
 ```
-```
-sudo systemctl stop monod
-monod comet unsafe-reset-all --home ~/.mono/ --keep-addr-book
-SNAP_RPC="https://rpc-t.mono.nodestake.org:443"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height)
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000))
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" "$HOME/.mono/config/config.toml"
-sudo systemctl restart monod
-sudo journalctl -u monod -f -o cat
-```
+
 ```
 sudo systemctl stop monod
 sudo systemctl disable monod
