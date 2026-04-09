@@ -106,41 +106,7 @@ monod comet show-validator
 ```
 nano $HOME/validator.json
 ```
-```
-{
-  "description": {
-    "moniker": "Vinjan.Inc",
-    "identity": "7C66E36EA2B71F68",
-    "website": "https://vinjan-inc.com",
-    "security_contact": "",
-    "details": "Stake Provider & IBC Relayer"
-  },
-  "commission": {
-    "rate": "100000000000000000",
-    "max_rate": "1000000000000000000",
-    "max_change_rate": "1000000000000000000"
-  },
-  "min_self_delegation": "100000000000000000000000",
-  "delegator_address": "mono1gwsd6jqzs3jcwzg4kjvf209k2gxxwlq83jnmne",
-  "validator_address": "monovaloper1gwsd6jqzs3jcwzg4kjvf209k2gxxwlq8psu6ea",
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"4FKleU0N3FQK37UMFb+0JZWFbDUiLbeOylYbIr44ZCE="},
-  "value": {
-    "denom": "alyth",
-    "amount": "100000000000000000000000"
-  }
-}
-```
-```
-monod tx validator register-validator \
---burn 100000000000000000000000alyth \
---create-validator "$(cat $HOME/validator.json)" \
---from wallet \
---gas auto \
---gas-adjustment 1.5 \
---gas-prices "100000000000alyth" \
---chain-id mono_6940-1 \
---yes
-```
+
 ```
 monod keys show wallet --bech val -a
 ```
