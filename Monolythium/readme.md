@@ -106,7 +106,12 @@ monod comet show-validator
 ```
 nano $HOME/validator.json
 ```
-
+```
+monod tx distribution withdraw-rewards $(monod keys show wallet --bech val -a) --commission --from wallet --chain-id mono_6940-1 --gas-adjustment=1.5 --gas-prices 10000000000alyth --gas auto
+```
+```
+monod tx staking delegate $(monod keys show wallet --bech val -a) 1000000000000000000000alyth --from wallet --chain-id mono_6940-1 --gas-adjustment=1.5 --gas-prices 10000000000alyth --gas auto
+```
 ```
 monod keys show wallet --bech val -a
 ```
