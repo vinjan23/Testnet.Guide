@@ -198,7 +198,7 @@ atomoned tx distribution withdraw-rewards $(atomoned keys show wallet --bech val
 ```
 ### Send
 ```
-atomoned tx bank send wallet <TO_WALLET_ADDRESS> 1000000uatone --from wallet --chain-id atomone-testnet-1 ---gas-adjustment=1.2 --gas-prices=0.025uphoton -gas auto
+atomoned tx bank send wallet <TO_WALLET_ADDRESS> 1000000uatone --from wallet --chain-id atomone-testnet-1 --gas-adjustment=1.5 --gas-prices=0.02uphoton --gas auto
 ```
 
 ### Own Peer
@@ -214,7 +214,7 @@ atomoned tendermint unsafe-reset-all
 ```
 ### Vote
 ```
-atomoned tx gov vote 5 yes --from wallet --chain-id atomone-testnet-1 --fees 50000uphoton
+atomoned tx gov vote 12 yes --from wallet --chain-id atomone-testnet-1 --gas-adjustment=1.5 --gas-prices=0.02uphoton --gas auto
 ```
 ### Mint Poton
 ```
