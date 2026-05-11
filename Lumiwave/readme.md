@@ -1,9 +1,10 @@
 ```
-wget https://github.com/LumiWave/lumiwave-protocol/releases/download/v0.0.10-testnet/lumiwave-protocold_v0.0.10-testnet_Linux_x86_64.tar.gz
-tar -xzvf lumiwave-protocold_v0.0.10-testnet_Linux_x86_64.tar.gz
-chmod +x lumiwave-protocold
-mv lumiwave-protocold $HOME/go/bin/
-rm lumiwave-protocold_v0.0.10-testnet_Linux_x86_64.tar.gz
+cd $HOME
+rm -rf lumiwave-protocol
+git clone https://github.com/LumiWave/lumiwave-protocol.git
+cd lumiwave-protocol
+git checkout v0.0.11-mainnet
+make install
 ```
 ```
 mkdir -p $HOME/.lumiwave-protocol/cosmovisor/genesis/bin
@@ -20,7 +21,7 @@ lumiwave-protocold version --long | grep -e commit -e version
 lumiwave-protocold init Vinjan.Inc --chain-id lumiwaveprotocol
 ```
 ```
-wget -O $HOME/.lumiwave-protocol/config/genesis.json https://raw.githubusercontent.com/LumiWave/lumiwave-protocol/refs/heads/master/genesis/testnet/genesis.json
+wget -O $HOME/.lumiwave-protocol/config/genesis.json https://raw.githubusercontent.com/LumiWave/lumiwave-protocol/refs/heads/master/genesis/mainnet/genesis.json
 ```
 ```
 PORT=173
@@ -29,8 +30,9 @@ sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:2
 sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.lumiwave-protocol/config/app.toml
 ```
 ```
-seeds="43aa28394f4bb43d4680834d125f487f5e18ad85@192.168.1.76:26656"
-sed -i -e "s|^seeds *=.*|seeds = \"$seeds\"|" $HOME/.lumiwave-protocol/config/config.toml
+peers="$(curl -sS https://lwp-mainnet-rpc.lumiwavelab.com:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.lumiwave-protocol/config/config.toml
+
 peers="43aa28394f4bb43d4680834d125f487f5e18ad85@192.168.1.76:26656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.lumiwave-protocol/config/config.toml
 ```
@@ -69,13 +71,28 @@ WantedBy=multi-user.target
 EOF
 ```
 ```
+sudo tee /etc/systemd/system/lumiwave-protocold.service > /dev/null <<EOF
+[Unit]
+Description=lumiwave-protocol
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which lumiwave-protocold) start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
 sudo systemctl daemon-reload
 sudo systemctl enable lumiwave-protocold
 sudo systemctl restart lumiwave-protocold
 sudo journalctl -u lumiwave-protocold -f -o cat
 ```
 ```
-SNAP_RPC="https://lwp-testnet.lumiwavelab.com:443/tendermint"
+SNAP_RPC="https://lwp-mainnet-rpc.lumiwavelab.com:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -94,6 +111,7 @@ sudo rm /etc/systemd/system/lumiwave-protocold.service
 sudo systemctl daemon-reload
 rm -rf $(which lumiwave-protocold)
 rm -rf .lumiwave-protocol
+rm -rf lumiwave-protocol
 ```
 
 
