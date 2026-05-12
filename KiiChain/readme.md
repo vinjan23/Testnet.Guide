@@ -189,20 +189,15 @@ echo $(kiichaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME
 ```
 kiichaind tx gov vote 10 yes --from kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h --chain-id oro_1336-1 --gas-adjustment 1.3 --gas-prices=100000000000akii --keyring-backend test
 ```
+```
 sudo systemctl stop kiichaind
 cp $HOME/.kiichain/data/priv_validator_state.json $HOME/.kiichain/priv_validator_state.json.backup
 kiichaind comet unsafe-reset-all --home $HOME/.kiichain --keep-addr-book
-SNAP_RPC="https://rpc.uno.sentry.testnet.v3.kiivalidator.com"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i "/\[statesync\]/, /^enable =/ s/=.*/= true/;\
-/^rpc_servers =/ s|=.*|= \"$SNAP_RPC,$SNAP_RPC\"|;\
-/^trust_height =/ s/=.*/= $BLOCK_HEIGHT/;\
-/^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" $HOME/.kiichain/config/config.toml
+SNAP_NAME=$(curl -s https://ss-t.kiichain.nodestake.org/ | egrep -o ">20.*\.tar.lz4" | tr -d ">")
+curl -o - -L https://ss-t.kiichain.nodestake.org/${SNAP_NAME}  | lz4 -c -d - | tar -x -C $HOME/.kiichain
 mv $HOME/.kiichain/priv_validator_state.json.backup $HOME/.kiichain/data/priv_validator_state.json
 sudo systemctl restart kiichaind && sudo journalctl -u kiichaind -fo cat
-
+```
 ### Delete
 ```
 sudo systemctl stop kiichaind
