@@ -147,17 +147,17 @@ republicd q bank balances $(republicd keys show wallet -a)
 republicd comet show-validator
 ```
 ```
-republicd nano $HOME/.republic/validator.json
+nano $HOME/.republic/validator.json
 ```
 ```
 {
   "pubkey": ,
-  "amount": "1000000000000000000000arai",
-  "moniker": "Vinjan.Inc",
-  "identity": "7C66E36EA2B71F68",
-  "website": "https://service.vinjan.xyz",
+  "amount": "3000000000000000000000arai",
+  "moniker": "Gerald",
+  "identity": "",
+  "website": "",
   "security": "",
-  "details": "Staking Provider-IBC Relayer",
+  "details": "",
   "commission-rate": "0.05",
   "commission-max-rate": "1",
   "commission-max-change-rate": "1",
