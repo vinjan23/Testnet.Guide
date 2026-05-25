@@ -23,8 +23,10 @@ curl -L https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
 wget https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
 ```
 ```
+peers=""
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sunima/config/config.toml
 seeds="26b7a844f1840bf8bc9535b5329de93d8bd8f45f@seed.sunima.uk:26656"
-sed -i -e "s|^seedss *=.*|seeds = \"$seeds\"|" $HOME/.sunima/config/config.toml
+sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sunima/config/config.toml
 ```
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0stake\"/" $HOME/.sunima/config/app.toml
