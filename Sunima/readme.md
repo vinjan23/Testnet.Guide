@@ -23,9 +23,9 @@ curl -L https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
 wget https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
 ```
 ```
-peers=""
+peers="016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sunima/config/config.toml
-seeds="26b7a844f1840bf8bc9535b5329de93d8bd8f45f@seed.sunima.uk:26656"
+seeds=""
 sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sunima/config/config.toml
 ```
 ```
@@ -72,6 +72,9 @@ sudo systemctl daemon-reload
 sudo systemctl enable sunimad
 sudo systemctl restart sunimad
 sudo journalctl -u sunimad -f -o cat
+```
+```
+sunimad status 2>&1 | jq .sync_info
 ```
 ```
 sudo systemctl stop sunimad
