@@ -83,7 +83,7 @@ sudo systemctl restart sunimad
 sudo journalctl -u sunimad -f -o cat
 ```
 ```
-curl -s localhost:13757/status
+curl -s localhost:13457/status
 ```
 ```
 sudo systemctl stop sunimad
