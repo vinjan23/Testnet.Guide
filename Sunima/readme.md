@@ -28,6 +28,8 @@ curl -L https://snapshot-t.vinjan-inc.com/sunima/addrbook.json > $HOME/.sunima/c
 ```
 peers="016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$pe/" $HOME/.sunima/config/config.toml
+```
+```
 seeds=""
 sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sunima/config/config.toml
 ```
