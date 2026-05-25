@@ -19,14 +19,19 @@ sunimad init Vinjan --chain-id sunima_8081-1
 sunimad init Vinjan --chain-id sunima-testnet-1
 ```
 ```
-curl -L https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
-wget https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
+curl -L https://snapshot-t.vinjan-inc.com/sunima/genesis.json > $HOME/.sunima/config/genesis.json
 ```
+```
+curl -L https://snapshot-t.vinjan-inc.com/sunima/addrbook.json > $HOME/.sunima/config/addrbook.json
+```
+
 ```
 peers="016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656"
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sunima/config/config.toml
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$pe/" $HOME/.sunima/config/config.toml
 seeds=""
-sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sunima/config/config.toml
+sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sunima/conf
+
+ig/config.toml
 ```
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0stake\"/" $HOME/.sunima/config/app.toml
@@ -74,7 +79,7 @@ sudo systemctl restart sunimad
 sudo journalctl -u sunimad -f -o cat
 ```
 ```
-sunimad status 2>&1 | jq .sync_info
+curl -s localhost:13757/status
 ```
 ```
 sudo systemctl stop sunimad
