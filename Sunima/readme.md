@@ -10,13 +10,17 @@ cp /usr/local/bin/sunimad $HOME/.sunima/cosmovisor/genesis/bin/
 ```
 ```
 sudo ln -s $HOME/.sunima/cosmovisor/genesis $HOME/.sunima/cosmovisor/current -f
-sudo ln -s $HOME/.sunima/cosmovisor/current/bin/sunimad /usr/local/bin/sunimadf -f
+sudo ln -s $HOME/.sunima/cosmovisor/current/bin/sunimad /usr/local/bin/sunimad -f
 ```
 ```
 sunimad init Vinjan --chain-id sunima_8081-1
 ```
 ```
+sunimad init Vinjan --chain-id sunima-testnet-1
+```
+```
 curl -L https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
+wget https://sunima.uk/chain/genesis.json $HOME/.sunima/config/genesis.json
 ```
 ```
 peers="fa931c807cf2718c6f90335126c18a6b486ec952@seed.sunima.uk:26656"
@@ -66,4 +70,12 @@ sudo systemctl daemon-reload
 sudo systemctl enable sunimad
 sudo systemctl restart sunimad
 sudo journalctl -u sunimad -f -o cat
+```
+```
+sudo systemctl stop sunimad
+sudo systemctl disable sunimad
+sudo rm /etc/systemd/system/sunimad.service
+sudo systemctl daemon-reload
+rm -rf $(which sunimad)
+rm -rf .sunima
 ```
