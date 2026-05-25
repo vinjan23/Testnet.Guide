@@ -83,10 +83,40 @@ sudo systemctl restart sunimad
 sudo journalctl -u sunimad -f -o cat
 ```
 ```
-curl -s localhost:13457/status
-```
-```
 curl -s localhost:13457/status | jq .result.sync_info
+```
+```
+sunimad q bank balances $(sunimad keys show wallet -a)
+```
+```
+sunimad comet show-validator
+```
+```
+nano $HOME/.sunima/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"3uBJ7vsrgl2vfbBwuCIwlTabVigvXISEg/Ev0ZwGemI="},
+  "amount": 49000000000000000000asuna",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://vinjan-inc.com",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.1",
+  "commission-max-rate": "1",
+  "commission-max-change-rate": "1",
+  "min-self-delegation": "1"
+}
+```
+```
+
+sunimad tx staking create-validator $HOME/.sunima/validator.json \
+--from wallet \
+--chain-id sunima_8081-1 \
+--gas-prices=0asuna \
+--gas-adjustment=1.5 \
+--gas=auto
 ```
 ```
 sudo systemctl stop sunimad
