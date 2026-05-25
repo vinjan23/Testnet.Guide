@@ -86,6 +86,9 @@ sudo journalctl -u sunimad -f -o cat
 curl -s localhost:13457/status
 ```
 ```
+curl -s localhost:13457/status | jq .result.sync_info
+```
+```
 sudo systemctl stop sunimad
 sudo systemctl disable sunimad
 sudo rm /etc/systemd/system/sunimad.service
