@@ -16,6 +16,10 @@ sudo ln -s $HOME/.sunima/cosmovisor/current/bin/sunimad /usr/local/bin/sunimad -
 sunimad init Vinjan --chain-id sunima-testnet-1
 ```
 ```
+sunimad init Vinjan --chain-id sunima_8081-1
+```
+```
+```
 curl -L https://snapshot-t.vinjan-inc.com/sunima/genesis.json > $HOME/.sunima/config/genesis.json
 ```
 ```
