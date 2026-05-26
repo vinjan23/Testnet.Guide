@@ -101,7 +101,7 @@ nano $HOME/.sunima/validator.json
 ```
 {
   "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"3uBJ7vsrgl2vfbBwuCIwlTabVigvXISEg/Ev0ZwGemI="},
-  "amount": 49000000000000000000asuna",
+  "amount": 25000000000000000000000asuna",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://vinjan-inc.com",
@@ -117,7 +117,7 @@ nano $HOME/.sunima/validator.json
 sunimad tx operators register-operator cpu - \
   --from wallet \
   --chain-id sunima_8081-1 \
-  --fees=50000000000000asuna \
+  --fees=5000000asuna \
   --node=http://localhost:13457 \
   --yes
   ```
@@ -125,7 +125,7 @@ sunimad tx operators register-operator cpu - \
 sunimad tx staking create-validator $HOME/.sunima/validator.json \
 --from wallet \
 --chain-id sunima_8081-1 \
---fees=50000000000000asuna \
+--fees=5000000asuna \
 --node=http://localhost:13457 \
 --yes
 ```
