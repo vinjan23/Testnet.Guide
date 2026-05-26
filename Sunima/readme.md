@@ -116,10 +116,10 @@ nano $HOME/.sunima/validator.json
 ```
 sunimad tx staking create-validator $HOME/.sunima/validator.json \
 --from wallet \
---chain-id sunima-testnet-1 \
---gas-prices=0.01asuna \
---gas-adjustment=1.5 \
---gas=auto
+--chain-id sunima_8081-1 \
+--fees=50000000000000asuna \
+--node=http://localhost:13457 \
+--yes
 ```
 ```
 sudo systemctl stop sunimad
