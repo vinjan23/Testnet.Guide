@@ -15,9 +15,7 @@ sudo ln -s $HOME/.sunima/cosmovisor/current/bin/sunimad /usr/local/bin/sunimad -
 ```
 sunimad init Vinjan --chain-id sunima-testnet-1
 ```
-```
-sunimad init Vinjan --chain-id sunima_8081-1
-```
+
 ```
 sunimad version  --long | grep -e version -e commit
 ```
@@ -87,6 +85,9 @@ sudo journalctl -u sunimad -f -o cat
 ```
 ```
 curl -s localhost:13457/status | jq .result.sync_info
+```
+```
+curl -L https://snapshot-t.vinjan-inc.com/sunima/latest.tar.lz4
 ```
 ```
 sunimad q bank balances $(sunimad keys show wallet -a)
