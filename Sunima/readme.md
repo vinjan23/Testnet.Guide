@@ -19,6 +19,9 @@ sunimad init Vinjan --chain-id sunima-testnet-1
 sunimad init Vinjan --chain-id sunima_8081-1
 ```
 ```
+sunimad version  --long | grep -e version -e commit
+```
+```
 curl -L https://snapshot-t.vinjan-inc.com/sunima/genesis.json > $HOME/.sunima/config/genesis.json
 ```
 ```
@@ -110,11 +113,10 @@ nano $HOME/.sunima/validator.json
 }
 ```
 ```
-
 sunimad tx staking create-validator $HOME/.sunima/validator.json \
 --from wallet \
---chain-id sunima_8081-1 \
---gas-prices=0asuna \
+--chain-id sunima-testnet-1 \
+--gas-prices=0.01asuna \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
