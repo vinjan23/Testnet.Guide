@@ -130,6 +130,9 @@ sunimad tx staking create-validator $HOME/.sunima/validator.json \
 --yes
 ```
 ```
+sunimad tx gov vote 4 yes --from wallet --chain-id sunima_8081-1 --gas-prices=0.025asuna --gas-adjustment=1.5 --gas=auto
+```
+```
 sudo systemctl stop sunimad
 sudo systemctl disable sunimad
 sudo rm /etc/systemd/system/sunimad.service
