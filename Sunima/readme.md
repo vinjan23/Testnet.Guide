@@ -18,7 +18,7 @@ sudo ln -s $HOME/.sunima/cosmovisor/genesis $HOME/.sunima/cosmovisor/current -f
 sudo ln -s $HOME/.sunima/cosmovisor/current/bin/sunimad /usr/local/bin/sunimad -f
 ```
 ```
-sunimad init Vinjan --chain-id sunima-testnet-1
+sunimad init Vinjan --chain-id sunima_8081-1
 ```
 
 ```
@@ -136,6 +136,7 @@ sunimad tx gov vote 4 yes --from wallet --chain-id sunima_8081-1 --gas-prices=0.
 ```
 echo $(sunimad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.sunima/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
+```
 sudo systemctl stop sunimad
 SNAP_RPC="https://rpc-t.sunima.vinjan-inc.com"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
@@ -145,7 +146,7 @@ sed -i "/\[statesync\]/, /^enable =/ s/=.*/= true/;\
 /^rpc_servers =/ s|=.*|= \"$SNAP_RPC,$SNAP_RPC\"|;\
 /^trust_height =/ s/=.*/= $BLOCK_HEIGHT/;\
 /^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" $HOME/.sunima/config/config.toml
-
+```
 
 ```
 sudo systemctl stop sunimad
