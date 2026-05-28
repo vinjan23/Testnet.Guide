@@ -36,7 +36,7 @@ peers="016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers/" $HOME/.sunima/config/config.toml
 ```
 ```
-peers="016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656"
+peers="170efaccae1a7b691799c56e80d250184b445ac3@95.216.102.220:13456,016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sunima/config/config.toml
 ```
 ```
@@ -136,6 +136,9 @@ sunimad tx staking create-validator $HOME/.sunima/validator.json \
 ```
 ```
 sunimad tx gov vote 4 yes --from wallet --chain-id sunima_8081-1 --gas-prices=0.025asuna --gas-adjustment=1.5 --gas=auto
+```
+```
+echo $(sunimad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.sunima/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 ```
 sudo systemctl stop sunimad
