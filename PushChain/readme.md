@@ -18,9 +18,9 @@ sudo systemctl stop pchaind
 mv $HOME/bin/pchaind $HOME/go/bin/
 ```
 ```
-wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.36/push-chain_0.0.36_linux_amd64.tar.gz
-tar -xzvf push-chain_0.0.36_linux_amd64.tar.gz
-rm push-chain_0.0.36_linux_amd64.tar.gz
+wget https://github.com/pushchain/push-chain-node/releases/download/v0.0.37/push-chain_0.0.37_linux_amd64.tar.gz
+tar -xzvf push-chain_0.0.37_linux_amd64.tar.gz
+rm push-chain_0.0.37_linux_amd64.tar.gz
 chmod +x $HOME/bin/pchaind
 ```
 ```
