@@ -118,7 +118,7 @@ nano $HOME/.sunima/validator.json
 sunimad tx operators register-operator cpu - \
   --from wallet \
   --chain-id sunima_8081-1 \
-  --fees=5000000asuna \
+  --fees=10000asuna \
   --node=http://localhost:13457 \
   --yes
   ```
@@ -126,7 +126,7 @@ sunimad tx operators register-operator cpu - \
 sunimad tx staking create-validator $HOME/.sunima/validator.json \
 --from wallet \
 --chain-id sunima_8081-1 \
---fees=5000000asuna \
+--fees=10000asuna \
 --node=http://localhost:13457 \
 --yes
 ```
