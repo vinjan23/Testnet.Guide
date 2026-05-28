@@ -5,6 +5,11 @@ wget https://sunima.uk/chain/sunimad-linux-amd64 -O /usr/local/bin/sunimad
 chmod +x /usr/local/bin/sunimad
 ```
 ```
+wget https://snapshot.vinjan-inc.com/sunima/sunimad
+chmod +x sunimad
+mv sunimad /usr/local/bin/sunimad
+```
+```
 mkdir -p $HOME/.sunima/cosmovisor/genesis/bin
 cp /usr/local/bin/sunimad $HOME/.sunima/cosmovisor/genesis/bin/
 ```
