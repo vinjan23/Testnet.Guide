@@ -18,7 +18,7 @@ sudo ln -s $HOME/.sunima/cosmovisor/genesis $HOME/.sunima/cosmovisor/current -f
 sudo ln -s $HOME/.sunima/cosmovisor/current/bin/sunimad /usr/local/bin/sunimad -f
 ```
 ```
-sunimad init Vinjan --chain-id sunima_8081-1
+sunimad init Vinjan --chain-id sunima_8081-2
 ```
 
 ```
@@ -32,7 +32,7 @@ curl -L https://snapshot-t.vinjan-inc.com/sunima/addrbook.json > $HOME/.sunima/c
 ```
 
 ```
-peers="170efaccae1a7b691799c56e80d250184b445ac3@95.216.102.220:13456,016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656"
+peers="170efaccae1a7b691799c56e80d250184b445ac3@95.216.102.220:13456,016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656,b09e33822385af195406fc0a4a477f09b2729b2d@152.53.129.135:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sunima/config/config.toml
 ```
 ```
