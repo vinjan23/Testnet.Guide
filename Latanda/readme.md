@@ -113,5 +113,12 @@ latandad tx bank send $NAME $ADDR 1ultd \
 --chain-id latanda-testnet-1 \
 --gas auto --gas-adjustment 1.3 --fees 5000ultd --yes --output json
 ```
+```
+latandad tx staking edit-validator \
+--details="Staking Provider-IBC Relayer discord:824628985488736336" \
+--from wallet \
+--chain-id latanda-testnet-1 \
+--gas auto --gas-adjustment 1.3 --fees 100ultd
+```
 
   
