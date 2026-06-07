@@ -103,3 +103,15 @@ latandad tx staking create-validator $HOME/.latanda/validator.json \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
+```
+DISCORD_ID=824628985488736336
+ADDR=$(latandad keys show wallet -a)
+NAME=$(latandad keys list --output json | jq -r '.[0].name')
+
+latandad tx bank send $NAME $ADDR 1ultd \
+--note "LATANDA-VERIFY-$DISCORD_ID" \
+--chain-id latanda-testnet-1 \
+--gas auto --gas-adjustment 1.3 --fees 5000ultd --yes --output json
+```
+
+  
