@@ -21,6 +21,4 @@ latandad init Vinjan --chain-id latanda-testnet-1
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Aiu14JufZu2jT7eejO6+lydalsyMZlEjdJJykwVT71Rh"}'
   type: local
 ```  
-```
-spin tomato inside theme bright cargo couch history ocean prevent onion six car divorce popular slide story critic roof very grit sister retreat emerge
-```
+
