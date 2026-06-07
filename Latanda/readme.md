@@ -26,6 +26,7 @@ sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:2
 sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.latanda/config/app.toml
 ```
 ```
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001ultd\"/;" ~/.latanda/config/app.toml
 sed -i -e "s/^chain-id *=.*/chain-id = \"latanda-testnet-1\"/;" ~/.latanda/config/client.toml
 peers="483a8110c3cd93c8dd3801d935151e98656f5b67@168.231.67.201:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.latanda/config/config.toml
