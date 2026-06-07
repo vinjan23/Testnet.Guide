@@ -28,13 +28,13 @@ sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.latanda/config/app.t
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001ultd\"/;" ~/.latanda/config/app.toml
 sed -i -e "s/^chain-id *=.*/chain-id = \"latanda-testnet-1\"/;" ~/.latanda/config/client.toml
-peers="483a8110c3cd93c8dd3801d935151e98656f5b67@168.231.67.201:26656"
+peers="d6217d85d3747ebbfbf75898bd4407da567f5291@65.108.206.118:60556"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.latanda/config/config.toml
 ```
 ```
 pruning="custom"
-pruning_keep_recent="100"
-pruning_interval="20"
+pruning_keep_recent="1000"
+pruning_interval="10"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.latanda/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.latanda/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.latanda/config/app.toml
@@ -67,4 +67,39 @@ sudo systemctl daemon-reload
 sudo systemctl enable latandad
 sudo systemctl restart latandad
 sudo journalctl -u latandad -f -o cat
+```
+```
+latandad status 2>&1 | jq .sync_info
+```
+```
+latandad q bank balances $(latandad keys show wallet -a)
+```
+```
+latandad comet show-validator
+```
+```
+nano $HOME/.latanda/validator.json
+```
+```
+{
+  "pubkey": ,
+  "amount": "1000000ultd",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://vinjan-inc.com",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.10",
+  "commission-max-rate": "1",
+  "commission-max-change-rate": "1",
+  "min-self-delegation": "1"
+}
+```
+```
+latandad tx staking create-validator $HOME/.latanda/validator.json \
+--from wallet \
+--chain-id latanda-testnet-1 \
+--gas-prices=0.001ultd \
+--gas-adjustment=1.5 \
+--gas=auto
 ```
