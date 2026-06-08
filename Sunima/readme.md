@@ -1,89 +1,110 @@
-
+`
+CHAIN_ID="sunima_8081-2"
+SEED_NODE="016023a6dd169797a2bda97c3ed340f23426df4d@seed.sunima.uk:26656"
+GENESIS_URL="https://sunima.uk/chain/genesis.json"
+BINARY_BASE="https://sunima.uk/chain"
+INSTALL_BASE="https://sunima.uk/install"
+ONBOARD_API="https://sunima.uk/api/onboard"
+HOME_DIR="$HOME/.sunima"
+`
 ### Build
 ```
 wget https://sunima.uk/chain/sunimad-linux-amd64 -O /usr/local/bin/sunimad
 chmod +x /usr/local/bin/sunimad
 ```
 ```
-wget https://snapshot.vinjan-inc.com/sunima/sunimad
-chmod +x sunimad
-mv sunimad /usr/local/bin/sunimad
+wget https://sunima.uk/chain/libkzg_ffi.so
+sudo mv libkzg_ffi.so /usr/lib/libkzg_ffi.so
 ```
 ```
-mkdir -p $HOME/.sunima/cosmovisor/genesis/bin
-cp /usr/local/bin/sunimad $HOME/.sunima/cosmovisor/genesis/bin/
+BINARY_BASE="https://sunima.uk/chain"
+KZG_ART_DIR="$HOME/kzg-artifacts"
+info "Installing KZG verifier artifacts -> $KZG_ART_DIR ..."
+  mkdir -p "$KZG_ART_DIR"
+KZG_LOADER="srs.bin vk_spend.bin config_spend.json vk_credit.bin config_credit.json"
+KZG_SELFTEST="selftest_spend_proof.bin selftest_spend_publics.bin selftest_credit_proof.bin selftest_credit_publics.bin"
+  for f in $KZG_LOADER $KZG_SELFTEST; do
+    curl -fsSL "$BINARY_BASE/kzg-artifacts/$f" -o "$KZG_ART_DIR/$f" \
+      || die "Failed to download KZG artifact $f — node cannot start its privacy verifier without it."
+  done
 ```
+```  
+KZG_ART_DIR="/usr/local/share/sunima/kzg-artifacts"
+  info "Installing KZG verifier artifacts -> $KZG_ART_DIR ..."
+  mkdir -p "$KZG_ART_DIR"
+  # 5 loader files + 4 startup self-test vectors. srs.INSECURE is the
+  # testnet-only deterministic-SRS marker (absent on a mainnet PPoT set).
+  KZG_LOADER="srs.bin vk_spend.bin config_spend.json vk_credit.bin config_credit.json"
+  KZG_SELFTEST="selftest_spend_proof.bin selftest_spend_publics.bin selftest_credit_proof.bin selftest_credit_publics.bin"
+  for f in $KZG_LOADER $KZG_SELFTEST; do
+    curl -fsSL "$BINARY_BASE/kzg-artifacts/$f" -o "$KZG_ART_DIR/$f" \
+      || die "Failed to download KZG artifact $f — node cannot start its privacy verifier without it."
+  done
 ```
-sudo ln -s $HOME/.sunima/cosmovisor/genesis $HOME/.sunima/cosmovisor/current -f
-sudo ln -s $HOME/.sunima/cosmovisor/current/bin/sunimad /usr/local/bin/sunimad -f
-```
-```
+```  
 sunimad init Vinjan --chain-id sunima_8081-2
 ```
-
-```
-sunimad version  --long | grep -e version -e commit
-```
-```
-curl -L https://snapshot-t.vinjan-inc.com/sunima/genesis.json > $HOME/.sunima/config/genesis.json
+```  
+curl -L https://sunima.uk/chain/genesis.json > $HOME/.sunima/config/genesis.json
 ```
 ```
-curl -L https://snapshot-t.vinjan-inc.com/sunima/addrbook.json > $HOME/.sunima/config/addrbook.json
-```
-
-```
-peers="170efaccae1a7b691799c56e80d250184b445ac3@95.216.102.220:13456,016023a6dd169797a2bda97c3ed340f23426df4d@152.53.129.135:26656,b09e33822385af195406fc0a4a477f09b2729b2d@152.53.129.135:26656"
+peers="0628500c7326ad2d735b15ad9c24183ca9cb6bfc@seed.sunima.uk:27656,469887d5c73eec914dd35be9f6b5c28c1311a53d@seed.sunima.uk:27200"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sunima/config/config.toml
 ```
 ```
-seeds=""
+seeds="016023a6dd169797a2bda97c3ed340f23426df4d@seed.sunima.uk:26656"
 sed -i -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.sunima/config/config.toml
 ```
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0stake\"/" $HOME/.sunima/config/app.toml
 ```
 ```
-PORT=134
-sed -i -e "s%:26657%:${PORT}57%" $HOME/.sunima/config/client.toml
-sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.sunima/config/config.toml
-sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:8546%:${PORT}46%; s%:6065%:${PORT}65%" $HOME/.sunima/config/app.toml
-```
-```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
--e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "10"|' \
 $HOME/.sunima/config/app.toml
 ```
 ```
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.sunima/config/config.toml
 ```
+
 ```
-sudo tee /etc/systemd/system/sunimad.service > /dev/null << EOF
+sudo tee /etc/systemd/system/sunima-node.service > /dev/null << EOF
 [Unit]
-Description=sunima
+Description=Sunima chain node
 After=network-online.target
+Wants=network-online.target
 [Service]
-User=$USER
-ExecStart=$(which cosmovisor) run start
+Type=simple
+WorkingDirectory=$HOME/.sunima
+Environment="SUNIMA_LAYER7_ARTIFACT_DIR=$HOME/kzg-artifacts"
+ExecStart=/usr/local/bin/sunimad start --home $HOME/.sunima --minimum-gas-prices=1000000000asuna
 Restart=on-failure
-RestartSec=3
+RestartSec=5
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.sunima"
-Environment="DAEMON_NAME=sunimad"
-Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.sunima/cosmovisor/current/bin"
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable sunimad
-sudo systemctl restart sunimad
-sudo journalctl -u sunimad -f -o cat
+sudo systemctl enable sunima-node
+sudo systemctl restart sunima-node
+sudo journalctl -u sunima-node -f -o cat
 ```
+```
+sudo systemctl stop sunima-node
+```
+
+```
+PORT=134
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.sunima/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.sunima/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:8546%:${PORT}46%; s%:6065%:${PORT}65%" $HOME/.sunima/config/app.toml
+```
+
 ```
 curl -s localhost:13457/status | jq .result.sync_info
 ```
