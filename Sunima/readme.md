@@ -49,6 +49,7 @@ curl -L https://sunima.uk/chain/genesis.json > $HOME/.sunima/config/genesis.json
 ```
 ```
 peers="0628500c7326ad2d735b15ad9c24183ca9cb6bfc@seed.sunima.uk:27656,469887d5c73eec914dd35be9f6b5c28c1311a53d@seed.sunima.uk:27200"
+peers="469887d5c73eec914dd35be9f6b5c28c1311a53d@seed.sunima.uk:27200"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.sunima/config/config.toml
 ```
 ```
