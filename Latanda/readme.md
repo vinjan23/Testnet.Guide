@@ -120,5 +120,7 @@ latandad tx staking edit-validator \
 --chain-id latanda-testnet-1 \
 --gas auto --gas-adjustment 1.3 --fees 100ultd
 ```
+```
 
-  
+latandad tx staking delegate $(latandad keys show wallet --bech val -a) 2000000000ultd --from wallet --chain-id latanda-testnet-1 --gas-adjustment=1.5 --gas=auto --gas-prices=0.001ultd
+```
