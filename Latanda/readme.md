@@ -121,6 +121,20 @@ latandad tx staking edit-validator \
 --gas auto --gas-adjustment 1.3 --fees 100ultd
 ```
 ```
-
-latandad tx staking delegate $(latandad keys show wallet --bech val -a) 2000000000ultd --from wallet --chain-id latanda-testnet-1 --gas-adjustment=1.5 --gas=auto --gas-prices=0.001ultd
+latandad tx staking delegate $(latandad keys show wallet --bech val -a) 150000000ultd --from wallet --chain-id latanda-testnet-1 --gas-adjustment=1.5 --gas=auto --gas-prices=0.001ultd
+```
+```
+latandad tx distribution withdraw-rewards $(latandad keys show wallet --bech val -a) --commission --from wallet --chain-id latanda-testnet-1 --gas-adjustment=1.5 --gas=auto --gas-prices=0.001ultd
+```
+```
+echo $(latandad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.latanda/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+```
+sudo systemctl stop latandad
+sudo systemctl disable latandad
+sudo rm /etc/systemd/system/latandad.service
+sudo systemctl daemon-reload
+rm -rf $(which latandad)
+rm -rf .latanda
+rm -rf la-tanda-chain
 ```
