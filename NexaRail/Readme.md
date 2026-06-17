@@ -29,8 +29,8 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025unxrl\"/;" ~/.
 ```
 PORT=169
 sed -i -e "s%:26657%:${PORT}57%" $HOME/.latanda/config/client.toml
-sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.latanda/config/config.toml
-sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.latanda/config/app.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.nexarail/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.nexarail/config/app.toml
 ```
 ```
 peers="2bb62d82b4dbf820fdafd843816f1e72a84ffa8f@nexarail-testnet-peer.nodesync.top:26656,862c44d9a5f60baf47440b50d7f01fd6ace8fa83@144.76.29.90:60756"
