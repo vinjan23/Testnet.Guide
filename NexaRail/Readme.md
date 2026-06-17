@@ -80,6 +80,10 @@ nexaraild status 2>&1 | jq .sync_info
 ```
 nexaraild keys add wallet
 ```
+```
+peers="862c44d9a5f60baf47440b50d7f01fd6ace8fa83@144.76.29.90:60756"
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.nexarail/config/config.toml
+```
 
 
 
