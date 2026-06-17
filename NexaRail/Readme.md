@@ -6,8 +6,7 @@ make build
 cp ./build/nexaraild $HOME/go/bin/
 ```
 ```
-nexaraild init <moniker> --chain-id nexarail-testnet-1
-sed -i -e "s/^chain-id *=.*/chain-id = \"nexarail-mainnet-1\"/;" ~/.nexarail/config/client.toml
+nexaraild init vinjan --chain-id nexarail-testnet-1
 ```
 ```
 wget -O $HOME/.nexarail/config/genesis.json "https://github.com/Bookings-cpu/nexarail/releases/download/testnet-genesis-nexarail-testnet-1/genesis.json"
