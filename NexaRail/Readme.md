@@ -9,6 +9,15 @@ cp ./build/nexaraild $HOME/go/bin/
 nexaraild init vinjan --chain-id nexarail-testnet-1
 ```
 ```
+mkdir -p $HOME/.nexarail/cosmovisor/genesis/bin
+cp $HOME/go/bin/nexaraild $HOME/.nexarail/cosmovisor/genesis/bin/
+```
+```
+sudo ln -s $HOME/.nexarail/cosmovisor/genesis $HOME/.nexarail/cosmovisor/current -f
+sudo ln -s $HOME/.nexarail/cosmovisor/current/bin/nexaraild /usr/local/bin/nexaraild -f
+```
+
+```
 wget -O $HOME/.nexarail/config/genesis.json "https://github.com/Bookings-cpu/nexarail/releases/download/testnet-genesis-nexarail-testnet-1/genesis.json"
 ```
 ```
