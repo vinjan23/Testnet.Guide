@@ -16,7 +16,9 @@ cp $HOME/go/bin/nexaraild $HOME/.nexarail/cosmovisor/genesis/bin/
 sudo ln -s $HOME/.nexarail/cosmovisor/genesis $HOME/.nexarail/cosmovisor/current -f
 sudo ln -s $HOME/.nexarail/cosmovisor/current/bin/nexaraild /usr/local/bin/nexaraild -f
 ```
-
+```
+curl localhost:16957/status | jq
+```
 ```
 wget -O $HOME/.nexarail/config/genesis.json "https://github.com/Bookings-cpu/nexarail/releases/download/testnet-genesis-nexarail-testnet-1/genesis.json"
 ```
@@ -83,6 +85,9 @@ nexaraild keys add wallet
 ```
 peers="862c44d9a5f60baf47440b50d7f01fd6ace8fa83@144.76.29.90:60756"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.nexarail/config/config.toml
+```
+```
+curl -L https://snapshots.nodesync.top/Testnet/NexaRail/nexarail_latest.tar.lz4| lz4 -dc - | tar -xf - -C $HOME/.nexarail
 ```
 
 
