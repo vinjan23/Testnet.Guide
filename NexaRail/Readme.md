@@ -1,5 +1,5 @@
 ```
-cd $HOME && wget https://github.com/Bookings-cpu/nexarail/releases/download/v0.1.0-rc1-validator-recovery-hotfix/nexaraild-linux-amd64
+cwget https://github.com/Bookings-cpu/nexarail/releases/download/v0.1.0-rc1-validator-recovery-hotfix/nexaraild-linux-amd64
 chmod +x nexaraild-linux-amd64
 mv nexaraild-linux-amd64 $HOME/go/bin/nexaraild
 ```
