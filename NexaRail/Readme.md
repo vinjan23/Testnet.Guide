@@ -1,9 +1,7 @@
 ```
-git clone https://github.com/Bookings-cpu/nexarail
-cd nexarail
-git checkout v0.1.0-rc1-validator-recovery-hotfix
-make build
-cp ./build/nexaraild $HOME/go/bin/
+cd $HOME && wget https://github.com/Bookings-cpu/nexarail/releases/download/v0.1.0-rc1-validator-recovery-hotfix/nexaraild-linux-amd64
+chmod +x nexaraild-linux-amd64
+mv nexaraild-linux-amd64 $HOME/go/bin/nexaraild
 ```
 ```
 nexaraild init vinjan --chain-id nexarail-testnet-1
@@ -17,7 +15,7 @@ sudo ln -s $HOME/.nexarail/cosmovisor/genesis $HOME/.nexarail/cosmovisor/current
 sudo ln -s $HOME/.nexarail/cosmovisor/current/bin/nexaraild /usr/local/bin/nexaraild -f
 ```
 ```
-curl localhost:16957/status | jq
+nexaraild version
 ```
 ```
 wget -O $HOME/.nexarail/config/genesis.json "https://github.com/Bookings-cpu/nexarail/releases/download/testnet-genesis-nexarail-testnet-1/genesis.json"
@@ -30,18 +28,18 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025unxrl\"/;" ~/.
 ```
 ```
 PORT=169
-sed -i -e "s%:26657%:${PORT}57%" $HOME/.latanda/config/client.toml
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.nexarail/config/client.toml
 sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.nexarail/config/config.toml
 sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.nexarail/config/app.toml
 ```
 ```
-peers="2bb62d82b4dbf820fdafd843816f1e72a84ffa8f@nexarail-testnet-peer.nodesync.top:26656,862c44d9a5f60baf47440b50d7f01fd6ace8fa83@144.76.29.90:60756"
+peers="2bb62d82b4dbf820fdafd843816f1e72a84ffa8f@nexarail-testnet-peer.nodesync.top:26656"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.nexarail/config/config.toml
 ```
 ```
 pruning="custom"
-pruning_keep_recent="1000"
-pruning_interval="100"
+pruning_keep_recent="100"
+pruning_interval="20"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.nexarail/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.nexarail/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.nexarail/config/app.toml
@@ -59,13 +57,12 @@ After=network-online.target
 User=$USER
 ExecStart=$(which cosmovisor) run start
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.nexarail"
 Environment="DAEMON_NAME=nexaraild"
 Environment="UNSAFE_SKIP_BACKUP=true"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.nexarail/cosmovisor/current/bin"
-Environment="LD_LIBRARY_PATH=$HOME/.lumera/cosmovisor/current/bin/"
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -77,19 +74,63 @@ sudo systemctl restart nexaraild
 sudo journalctl -u nexaraild -f -o cat
 ```
 ```
-nexaraild status 2>&1 | jq .sync_info
+nexaraild status 2>&1 | jq .SyncInfo
 ```
 ```
 nexaraild keys add wallet
 ```
 ```
-peers="862c44d9a5f60baf47440b50d7f01fd6ace8fa83@144.76.29.90:60756"
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.nexarail/config/config.toml
+nexaraild q bank balances $(nexaraild keys show wallet -a)
 ```
 ```
-curl -L https://snapshots.nodesync.top/Testnet/NexaRail/nexarail_latest.tar.lz4| lz4 -dc - | tar -xf - -C $HOME/.nexarail
+nexaraild tx staking create-validator \
+--amount=1000000unxrl \
+--pubkey="$(nexaraild tendermint show-validator)" \
+--moniker="Vinjan.Inc" \
+--chain-id=nexarail-testnet-1 \
+--identity="7C66E36EA2B71F68" \
+--from=wallet \
+--commission-rate="0.10" \
+--commission-max-rate="0.50" \
+--commission-max-change-rate="0.5" \
+--min-self-delegation="1" \
+--gas=auto \
+--gas-adjustment=1.4 \
+--gas-prices=0.025unxrl \
+--node tcp://localhost:16957
 ```
-
-
+```  
+nexaraild tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--website="https://vinjan-inc.com" \
+--details="Staking Provider-IBC Relayer" \
+--chain-id=nexarail-testnet-1 \
+--from=wallet \
+--gas-adjustment=1.4 \
+--gas-prices="0.025unxrl" \
+--gas=auto 
+```
+```
+nexaraild tx slashing unjail --from wallet --chain-id nexarail-testnet-1 --gas-adjustment=1.4 --gas-prices=0.025unxrl --gas auto 
+```
+```
+nexaraild tx distribution withdraw-rewards $(nexaraild keys show wallet --bech val -a) --commission --from wallet --chain-id nexarail-testnet-1 --gas-adjustment=1.4 --gas-prices=0.025unxrl --gas auto 
+```
+```
+nexaraild tx staking delegate $(nexaraild keys show wallet --bech val -a) 1000000unxrl --from wallet --chain-id nexarail-testnet-1 --gas-adjustment=1.4 --gas-prices=0.025unxrl --gas auto 
+```
+```
+echo $(nexaraild tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.nexarail/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+```
+sudo systemctl stop nexaraild
+sudo systemctl disable nexaraild
+sudo rm /etc/systemd/system/nexaraild.service
+sudo systemctl daemon-reload
+rm -rf $(which nexaraild)
+rm -rf .nexarail
+rm -rf nexarail
+```
 
 
