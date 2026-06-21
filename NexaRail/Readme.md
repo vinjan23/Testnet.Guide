@@ -122,6 +122,10 @@ nexaraild tx staking delegate $(nexaraild keys show wallet --bech val -a) 100000
 echo $(nexaraild tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.nexarail/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 ```
+nexaraild tendermint show-address
+```
+
+```
 sudo systemctl stop nexaraild
 sudo systemctl disable nexaraild
 sudo rm /etc/systemd/system/nexaraild.service
