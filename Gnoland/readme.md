@@ -9,13 +9,18 @@ make install_gnokey
 make -C gno.land install.gnoland && make -C contribs/gnogenesis install
 ```
 ```
+git clone https://github.com/gnolang/gno.git
+cd gno && git checkout chain/test13
+make -C gno.land install.gnoland install.gnokey
+```
+```
 cd ~/gno && git fetch --all --tags && git checkout tags/chain/test13
 cd gno.land && GOTOOLCHAIN=auto make install.gnoland
 ```
 
 ### Init
 ```
-cd $HOME
+cd gno
 gnoland config init
 gnoland secrets init
 gnoland config set moniker Vinjan.Inc
@@ -35,8 +40,9 @@ g1werw2qvzcn59948l5cqafdvz27rpj0ncacttaa@65.109.36.231:54656,g1e7hvdafap9xay4jkw
 ```
 ### Genesis
 ```
-wget -O $HOME/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/test13/genesis.json
+wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/test13/genesis.json
 ```
+
 ```
 wget -O $HOME/gnoland-data/config/genesis.json https://gno-testnets-genesis.s3.eu-central-1.amazonaws.com/test9/genesis.json
 ```
@@ -51,7 +57,8 @@ After=network-online.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME
-ExecStart=$(which gnoland) start --genesis  $HOME/gnoland-data/config/genesis.json --data-dir $HOME/gnoland-data/ --skip-genesis-sig-verification
+Environment="GNOROOT=/home/gno"
+ExecStart=$(which gnoland) start --gnoroot-dir /home/gno --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid test-13 --skip-genesis-sig-verification
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
@@ -59,6 +66,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+
 ### Start
 ```
 sudo systemctl daemon-reload
@@ -124,6 +132,14 @@ sudo systemctl stop gnoland
 sudo systemctl disable gnoland
 sudo systemctl daemon-reload
 rm -rf gno
-rm -rf gnoland-data
+rm -rf $HOME/go/bin/gnoland
+rm -rf $HOME/go/bin/gnokey
 ```
-
+```
+sudo systemctl stop gnoland
+cp $HOME/gno/gnoland-data/secrets/priv_validator_state.json $HOME/gno/gnoland-data/priv_validator_state.json.backup
+rm -rf $HOME/gno/gnoland-data/wal $HOME/gno/gnoland-data/db
+curl https://snapshots.luckystar.asia/gnolandtest/gnoland_data.tar.zst | zstd -dc - | tar -xf - -C $HOME/gno/gnoland-data
+mv $HOME/gno/gnoland-data/priv_validator_state.json.backup $HOME/gno/gnoland-data/secrets/priv_validator_state.json
+sudo systemctl restart gnoland && sudo journalctl -u gnoland -f
+.``
