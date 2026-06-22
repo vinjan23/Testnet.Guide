@@ -42,7 +42,9 @@ g1werw2qvzcn59948l5cqafdvz27rpj0ncacttaa@65.109.36.231:54656,g1e7hvdafap9xay4jkw
 ```
 wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/test13/genesis.json
 ```
-
+```
+wget -O $HOME/gno/gnoland-data/config/genesis https://snapshots.luckystar.asia/gnolandtest/genesis.json
+```
 ```
 wget -O $HOME/gnoland-data/config/genesis.json https://gno-testnets-genesis.s3.eu-central-1.amazonaws.com/test9/genesis.json
 ```
