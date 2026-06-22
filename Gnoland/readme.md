@@ -77,9 +77,7 @@ curl -s localhost:26657/status
 ```
 gnokey add wallet
 ```
-```
-gnoland secrets get validator_key | jq -r '.address'
-```
+
 ```
 gnoland secrets get validator_key | jq -r '.pub_key'
 ```
@@ -89,12 +87,14 @@ gnoland secrets get validator_key | jq -r '.pub_key'
 
 ### Register
 ```
-gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register"  -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 30000000 -send "" <wallet_address> > call.tx
+gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register" -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 30000000 -send "" <wallet_address> > call.tx
 ```
 - Example
 ```
-gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider & IBC Relayer' -args $'data-center' -args $'g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp' -gas-fee 1000000ugnot -gas-wanted 50000000 -send "" --broadcast=false g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296 > call.tx
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider IBC Relayer' -args $'data-center' -args $'g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp' -gas-fee 1000000ugnot -gas-wanted 50000000 -send "" --broadcast=false g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296 > call.tx
 ```
+
+- or
 ```
 gnokey maketx call \
   --pkgpath gno.land/r/gnops/valopers \
@@ -104,7 +104,7 @@ gnokey maketx call \
   --args "data-center" \
   --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
   --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp" \
-  --gas-fee 1000000ugnot --gas-wanted 50000000 \
+  --gas-fee 1000000ugnot --gas-wanted 50_000_000 \
   --chainid test-13 \
   --remote https://rpc.test13.testnets.gno.land \
   --broadcast \
