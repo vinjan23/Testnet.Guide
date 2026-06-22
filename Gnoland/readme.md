@@ -3,13 +3,13 @@
 cd $HOME
 rm -rf gno
 git clone https://github.com/gnolang/gno.git
-git checkout chain/test11.0
+git checkout chain/test13
 cd gno
 make install_gnokey
 make -C gno.land install.gnoland && make -C contribs/gnogenesis install
 ```
 ```
-cd ~/gno && git fetch --all --tags && git checkout tags/chain/test11.0
+cd ~/gno && git fetch --all --tags && git checkout tags/chain/test13
 cd gno.land && GOTOOLCHAIN=auto make install.gnoland
 ```
 
@@ -27,14 +27,21 @@ gnoland config set consensus.timeout_commit 3s
 gnoland config set mempool.size 10000
 gnoland config set p2p.flush_throttle_timeout 10ms
 gnoland config set p2p.max_num_outbound_peers 40
-gnoland config set p2p.persistent_peers g1werw2qvzcn59948l5cqafdvz27rpj0ncacttaa@65.109.36.231:54656,g1e7hvdafap9xay4jkwletel2s9r4cjv4x4j8873@52.20.155.237:26656,g1zjfdjywwryrpqx33ng0n3hy5xk5nlq2ww8scnh@54.144.26.54:26656
+gnoland config set p2p.persistent_peers 
+g142k7zc2qym3c0u6jmkf6rv26llgr2f4nakmlmt@sentry-1.test13.testnets.gno.land:26656,g1lxkf9gn7kddrr26c640ww5wg3ezsm22we8cjpc@sentry-2.test13.testnets.gno.land:26656
+```
+```
+g1werw2qvzcn59948l5cqafdvz27rpj0ncacttaa@65.109.36.231:54656,g1e7hvdafap9xay4jkwletel2s9r4cjv4x4j8873@52.20.155.237:26656,g1zjfdjywwryrpqx33ng0n3hy5xk5nlq2ww8scnh@54.144.26.54:26656
 ```
 ### Genesis
+```
+wget -O $HOME/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/test13/genesis.json
+```
 ```
 wget -O $HOME/gnoland-data/config/genesis.json https://gno-testnets-genesis.s3.eu-central-1.amazonaws.com/test9/genesis.json
 ```
 
-
+                                               
 #### Create service
 ```
 sudo tee /etc/systemd/system/gnoland.service > /dev/null <<EOF
