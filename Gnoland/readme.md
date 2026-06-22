@@ -93,7 +93,7 @@ gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register"  -arg
 ```
 - Example
 ```
-gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider & IBC Relayer' -args $'data-center' -args $'g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp' -gas-fee 1000000ugnot -gas-wanted 50000000 -send "" g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296 > call.tx
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider & IBC Relayer' -args $'data-center' -args $'g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp' -gas-fee 1000000ugnot -gas-wanted 50000000 -send "" --broadcast=false g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296 > call.tx
 ```
 ```
 gnokey maketx call \
