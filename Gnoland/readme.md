@@ -93,24 +93,40 @@ gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register"  -arg
 ```
 - Example
 ```
-gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider \& IBC Relayer' -args $'data-center' -args $'g1y6y2ttkdnmqd8addnsd8qcpvfu9rn677ywjhmz' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zq6zs528x38prcdy7jtkm3m83kf4s26wvuu9kjfrjxh2w635nqk8etd3t60' -gas-fee 1000000ugnot -gas-wanted 30000000 -send "" g1pv45ppq2sp74887hk5navgmwfxz7pzfsjcf20z > call.tx
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider & IBC Relayer' -args $'data-center' -args $'g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp' -gas-fee 1000000ugnot -gas-wanted 50000000 -send "" g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296 > call.tx
 ```
+```
+gnokey maketx call \
+  --pkgpath gno.land/r/gnops/valopers \
+  --func Register \
+  --args "VinjanInc" \
+  --args "Vinjan.Inc is Stake Provider & IBC Relayer" \
+  --args "data-center" \
+  --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
+  --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp" \
+  --gas-fee 1000000ugnot --gas-wanted 50000000 \
+  --chainid test-13 \
+  --remote https://rpc.test13.testnets.gno.land \
+  --broadcast \
+  wallet
+```
+
 ### Get Account Number and Sequence Sequence - Needs to be done everytime before making an transaction
 ```
-gnokey query -remote "https://rpc.test11.testnets.gno.land" auth/accounts/<wallet_address>
+gnokey query -remote "https://rpc.test13.testnets.gno.land" auth/accounts/<wallet_address>
 ```
 ### Replace the Value of $ACCOUNTNUMBER and $SEQUENCENUMBER  got from the above steps in the below command. 
 
 ```
-gnokey sign -tx-path call.tx -chainid "test11" -account-number $ACCOUNTNUMBER -account-sequence $SEQUENCENUMBER <wallet_address>
+gnokey sign -tx-path call.tx -chainid "test13" -account-number $ACCOUNTNUMBER -account-sequence $SEQUENCENUMBER <wallet_address>
 ```
 -Example
 ```
-gnokey sign -tx-path call.tx -chainid "test11" -account-number 657466 -account-sequence 13 g1pv45ppq2sp74887hk5navgmwfxz7pzfsjcf20z
+gnokey sign -tx-path call.tx -chainid "test13" -account-number 657466 -account-sequence 13 g1pv45ppq2sp74887hk5navgmwfxz7pzfsjcf20z
 ```
 ### Sign
 ```
-gnokey broadcast -remote "https://rpc.test11.testnets.gno.land" call.tx
+gnokey broadcast -remote "https://rpc.test13.testnets.gno.land" call.tx
 ```
 
 ### Stop
