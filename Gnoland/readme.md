@@ -142,4 +142,5 @@ rm -rf $HOME/gno/gnoland-data/wal $HOME/gno/gnoland-data/db
 curl https://snapshots.luckystar.asia/gnolandtest/gnoland_data.tar.zst | zstd -dc - | tar -xf - -C $HOME/gno/gnoland-data
 mv $HOME/gno/gnoland-data/priv_validator_state.json.backup $HOME/gno/gnoland-data/secrets/priv_validator_state.json
 sudo systemctl restart gnoland && sudo journalctl -u gnoland -f
-.``
+```
+
