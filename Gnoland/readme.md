@@ -58,9 +58,9 @@ Description=Gnoland node
 After=network-online.target
 [Service]
 User=$USER
-WorkingDirectory=$HOME
-Environment="GNOROOT=/home/gno"
-ExecStart=$(which gnoland) start --gnoroot-dir /home/gno --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid test-13 --skip-genesis-sig-verification
+WorkingDirectory=$HOME/gno
+Environment="GNOROOT=/root/gno"
+ExecStart=$(which gnoland) start --gnoroot-dir /root/gno --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid test-13 --skip-genesis-sig-verification
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
@@ -68,6 +68,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+
 
 ### Start
 ```
