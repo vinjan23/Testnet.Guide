@@ -1,0 +1,4 @@
+```
+cd ~/gno && git fetch --all --tags && git checkout tags/chain/test13
+cd gno.land && GOTOOLCHAIN=auto make install.gnoland
+```
