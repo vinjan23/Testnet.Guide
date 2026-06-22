@@ -3,8 +3,8 @@
 cd $HOME
 rm -rf gno
 git clone https://github.com/gnolang/gno.git
-git checkout chain/test13
 cd gno
+git checkout chain/test13
 make install_gnokey
 make -C gno.land install.gnoland && make -C contribs/gnogenesis install
 ```
