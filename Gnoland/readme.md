@@ -136,6 +136,8 @@ sudo systemctl daemon-reload
 rm -rf gno
 rm -rf $HOME/go/bin/gnoland
 rm -rf $HOME/go/bin/gnokey
+rm -rf $HOME/go/bin/gnodev
+rm -rf $HOME/go/bin/gno
 ```
 ```
 sudo systemctl stop gnoland
