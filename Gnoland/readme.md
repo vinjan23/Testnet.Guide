@@ -128,7 +128,21 @@ gnokey sign -tx-path call.tx -chainid "test13" -account-number 657466 -account-s
 ```
 gnokey broadcast -remote "https://rpc.test13.testnets.gno.land" call.tx
 ```
-
+### Edit
+```
+gnokey maketx call \
+  --pkgpath gno.land/r/gnops/valopers \
+  --func UpdateDescription \
+  --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
+  --args "$(cat desc.txt)" \
+  --gas-fee 1000000ugnot \
+  --gas-wanted 50000000 \
+  --chainid test-13 \
+  --remote https://rpc.test13.testnets.gno.land \
+  --broadcast \
+  wallet
+```
+  
 ### Stop
 ```
 sudo systemctl stop gnoland
