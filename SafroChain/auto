@@ -1,0 +1,85 @@
+```
+#!/bin/bash
+
+# ==========================
+# CONFIG
+# ==========================
+WALLET_NAME="wallet"
+VALIDATOR="addr_safrovaloper1xv6850skcgvuhlwjlxhe70hy08wxme0ue9tcxg"
+CHAIN_ID="safro-testnet-1"
+PASS="password"
+DENOM="usaf"
+RESERVE="1000000"
+
+# ==========================
+# WITHDRAW Commission Started
+# ==========================
+echo "[1/3] Withdraw rewards..."
+
+echo "$PASS" | safrochaind tx distribution withdraw-rewards "$VALIDATOR" \
+--commission \
+--from "$WALLET_NAME" \
+--chain-id "$CHAIN_ID" \
+--gas auto \
+--gas-adjustment 1.5 \
+--gas-prices 0.05usaf \
+-y
+
+echo "Waiting 20 seconds..."
+sleep 20
+
+# ==========================
+# GET BALANCE
+# ==========================
+echo "[2/3] Checking balance..."
+
+ADDR=$(echo "$PASS" | safrochaind keys show "$WALLET_NAME" -a)
+
+echo "Validator : $VALIDATOR"
+
+AVAILABLE_BAL=$(safrochaind query bank balances "$ADDR" \
+  --output json | jq -r \
+  '.balances[] | select(.denom=="'"$DENOM"'") | .amount' \
+  | head -n1)
+
+AVAILABLE_BAL=${AVAILABLE_BAL:-0}
+
+if ! [[ "$AVAILABLE_BAL" =~ ^[0-9]+$ ]]; then
+    echo "ERROR: Unable to get wallet balance."
+    exit 1
+fi
+
+echo "Available balance: $AVAILABLE_BAL $DENOM"
+
+# ==========================
+# CALCULATE DELEGATION
+# ==========================
+if [[ $(echo "$AVAILABLE_BAL <= $RESERVE" | bc) -eq 1 ]]; then
+    echo "Balance too low."
+    exit 0
+fi
+
+TOTAL_STAKE=$(echo "$AVAILABLE_BAL - $RESERVE" | bc)
+
+echo "Reserve : $RESERVE"
+echo "Delegate: $TOTAL_STAKE"
+
+# ==========================
+# DELEGATE
+# ==========================
+echo "[3/3] Delegating..."
+
+echo "$PASS" | safrochaind tx staking delegate \
+  "$VALIDATOR" \
+  "${TOTAL_STAKE}${DENOM}" \
+  --from "$WALLET_NAME" \
+  --chain-id "$CHAIN_ID" \
+  --gas auto \
+  --gas-adjustment 1.5 \
+  --gas-prices 0.05usaf \
+  -y
+
+echo "========================================"
+echo "Auto Compound Finished : $(date)"
+echo "========================================"
+```
