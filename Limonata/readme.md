@@ -26,6 +26,19 @@ sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:2
 sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:8546%:${PORT}46%; s%:6065%:${PORT}65%" $HOME/.evmd/config/app.toml
 ```
 ```
+cat <<EOF >> ~/.evmd/config/config.toml
+
+[mempool]
+type = "app"
+```
+```
+cat <<EOF >> ~/.gnodi/config/app.toml
+
+[evm]
+evm-chain-id = 10777
+```
+EOF
+```
 peers="4b154368aab24cb5b31c927efd50c73d0f4f9799@142.127.103.79:26656"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.evmd/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aLIMO\"/" $HOME/.evmd/config/app.toml
