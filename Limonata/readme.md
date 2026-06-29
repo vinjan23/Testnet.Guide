@@ -1,9 +1,7 @@
 ```
-cd $HOME
-rm -rf limonata
-git clone https://github.com/Limonata-Blockchain/limonata.git
-cd limonata
-make install
+curl -sL https://github.com/Limonata-Blockchain/limonata/releases/latest/download/limonatad-linux-amd64.tar.gz | tar xz
+chmod +x limonatad
+mv limonatad /usr/local/bin/
 ```
 ```
 mkdir -p $HOME/.evmd/cosmovisor/genesis/bin
