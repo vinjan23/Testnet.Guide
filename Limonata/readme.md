@@ -124,3 +124,6 @@ limonatad tx staking create-validator $HOME/.evmd/validator.json \
 --gas-adjustment=1.2 \
 --gas=auto
 ```
+```
+a2f856cc2193622ac91055cb7ab6ea9ec4584bdc@95.216.102.220:19156
+```
