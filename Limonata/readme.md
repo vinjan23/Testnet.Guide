@@ -44,7 +44,7 @@ sed -i -E "s|type = \".*\"|type = \"app\"|g" $HOME/.evmd/config/config.toml
 ```
 
 ```
-peers="a2f856cc2193622ac91055cb7ab6ea9ec4584bdc@95.216.102.220:19156"
+peers="e27dfd298be3453fea65a61d1c6c06b540761016@95.216.102.220:19156"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.evmd/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aLIMO\"/" $HOME/.evmd/config/app.toml
 ```
@@ -165,4 +165,5 @@ sudo rm /etc/systemd/system/limonatad.service
 sudo systemctl daemon-reload
 rm -rf $(which limonatad)
 rm -rf .evmd
+rm -rf /root/go/bin/evmd
 ```
