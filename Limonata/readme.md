@@ -1,15 +1,30 @@
 ```
-curl -sL https://github.com/Limonata-Blockchain/limonata/releases/latest/download/limonatad-linux-amd64.tar.gz | tar xz
+wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-testnet-v0.1.0/limonatad-linux-amd64.tar.gz
+tar xzf limonatad-linux-amd64.tar.gz
 chmod +x limonatad
 mv limonatad /usr/local/bin/
+rm -rf limonatad-linux-amd64.tar.gz
 ```
 ```
 mkdir -p $HOME/.evmd/cosmovisor/genesis/bin
-cp $HOME/go/bin/limonatad $HOME/.evmd/cosmovisor/genesis/bin/
+cp /usr/local/bin/limonatad $HOME/.evmd/cosmovisor/genesis/bin/
 ```
 ```
 sudo ln -s $HOME/.evmd/cosmovisor/genesis $HOME/.evmd/cosmovisor/current -f
 sudo ln -s $HOME/.evmd/cosmovisor/current/bin/limonatad /usr/local/bin/limonatad -f
+```
+```
+wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-testnet-v0.2.0/limonatad-linux-amd64.tar.gz
+tar xzf limonatad-linux-amd64.tar.gz
+```
+```
+mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
+mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin/
+chmod +x $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin/limonatad
+rm -rf limonatad-linux-amd64.tar.gz
+```
+```
+$HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin/limonatad version --long | grep -e commit -e version
 ```
 ```
 limonatad init Vinjan.Inc --chain-id limonata_10777-1
@@ -32,6 +47,10 @@ sed -i -E "s|type = \".*\"|type = \"app\"|g" $HOME/.evmd/config/config.toml
 peers="a2f856cc2193622ac91055cb7ab6ea9ec4584bdc@95.216.102.220:19156"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.evmd/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aLIMO\"/" $HOME/.evmd/config/app.toml
+```
+```
+peers="14673dfbd8efff7eed0a97880efde1d0a54da948@195.201.160.23:19156"
+sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.evmd/config/config.toml
 ```
 ```
 sed -i \
@@ -125,5 +144,25 @@ limonatad tx staking create-validator $HOME/.evmd/validator.json \
 --gas=auto
 ```
 ```
+echo $(limonatad comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.evmd/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+```
 a2f856cc2193622ac91055cb7ab6ea9ec4584bdc@95.216.102.220:19156
+```
+```
+limonatad tx gov vote 1 yes --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto
+```
+
+```
+ limonatad tx gov vote 1 yes --from wallet \
+    --chain-id limonata_10777-1 --node tcp://localhost:19157 \
+    --gas auto --gas-adjustment 1.4 --fees 5000000aLIMO -y
+```
+```    
+sudo systemctl stop limonatad
+sudo systemctl disable limonatad
+sudo rm /etc/systemd/system/limonatad.service
+sudo systemctl daemon-reload
+rm -rf $(which limonatad)
+rm -rf .evmd
 ```
