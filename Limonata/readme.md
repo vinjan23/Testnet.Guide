@@ -144,11 +144,16 @@ limonatad tx staking create-validator $HOME/.evmd/validator.json \
 --gas=auto
 ```
 ```
+limonatad tx distribution withdraw-rewards $(limonatad keys show wallet --bech val -a) --commission --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto
+```
+```
+limonatad tx staking delegate $(limonatad keys show wallet --bech val -a) 5000000000000000000aLIMO --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto
+```
+
+```
 echo $(limonatad comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.evmd/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
-```
-a2f856cc2193622ac91055cb7ab6ea9ec4584bdc@95.216.102.220:19156
-```
+
 ```
 limonatad tx gov vote 1 yes --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto
 ```
