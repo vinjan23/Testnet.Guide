@@ -122,8 +122,8 @@ nano $HOME/.evmd/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"ST+sAUCo2G4LfhEbAsq/evZ50+V+q4+bEf2qi3Ja89k="},
-  "amount": "9000000000000000000aLIMO",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"itv7YUKTVE/yvlTouZIIz9yFBomaryM/1pkdIUC+cy4="},
+  "amount": "200000000000000000000aLIMO",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://vinjan-inc.com",
@@ -139,7 +139,7 @@ nano $HOME/.evmd/validator.json
 limonatad tx staking create-validator $HOME/.evmd/validator.json \
 --from wallet \
 --chain-id limonata_10777-1 \
---gas-prices=0.0001aLIMO \
+--gas-prices=0.05aLIMO \
 --gas-adjustment=1.2 \
 --gas=auto
 ```
