@@ -44,7 +44,7 @@ sed -i -E "s|type = \".*\"|type = \"app\"|g" $HOME/.evmd/config/config.toml
 ```
 
 ```
-peers="e27dfd298be3453fea65a61d1c6c06b540761016@95.216.102.220:19156"
+peers="f8bef28f14306bb9b70e026bcc3c89b6188a6688@95.216.102.220:19156"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.evmd/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aLIMO\"/" $HOME/.evmd/config/app.toml
 ```
