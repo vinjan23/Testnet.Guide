@@ -19,7 +19,7 @@ sudo ln -s $HOME/.lumera/cosmovisor/genesis $HOME/.lumera/cosmovisor/current -f
 sudo ln -s $HOME/.lumera/cosmovisor/current/bin/lumerad /usr/local/bin/lumerad -f
 ```
 ```
-wget https://github.com/CosmWasm/wasmvm/releases/download/v3.0.2/libwasmvm.x86_64.so
+wget https://github.com/CosmWasm/wasmvm/releases/download/v3.0.3/libwasmvm.x86_64.so
 sudo mv libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
 sudo ldconfig
 ```
