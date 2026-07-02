@@ -24,7 +24,7 @@ sudo mv libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
 sudo ldconfig
 ```
 ### Upgrade
-``
+```
 mkdir -p $HOME/.lumera/cosmovisor/upgrades/v1.20.0/bin
 wget https://github.com/LumeraProtocol/lumera/releases/download/v1.20.0/lumera_v1.20.0_linux_amd64.tar.gz
 tar xzvf lumera_v1.20.0_linux_amd64.tar.gz
