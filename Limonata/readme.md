@@ -16,11 +16,11 @@ sudo ln -s $HOME/.evmd/cosmovisor/current/bin/limonatad /usr/local/bin/limonatad
 ```
 wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-testnet-v0.2.0/limonatad-linux-amd64.tar.gz
 tar xzf limonatad-linux-amd64.tar.gz
+chmod +x limonatad
 ```
 ```
 mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
 mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin/
-chmod +x $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin/limonatad
 rm -rf limonatad-linux-amd64.tar.gz
 ```
 ```
