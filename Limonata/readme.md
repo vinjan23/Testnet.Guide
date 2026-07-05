@@ -20,11 +20,26 @@ cp /usr/local/bin/limonatad $HOME/.evmd/cosmovisor/genesis/bin/
 sudo ln -s $HOME/.evmd/cosmovisor/genesis $HOME/.evmd/cosmovisor/current -f
 sudo ln -s $HOME/.evmd/cosmovisor/current/bin/limonatad /usr/local/bin/limonatad -f
 ```
+### Update
 ```
 wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-testnet-v0.2.0/limonatad-linux-amd64.tar.gz
 tar xzf limonatad-linux-amd64.tar.gz
 chmod +x limonatad
 ```
+```
+cd $HOME
+rm -rf limonata
+git clone https://github.com/Limonata-Blockchain/limonata.git
+cd limonata
+git checkout limonata-testnet-v0.2.0
+make install
+mv $HOME/go/bin/evmd $HOME/go/bin/limonatad
+```
+```
+mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
+cp $HOME/go/bin/limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
+```
+
 ```
 mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
 mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin/
@@ -48,6 +63,7 @@ sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:854
 
 ```
 sed -i -E "s|type = \".*\"|type = \"app\"|g" $HOME/.evmd/config/config.toml
+sed -i -e "s/^chain-id *=.*/chain-id = \"limonata_10777-1\"/;" ~/.evmd/config/client.toml
 ```
 
 ```
