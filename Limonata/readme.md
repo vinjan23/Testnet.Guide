@@ -6,6 +6,13 @@ mv limonatad /usr/local/bin/
 rm -rf limonatad-linux-amd64.tar.gz
 ```
 ```
+git clone https://github.com/Limonata-Blockchain/limonata.git && cd limonata
+git checkout limonata-testnet-v0.1.0
+make install
+mv $HOME/go/bin/evmd $HOME/go/bin/limonatad
+cp $HOME/go/bin/limonatad /usr/local/bin/
+```
+```
 mkdir -p $HOME/.evmd/cosmovisor/genesis/bin
 cp /usr/local/bin/limonatad $HOME/.evmd/cosmovisor/genesis/bin/
 ```
