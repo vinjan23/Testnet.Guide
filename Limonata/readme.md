@@ -167,6 +167,14 @@ limonatad tx staking create-validator $HOME/.evmd/validator.json \
 --gas=auto
 ```
 ```
+limonatad tx slashing unjail \
+  --from wallet \
+  --chain-id limonata_10777-1 \
+  --gas 500000 \
+  --fees 500000000000000aLIMO \
+  -y
+```
+```
 limonatad tx slashing unjail --from wallet --chain-id limonata_10777-1 --gas auto --gas-adjustment 1.5 --gas-prices 0.05aLIMO
 ```
 ```
