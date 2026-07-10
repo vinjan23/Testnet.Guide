@@ -189,7 +189,7 @@ echo $(limonatad comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.evm
 ```
 
 ```
-limonatad tx gov vote 1 yes --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto
+limonatad tx gov vote 1 yes --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=10000000000aLIMO --gas auto
 ```
 
 ```
