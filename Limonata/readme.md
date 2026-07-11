@@ -41,12 +41,7 @@ cp $HOME/go/bin/limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-v
 ```
 
 ```
-mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
-mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin/
-rm -rf limonatad-linux-amd64.tar.gz
-```
-```
-$HOME/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin/limonatad version --long | grep -e commit -e version
+~/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin/limonatad version --long | grep -e commit -e version
 ```
 ```
 limonatad init Vinjan.Inc --chain-id limonata_10777-1
