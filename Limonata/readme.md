@@ -31,13 +31,13 @@ cd $HOME
 rm -rf limonata
 git clone https://github.com/Limonata-Blockchain/limonata.git
 cd limonata
-git checkout limonata-testnet-v0.2.0
+git checkout limonata-v0.3.2
 make install
 mv $HOME/go/bin/evmd $HOME/go/bin/limonatad
 ```
 ```
-mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
-cp $HOME/go/bin/limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-threshold-vpcap-v1/bin
+mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin
+mv $HOME/go/bin/evmd $HOME/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin/limonatad
 ```
 
 ```
