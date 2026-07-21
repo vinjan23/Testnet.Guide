@@ -115,7 +115,7 @@ latandad tx bank send $NAME $ADDR 1ultd \
 ```
 ```
 latandad tx staking edit-validator \
---details="Staking Provider-IBC Relayer discord:824628985488736336" \
+--details="LATANDA-CONTROL-VINJAN-(nonce)-20260721" \
 --from wallet \
 --chain-id latanda-testnet-1 \
 --gas auto --gas-adjustment 1.3 --fees 100ultd
