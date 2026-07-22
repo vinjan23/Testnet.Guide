@@ -115,8 +115,10 @@ latandad tx bank send $NAME $ADDR 1ultd \
 ```
 ```
 latandad tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
 --details="LATANDA-CONTROL-VINJAN-(nonce)-20260721" \
 --from wallet \
+--commission-rate 1 \
 --chain-id latanda-testnet-1 \
 --gas auto --gas-adjustment 1.3 --fees 100ultd
 ```
