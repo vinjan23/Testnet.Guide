@@ -22,9 +22,10 @@ sudo ln -s $HOME/.evmd/cosmovisor/current/bin/limonatad /usr/local/bin/limonatad
 ```
 ### Update
 ```
-wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-testnet-v0.2.0/limonatad-linux-amd64.tar.gz
+wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-v0.3.4/limonatad-linux-amd64.tar.gz
 tar xzf limonatad-linux-amd64.tar.gz
 chmod +x limonatad
+mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin/
 ```
 ```
 cd $HOME
