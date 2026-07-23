@@ -12,9 +12,7 @@ cd gno
 gnoland config init
 gnoland secrets init
 gnoland config set moniker VinjanInc
-gnoland config set rpc.laddr tcp://0.0.0.0:26657
-gnoland config set p2p.laddr tcp://0.0.0.0:26656
-gnoland config set proxy_app tcp://127.0.0.1:26658
+
 gnoland config set consensus.peer_gossip_sleep_duration 10ms
 gnoland config set consensus.timeout_commit 3s
 gnoland config set p2p.flush_throttle_timeout	10ms
@@ -23,7 +21,7 @@ gnoland config set p2p.max_num_outbound_peers 40
 gnoland config set p2p.persistent_peers g142k7zc2qym3c0u6jmkf6rv26llgr2f4nakmlmt@sentry-1.test13.testnets.gno.land:26656,g1lxkf9gn7kddrr26c640ww5wg3ezsm22we8cjpc@sentry-2.test13.testnets.gno.land:26656
 ```
 ```
-gnoland config set p2p.seeds g19q07ssuafhmg6r7ys7wp7rpc4jxc85cpvdy426@seed-1.topaz.testnets.gno.land:26656,g15k98e65gm8h7fdr3yr4tqn82lvch4a97a3sg3j@seed-2.topaz.testnets.gno.land:26656
+gnoland config set p2p.persistent_peers g19q07ssuafhmg6r7ys7wp7rpc4jxc85cpvdy426@seed-1.topaz.testnets.gno.land:26656,g15k98e65gm8h7fdr3yr4tqn82lvch4a97a3sg3j@seed-2.topaz.testnets.gno.land:26656
 ```
 ### Genesis
 ```
