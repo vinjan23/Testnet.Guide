@@ -1,7 +1,7 @@
 ### Binary
 ```
 git clone https://github.com/gnolang/gno.git
-cd gno && git checkout chain/test13
+cd gno && git checkout chain/topaz
 make -C gno.land install.gnoland install.gnokey
 ```
 
@@ -11,24 +11,27 @@ make -C gno.land install.gnoland install.gnokey
 cd gno
 gnoland config init
 gnoland secrets init
-gnoland config set moniker Vinjan.Inc
+gnoland config set moniker VinjanInc
 gnoland config set rpc.laddr tcp://0.0.0.0:${GNOLAND_PORT}657
 gnoland config set p2p.laddr tcp://0.0.0.0:${GNOLAND_PORT}656
 gnoland config set proxy_app tcp://127.0.0.1:${GNOLAND_PORT}658
 gnoland config set consensus.peer_gossip_sleep_duration 10ms
 gnoland config set consensus.timeout_commit 3s
+gnoland config set p2p.flush_throttle_timeout	10ms
 gnoland config set mempool.size 10000
-gnoland config set p2p.flush_throttle_timeout 10ms
 gnoland config set p2p.max_num_outbound_peers 40
 gnoland config set p2p.persistent_peers g142k7zc2qym3c0u6jmkf6rv26llgr2f4nakmlmt@sentry-1.test13.testnets.gno.land:26656,g1lxkf9gn7kddrr26c640ww5wg3ezsm22we8cjpc@sentry-2.test13.testnets.gno.land:26656
 ```
-
+```
+gnoland config set p2p.seeds g19q07ssuafhmg6r7ys7wp7rpc4jxc85cpvdy426@seed-1.topaz.testnets.gno.land:26656,g15k98e65gm8h7fdr3yr4tqn82lvch4a97a3sg3j@seed-2.topaz.testnets.gno.land:26656
+```
 ### Genesis
 ```
-wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/test13/genesis.json
+wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/topaz/genesis.json
 ```
-
-                                
+```
+shasum -a 256 $HOME/gno/gnoland-data/config/genesis.json
+```                              
 #### Create service
 ```
 sudo tee /etc/systemd/system/gnoland.service > /dev/null <<EOF
@@ -39,7 +42,7 @@ After=network-online.target
 User=$USER
 WorkingDirectory=$HOME/gno
 Environment="GNOROOT=/root/gno"
-ExecStart=$(which gnoland) start --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid test-13 --skip-genesis-sig-verification
+ExecStart=$(which gnoland) start --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid topaz-1 --skip-genesis-sig-verification
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
