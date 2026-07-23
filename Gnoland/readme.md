@@ -12,9 +12,9 @@ cd gno
 gnoland config init
 gnoland secrets init
 gnoland config set moniker VinjanInc
-gnoland config set rpc.laddr tcp://0.0.0.0:${GNOLAND_PORT}657
-gnoland config set p2p.laddr tcp://0.0.0.0:${GNOLAND_PORT}656
-gnoland config set proxy_app tcp://127.0.0.1:${GNOLAND_PORT}658
+gnoland config set rpc.laddr tcp://0.0.0.0:26657
+gnoland config set p2p.laddr tcp://0.0.0.0:26656
+gnoland config set proxy_app tcp://127.0.0.1:26658
 gnoland config set consensus.peer_gossip_sleep_duration 10ms
 gnoland config set consensus.timeout_commit 3s
 gnoland config set p2p.flush_throttle_timeout	10ms
