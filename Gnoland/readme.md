@@ -129,18 +129,24 @@ gnokey broadcast -remote "https://rpc.test13.testnets.gno.land" call.tx
 ```
 gnokey maketx call \
   --pkgpath gno.land/r/gnops/valopers \
-  --func UpdateMoniker \
-  --args "VinjanInc" \
-  --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
-  --args "$(cat desc.txt)" \
+  --func "UpdateDescription" \
+  --args "cancel" \
+  --args "g1zwyzfwxq896jt2yquf34lfqp0p0grsmlxzncvf" \
+  --args "shuttingdown" \
   --gas-fee 1000000ugnot \
   --gas-wanted 50000000 \
-  --chainid test-13 \
-  --remote https://rpc.test13.testnets.gno.land \
+  --chainid topaz-1 \
+  --remote https://rpc.topaz.testnets.gno.land \
   --broadcast \
   wallet
 ```
-  
+
+```
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "UpdateDescription" -args $'g1zwyzfwxq896jt2yquf34lfqp0p0grsmlxzncvf' -args $'$(cat desc.txt)' -gas-fee 1000000ugnot -gas-wanted 1_000_000_000 -send "" -chainid "topaz-1" -remote "https://rpc.topaz.testnets.gno.land" wallet
+```
+```
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "UpdateMoniker" -args $'g1zwyzfwxq896jt2yquf34lfqp0p0grsmlxzncvf' -args $'cancel' -gas-fee 1000000ugnot -gas-wanted 1_000_000_000 -send "" -chainid "topaz-1" -remote "https://rpc.topaz.testnets.gno.land" wallet
+```
 ### Stop
 ```
 sudo systemctl stop gnoland
