@@ -99,9 +99,9 @@ gnokey maketx call \
   --args "VinjanInc" \
   --args "$(cat desc.txt)" \
   --args "data-center" \
-  --args "g1zwyzfwxq896jt2yquf34lfqp0p0grsmlxzncvf" \
-  --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqf69ag8cw8ne7jggsce33qn0yr69zjy269ujnmvrll0pxs8jldc2whssgn" \
-  --gas-fee 1000000ugnot --gas-wanted 50000000 \
+  --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
+  --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqgtyyuckkfnfhmvemjeme6x38hmrdtdlmm49u20wv6gl82k0spvu3ngxpy" \
+  --gas-fee 1000000ugnot --gas-wanted 1000000000 \
   --chainid topaz-1 \
   --remote https://rpc.topaz.testnets.gno.land \
   --broadcast \
