@@ -22,27 +22,27 @@ sudo ln -s $HOME/.evmd/cosmovisor/current/bin/limonatad /usr/local/bin/limonatad
 ```
 ### Update
 ```
-wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-v0.3.4/limonatad-linux-amd64.tar.gz
+wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-v0.3.5/limonatad-linux-amd64.tar.gz
 tar xzf limonatad-linux-amd64.tar.gz
 chmod +x limonatad
-mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin/
+mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/
 ```
 ```
 cd $HOME
 rm -rf limonata
 git clone https://github.com/Limonata-Blockchain/limonata.git
 cd limonata
-git checkout limonata-v0.3.2
+git checkout limonata-v0.3.5
 make install
 mv $HOME/go/bin/evmd $HOME/go/bin/limonatad
 ```
 ```
-mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin
-mv $HOME/go/bin/evmd $HOME/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin/limonatad
+mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin
+mv $HOME/go/bin/evmd $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/limonatad
 ```
 
 ```
-~/.evmd/cosmovisor/upgrades/encmempool-transparent-dkg-v1/bin/limonatad version --long | grep -e commit -e version
+~/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/limonatad version --long | grep -e commit -e version
 ```
 ```
 limonatad init Vinjan.Inc --chain-id limonata_10777-1
