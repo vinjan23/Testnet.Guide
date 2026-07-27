@@ -26,8 +26,8 @@ make build
 ```
 ```
 mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin
-wget https://github.com/KiiChain/kiichain/releases/download/v7.3.0/kiichaind-v7.3.0-linux-amd64 -O $HOME/.kiichainchain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
-chmod +x $HOME/.kiichainchain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
+wget https://github.com/KiiChain/kiichain/releases/download/v7.3.0/kiichaind-v7.3.0-linux-amd64 -O $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
+chmod +x $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
 ```
 ```
 mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.2.0/bin
