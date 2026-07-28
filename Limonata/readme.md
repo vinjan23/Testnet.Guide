@@ -38,7 +38,8 @@ mv $HOME/go/bin/evmd $HOME/go/bin/limonatad
 ```
 ```
 mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin
-mv $HOME/go/bin/evmd $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/limonatad
+mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/
+rm -rf limonatad-linux-amd64.tar.gz
 ```
 
 ```
