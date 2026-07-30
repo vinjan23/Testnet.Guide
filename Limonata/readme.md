@@ -42,7 +42,10 @@ rm -rf limonatad-linux-amd64.tar.gz
 ```
 
 ```
-~/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/limonatad version --long | grep -e commit -e version
+~/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/limonatad version --long | grep -e commit -e version -e server_name
+```
+```
+limonatad version --long | grep -e commit -e version -e server_name
 ```
 ```
 limonatad init Vinjan.Inc --chain-id limonata_10777-1
