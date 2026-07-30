@@ -66,7 +66,7 @@ sed -i -e "s/^chain-id *=.*/chain-id = \"limonata_10777-1\"/;" ~/.evmd/config/cl
 ```
 
 ```
-peers="f8bef28f14306bb9b70e026bcc3c89b6188a6688@95.216.102.220:19156"
+peers="5524db78063da27c88a8f674bd1a220f54ff823b@65.21.234.111:19156"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.evmd/config/config.toml
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aLIMO\"/" $HOME/.evmd/config/app.toml
 ```
