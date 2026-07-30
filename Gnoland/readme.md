@@ -60,6 +60,9 @@ journalctl -u gnoland -f -o cat
 ```
 ### Sync Info
 ```
+curl -s http://localhost:26657/status | jq -r '.result.sync_info'
+```
+```
 curl -s http://localhost:26657/status | jq -r .result.sync_info.catching_up
 ```
 ### Last Block
