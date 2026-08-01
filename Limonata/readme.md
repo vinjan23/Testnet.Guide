@@ -31,9 +31,14 @@ make install
 mv $HOME/go/bin/evmd $HOME/go/bin/limonatad
 ```
 ```
-wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-v0.3.5/limonatad-linux-amd64.tar.gz
+wget https://github.com/Limonata-Blockchain/limonata/releases/download/limonata-v0.3.6/limonatad-linux-amd64.tar.gz
 tar xzf limonatad-linux-amd64.tar.gz
 chmod +x limonatad
+```
+```
+mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-strict-concentration-v1/bin
+mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-strict-concentration-v1/bin/
+rm -rf limonatad-linux-amd64.tar.gz
 ```
 ```
 mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin
