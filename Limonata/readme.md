@@ -110,6 +110,25 @@ WantedBy=multi-user.target
 EOF
 ```
 ```
+sudo tee /etc/systemd/system/limonatad.service > /dev/null <<EOF
+[Unit]
+Description=Limonata
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start --chain-id limonata_10777-1 --evm.evm-chain-id 10777 --minimum-gas-prices 0aLIMO
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+Environment="DAEMON_NAME=limonatad"
+Environment="DAEMON_HOME=$HOME/.evmd"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+```
 sudo systemctl daemon-reload
 sudo systemctl enable limonatad
 sudo systemctl restart limonatad
