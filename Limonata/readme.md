@@ -41,13 +41,10 @@ mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-strict-concentration-v1/
 rm -rf limonatad-linux-amd64.tar.gz
 ```
 ```
-mkdir -p $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin
-mv limonatad $HOME/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/
-rm -rf limonatad-linux-amd64.tar.gz
+~/.evmd/cosmovisor/upgrades/encmempool-strict-concentration-v1/bin/limonatad version --long | grep -e commit -e version -e server_name
 ```
-
 ```
-~/.evmd/cosmovisor/upgrades/encmempool-dkg-dealing-retention-v1/bin/limonatad version --long | grep -e commit -e version -e server_name
+sha256sum ~/.evmd/cosmovisor/upgrades/encmempool-strict-concentration-v1/bin/limonatad
 ```
 ```
 limonatad version --long | grep -e commit -e version -e server_name
