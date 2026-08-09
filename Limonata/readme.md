@@ -165,16 +165,16 @@ nano $HOME/.evmd/validator.json
 ```
 ```
 {
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"itv7YUKTVE/yvlTouZIIz9yFBomaryM/1pkdIUC+cy4="},
-  "amount": "200000000000000000000aLIMO",
-  "moniker": "Vinjan.Inc",
-  "identity": "7C66E36EA2B71F68",
-  "website": "https://vinjan-inc.com",
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"DPkddx2J/HjdGILwWdC1KxoBFjCx3T4dYHeZB14qv9Y="},
+  "amount": "1000000000000000000aLIMO",
+  "moniker": "",
+  "identity": "",
+  "website": "",
   "security": "",
-  "details": "Staking Provider-IBC Relayer",
+  "details": "",
   "commission-rate": "0.10",
-  "commission-max-rate": "1",
-  "commission-max-change-rate": "1",
+  "commission-max-rate": "0.2",
+  "commission-max-change-rate": "0.1",
   "min-self-delegation": "1"
 }
 ```
@@ -183,7 +183,7 @@ limonatad tx staking create-validator $HOME/.evmd/validator.json \
 --from wallet \
 --chain-id limonata_10777-1 \
 --gas-prices=0.05aLIMO \
---gas-adjustment=1.2 \
+--gas-adjustment=1.5 \
 --gas=auto
 ```
 ```
