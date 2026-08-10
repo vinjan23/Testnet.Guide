@@ -21,21 +21,21 @@ cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v7.2.0
+git checkout v7.3.1
 make build
 ```
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin
-wget https://github.com/KiiChain/kiichain/releases/download/v7.3.0/kiichaind-v7.3.0-linux-amd64 -O $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
-chmod +x $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
-```
-```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.2.0/bin
-mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v7.2.0/bin/
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin
+mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin/
 rm -rf build
 ```
 ```
-$HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind version --long | grep -e commit -e version
+$HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin/kiichaind version --long | grep -e commit -e version
+```
+```
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin
+wget https://github.com/KiiChain/kiichain/releases/download/v7.3.0/kiichaind-v7.3.0-linux-amd64 -O $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
+chmod +x $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
 ```
 
 ```
