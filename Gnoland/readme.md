@@ -1,7 +1,7 @@
 ### Binary
 ```
 git clone https://github.com/gnolang/gno.git
-cd gno && git checkout chain/topaz
+cd gno && git checkout chain/sapphire
 make -C gno.land install.gnoland install.gnokey
 ```
 
@@ -19,18 +19,21 @@ gnoland config set consensus.timeout_commit 3s
 gnoland config set p2p.flush_throttle_timeout	10ms
 gnoland config set mempool.size 10000
 gnoland config set p2p.max_num_outbound_peers 40
-gnoland config set p2p.persistent_peers g142k7zc2qym3c0u6jmkf6rv26llgr2f4nakmlmt@sentry-1.test13.testnets.gno.land:26656,g1lxkf9gn7kddrr26c640ww5wg3ezsm22we8cjpc@sentry-2.test13.testnets.gno.land:26656
 ```
+
 ```
-gnoland config set p2p.persistent_peers g19q07ssuafhmg6r7ys7wp7rpc4jxc85cpvdy426@seed-1.topaz.testnets.gno.land:26656,g15k98e65gm8h7fdr3yr4tqn82lvch4a97a3sg3j@seed-2.topaz.testnets.gno.land:26656
+gnoland config set p2p.persistent_peers g10xll77gz6yzg43v9mdalj8360ng6sunt2vvvhf@seed-1.sapphire.testnets.gno.land:26656,g1gw2d7qsmrg06p204ty2qs8ygzd32t2c7p46te0@seed-2.sapphire.testnets.gno.land:26656
 ```
 ### Genesis
 ```
-wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/topaz/genesis.json
+wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/sapphire/genesis.json
 ```
 ```
 shasum -a 256 $HOME/gno/gnoland-data/config/genesis.json
-```                              
+```
+
+`d511e0e5b767d4e53f5c1afeeea1bc61d2c7b2118146c820f1f3e4296f67498e  genesis.json`
+
 #### Create service
 ```
 sudo tee /etc/systemd/system/gnoland.service > /dev/null <<EOF
@@ -41,7 +44,7 @@ After=network-online.target
 User=$USER
 WorkingDirectory=$HOME/gno
 Environment="GNOROOT=/root/gno"
-ExecStart=$(which gnoland) start --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid topaz-1 --skip-genesis-sig-verification
+ExecStart=$(which gnoland) start --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid sapphire-1 --skip-genesis-sig-verification
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
