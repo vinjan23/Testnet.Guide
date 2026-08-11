@@ -90,15 +90,6 @@ gnoland secrets get validator_key | jq -r '.pub_key'
 
 ### Register
 ```
-gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register" -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 30000000 -send "" <wallet_address> > call.tx
-```
-- Example
-```
-gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider IBC Relayer' -args $'data-center' -args $'g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp' -gas-fee 1000000ugnot -gas-wanted 50000000 -send "" --broadcast=false g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296 > call.tx
-```
-
-- or
-```
 gnokey maketx call \
   --pkgpath gno.land/r/gnops/valopers \
   --func Register \
@@ -113,7 +104,28 @@ gnokey maketx call \
   --broadcast \
   wallet
 ```
-
+### Edit
+```
+gnokey maketx call \
+  --pkgpath gno.land/r/gnops/valopers \
+  --func "UpdateDescription" \
+  --args "cancel" \
+  --args "g1zwyzfwxq896jt2yquf34lfqp0p0grsmlxzncvf" \
+  --args "shuttingdown" \
+  --gas-fee 1000000ugnot \
+  --gas-wanted 50000000 \
+  --chainid topaz-1 \
+  --remote https://rpc.topaz.testnets.gno.land \
+  --broadcast \
+  wallet
+```
+```
+gnokey maketx call -pkgpath "gno.land/r/gnoland/valopers" -func "Register" -args "" -args "" -args "" -args "" -gas-fee 1000000ugnot -gas-wanted 30000000 -send "" <wallet_address> > call.tx
+```
+- Example
+```
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'VinjanInc' -args $'Vinjan.Inc is Stake Provider IBC Relayer' -args $'data-center' -args $'g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zqt8jkyldwn80epjn2hvrduktmkkjfq0telylp5qxt35afawgnfu2ufupdp' -gas-fee 1000000ugnot -gas-wanted 50000000 -send "" --broadcast=false g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296 > call.tx
+```
 ### Get Account Number and Sequence Sequence - Needs to be done everytime before making an transaction
 ```
 gnokey query -remote "https://rpc.test13.testnets.gno.land" auth/accounts/<wallet_address>
@@ -130,21 +142,6 @@ gnokey sign -tx-path call.tx -chainid "test13" -account-number 657466 -account-s
 ### Sign
 ```
 gnokey broadcast -remote "https://rpc.test13.testnets.gno.land" call.tx
-```
-### Edit
-```
-gnokey maketx call \
-  --pkgpath gno.land/r/gnops/valopers \
-  --func "UpdateDescription" \
-  --args "cancel" \
-  --args "g1zwyzfwxq896jt2yquf34lfqp0p0grsmlxzncvf" \
-  --args "shuttingdown" \
-  --gas-fee 1000000ugnot \
-  --gas-wanted 50000000 \
-  --chainid topaz-1 \
-  --remote https://rpc.topaz.testnets.gno.land \
-  --broadcast \
-  wallet
 ```
 
 ```
