@@ -108,7 +108,7 @@ gnokey maketx call \
   --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
   --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zpc9pqzg3p2a50tu30yt7t5fmtv0y0urs26y5mjsr8u5gnunreu2qsmga49" \
   --gas-fee 1000000ugnot --gas-wanted 50000000 \
-  --chainid topaz-1 \
+  --chainid sapphire-1 \
   --remote https://rpc.sapphire.testnets.gno.land \
   --broadcast \
   wallet
