@@ -1,24 +1,17 @@
 ```
 cd $HOME
-rm -rf lumiwave-protocol
-git clone https://github.com/LumiWave/lumiwave-protocol.git
-cd lumiwave-protocol
-git checkout v0.0.11-mainnet
+rm -rf osmosis
+git clone https://github.com/osmosis-labs/osmosis.git
+cd osmosis
+git checkout v31.0.0-rc1
 make install
 ```
+
 ```
-mkdir -p $HOME/.lumiwave-protocol/cosmovisor/genesis/bin
-cp $HOME/go/bin/lumiwave-protocold $HOME/.lumiwave-protocol/cosmovisor/genesis/bin/
-```
-```
-sudo ln -s $HOME/.lumiwave-protocol/cosmovisor/genesis $HOME/.lumiwave-protocol/cosmovisor/current -f
-sudo ln -s $HOME/.lumiwave-protocol/cosmovisor/current/bin/lumiwave-protocold /usr/local/bin/lumiwave-protocold -f
+osmosisd version --long | grep -e commit -e version
 ```
 ```
-lumiwave-protocold version --long | grep -e commit -e version
-```
-```
-lumiwave-protocold init Vinjan.Inc --chain-id lumiwaveprotocol
+osmosisd init Vinjan.Inc --chain-id osmo-test-5
 ```
 ```
 wget -O $HOME/.lumiwave-protocol/config/genesis.json https://raw.githubusercontent.com/LumiWave/lumiwave-protocol/refs/heads/master/genesis/mainnet/genesis.json
