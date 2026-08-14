@@ -6,7 +6,6 @@ cd osmosis
 git checkout v31.0.0-rc1
 make install
 ```
-
 ```
 osmosisd version --long | grep -e commit -e version
 ```
@@ -14,63 +13,38 @@ osmosisd version --long | grep -e commit -e version
 osmosisd init Vinjan.Inc --chain-id osmo-test-5
 ```
 ```
-wget -O $HOME/.lumiwave-protocol/config/genesis.json https://raw.githubusercontent.com/LumiWave/lumiwave-protocol/refs/heads/master/genesis/mainnet/genesis.json
+wget -O ~/.osmosisd/config/genesis.json https://osmosis.fra1.digitaloceanspaces.com/osmo-test-5/genesis.json
 ```
 ```
-PORT=173
-sed -i -e "s%:26657%:${PORT}57%" $HOME/.lumiwave-protocol/config/client.toml
-sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.lumiwave-protocol/config/config.toml
-sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.lumiwave-protocol/config/app.toml
+PORT=18
+sed -i -e "s%:26657%:${PORT}657%" $HOME/.osmosisd/config/client.toml
+sed -i -e "s%:26658%:${PORT}658%; s%:26657%:${PORT}657%; s%:6060%:${PORT}060%; s%:26656%:${PORT}656%; s%:26660%:${PORT}060%" $HOME/.osmosisd/config/config.toml
+sed -i -e "s%:1317%:${PORT}317%; s%:9090%:${PORT}090%" $HOME/.osmosisd/config/app.toml
 ```
-```
-peers="$(curl -sS https://lwp-mainnet-rpc.lumiwavelab.com:443/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.lumiwave-protocol/config/config.toml
-
-peers="43aa28394f4bb43d4680834d125f487f5e18ad85@192.168.1.76:26656"
-sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.lumiwave-protocol/config/config.toml
+```        
+peers="a5f81c035ff4f985d5e7c940c7c3b846389b7374@167.235.115.14:26656,05c41cc1fc7c8cb379e54d784bcd3b3907a1568e@157.245.26.231:26656,7c2b9e76be5c2142c76b429d9c29e902599ceb44@157.245.21.183:26656,f440c4980357d8b56db87ddd50f06bd551f1319a@5.78.98.19:26656"
+sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.osmosisd/config/config.toml
 ```
 
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025ulwp\"/" $HOME/.lumiwave-protocol/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.03usmo\"/" $HOME/.osmosisd/config/app.toml
 ```
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=".*|pruning-keep-recent = "100"|' \
--e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
-$HOME/.lumiwave-protocol/config/app.toml
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+$HOME/.osmosisd/config/app.toml
 ```
 ```
-sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.lumiwave-protocol/config/config.toml
-```
-```
-sudo tee /etc/systemd/system/lumiwave-protocold.service > /dev/null << EOF
+sudo tee /etc/systemd/system/osmosisd.service > /dev/null <<EOF
 [Unit]
-Description=lumiwave-protocol
+Description=osmosis
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
-Restart=on-failure
-RestartSec=10
-LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.lumiwave-protocol"
-Environment="DAEMON_NAME=lumiwave-protocold"
-Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.lumiwave-protocol/cosmovisor/current/bin"
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-```
-sudo tee /etc/systemd/system/lumiwave-protocold.service > /dev/null <<EOF
-[Unit]
-Description=lumiwave-protocol
-After=network-online.target
-[Service]
-User=$USER
-ExecStart=$(which lumiwave-protocold) start
+ExecStart=$(which osmosisd) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -80,31 +54,20 @@ EOF
 ```
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable lumiwave-protocold
-sudo systemctl restart lumiwave-protocold
-sudo journalctl -u lumiwave-protocold -f -o cat
+sudo systemctl enable osmosisd
+sudo systemctl restart osmosisd
+sudo journalctl -u osmosisd -f -o cat
 ```
 ```
-SNAP_RPC="https://lwp-mainnet-rpc.lumiwavelab.com:443"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i "/\[statesync\]/, /^enable =/ s/=.*/= true/;\
-/^rpc_servers =/ s|=.*|= \"$SNAP_RPC,$SNAP_RPC\"|;\
-/^trust_height =/ s/=.*/= $BLOCK_HEIGHT/;\
-/^trust_hash =/ s/=.*/= \"$TRUST_HASH\"/" $HOME/.lumiwave-protocol/config/config.toml
-sudo systemctl restart lumiwave-protocold
-sudo journalctl -u lumiwave-protocold -f -o cat
+osmosisd status 2>&1 | jq .sync_info
 ```
-
 ```
-sudo systemctl stop lumiwave-protocold
-sudo systemctl disable lumiwave-protocold
-sudo rm /etc/systemd/system/lumiwave-protocold.service
+sudo systemctl stop osmosisd
+sudo systemctl disable osmosisd
+sudo rm /etc/systemd/system/osmosisd.service
 sudo systemctl daemon-reload
-rm -rf $(which lumiwave-protocold)
-rm -rf .lumiwave-protocol
-rm -rf lumiwave-protocol
+rm -f $(which osmosisd)
+rm -rf $HOME/.osmosisd
+rm -rf $HOME/osmosis
 ```
-
 
