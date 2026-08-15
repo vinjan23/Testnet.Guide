@@ -5,7 +5,7 @@ rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
 git checkout v7.3.1
-make build
+make install
 ```
 ```
 mkdir -p $HOME/.kiichain/cosmovisor/genesis/bin
@@ -56,13 +56,8 @@ sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:854
 ```
 wget -O $HOME/.kiichain/config/genesis.json https://raw.githubusercontent.com/KiiChain/testnets/refs/heads/main/testnet_oro/genesis.json
 ```
-```
-curl -L https://snapshot-t.vinjan.xyz/kiichain/genesis.json > $HOME/.kiichain/config/genesis.json
-```
 ### Addrbook
-```
-curl -L https://snapshot-t.vinjan.xyz/kiichain/addrbook.json > $HOME/.kiichain/config/addrbook.json
-```
+
 ### Gas
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"1000000000akii\"/" $HOME/.kiichain/config/app.toml
@@ -153,40 +148,32 @@ kiichaind  q bank balances $(kiichaind keys show wallet -a)
 ```
 kiichaind  q bank balances kii1s9uuamt582pn38ptq2chduawd2fzgzew7jrw3h --keyring-backend test
 ```
+kiichaind comet show-validator
 
-### Validator
-```
-kiichaind tx staking create-validator \
---amount=9990000ukii \
---pubkey=$(kiichaind tendermint show-validator) \
---moniker="Vinjan.Inc" \
---identity="7C66E36EA2B71F68" \
---website="https://service.vinjan.xyz" \
---details="Stake Provider & IBC Relayer" \
---chain-id=kiichain3 \
---commission-rate=0.05 \
---commission-max-rate=0.25 \
---commission-max-change-rate=0.05 \
---min-self-delegation=1 \
---gas="auto" \
---gas-adjustment 1.3 \
---gas-prices="100000000000akii" \
---from=wallet
-```
-```
-kiichaind tx staking edit-validator \
---new-moniker="Vinjan.Inc" \
---identity="7C66E36EA2B71F68" \
---details="Staking Provider & IBC Relayer" \
---website="https://vinjan-inc.com" \
---commission-rate=0.2 \
+nano $HOME/.kiichain/validator.json
+
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"gOaAzBxytNBv3xv4UBAcAfIeKAH0N9UlpnKY/6X0NEI="},
+  "amount": "5000000000000000000akii",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://vinjan-inc.com",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.1",
+  "commission-max-rate": "1",
+  "commission-max-change-rate": "1",
+  "min-self-delegation": "1"
+}
+
+kiichaind tx staking create-validator $HOME/.kiichain/validator.json \
+--from wallet \
 --chain-id oro_1336-1 \
---gas="auto" \
---gas-adjustment 1.5 \
 --gas-prices="100000000000akii" \
---from=wallet \
---keyring-backend test
-```
+--gas-adjustment=1.2 \
+--gas=auto
+
+
 ### Unjail
 ```
 kiichaind tx slashing unjail --from wallet --chain-id oro_1336-1 --gas-adjustment=1.3 --gas-prices 100000000000akii --gas auto
@@ -204,7 +191,7 @@ kiichaind  tx distribution withdraw-rewards  kiivaloper1s9uuamt582pn38ptq2chduaw
 ```
 ### Own Peer
 ```
-echo $(kiichaind tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.kiichain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+echo $(kiichaind comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.kiichain/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 ### Vote
 ```
@@ -232,3 +219,4 @@ rm -rf kiichain
 ```
 cp $HOME/.kiichain/config/addrbook.json /var/www/snapshot-t/kiichain/addrbook.json
 ```
+ 
