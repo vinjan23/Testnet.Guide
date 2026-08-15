@@ -4,12 +4,12 @@ cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v1.2.0
+git checkout v7.3.1
 make build
 ```
 ```
 mkdir -p $HOME/.kiichain/cosmovisor/genesis/bin
-mv build/kiichaind $HOME/.kiichain/cosmovisor/genesis/bin/
+cp $HOME/go/bin/kiichaind $HOME/.kiichain/cosmovisor/genesis/bin/
 ```
 ```
 sudo ln -s $HOME/.kiichain/cosmovisor/genesis $HOME/.kiichain/cosmovisor/current -f
@@ -47,12 +47,10 @@ kiichaind init Vinjan.Inc --chain-id oro_1336-1
 ```
 ### Port
 ```
-sed -i.bak -e  "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:19657\"%" $HOME/.kiichain/config/client.toml
-```
-```
-sed -i -e "s%:26657%:19657%" $HOME/.kiichain/config/client.toml
-sed -i -e "s%:26658%:19658%; s%:26657%:19657%; s%:6060%:19060%; s%:26656%:19656%; s%:26660%:19660%" $HOME/.kiichain/config/config.toml
-sed -i -e "s%:1317%:19317%; s%:9090%:19090%" $HOME/.kiichain/config/app.toml
+PORT=199
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.kiichain/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.kiichain/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:8546%:${PORT}46%; s%:6065%:${PORT}65%" $HOME/.kiichain/config/app.toml
 ```
 ### Genesis
 ```
@@ -74,9 +72,9 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"1000000000akii\"/" 
 ```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
--e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "1000"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = ""|' \
--e 's|^pruning-interval *=.*|pruning-interval = "11"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
 $HOME/.kiichain/config/app.toml
 ```
 ### Indexer
@@ -99,6 +97,24 @@ Environment="DAEMON_HOME=$HOME/.kiichain"
 Environment="DAEMON_NAME=kiichaind"
 Environment="UNSAFE_SKIP_BACKUP=true"
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.kiichain/cosmovisor/current/bin"
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo tee /etc/systemd/system/kiichaind.service > /dev/null <<EOF
+[Unit]
+Description=Kiichain
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+Environment="DAEMON_NAME=kiichaind"
+Environment="DAEMON_HOME=$HOME/.kiichain"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 [Install]
 WantedBy=multi-user.target
 EOF
