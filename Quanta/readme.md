@@ -3,6 +3,8 @@ docker pull xd637/quanta-node:latest
 ```
 ```
 docker run -d \
+  --memory=3.5g \
+  --memory-swap=3.5g \
   --name quanta-validator \
   --restart always \
   --network host \
@@ -15,7 +17,7 @@ docker run -d \
     --validator-wallet /home/quanta/quanta_data/validator.qua \
     --bootstrap node1.quantachain.org:8333
 ```
-
+  
 ```
 docker logs -f quanta-validator
 ```
