@@ -2,8 +2,6 @@
 docker pull xd637/quanta-node:latest
 ```
 ```
-docker rm -f quanta-validator
-
 docker run -d \
   --name quanta-validator \
   --restart always \
@@ -21,12 +19,15 @@ docker run -d \
 docker logs --tail 50 quanta-validator
 ```
 ```
-docker exec -it quanta-validator quanta status
-```
-```
 docker logs -f quanta-validator
+```
+```
+docker exec -it quanta-validator quanta status
 ```
 ```
 docker stop quanta-validator
 docker rm quanta-validator
+```
+```
+docker rm -f quanta-validator
 ```
