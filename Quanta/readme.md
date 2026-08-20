@@ -21,9 +21,14 @@ docker logs --tail 50 quanta-validator
 ```
 docker logs -f quanta-validator
 ```
+### Status
 ```
 docker exec -it quanta-validator quanta status
 ```
+```
+docker exec -it quanta-validator quanta status --rpc-port 7783
+```
+### Delete
 ```
 docker stop quanta-validator
 docker rm quanta-validator
@@ -31,3 +36,11 @@ docker rm quanta-validator
 ```
 docker rm -f quanta-validator
 ```
+### Stake
+```
+docker exec -it quanta-validator quanta-wallet stake \
+  --node http://127.0.0.1:3002 \
+  --wallet /home/quanta/quanta_data/validator.qua \
+  --amount 100000
+```
+  
