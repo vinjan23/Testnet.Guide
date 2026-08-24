@@ -142,7 +142,7 @@ safrochaind tx staking edit-validator \
 --details="Staking Provider-IBC Relayer" \
 --from wallet \
 --chain-id safro-testnet-1 \
---commission-rate 0.15 \
+--commission-rate 0.30 \
 --fees 5000usaf
 ```
 ### Unjail
