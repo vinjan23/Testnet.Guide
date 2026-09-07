@@ -15,7 +15,7 @@ docker run -d \
     --port 3002 \
     --rpc-port 7783 \
     --validator-wallet /home/quanta/quanta_data/validator.qua \
-    --bootstrap node1.quantachain.org:8333
+    --bootstrap node1.quantachain.org:8333 --advertise-addr 95.216.102.220
 ```
   
 ```
