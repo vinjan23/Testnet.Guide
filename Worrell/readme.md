@@ -80,7 +80,7 @@ nano $HOME/.worrell/validator.json
 
 {
   "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"vcz9YYqbuy7H344Z4Zfay4kkfiD7nonbp/6yuWEsk7w="},
-  "amount": "",
+  "amount": "1000000uworrell",
   "moniker": "Vinjan.Inc",
   "identity": "7C66E36EA2B71F68",
   "website": "https://vinjan-inc.com",
@@ -88,7 +88,7 @@ nano $HOME/.worrell/validator.json
   "details": "Staking Provider-IBC Relayer",
   "commission-rate": "0.10",
   "commission-max-rate": "1",
-  "commission-max-change-rate": "11",
+  "commission-max-change-rate": "1",
   "min-self-delegation": "1"
 }
 ```
