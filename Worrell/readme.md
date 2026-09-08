@@ -100,4 +100,11 @@ worrelld tx staking create-validator $HOME/.worrell/validator.json \
 --gas-adjustment=1.5 \
 --gas=auto
 ```
+```
+curl -X POST http://164.68.98.186:4500 \
+  -H "Content-Type: application/json" \
+  -d '{"address":"worrell1wch8djxcfwtwrph4e6ea8aehsftrt0ccrlpfp9"}'
+```
 
+
+  
