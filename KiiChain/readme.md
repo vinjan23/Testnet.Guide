@@ -29,15 +29,15 @@ mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin
 mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin/
 rm -rf build
 ```
-```
-$HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin/kiichaind version --long | grep -e commit -e version
-```
-```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin
-wget https://github.com/KiiChain/kiichain/releases/download/v7.3.0/kiichaind-v7.3.0-linux-amd64 -O $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
-chmod +x $HOME/.kiichain/cosmovisor/upgrades/v7.3.0/bin/kiichaind
-```
 
+```
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.4.0/bin
+wget https://github.com/KiiChain/kiichain/releases/download/v7.4.0/kiichaind-v7.4.0-linux-amd64 -O $HOME/.kiichain/cosmovisor/upgrades/v7.4.0/bin/kiichaind
+chmod +x $HOME/.kiichain/cosmovisor/upgrades/v7.4.0/bin/kiichaind
+```
+```
+$HOME/.kiichain/cosmovisor/upgrades/v7.4.0/bin/kiichaind version --long | grep -e commit -e version
+```
 ```
 kiichaind version --long | grep -e commit -e version
 ```
