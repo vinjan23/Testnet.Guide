@@ -101,6 +101,20 @@ worrelld tx staking create-validator $HOME/.worrell/validator.json \
 --gas=auto
 ```
 ```
+worrelld tx staking edit-validator \
+--new-moniker="Vinjan.Inc" \
+--identity="7C66E36EA2B71F68" \
+--website="https://vinjan-inc.com" \
+--details="Staking Provider-IBC Relayer" \
+--from wallet \
+--commission-rate 1 \
+--chain-id worrell-testnet-1 \
+--gas-prices=0.025uworrell \
+--gas-adjustment=1.5 \
+--gas=auto
+```
+
+```
 curl -X POST http://164.68.98.186:4500 \
   -H "Content-Type: application/json" \
   -d '{"address":"worrell1wch8djxcfwtwrph4e6ea8aehsftrt0ccrlpfp9"}'
