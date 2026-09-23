@@ -108,5 +108,7 @@ curl -X POST http://164.68.98.186:4500 \
 ```
 worrelld tx staking delegate $(worrelld keys show wallet --bech val -a) 100000000uworrell --from wallet --chain-id worrell-testnet-1 --gas-adjustment=1.5 --gas-prices 0.025uworrell --gas auto
 ```
+```
+worrelld tx gov vote 2 yes --from wallet --chain-id worrell-testnet-1 --gas-adjustment=1.5 --gas-prices 0.025uworrell --gas auto
+```
 
-  
