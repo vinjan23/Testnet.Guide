@@ -129,6 +129,9 @@ latandad tx staking delegate $(latandad keys show wallet --bech val -a) 15000000
 latandad tx distribution withdraw-rewards $(latandad keys show wallet --bech val -a) --commission --from wallet --chain-id latanda-testnet-1 --gas-adjustment=1.5 --gas=auto --gas-prices=0.001ultd
 ```
 ```
+latandad tx gov vote 4 yes --from wallet --chain-id latanda-testnet-1 --gas-adjustment=1.5 --gas=auto --gas-prices=0.001ultd
+```
+```
 echo $(latandad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.latanda/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
 ```
 ```
