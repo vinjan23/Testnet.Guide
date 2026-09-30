@@ -90,7 +90,7 @@ sed -i 's|^indexer *=.*|indexer = "null"|' /home/vinjan/.evmd/config/config.toml
 ```
 sudo tee /etc/systemd/system/limonatad.service > /dev/null <<'EOF'
 [Unit]
-Description=limonatad
+Description=limonata
 After=network-online.target
 [Service]
 User=vinjan
