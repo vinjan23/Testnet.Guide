@@ -1,14 +1,13 @@
 ### Binary
 ```
 git clone https://github.com/gnolang/gno.git
-cd gno && git checkout chain/pearl
+cd gno && git checkout chain/onyx
 make -C gno.land install.gnoland install.gnokey
 ```
 
 
 ### Init
 ```
-cd gno
 gnoland config init
 gnoland secrets init
 gnoland config set moniker VinjanInc
@@ -22,17 +21,16 @@ gnoland config set p2p.max_num_outbound_peers 40
 ```
 
 ```
-gnoland config set p2p.persistent_peers g1m37xukfq6yl555k93fcyzns83qnmgyax9zm875@seed-1.pearl.testnets.gno.land:26656,g1ngukqd3khekaqjf90k45cglzm0l25wwzl2fkn2@seed-2.pearl.testnets.gno.land:26656
+gnoland config set g1x5mlj5ava0dw9vkf4j6admjlzswm6f06p44krn@seed-1.onyx.testnets.gno.land:26656,g1grq5zswt0dlwwe7clr4359w70k2ewgse0gcwck@seed-2.onyx.testnets.gno.land:26656
+
 ```
 ### Genesis
 ```
-wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/pearl/genesis.json
+wget -O $HOME/gno/gnoland-data/config/genesis.json https://github.com/gnolang/gno/releases/download/chain/onyx/genesis.json
 ```
 ```
 shasum -a 256 $HOME/gno/gnoland-data/config/genesis.json
 ```
-
-`c45fe60c8c8a1f859d9e4d5aad7ce4d100ff0eb78302e71318ba0de481a8dc91  genesis.json`
 
 #### Create service
 ```
@@ -44,7 +42,7 @@ After=network-online.target
 User=$USER
 WorkingDirectory=$HOME/gno
 Environment="GNOROOT=/root/gno"
-ExecStart=$(which gnoland) start --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid pearl-1 --skip-genesis-sig-verification
+ExecStart=$(which gnoland) start --genesis $HOME/gno/gnoland-data/config/genesis.json --data-dir $HOME/gno/gnoland-data/ --chainid onyx-1 --skip-genesis-sig-verification
 Restart=always
 RestartSec=3
 LimitNOFILE=65535
@@ -99,8 +97,8 @@ gnokey maketx call \
   --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
   --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zptz529djprpqvquq0mtq8yqc5z72gqakx9cvqmf9q6286m9qk72v0tnsa8" \
   --gas-fee 1000000ugnot --gas-wanted 50000000 \
-  --chainid pearl-1 \
-  --remote https://rpc.pearl.testnets.gno.land \
+  --chainid onyx-1 \
+  --remote https://rpc.onyx.testnets.gno.land \
   --broadcast \
   wallet
 ```
