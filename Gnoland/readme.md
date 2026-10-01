@@ -95,8 +95,8 @@ gnokey maketx call \
   --args "$(cat desc.txt)" \
   --args "data-center" \
   --args "g1cm5z4slw83sa3x0gttkvv64nx5dc39n2yxk296" \
-  --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zptz529djprpqvquq0mtq8yqc5z72gqakx9cvqmf9q6286m9qk72v0tnsa8" \
-  --gas-fee 1000000ugnot --gas-wanted 50000000 \
+  --args "gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zpntmsles4xjw3j2hxutq6j58c5ulaz207ymaj6k9vz5rjdguf7n5clavqt" \
+  --gas-fee 1000000ugnot --gas-wanted 100000000 \
   --chainid onyx-1 \
   --remote https://rpc.onyx.testnets.gno.land \
   --broadcast \
