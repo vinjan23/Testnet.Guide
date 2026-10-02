@@ -13,12 +13,12 @@ mv $HOME/go/bin/evmd $HOME/go/bin/limonatad
 cp $HOME/go/bin/limonatad /usr/local/bin/
 ```
 ```
-mkdir -p /home/vinjan/.evmd/cosmovisor/genesis/bin
-cp /home/vinjan/go/bin/limonatad /home/vinjan/.evmd/cosmovisor/genesis/bin/
+mkdir -p $HOME/.evmd/cosmovisor/genesis/bin
+cp $HOME/go/bin/limonatad $HOME/.evmd/cosmovisor/genesis/bin/
 ```
 ```
-sudo ln -s /home/vinjan/.evmd/cosmovisor/genesis /home/vinjan/.evmd/cosmovisor/current -f
-sudo ln -s /home/vinjan/.evmd/cosmovisor/current/bin/limonatad /usr/local/bin/limonatad -f
+sudo ln -s $HOME/.evmd/cosmovisor/genesis $HOME/.evmd/cosmovisor/current -f
+sudo ln -s $HOME/.evmd/cosmovisor/current/bin/limonatad /usr/local/bin/limonatad -f
 ```
 ### Update
 ```
@@ -149,13 +149,13 @@ sudo systemctl restart limonatad
 sudo journalctl -u limonatad -f -o cat
 ```
 ```
-limonatad keys add wallet
+limonatad keys add wallet --recover --keyring-backend file
 ```
 ```
 limonatad keys export wallet --unarmored-hex --unsafe
 ```
 ```
-limonatad q bank balances $(limonatad keys show wallet -a)
+limonatad q bank balances $(limonatad keys show wallet -a --keyring-backend file)
 ```
 ```
 limonatad comet show-validator
@@ -195,13 +195,13 @@ limonatad tx slashing unjail \
   -y
 ```
 ```
-limonatad tx slashing unjail --from wallet --chain-id limonata_10777-1 --gas auto --gas-adjustment 1.5 --gas-prices 0.05aLIMO
+limonatad tx slashing unjail --from wallet --chain-id limonata_10777-1 --gas auto --gas-adjustment 1.5 --gas-prices 0.05aLIMO --keyring-backend file
 ```
 ```
-limonatad tx distribution withdraw-rewards $(limonatad keys show wallet --bech val -a) --commission --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto
+limonatad tx distribution withdraw-rewards $(limonatad keys show wallet --bech val -a) --commission --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto --keyring-backend file
 ```
 ```
-limonatad tx staking delegate $(limonatad keys show wallet --bech val -a) 5000000000000000000aLIMO --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto
+limonatad tx staking delegate $(limonatad keys show wallet --bech val -a) 5000000000000000000aLIMO --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=0.05aLIMO --gas auto --keyring-backend file
 ```
 
 ```
@@ -209,7 +209,7 @@ echo $(limonatad comet show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.evm
 ```
 
 ```
-limonatad tx gov vote 1 yes --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=10000000000aLIMO --gas auto
+limonatad tx gov vote 1 yes --from wallet --chain-id limonata_10777-1 --gas-adjustment=1.4 --gas-prices=10000000000aLIMO --gas auto --keyring-backend file
 ```
 
 ```
