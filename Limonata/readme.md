@@ -57,20 +57,20 @@ curl -L https://limonata.xyz/genesis.json  > /home/vinjan/.evmd/config/genesis.j
 ```
 ```
 PORT=191
-sed -i -e "s%:26657%:${PORT}57%" /home/vinjan/.evmd/config/client.toml
-sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" /home/vinjan/.evmd/config/config.toml
-sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:8546%:${PORT}46%; s%:6065%:${PORT}65%" /home/vinjan/.evmd/config/app.toml
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.evmd/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.evmd/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%; s%:8545%:${PORT}45%; s%:8546%:${PORT}46%; s%:6065%:${PORT}65%" $HOME/.evmd/config/app.toml
 ```
 
 ```
-sed -i -E "s|type = \".*\"|type = \"app\"|g" /home/vinjan/.evmd/config/config.toml
-sed -i -e "s/^chain-id *=.*/chain-id = \"limonata_10777-1\"/;" /home/vinjan/.evmd/config/client.toml
+sed -i -E "s|type = \".*\"|type = \"app\"|g" $HOME/.evmd/config/config.toml
+sed -i -e "s/^chain-id *=.*/chain-id = \"limonata_10777-1\"/;" $HOME/.evmd/config/client.toml
 ```
 
 ```
 peers="5524db78063da27c88a8f674bd1a220f54ff823b@65.21.234.111:19156"
 sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" /home/vinjan/.evmd/config/config.toml
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aLIMO\"/" /home/vinjan/.evmd/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0aLIMO\"/" $HOME/.evmd/config/app.toml
 ```
 ```
 peers="14673dfbd8efff7eed0a97880efde1d0a54da948@195.201.160.23:19156"
@@ -82,10 +82,10 @@ sed -i \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
 -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
 -e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
-/home/vinjan/.evmd/config/app.toml
+$HOME/.evmd/config/app.toml
 ```
 ```
-sed -i 's|^indexer *=.*|indexer = "null"|' /home/vinjan/.evmd/config/config.toml
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.evmd/config/config.toml
 ```
 ```
 sudo tee /etc/systemd/system/limonatad.service > /dev/null <<'EOF'
