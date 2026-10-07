@@ -88,6 +88,11 @@ $HOME/.evmd/config/app.toml
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.evmd/config/config.toml
 ```
 ```
+sed -i 's/^evm-chain-id = "262144"/evm-chain-id = "10777"/' $HOME/.evmd/config/config.toml
+sed -i 's/^type = "flood"/type = "app"/' $HOME/.evmd/config/config.toml
+```
+
+```
 sudo tee /etc/systemd/system/limonatad.service > /dev/null <<'EOF'
 [Unit]
 Description=limonata
