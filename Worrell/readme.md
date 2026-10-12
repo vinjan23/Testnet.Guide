@@ -13,6 +13,16 @@ sudo ln -s $HOME/.worrell/cosmovisor/genesis $HOME/.worrell/cosmovisor/current -
 sudo ln -s $HOME/.worrell/cosmovisor/current/bin/worrelld /usr/local/bin/worrelld -f
 ```
 ```
+cd worrell
+git fetch --tags
+git checkout v0.1.3
+make install
+```
+```
+mkdir -p $HOME/.worrell/cosmovisor/upgrades/v0.1.3/bin
+cp $HOME/go/bin/worrelld $HOME/.worrell/cosmovisor/upgrades/v0.1.3/bin/
+```
+```
 worrelld init Vinjan.Inc --chain-id worrell-testnet-1
 ```
 ```
