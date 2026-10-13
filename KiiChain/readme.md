@@ -21,13 +21,12 @@ cd $HOME
 rm -rf kiichain
 git clone https://github.com/KiiChain/kiichain.git
 cd kiichain
-git checkout v7.3.1
-make build
+git checkout v8.0.0-rc1
+make install
 ```
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin
-mv build/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v7.3.1/bin/
-rm -rf build
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v8.0.0/bin
+cp $HOME/go/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v8.0.0/bin/
 ```
 
 ```
