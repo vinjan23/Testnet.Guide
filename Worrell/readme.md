@@ -19,8 +19,12 @@ git checkout v0.1.3
 make install
 ```
 ```
+wget https://github.com/worrellchain/worrell/releases/download/v0.1.3/v0.1.3_linux_amd64.tar.gz
+tar xzf v0.1.3_linux_amd64.tar.gz
+chmod +x v0.1.3_linux_amd64.tar.gz
+```
+```
 mkdir -p $HOME/.worrell/cosmovisor/upgrades/v0.1.3/bin
-cp $HOME/go/bin/worrelld $HOME/.worrell/cosmovisor/upgrades/v0.1.3/bin/
 ```
 ```
 worrelld init Vinjan.Inc --chain-id worrell-testnet-1
