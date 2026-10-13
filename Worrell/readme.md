@@ -142,4 +142,13 @@ worrelld tx staking delegate $(worrelld keys show wallet --bech val -a) 10000000
 ```
 worrelld tx gov vote 2 yes --from wallet --chain-id worrell-testnet-1 --gas-adjustment=1.5 --gas-prices 0.025uworrell --gas auto
 ```
-
+```
+sudo systemctl stop worrelld
+sudo systemctl disable worrelld
+sudo rm /etc/systemd/system/worrelld.service
+sudo systemctl daemon-reload
+rm -rf $(which worrelld)
+rm -rf .worrell
+rm -rf worrell
+rm -rf /root/go/bin/worrelld
+```
