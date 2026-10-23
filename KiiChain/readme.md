@@ -30,9 +30,9 @@ cp $HOME/go/bin/kiichaind $HOME/.kiichain/cosmovisor/upgrades/v8.0.0/bin/
 ```
 
 ```
-mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v7.4.2/bin
-wget https://kiichain-snapshots-public.s3.us-east-2.amazonaws.com/releases/v7.4.2/kiichaind-v7.4.2-linux-amd64 -O $HOME/.kiichain/cosmovisor/upgrades/v7.4.2/bin/kiichaind
-chmod +x $HOME/.kiichain/cosmovisor/upgrades/v7.4.2/bin/kiichaind
+mkdir -p $HOME/.kiichain/cosmovisor/upgrades/v8.0.1/bin
+wget https://github.com/KiiChain/kiichain/releases/download/v8.0.1-private/kiichaind-v8.0.1-linux-amd64 -O $HOME/.kiichain/cosmovisor/upgrades/v8.0.1/bin/kiichaind
+chmod +x $HOME/.kiichain/cosmovisor/upgrades/v8.0.1/bin/kiichaind
 ```
 ```
 sha256sum $HOME/.kiichain/cosmovisor/upgrades/v7.4.2/bin/kiichaind
