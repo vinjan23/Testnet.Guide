@@ -1,12 +1,12 @@
 ### Binary
 ```
 git clone https://github.com/gnolang/gno.git
-cd gno && git checkout v1.6.0-rc.1
+cd gno && git checkout v1.7.0-rc.1
 make -C gno.land install.gnoland install.gnokey
 ```
 ```
 cd gno && git fetch --all --tags
-git checkout v1.6.0-rc.1
+git checkout v1.7.0-rc.1
 make -C gno.land install.gnoland install.gnokey
 ```
 ### Init
