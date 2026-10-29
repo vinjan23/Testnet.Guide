@@ -73,6 +73,24 @@ WantedBy=multi-user.target
 EOF
 ```
 ```
+tee /etc/systemd/system/worrelld-2.service > /dev/null <<EOF
+[Unit]
+Description=Worrell Testnet-2
+After=network-online.target
+[Service]
+User=root
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+Environment="DAEMON_NAME=worrelld"
+Environment="DAEMON_HOME=$HOME/.worrell-testnet-2"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
 sudo systemctl daemon-reload
 sudo systemctl enable worrelld
 sudo systemctl restart worrelld
