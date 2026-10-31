@@ -41,6 +41,9 @@ sudo ln -s $HOME/.atlas/cosmovisor/genesis $HOME/.atlas/cosmovisor/current -f
 sudo ln -s $HOME/.atlas/cosmovisor/current/bin/atlasd /usr/local/bin/atlasd -f
 ```
 ```
+wget -O $HOME/.atlas/config/genesis.json https://github.com/atlas-depin/networks/blob/main/testnet/genesis/genesis.json
+```
+```
 sed -i \
 -e 's|^pruning *=.*|pruning = "custom"|' \
 -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
