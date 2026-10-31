@@ -5,12 +5,12 @@ git checkout v0.1.2
 make install
 ```
 ```
-mkdir -p $HOME/.worrell/cosmovisor/genesis/bin
-cp $HOME/go/bin/worrelld $HOME/.worrell/cosmovisor/genesis/bin/
+mkdir -p $HOME/.worrell-testnet-2/cosmovisor/genesis/bin
+cp $HOME/go/bin/worrelld $HOME/.worrell-testnet-2/cosmovisor/genesis/bin/
 ```
 ```
-sudo ln -s $HOME/.worrell/cosmovisor/genesis $HOME/.worrell/cosmovisor/current -f
-sudo ln -s $HOME/.worrell/cosmovisor/current/bin/worrelld /usr/local/bin/worrelld -f
+sudo ln -s $HOME/.worrell-testnet-2/cosmovisor/genesis $HOME/.worrell-testnet-2/cosmovisor/current -f
+sudo ln -s $HOME/.worrell-testnet-2/cosmovisor/current/bin/worrelld /usr/local/bin/worrelld -f
 ```
 ```
 cd worrell
