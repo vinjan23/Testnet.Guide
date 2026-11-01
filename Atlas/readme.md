@@ -84,3 +84,29 @@ sudo journalctl -u atlasd -f -o cat
 ```
 atlasd status 2>&1 | jq .sync_info
 ```
+```
+nano $HOME/.atlas/validator.json
+```
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"TNwsKZBDscW9kOe8yVitXebdQEgrC2fZ4tYiBnQWblo="},
+  "amount": "999900000uatl",
+  "moniker": "Vinjan.Inc",
+  "identity": "7C66E36EA2B71F68",
+  "website": "https://vinjan-inc.com",
+  "security": "",
+  "details": "Staking Provider-IBC Relayer",
+  "commission-rate": "0.10",
+  "commission-max-rate": "1",
+  "commission-max-change-rate": "1",
+  "min-self-delegation": "1"
+}
+```
+```
+atlasd tx staking create-validator $HOME/.atlas/validator.json \
+--from wallet \
+--chain-id itineraria-1 \
+--gas-prices=0.01uatl \
+--gas-adjustment=1.5 \
+--gas=auto
+```
