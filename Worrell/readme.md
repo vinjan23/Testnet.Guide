@@ -5,54 +5,50 @@ git checkout v0.1.2
 make install
 ```
 ```
+wget https://github.com/worrellchain/worrell/releases/download/v0.2.0/v0.2.0_linux_amd64.tar.gz
+sha256sum v0.2.0_linux_amd64.tar.gz
+chmod +x /root/worrelld
+```
+```
 mkdir -p $HOME/.worrell-testnet-2/cosmovisor/genesis/bin
-cp $HOME/go/bin/worrelld $HOME/.worrell-testnet-2/cosmovisor/genesis/bin/
+mv worrelld $HOME/.worrell-testnet-2/cosmovisor/genesis/bin/
+chmod +x $HOME/.worrell-testnet-2/cosmovisor/genesis/bin/worrelld
 ```
 ```
 sudo ln -s $HOME/.worrell-testnet-2/cosmovisor/genesis $HOME/.worrell-testnet-2/cosmovisor/current -f
 sudo ln -s $HOME/.worrell-testnet-2/cosmovisor/current/bin/worrelld /usr/local/bin/worrelld -f
 ```
+### Cek versi
 ```
-cd worrell
-git fetch --tags
-git checkout v0.1.3
-make install
+$HOME/.worrell-testnet-2/cosmovisor/genesis/bin/worrelld version
 ```
 ```
-wget https://github.com/worrellchain/worrell/releases/download/v0.1.3/v0.1.3_linux_amd64.tar.gz
-tar xzf v0.1.3_linux_amd64.tar.gz
-chmod +x v0.1.3_linux_amd64.tar.gz
+worrelld init Vinjan.Inc --chain-id worrell-testnet-2
 ```
 ```
-mkdir -p $HOME/.worrell/cosmovisor/upgrades/v0.1.3/bin
+PORT=588
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.worrell-testnet-2/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.worrell-testnet-2/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.worrell-testnet-2/config/app.toml
 ```
 ```
-worrelld init Vinjan.Inc --chain-id worrell-testnet-1
+wget -O $HOME/.worrell-testnet-2/config/genesis.json https://raw.githubusercontent.com/worrellchain/networks/main/worrell-testnet-2/genesis.json
 ```
 ```
-PORT=599
-sed -i -e "s%:26657%:${PORT}57%" $HOME/.worrell/config/client.toml
-sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.worrell/config/config.toml
-sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.worrell/config/app.toml
-```
-```
-wget -O $HOME/.worrell/config/genesis.json https://raw.githubusercontent.com/worrellchain/networks/refs/heads/main/worrell-testnet-1/genesis.json
-```
-```
-peers="bb9164c1bd9ed9ff2c0fd9e09b23285698e231de@164.68.98.186:26656"
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.worrell/config/config.toml
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025uworrell\"/;" ~/.worrell/config/app.toml
+peers=""
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.worrell-testnet-2/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025uworrell\"/;" ~/.worrell-testnet-2/config/app.toml
 ```
 ```
 pruning="custom"
-pruning_keep_recent="1000"
+pruning_keep_recent="100"
 pruning_interval="20"
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.worrell/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.worrell/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.worrell/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.worrell-testnet-2/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.worrell-testnet-2/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.worrell-testnet-2/config/app.toml
 ```
 ```
-sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.worrell/config/config.toml
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.worrell-testnet-2/config/config.toml
 ```
 ```
 sudo tee /etc/systemd/system/worrelld.service > /dev/null <<EOF
@@ -91,10 +87,16 @@ WantedBy=multi-user.target
 EOF
 ```
 ```
+worrelld start --home $HOME/.worrell-testnet-2
+```
+```
 sudo systemctl daemon-reload
-sudo systemctl enable worrelld
-sudo systemctl restart worrelld
-sudo journalctl -u worrelld -f -o cat
+sudo systemctl enable worrelld-2
+sudo systemctl restart worrelld-2
+sudo journalctl -u worrelld-2 -f -o cat
+```
+```
+worrelld status --home $HOME/.worrell-testnet-2 2>&1 | jq .sync_info
 ```
 ```
 worrelld status 2>&1 | jq .sync_info
