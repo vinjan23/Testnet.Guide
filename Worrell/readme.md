@@ -69,19 +69,17 @@ WantedBy=multi-user.target
 EOF
 ```
 ```
-tee /etc/systemd/system/worrelld-2.service > /dev/null <<EOF
+cat > /etc/systemd/system/worrelld-2.service <<'EOF'
 [Unit]
 Description=Worrell Testnet-2
 After=network-online.target
+Wants=network-online.target
 [Service]
 User=root
-ExecStart=$(which cosmovisor) run start
+ExecStart=/root/.worrell-testnet-2/cosmovisor/genesis/bin/worrelld start --home /root/.worrell-testnet-2
 Restart=on-failure
-RestartSec=3
+RestartSec=5
 LimitNOFILE=65535
-Environment="DAEMON_NAME=worrelld"
-Environment="DAEMON_HOME=$HOME/.worrell-testnet-2"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 [Install]
 WantedBy=multi-user.target
 EOF
