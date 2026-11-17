@@ -6,17 +6,22 @@ make install
 ```
 ```
 wget https://github.com/worrellchain/worrell/releases/download/v0.2.0/v0.2.0_linux_amd64.tar.gz
-sha256sum v0.2.0_linux_amd64.tar.gz
-chmod +x /root/worrelld
+tar xzf v0.2.0_linux_amd64.tar.gz
+chmod +x worrelld
+mv worrelld $HOME/go/bin/
+rm v0.2.0_linux_amd64.tar.gz
 ```
 ```
-mkdir -p $HOME/.worrell-testnet-2/cosmovisor/genesis/bin
+mkdir -p $HOME/.worrell/cosmovisor/genesis/bin
+cp $HOME/go/bin/worrelld $HOME/.worrell/cosmovisor/genesis/bin/
+```
+```
 mv worrelld $HOME/.worrell-testnet-2/cosmovisor/genesis/bin/
 chmod +x $HOME/.worrell-testnet-2/cosmovisor/genesis/bin/worrelld
 ```
 ```
-sudo ln -s $HOME/.worrell-testnet-2/cosmovisor/genesis $HOME/.worrell-testnet-2/cosmovisor/current -f
-sudo ln -s $HOME/.worrell-testnet-2/cosmovisor/current/bin/worrelld /usr/local/bin/worrelld -f
+sudo ln -s $HOME/.worrell/cosmovisor/genesis $HOME/.worrell/cosmovisor/current -f
+sudo ln -s $HOME/.worrell/cosmovisor/current/bin/worrelld /usr/local/bin/worrelld -f
 ```
 ### Cek versi
 ```
@@ -27,28 +32,28 @@ worrelld init Vinjan.Inc --chain-id worrell-testnet-2
 ```
 ```
 PORT=588
-sed -i -e "s%:26657%:${PORT}57%" $HOME/.worrell-testnet-2/config/client.toml
-sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.worrell-testnet-2/config/config.toml
-sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.worrell-testnet-2/config/app.toml
+sed -i -e "s%:26657%:${PORT}57%" $HOME/.worrell/config/client.toml
+sed -i -e "s%:26658%:${PORT}58%; s%:26657%:${PORT}57%; s%:6060%:${PORT}60%; s%:26656%:${PORT}56%; s%:26660%:${PORT}60%" $HOME/.worrell/config/config.toml
+sed -i -e "s%:1317%:${PORT}17%; s%:9090%:${PORT}90%" $HOME/.worrell/config/app.toml
 ```
 ```
-wget -O $HOME/.worrell-testnet-2/config/genesis.json https://raw.githubusercontent.com/worrellchain/networks/main/worrell-testnet-2/genesis.json
+wget -O $HOME/.worrell/config/genesis.json https://raw.githubusercontent.com/worrellchain/networks/main/worrell-testnet-2/genesis.json
 ```
 ```
 peers=""
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.worrell-testnet-2/config/config.toml
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025uworrell\"/;" ~/.worrell-testnet-2/config/app.toml
+sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.worrell/config/config.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025uworrell\"/;" ~/.worrell/config/app.toml
 ```
 ```
-pruning="custom"
-pruning_keep_recent="100"
-pruning_interval="20"
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.worrell-testnet-2/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.worrell-testnet-2/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.worrell-testnet-2/config/app.toml
+sed -i \
+-e 's|^pruning *=.*|pruning = "custom"|' \
+-e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+-e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+-e 's|^pruning-interval *=.*|pruning-interval = "20"|' \
+$HOME/.worrell/config/app.toml
 ```
 ```
-sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.worrell-testnet-2/config/config.toml
+sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.worrell/config/config.toml
 ```
 ```
 sudo tee /etc/systemd/system/worrelld.service > /dev/null <<EOF
